@@ -1,8 +1,29 @@
-__pycache__
-app.egg-info
-*.pyc
-.mypy_cache
+# Python 本地环境与缓存
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.pyre/
+.pytype/
+.cache/
+.venv/
+
+# 测试、覆盖率与本地运行产物
 .coverage
-htmlcov
-.cache
-.venv
+.coverage.*
+coverage/
+coverage.xml
+coverage.json
+htmlcov/
+*.log
+
+# 本地环境覆盖和密钥
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
