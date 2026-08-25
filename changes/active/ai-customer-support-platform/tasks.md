@@ -25,7 +25,7 @@
 
 ## 后端实施
 
-- [ ] 【模型拆分】(后端) 建立模型与 Schema 包 `← depends: 【基线验证】`
+- [x] 【模型拆分】(后端) 建立模型与 Schema 包 `← depends: 【基线验证】`
   - 目标：拆分 User、Auth、Common Schema，定义角色和 Ticket 枚举。
   - 涉及文件：`backend/app/models/`、`backend/app/schemas/`
   - 预期结果：模型与 API Schema 职责分离，旧认证调用可迁移。
@@ -142,4 +142,4 @@
 
 ## 完成状态
 
-> 进度：4/31 已完成
+> 进度：5/31 已完成

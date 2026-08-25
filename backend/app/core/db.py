@@ -2,7 +2,8 @@ from sqlmodel import Session, create_engine, select
 
 from app import crud
 from app.core.config import settings
-from app.models import User, UserCreate
+from app.models.user import User
+from app.schemas.user import UserCreate
 
 engine = create_engine(str(settings.DATABASE_URL))
 
