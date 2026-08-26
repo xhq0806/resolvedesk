@@ -9,13 +9,17 @@ from app.models.enums import (
     UserRole,
 )
 from app.models.legacy_item import Item
+from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
 
 # 显式导入当前全部 ORM，保证导入 app.models 时完成 SQLModel metadata 注册。
 __all__ = [
     "Item",
+    "Ticket",
     "TicketAuditAction",
+    "TicketAuditLog",
     "TicketCategory",
+    "TicketMessage",
     "TicketMessageType",
     "TicketPriority",
     "TicketStatus",

@@ -29,7 +29,7 @@
   - 目标：拆分 User、Auth、Common Schema，定义角色和 Ticket 枚举。
   - 涉及文件：`backend/app/models/`、`backend/app/schemas/`
   - 预期结果：模型与 API Schema 职责分离，旧认证调用可迁移。
-- [ ] 【工单模型】(后端) 建立 Ticket 持久化模型 `← depends: 【模型拆分】`
+- [x] 【工单模型】(后端) 建立 Ticket 持久化模型 `← depends: 【模型拆分】`
   - 目标：添加 Ticket、Message、Audit ORM、关系、约束和索引。
   - 涉及文件：`backend/app/models/ticket.py`
   - 预期结果：数据库 metadata 完整表达工单领域。
@@ -142,4 +142,4 @@
 
 ## 完成状态
 
-> 进度：5/31 已完成
+> 进度：6/31 已完成
