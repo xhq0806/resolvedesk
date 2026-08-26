@@ -37,7 +37,7 @@
   - 目标：回填角色、验证活跃 Admin、创建新表并删除 Item。
   - 涉及文件：`backend/app/alembic/versions/`、迁移测试
   - 预期结果：老库可升级，角色与历史账号保持有效。
-- [ ] 【错误基础】(后端) 建立统一领域错误与 request_id `← depends: 【模型拆分】`
+- [x] 【错误基础】(后端) 建立统一领域错误与 request_id `← depends: 【模型拆分】`
   - 目标：添加稳定错误码、异常映射、请求 ID 和安全日志边界。
   - 涉及文件：`backend/app/core/errors.py`、`backend/app/core/request_context.py`、`backend/app/main.py`
   - 预期结果：业务错误返回稳定 code、message 和 request_id。
@@ -142,4 +142,4 @@
 
 ## 完成状态
 
-> 进度：7/31 已完成
+> 进度：8/31 已完成
