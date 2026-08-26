@@ -1,18 +1,23 @@
-import uuid
 from typing import Any
 
 from sqlmodel import Session, select
 
 from app.core.security import get_password_hash, verify_password
-from app.models.legacy_item import Item
+from app.models.enums import UserRole
 from app.models.user import User
-from app.schemas.legacy_item import ItemCreate
 from app.schemas.user import UserCreate, UserUpdate
 
 
 def create_user(*, session: Session, user_create: UserCreate) -> User:
+    """创建用户并将旧超级用户输入映射为单角色字段。by AI.Coding"""
+    user_data = user_create.model_dump(exclude={"password", "is_superuser"})
+    role = UserRole.ADMIN if user_create.is_superuser else UserRole.CUSTOMER
     db_obj = User.model_validate(
-        user_create, update={"hashed_password": get_password_hash(user_create.password)}
+        user_data,
+        update={
+            "hashed_password": get_password_hash(user_create.password),
+            "role": role,
+        },
     )
     session.add(db_obj)
     session.commit()
@@ -21,10 +26,15 @@ def create_user(*, session: Session, user_create: UserCreate) -> User:
 
 
 def update_user(*, session: Session, db_user: User, user_in: UserUpdate) -> Any:
+    """更新用户并将旧超级用户输入安全翻译为角色。by AI.Coding"""
     user_data = user_in.model_dump(exclude_unset=True)
-    extra_data = {}
+    extra_data: dict[str, Any] = {}
+    is_superuser = user_data.pop("is_superuser", None)
+    if is_superuser is not None:
+        # 兼容旧管理接口，但数据库只保留单一 role 真源。
+        extra_data["role"] = UserRole.ADMIN if is_superuser else UserRole.CUSTOMER
     if "password" in user_data:
-        password = user_data["password"]
+        password = user_data.pop("password")
         hashed_password = get_password_hash(password)
         extra_data["hashed_password"] = hashed_password
     db_user.sqlmodel_update(user_data, update=extra_data)
@@ -46,6 +56,7 @@ DUMMY_HASH = "$argon2id$v=19$m=65536,t=3,p=4$MjQyZWE1MzBjYjJlZTI0Yw$YTU4NGM5ZTZm
 
 
 def authenticate(*, session: Session, email: str, password: str) -> User | None:
+    """校验用户密码并按需升级密码哈希。by AI.Coding"""
     db_user = get_user_by_email(session=session, email=email)
     if not db_user:
         # Prevent timing attacks by running password verification even when user doesn't exist
@@ -61,11 +72,3 @@ def authenticate(*, session: Session, email: str, password: str) -> User | None:
         session.commit()
         session.refresh(db_user)
     return db_user
-
-
-def create_item(*, session: Session, item_in: ItemCreate, owner_id: uuid.UUID) -> Item:
-    db_item = Item.model_validate(item_in, update={"owner_id": owner_id})
-    session.add(db_item)
-    session.commit()
-    session.refresh(db_item)
-    return db_item

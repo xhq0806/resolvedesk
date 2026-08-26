@@ -6,7 +6,7 @@ from datetime import datetime
 from enum import StrEnum
 from typing import Any
 
-from sqlalchemy import JSON, Column, DateTime, Enum, Index, Text, asc, desc
+from sqlalchemy import JSON, Column, DateTime, Enum, Index, Text, asc, desc, text
 from sqlmodel import Field, Relationship, SQLModel
 
 from app.models.enums import (
@@ -78,6 +78,7 @@ class Ticket(SQLModel, table=True):
             ),
             nullable=False,
             index=True,
+            server_default=text("'OPEN'::ticket_status"),
         ),
     )
     priority: TicketPriority = Field(
@@ -91,6 +92,7 @@ class Ticket(SQLModel, table=True):
             ),
             nullable=False,
             index=True,
+            server_default=text("'MEDIUM'::ticket_priority"),
         ),
     )
     category: TicketCategory = Field(

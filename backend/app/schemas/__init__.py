@@ -2,12 +2,6 @@
 
 from app.schemas.auth import NewPassword, Token, TokenPayload, UpdatePassword
 from app.schemas.common import Message
-from app.schemas.legacy_item import (
-    ItemCreate,
-    ItemPublic,
-    ItemsPublic,
-    ItemUpdate,
-)
 from app.schemas.user import (
     UserCreate,
     UserPublic,
@@ -18,10 +12,6 @@ from app.schemas.user import (
 )
 
 __all__ = [
-    "ItemCreate",
-    "ItemPublic",
-    "ItemsPublic",
-    "ItemUpdate",
     "Message",
     "NewPassword",
     "Token",

@@ -1,7 +1,8 @@
-from sqlmodel import Session, create_engine, select
+from sqlmodel import Session, col, create_engine, select
 
 from app import crud
 from app.core.config import settings
+from app.models.enums import UserRole
 from app.models.user import User
 from app.schemas.user import UserCreate
 
@@ -14,13 +15,8 @@ engine = create_engine(str(settings.DATABASE_URL))
 
 
 def init_db(session: Session) -> None:
-    # Tables should be created with Alembic migrations
-    # But if you don't want to use migrations, create
-    # the tables un-commenting the next lines
-    # from sqlmodel import SQLModel
-
-    # This works because the models are already imported and registered from app.models
-    # SQLModel.metadata.create_all(engine)
+    """初始化首个管理员并验证系统保留活跃 Admin。by AI.Coding"""
+    # 数据库表统一由 Alembic 管理，初始化逻辑只负责业务种子数据。
 
     user = session.exec(
         select(User).where(User.email == settings.FIRST_SUPERUSER)
@@ -32,3 +28,17 @@ def init_db(session: Session) -> None:
             is_superuser=True,
         )
         user = crud.create_user(session=session, user_create=user_in)
+        if user.role is not UserRole.ADMIN:
+            user.role = UserRole.ADMIN
+            session.add(user)
+            session.commit()
+            session.refresh(user)
+
+    active_admin = session.exec(
+        select(User).where(
+            User.role == UserRole.ADMIN,
+            col(User.is_active).is_(True),
+        )
+    ).first()
+    if active_admin is None:
+        raise RuntimeError("数据库初始化失败：系统中必须至少存在一位活跃管理员。")

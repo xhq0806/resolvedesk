@@ -7,7 +7,7 @@ from sqlmodel import Session, delete
 from app.core.config import settings
 from app.core.db import engine, init_db
 from app.main import app
-from app.models.legacy_item import Item
+from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
 from tests.utils.user import authentication_token_from_email
 from tests.utils.utils import get_superuser_token_headers
@@ -15,13 +15,13 @@ from tests.utils.utils import get_superuser_token_headers
 
 @pytest.fixture(scope="session", autouse=True)
 def db() -> Generator[Session]:
+    """提供应用数据库会话并按 RESTRICT 外键顺序清理数据。by AI.Coding"""
     with Session(engine) as session:
         init_db(session)
         yield session
-        statement = delete(Item)
-        session.execute(statement)
-        statement = delete(User)
-        session.execute(statement)
+        # 先删除子表和工单，再删除被历史记录引用的用户。
+        for model in (TicketAuditLog, TicketMessage, Ticket, User):
+            session.execute(delete(model))
         session.commit()
 
 

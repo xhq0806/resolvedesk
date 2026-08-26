@@ -51,6 +51,7 @@ CurrentUser = Annotated[User, Depends(get_current_user)]
 
 
 def get_current_active_superuser(current_user: CurrentUser) -> User:
+    """迁移期沿用旧依赖名称，并通过单角色模型识别 Admin。by AI.Coding"""
     if not current_user.is_superuser:
         raise HTTPException(
             status_code=403, detail="The user doesn't have enough privileges"

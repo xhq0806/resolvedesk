@@ -24,7 +24,6 @@ from app.models.enums import (
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
 from app.schemas.auth import NewPassword, UpdatePassword
-from app.schemas.legacy_item import ItemCreate, ItemUpdate
 from app.schemas.user import UserCreate, UserRegister, UserUpdate, UserUpdateMe
 
 
@@ -79,8 +78,6 @@ def test_domain_enum_values_match_design() -> None:
             {"current_password": "password123", "new_password": "newpass123"},
         ),
         (NewPassword, {"token": "token", "new_password": "newpass123"}),
-        (ItemCreate, {"title": "Item"}),
-        (ItemUpdate, {"title": "Updated Item"}),
     ],
 )
 def test_external_input_schemas_forbid_unknown_fields(
@@ -105,7 +102,7 @@ def test_public_registration_rejects_privilege_fields() -> None:
 
 
 def test_current_user_schema_contract_remains_compatible() -> None:
-    """数据库迁移前继续保留现有用户管理字段。by AI.Coding"""
+    """角色化 ORM 期间继续接受旧管理输入并拒绝直接 role 输入。by AI.Coding"""
     user_create = UserCreate(
         email="admin@example.com",
         password="password123",
@@ -118,19 +115,51 @@ def test_current_user_schema_contract_remains_compatible() -> None:
     assert "role" not in UserCreate.model_fields
 
 
-def test_models_package_registers_ticket_domain_tables() -> None:
-    """模型包应注册当前兼容表与完整 Ticket 领域表。by AI.Coding"""
+def test_models_package_registers_migrated_domain_tables() -> None:
+    """模型包应只注册角色迁移后的 User 与 Ticket 领域表。by AI.Coding"""
     tables = set(SQLModel.metadata.tables)
 
-    assert {
+    assert tables == {
         "user",
-        "item",
         "ticket",
         "ticket_message",
         "ticket_audit_log",
-    }.issubset(tables)
-    assert "is_superuser" in User.model_fields
-    assert "role" not in User.model_fields
+    }
+    assert "role" in User.model_fields
+    assert "is_superuser" not in User.model_fields
+    assert "is_superuser" not in SQLModel.metadata.tables["user"].c
+
+
+def test_user_role_metadata_and_compatibility_match_migration() -> None:
+    """User role 类型、索引和迁移期兼容属性应保持单一真源。by AI.Coding"""
+    user_table = SQLModel.metadata.tables["user"]
+    role_type = user_table.c.role.type
+    role_index = next(
+        index for index in user_table.indexes if index.name == "ix_user_role_active"
+    )
+
+    assert isinstance(role_type, Enum)
+    assert role_type.native_enum is True
+    assert role_type.name == "user_role"
+    assert user_table.c.role.nullable is False
+    assert str(user_table.c.role.server_default.arg) == "'CUSTOMER'::user_role"
+    assert tuple(column.name for column in role_index.columns) == ("role", "is_active")
+    assert (
+        User(
+            email="admin@example.com",
+            hashed_password="hash",
+            role=UserRole.ADMIN,
+        ).is_superuser
+        is True
+    )
+    assert (
+        User(
+            email="agent@example.com",
+            hashed_password="hash",
+            role=UserRole.AGENT,
+        ).is_superuser
+        is False
+    )
 
 
 def test_ticket_instances_have_expected_defaults() -> None:
@@ -305,6 +334,7 @@ def test_package_exports_keep_models_and_schemas_separate() -> None:
     """模型包和 Schema 包不得恢复为混合导出入口。by AI.Coding"""
     assert not hasattr(app.models, "SQLModel")
     assert not hasattr(app.models, "UserCreate")
+    assert not hasattr(app.models, "Item")
     assert hasattr(app.models, "Ticket")
     assert hasattr(app.models, "TicketMessage")
     assert hasattr(app.models, "TicketAuditLog")

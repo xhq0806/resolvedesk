@@ -52,6 +52,8 @@ class UserUpdateMe(StrictInput):
 class UserPublic(BaseModel):
     """用户公开响应，不包含密码字段。by AI.Coding"""
 
+    model_config = ConfigDict(from_attributes=True)
+
     email: EmailStr = Field(max_length=255)
     is_active: bool = True
     is_superuser: bool = False
