@@ -4,6 +4,7 @@ from app.schemas.auth import NewPassword, Token, TokenPayload, UpdatePassword
 from app.schemas.common import ErrorResponse, Message
 from app.schemas.user import (
     UserCreate,
+    UserFilters,
     UserPublic,
     UserRegister,
     UsersPublic,
@@ -19,6 +20,7 @@ __all__ = [
     "TokenPayload",
     "UpdatePassword",
     "UserCreate",
+    "UserFilters",
     "UserPublic",
     "UserRegister",
     "UsersPublic",

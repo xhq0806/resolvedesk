@@ -5,13 +5,34 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
+
+from app.models.enums import UserRole
 
 
 class StrictInput(BaseModel):
     """拒绝未声明字段的外部输入基类。by AI.Coding"""
 
     model_config = ConfigDict(extra="forbid")
+
+
+class UserFilters(StrictInput):
+    """管理员用户列表筛选与分页参数。by AI.Coding"""
+
+    role: UserRole | None = None
+    is_active: bool | None = None
+    query: str | None = Field(default=None, max_length=255)
+    page: int = Field(default=1, ge=1)
+    page_size: int = Field(default=20, ge=1, le=100)
+
+    @field_validator("query", mode="before")
+    @classmethod
+    def normalize_query(cls, value: object) -> object:
+        """去除查询文本首尾空白，并将空文本视为未筛选。by AI.Coding"""
+        if isinstance(value, str):
+            normalized = value.strip()
+            return normalized or None
+        return value
 
 
 class UserCreate(StrictInput):
