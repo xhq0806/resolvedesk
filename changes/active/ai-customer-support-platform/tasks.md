@@ -41,11 +41,11 @@
   - 目标：添加稳定错误码、异常映射、请求 ID 和安全日志边界。
   - 涉及文件：`backend/app/core/errors.py`、`backend/app/core/request_context.py`、`backend/app/main.py`
   - 预期结果：业务错误返回稳定 code、message 和 request_id。
-- [ ] 【用户仓储】(后端) 实现用户查询与 Admin 锁 `← depends: 【模型拆分】`
+- [x] 【用户仓储】(后端) 实现用户查询与 Admin 锁 `← depends: 【模型拆分】`
   - 目标：完成用户筛选分页、活跃 Agent 查询和活跃 Admin 行锁。
   - 涉及文件：`backend/app/repositories/user_repository.py`
   - 预期结果：用户服务拥有安全的数据访问边界。
-- [ ] 【用户服务】(后端) 实现三角色用户管理 `← depends: 【用户仓储】`
+- [x] 【用户服务】(后端) 实现三角色用户管理 `← depends: 【用户仓储】`
   - 目标：TDD 完成注册默认 Customer、Admin 创建修改、停用和最后 Admin 保护。
   - 涉及文件：`backend/app/services/user_service.py`、用户测试
   - 预期结果：三角色和用户生命周期满足 spec。
@@ -142,4 +142,4 @@
 
 ## 完成状态
 
-> 进度：8/31 已完成
+> 进度：10/31 已完成

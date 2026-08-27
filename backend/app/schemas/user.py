@@ -45,6 +45,16 @@ class UserCreate(StrictInput):
     password: str = Field(min_length=8, max_length=128)
 
 
+class UserCreateAdmin(StrictInput):
+    """管理员按单角色模型创建用户的请求。by AI.Coding"""
+
+    email: EmailStr = Field(max_length=255)
+    password: str = Field(min_length=8, max_length=128)
+    full_name: str | None = Field(default=None, max_length=255)
+    role: UserRole = UserRole.CUSTOMER
+    is_active: bool = True
+
+
 class UserRegister(StrictInput):
     """公开注册请求，不接受角色和启用状态字段。by AI.Coding"""
 
@@ -63,6 +73,16 @@ class UserUpdate(StrictInput):
     password: str | None = Field(default=None, min_length=8, max_length=128)
 
 
+class UserUpdateAdmin(StrictInput):
+    """管理员按单角色模型更新用户的请求。by AI.Coding"""
+
+    email: EmailStr | None = Field(default=None, max_length=255)
+    full_name: str | None = Field(default=None, max_length=255)
+    role: UserRole | None = None
+    is_active: bool | None = None
+    password: str | None = Field(default=None, min_length=8, max_length=128)
+
+
 class UserUpdateMe(StrictInput):
     """当前用户更新个人资料请求。by AI.Coding"""
 
@@ -77,6 +97,7 @@ class UserPublic(BaseModel):
 
     email: EmailStr = Field(max_length=255)
     is_active: bool = True
+    role: UserRole = UserRole.CUSTOMER
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
     id: uuid.UUID

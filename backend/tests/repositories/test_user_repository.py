@@ -234,6 +234,31 @@ def test_lock_active_admins_returns_only_active_admins_in_id_order(
     assert active_agent.id not in result_ids
 
 
+def test_lock_queries_refresh_an_existing_identity_map_user(
+    persisted_users: list[User],
+) -> None:
+    admin = make_user("refreshing-admin", role=UserRole.ADMIN)
+    persist([admin], persisted_users)
+
+    with Session(engine, expire_on_commit=False) as stale_session:
+        stale_admin = stale_session.get(User, admin.id)
+        assert stale_admin is not None
+        assert stale_admin.full_name is None
+
+        with Session(engine) as updating_session:
+            updating_admin = updating_session.get(User, admin.id)
+            assert updating_admin is not None
+            updating_admin.full_name = "Updated elsewhere"
+            updating_session.add(updating_admin)
+            updating_session.commit()
+
+        refreshed_admins = UserRepository(stale_session).lock_active_admins()
+        refreshed = next(user for user in refreshed_admins if user.id == admin.id)
+        assert refreshed is stale_admin
+        assert refreshed.full_name == "Updated elsewhere"
+        stale_session.rollback()
+
+
 def test_active_admin_lock_blocks_an_independent_session_until_transaction_ends(
     persisted_users: list[User],
 ) -> None:

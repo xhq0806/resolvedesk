@@ -25,7 +25,9 @@ class UserRepository:
         """按主键读取用户，并可在当前事务中锁定该行。by AI.Coding"""
         statement = select(User).where(User.id == user_id)
         if for_update:
-            statement = statement.with_for_update()
+            statement = statement.with_for_update().execution_options(
+                populate_existing=True
+            )
         return self.session.exec(statement).one_or_none()
 
     def get_by_email(self, email: str) -> User | None:
@@ -75,6 +77,7 @@ class UserRepository:
             )
             .order_by(col(User.id))
             .with_for_update()
+            .execution_options(populate_existing=True)
         )
         return list(self.session.exec(statement).all())
 
