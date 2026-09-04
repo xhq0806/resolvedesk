@@ -2,7 +2,17 @@
 
 from app.schemas.auth import NewPassword, Token, TokenPayload, UpdatePassword
 from app.schemas.common import ErrorResponse, Message
-from app.schemas.ticket import TicketFilters
+from app.schemas.ticket import (
+    TicketAssign,
+    TicketAuditPublic,
+    TicketCreate,
+    TicketDetailPublic,
+    TicketFilters,
+    TicketMessagePublic,
+    TicketPublic,
+    TicketsPublic,
+    UserSummary,
+)
 from app.schemas.user import (
     UserCreate,
     UserCreateAdmin,
@@ -19,7 +29,14 @@ __all__ = [
     "ErrorResponse",
     "Message",
     "NewPassword",
+    "TicketAssign",
+    "TicketAuditPublic",
+    "TicketCreate",
+    "TicketDetailPublic",
     "TicketFilters",
+    "TicketMessagePublic",
+    "TicketPublic",
+    "TicketsPublic",
     "Token",
     "TokenPayload",
     "UpdatePassword",
@@ -29,6 +46,7 @@ __all__ = [
     "UserPublic",
     "UserRegister",
     "UsersPublic",
+    "UserSummary",
     "UserUpdate",
     "UserUpdateAdmin",
     "UserUpdateMe",
