@@ -15,22 +15,42 @@ from app.core.errors import (
     ForbiddenError,
     NotFoundError,
 )
-from app.models.enums import TicketAuditAction, TicketPriority, TicketStatus, UserRole
-from app.models.ticket import Ticket, TicketAuditLog
+from app.models.enums import (
+    TicketAuditAction,
+    TicketMessageType,
+    TicketPriority,
+    TicketStatus,
+    UserRole,
+)
+from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User, get_datetime_utc
 from app.repositories.ticket_repository import TicketRepository
 from app.repositories.user_repository import UserRepository
 from app.schemas.ticket import (
+    CustomerReplyCreate,
     TicketAssign,
+    TicketAttributesUpdate,
     TicketAuditPublic,
     TicketCreate,
     TicketDetailPublic,
     TicketFilters,
+    TicketMessageCreate,
     TicketMessagePublic,
     TicketPublic,
     TicketsPublic,
+    TicketStatusUpdate,
 )
-from app.services.ticket_permissions import can_view_internal_notes, can_view_ticket
+from app.services.ticket_permissions import (
+    can_add_internal_note,
+    can_manage_ticket,
+    can_reply_publicly,
+    can_view_internal_notes,
+    can_view_ticket,
+)
+from app.services.ticket_state_machine import (
+    allowed_status_targets,
+    customer_reply_status_target,
+)
 
 ResultType = TypeVar("ResultType")
 
@@ -197,6 +217,138 @@ class TicketService:
         ticket = self._write(operation, refresh=True)
         return self._build_detail(actor, ticket)
 
+    def add_customer_reply(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        payload: CustomerReplyCreate,
+    ) -> TicketMessagePublic:
+        """Customer 发送公开回复，并按状态机自动重开等待或已解决工单。by AI.Coding"""
+        if actor.role is not UserRole.CUSTOMER:
+            raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
+
+        def operation() -> TicketMessage:
+            ticket = self._get_locked_active_ticket(ticket_id)
+            self._ensure_ticket_writable(ticket)
+            if not can_reply_publicly(actor, ticket):
+                raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
+
+            now = get_datetime_utc()
+            old_status = ticket.status
+            target_status = customer_reply_status_target(ticket)
+            message = TicketMessage(
+                ticket_id=ticket.id,
+                author_id=actor.id,
+                message_type=TicketMessageType.PUBLIC_REPLY,
+                content=payload.content,
+            )
+            # 消息与可能产生的状态重开必须处于同一个写事务内。
+            self.ticket_repository.add_message(message)
+            ticket.updated_at = now
+            if target_status is not None:
+                ticket.status = target_status
+                self.ticket_repository.add_audit(
+                    self._status_audit(
+                        ticket=ticket,
+                        actor=actor,
+                        old_status=old_status,
+                    )
+                )
+            self.ticket_repository.add(ticket)
+            return message
+
+        message = self._write(operation, refresh=True)
+        return TicketMessagePublic.model_validate(message)
+
+    def add_staff_message(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        payload: TicketMessageCreate,
+    ) -> TicketMessagePublic:
+        """Agent 或 Admin 对未关闭工单发送公开回复或内部备注。by AI.Coding"""
+        if actor.role not in {UserRole.AGENT, UserRole.ADMIN}:
+            raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
+
+        def operation() -> TicketMessage:
+            ticket = self._get_locked_active_ticket(ticket_id)
+            self._ensure_ticket_writable(ticket)
+            if payload.message_type is TicketMessageType.INTERNAL_NOTE:
+                allowed = can_add_internal_note(actor, ticket)
+            else:
+                allowed = can_reply_publicly(actor, ticket)
+            if not allowed:
+                raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
+
+            message = TicketMessage(
+                ticket_id=ticket.id,
+                author_id=actor.id,
+                message_type=payload.message_type,
+                content=payload.content,
+            )
+            # 普通消息不产生审计，但应推动工单更新时间用于队列排序。
+            ticket.updated_at = get_datetime_utc()
+            self.ticket_repository.add(ticket)
+            self.ticket_repository.add_message(message)
+            return message
+
+        message = self._write(operation, refresh=True)
+        return TicketMessagePublic.model_validate(message)
+
+    def update_status(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        payload: TicketStatusUpdate,
+    ) -> TicketDetailPublic:
+        """按状态机主动修改工单状态并写入状态审计。by AI.Coding"""
+
+        def operation() -> Ticket:
+            ticket = self._get_locked_active_ticket(ticket_id)
+            self._ensure_ticket_writable(ticket)
+            if not can_manage_ticket(actor, ticket):
+                raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
+            if payload.status not in allowed_status_targets(actor, ticket):
+                raise ConflictError(ErrorCode.INVALID_STATUS_TRANSITION)
+
+            old_status = ticket.status
+            ticket.status = payload.status
+            ticket.updated_at = get_datetime_utc()
+            self.ticket_repository.add(ticket)
+            self.ticket_repository.add_audit(
+                self._status_audit(ticket=ticket, actor=actor, old_status=old_status)
+            )
+            return ticket
+
+        ticket = self._write(operation, refresh=True)
+        return self._build_detail(actor, ticket)
+
+    def update_attributes(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        payload: TicketAttributesUpdate,
+    ) -> TicketDetailPublic:
+        """修改工单优先级或分类，并为实际变化写入审计。by AI.Coding"""
+
+        def operation() -> Ticket:
+            ticket = self._get_locked_active_ticket(ticket_id)
+            self._ensure_ticket_writable(ticket)
+            if not can_manage_ticket(actor, ticket):
+                raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
+
+            audits = self._attribute_audits(ticket=ticket, actor=actor, payload=payload)
+            if audits:
+                # 多个属性变化共享同一个更新时间，但分别保留可筛选的审计动作。
+                ticket.updated_at = get_datetime_utc()
+                self.ticket_repository.add(ticket)
+                for audit in audits:
+                    self.ticket_repository.add_audit(audit)
+            return ticket
+
+        ticket = self._write(operation, refresh=True)
+        return self._build_detail(actor, ticket)
+
     def _build_detail(self, actor: User, ticket: Ticket) -> TicketDetailPublic:
         """使用数据库侧裁剪结果显式组装安全详情。by AI.Coding"""
         messages = self.ticket_repository.list_messages(
@@ -239,6 +391,12 @@ class TicketService:
             raise ConflictError(ErrorCode.TICKET_CLOSED)
 
     @staticmethod
+    def _ensure_ticket_writable(ticket: Ticket) -> None:
+        """拒绝 CLOSED 工单的普通业务写入。by AI.Coding"""
+        if ticket.status is TicketStatus.CLOSED:
+            raise ConflictError(ErrorCode.TICKET_CLOSED)
+
+    @staticmethod
     def _require_admin(actor: User) -> None:
         """限制负责人管理能力仅对 Admin 开放。by AI.Coding"""
         if actor.role is not UserRole.ADMIN:
@@ -273,6 +431,51 @@ class TicketService:
                 "status": ticket.status.value,
             },
         )
+
+    @staticmethod
+    def _status_audit(
+        *, ticket: Ticket, actor: User, old_status: TicketStatus
+    ) -> TicketAuditLog:
+        """创建状态变化的结构化前后快照审计。by AI.Coding"""
+        return TicketAuditLog(
+            ticket_id=ticket.id,
+            actor_id=actor.id,
+            action=TicketAuditAction.STATUS_CHANGED,
+            old_value={"status": old_status.value},
+            new_value={"status": ticket.status.value},
+        )
+
+    @staticmethod
+    def _attribute_audits(
+        *, ticket: Ticket, actor: User, payload: TicketAttributesUpdate
+    ) -> list[TicketAuditLog]:
+        """应用优先级和分类变化，并返回对应结构化审计。by AI.Coding"""
+        audits: list[TicketAuditLog] = []
+        if payload.priority is not None and payload.priority is not ticket.priority:
+            old_priority = ticket.priority
+            ticket.priority = payload.priority
+            audits.append(
+                TicketAuditLog(
+                    ticket_id=ticket.id,
+                    actor_id=actor.id,
+                    action=TicketAuditAction.PRIORITY_CHANGED,
+                    old_value={"priority": old_priority.value},
+                    new_value={"priority": ticket.priority.value},
+                )
+            )
+        if payload.category is not None and payload.category is not ticket.category:
+            old_category = ticket.category
+            ticket.category = payload.category
+            audits.append(
+                TicketAuditLog(
+                    ticket_id=ticket.id,
+                    actor_id=actor.id,
+                    action=TicketAuditAction.CATEGORY_CHANGED,
+                    old_value={"category": old_category.value},
+                    new_value={"category": ticket.category.value},
+                )
+            )
+        return audits
 
     def _write(
         self,

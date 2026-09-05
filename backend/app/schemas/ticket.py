@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Any
+from typing import Any, Self
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from app.models.enums import (
     TicketAuditAction,
@@ -60,6 +60,55 @@ class TicketAssign(StrictInput):
     """Admin 分派或转派工单的严格输入。by AI.Coding"""
 
     assignee_id: uuid.UUID
+
+
+class CustomerReplyCreate(StrictInput):
+    """Customer 公开回复工单的严格输入。by AI.Coding"""
+
+    content: str = Field(min_length=1, max_length=10_000)
+
+    @field_validator("content", mode="before")
+    @classmethod
+    def normalize_content(cls, value: object) -> object:
+        """去除公开回复首尾空白后再执行长度校验。by AI.Coding"""
+        if isinstance(value, str):
+            return value.strip()
+        return value
+
+
+class TicketMessageCreate(StrictInput):
+    """Staff 创建公开回复或内部备注的严格输入。by AI.Coding"""
+
+    message_type: TicketMessageType
+    content: str = Field(min_length=1, max_length=10_000)
+
+    @field_validator("content", mode="before")
+    @classmethod
+    def normalize_content(cls, value: object) -> object:
+        """去除 Staff 消息首尾空白后再执行长度校验。by AI.Coding"""
+        if isinstance(value, str):
+            return value.strip()
+        return value
+
+
+class TicketStatusUpdate(StrictInput):
+    """主动修改工单状态的严格输入。by AI.Coding"""
+
+    status: TicketStatus
+
+
+class TicketAttributesUpdate(StrictInput):
+    """修改工单优先级或分类的严格输入。by AI.Coding"""
+
+    priority: TicketPriority | None = None
+    category: TicketCategory | None = None
+
+    @model_validator(mode="after")
+    def ensure_any_attribute(self) -> Self:
+        """至少提供一个可变更属性，避免空 PATCH 成为假成功。by AI.Coding"""
+        if self.priority is None and self.category is None:
+            raise ValueError("At least one ticket attribute is required.")
+        return self
 
 
 class UserSummary(BaseModel):

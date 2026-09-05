@@ -8,7 +8,7 @@ from collections.abc import Iterator
 import pytest
 from pydantic import ValidationError
 from sqlalchemy import delete, func
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.core.db import engine
 from app.core.errors import ConflictError, ErrorCode, ForbiddenError, NotFoundError
@@ -16,12 +16,21 @@ from app.models.enums import (
     TicketAuditAction,
     TicketCategory,
     TicketMessageType,
+    TicketPriority,
     TicketStatus,
     UserRole,
 )
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
-from app.schemas.ticket import TicketAssign, TicketCreate, TicketFilters
+from app.schemas.ticket import (
+    CustomerReplyCreate,
+    TicketAssign,
+    TicketAttributesUpdate,
+    TicketCreate,
+    TicketFilters,
+    TicketMessageCreate,
+    TicketStatusUpdate,
+)
 from app.services.ticket_service import TicketService
 
 
@@ -42,13 +51,17 @@ def tracked_graph() -> Iterator[TrackedGraph]:
     yield graph
     with Session(engine) as session:
         if graph.audit_ids:
-            session.exec(delete(TicketAuditLog).where(TicketAuditLog.id.in_(graph.audit_ids)))
+            session.exec(
+                delete(TicketAuditLog).where(col(TicketAuditLog.id).in_(graph.audit_ids))
+            )
         if graph.message_ids:
-            session.exec(delete(TicketMessage).where(TicketMessage.id.in_(graph.message_ids)))
+            session.exec(
+                delete(TicketMessage).where(col(TicketMessage.id).in_(graph.message_ids))
+            )
         if graph.ticket_ids:
-            session.exec(delete(Ticket).where(Ticket.id.in_(graph.ticket_ids)))
+            session.exec(delete(Ticket).where(col(Ticket.id).in_(graph.ticket_ids)))
         if graph.user_ids:
-            session.exec(delete(User).where(User.id.in_(graph.user_ids)))
+            session.exec(delete(User).where(col(User.id).in_(graph.user_ids)))
         session.commit()
 
 
@@ -288,7 +301,7 @@ def test_admin_assigns_reassigns_and_unassigns_with_audits(
             session.exec(
                 select(TicketAuditLog)
                 .where(TicketAuditLog.ticket_id == ticket.id)
-                .order_by(TicketAuditLog.created_at, TicketAuditLog.id)
+                .order_by(col(TicketAuditLog.created_at), col(TicketAuditLog.id))
             ).all()
         )
         tracked_graph.audit_ids.extend(audit.id for audit in audits)
@@ -379,3 +392,268 @@ def test_audit_failure_rolls_back_claim(monkeypatch: pytest.MonkeyPatch, tracked
             )
         ).one()
         assert audit_count == 0
+
+
+def test_customer_reply_reopens_waiting_ticket_and_records_status_change(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """Customer 公开回复等待客户工单时写入消息、重开状态并保留负责人。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    ticket = make_ticket(
+        customer,
+        assignee=agent,
+        status=TicketStatus.WAITING_FOR_CUSTOMER,
+    )
+    persist(tracked_graph, users=[customer, agent], tickets=[ticket])
+
+    with Session(engine) as session:
+        reply = TicketService(session).add_customer_reply(
+            customer,
+            ticket.id,
+            CustomerReplyCreate(content="  I have attached the requested details.  "),
+        )
+        assert reply.message_type is TicketMessageType.PUBLIC_REPLY
+        assert reply.content == "I have attached the requested details."
+        assert reply.author.id == customer.id
+
+        saved_ticket = session.get(Ticket, ticket.id)
+        assert saved_ticket is not None
+        assert saved_ticket.status is TicketStatus.IN_PROGRESS
+        assert saved_ticket.assignee_id == agent.id
+
+        message = session.exec(
+            select(TicketMessage).where(TicketMessage.ticket_id == ticket.id)
+        ).one()
+        audit = session.exec(
+            select(TicketAuditLog).where(
+                TicketAuditLog.ticket_id == ticket.id,
+                TicketAuditLog.action == TicketAuditAction.STATUS_CHANGED,
+            )
+        ).one()
+        tracked_graph.message_ids.append(message.id)
+        tracked_graph.audit_ids.append(audit.id)
+        assert audit.old_value == {"status": TicketStatus.WAITING_FOR_CUSTOMER.value}
+        assert audit.new_value == {"status": TicketStatus.IN_PROGRESS.value}
+
+
+def test_staff_message_respects_internal_note_permissions_and_cropping(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """Staff 消息按负责人权限写入，未分派 Agent 详情不泄露内部备注。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    other_agent = make_user(UserRole.AGENT)
+    admin = make_user(UserRole.ADMIN)
+    assigned = make_ticket(customer, assignee=agent, status=TicketStatus.IN_PROGRESS)
+    unassigned = make_ticket(customer, status=TicketStatus.OPEN)
+    persist(
+        tracked_graph,
+        users=[customer, agent, other_agent, admin],
+        tickets=[assigned, unassigned],
+    )
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        internal = service.add_staff_message(
+            agent,
+            assigned.id,
+            TicketMessageCreate(
+                message_type=TicketMessageType.INTERNAL_NOTE,
+                content="  Internal handling note.  ",
+            ),
+        )
+        assert internal.message_type is TicketMessageType.INTERNAL_NOTE
+        assert internal.content == "Internal handling note."
+
+        admin_note = service.add_staff_message(
+            admin,
+            unassigned.id,
+            TicketMessageCreate(
+                message_type=TicketMessageType.INTERNAL_NOTE,
+                content="Visible to admins only until claimed.",
+            ),
+        )
+
+        with pytest.raises(ForbiddenError) as forbidden:
+            service.add_staff_message(
+                other_agent,
+                assigned.id,
+                TicketMessageCreate(
+                    message_type=TicketMessageType.PUBLIC_REPLY,
+                    content="I should not touch this ticket.",
+                ),
+            )
+        assert forbidden.value.code is ErrorCode.TICKET_FORBIDDEN
+
+        queue_detail = service.get_ticket(other_agent, unassigned.id)
+        assert queue_detail.messages == []
+        admin_detail = service.get_ticket(admin, unassigned.id)
+        assert [message.id for message in admin_detail.messages] == [admin_note.id]
+
+        saved_messages = list(
+            session.exec(
+                select(TicketMessage).where(
+                    col(TicketMessage.ticket_id).in_([assigned.id, unassigned.id])
+                )
+            ).all()
+        )
+        tracked_graph.message_ids.extend(message.id for message in saved_messages)
+
+
+def test_staff_updates_status_with_state_machine_audit(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """负责人 Agent 按状态机修改状态，非法目标被拒绝且不写审计。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    admin = make_user(UserRole.ADMIN)
+    ticket = make_ticket(customer, assignee=agent, status=TicketStatus.IN_PROGRESS)
+    persist(tracked_graph, users=[customer, agent, admin], tickets=[ticket])
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        detail = service.update_status(
+            agent,
+            ticket.id,
+            TicketStatusUpdate(status=TicketStatus.WAITING_FOR_CUSTOMER),
+        )
+        assert detail.status is TicketStatus.WAITING_FOR_CUSTOMER
+
+        with pytest.raises(ConflictError) as invalid:
+            service.update_status(
+                agent,
+                ticket.id,
+                TicketStatusUpdate(status=TicketStatus.CLOSED),
+            )
+        assert invalid.value.code is ErrorCode.INVALID_STATUS_TRANSITION
+
+        reopened = service.update_status(
+            agent,
+            ticket.id,
+            TicketStatusUpdate(status=TicketStatus.IN_PROGRESS),
+        )
+        assert reopened.status is TicketStatus.IN_PROGRESS
+
+        audits = list(
+            session.exec(
+                select(TicketAuditLog)
+                .where(TicketAuditLog.ticket_id == ticket.id)
+                .order_by(col(TicketAuditLog.created_at), col(TicketAuditLog.id))
+            ).all()
+        )
+        tracked_graph.audit_ids.extend(audit.id for audit in audits)
+        assert [audit.action for audit in audits] == [
+            TicketAuditAction.STATUS_CHANGED,
+            TicketAuditAction.STATUS_CHANGED,
+        ]
+        assert audits[0].old_value == {"status": TicketStatus.IN_PROGRESS.value}
+        assert audits[0].new_value == {
+            "status": TicketStatus.WAITING_FOR_CUSTOMER.value
+        }
+
+
+def test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """Admin 可关闭已解决工单，关闭后回复、状态和属性写入都被拒绝。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    admin = make_user(UserRole.ADMIN)
+    ticket = make_ticket(customer, assignee=agent, status=TicketStatus.RESOLVED)
+    persist(tracked_graph, users=[customer, agent, admin], tickets=[ticket])
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        closed = service.update_status(
+            admin,
+            ticket.id,
+            TicketStatusUpdate(status=TicketStatus.CLOSED),
+        )
+        assert closed.status is TicketStatus.CLOSED
+
+        for operation in (
+            lambda: service.add_customer_reply(
+                customer, ticket.id, CustomerReplyCreate(content="Please reopen.")
+            ),
+            lambda: service.add_staff_message(
+                admin,
+                ticket.id,
+                TicketMessageCreate(
+                    message_type=TicketMessageType.PUBLIC_REPLY,
+                    content="Closed reply.",
+                ),
+            ),
+            lambda: service.update_status(
+                admin,
+                ticket.id,
+                TicketStatusUpdate(status=TicketStatus.IN_PROGRESS),
+            ),
+            lambda: service.update_attributes(
+                admin,
+                ticket.id,
+                TicketAttributesUpdate(priority=TicketPriority.URGENT),
+            ),
+        ):
+            with pytest.raises(ConflictError) as closed_error:
+                operation()
+            assert closed_error.value.code is ErrorCode.TICKET_CLOSED
+
+        audits = list(
+            session.exec(
+                select(TicketAuditLog).where(TicketAuditLog.ticket_id == ticket.id)
+            ).all()
+        )
+        tracked_graph.audit_ids.extend(audit.id for audit in audits)
+        assert [audit.action for audit in audits] == [
+            TicketAuditAction.STATUS_CHANGED
+        ]
+
+
+def test_update_attributes_records_each_actual_change(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """负责人 Agent 修改优先级和分类时分别写入属性审计。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    other_agent = make_user(UserRole.AGENT)
+    ticket = make_ticket(customer, assignee=agent, status=TicketStatus.IN_PROGRESS)
+    persist(tracked_graph, users=[customer, agent, other_agent], tickets=[ticket])
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        detail = service.update_attributes(
+            agent,
+            ticket.id,
+            TicketAttributesUpdate(
+                priority=TicketPriority.URGENT,
+                category=TicketCategory.BUG,
+            ),
+        )
+        assert detail.priority is TicketPriority.URGENT
+        assert detail.category is TicketCategory.BUG
+
+        with pytest.raises(ForbiddenError) as forbidden:
+            service.update_attributes(
+                other_agent,
+                ticket.id,
+                TicketAttributesUpdate(priority=TicketPriority.LOW),
+            )
+        assert forbidden.value.code is ErrorCode.TICKET_FORBIDDEN
+
+        audits = list(
+            session.exec(
+                select(TicketAuditLog)
+                .where(TicketAuditLog.ticket_id == ticket.id)
+                .order_by(col(TicketAuditLog.action))
+            ).all()
+        )
+        tracked_graph.audit_ids.extend(audit.id for audit in audits)
+        assert {audit.action for audit in audits} == {
+            TicketAuditAction.PRIORITY_CHANGED,
+            TicketAuditAction.CATEGORY_CHANGED,
+        }
+        assert {audit.new_value and next(iter(audit.new_value.values())) for audit in audits} == {
+            TicketPriority.URGENT.value,
+            TicketCategory.BUG.value,
+        }
