@@ -28,6 +28,7 @@ from app.repositories.ticket_repository import TicketRepository
 from app.repositories.user_repository import UserRepository
 from app.schemas.ticket import (
     CustomerReplyCreate,
+    DeleteTicketRequest,
     TicketAssign,
     TicketAttributesUpdate,
     TicketAuditPublic,
@@ -348,6 +349,41 @@ class TicketService:
 
         ticket = self._write(operation, refresh=True)
         return self._build_detail(actor, ticket)
+
+    def delete_ticket(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        payload: DeleteTicketRequest,
+    ) -> None:
+        """Admin 确认后软删除工单，并在同一事务保留删除审计。by AI.Coding"""
+        self._require_admin(actor)
+
+        def operation() -> None:
+            if payload.confirm is not True:
+                raise ConflictError(ErrorCode.DELETE_CONFIRMATION_REQUIRED)
+
+            ticket = self._get_locked_active_ticket(ticket_id)
+            now = get_datetime_utc()
+            ticket.deleted_at = now
+            ticket.deleted_by_id = actor.id
+            ticket.updated_at = now
+            # 只记录删除标记的前后快照，避免把工单正文复制进审计 JSON。
+            self.ticket_repository.add(ticket)
+            self.ticket_repository.add_audit(
+                TicketAuditLog(
+                    ticket_id=ticket.id,
+                    actor_id=actor.id,
+                    action=TicketAuditAction.DELETED,
+                    old_value={"deleted_at": None, "deleted_by_id": None},
+                    new_value={
+                        "deleted_at": now.isoformat(),
+                        "deleted_by_id": str(actor.id),
+                    },
+                )
+            )
+
+        self._write(operation, refresh=False)
 
     def _build_detail(self, actor: User, ticket: Ticket) -> TicketDetailPublic:
         """使用数据库侧裁剪结果显式组装安全详情。by AI.Coding"""

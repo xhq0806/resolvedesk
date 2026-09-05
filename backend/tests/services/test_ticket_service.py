@@ -24,6 +24,7 @@ from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
 from app.schemas.ticket import (
     CustomerReplyCreate,
+    DeleteTicketRequest,
     TicketAssign,
     TicketAttributesUpdate,
     TicketCreate,
@@ -657,3 +658,149 @@ def test_update_attributes_records_each_actual_change(
             TicketPriority.URGENT.value,
             TicketCategory.BUG.value,
         }
+
+
+def test_delete_ticket_requires_true_confirmation_and_admin_role(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """删除仅允许 Admin，且服务层拒绝未确认请求。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    admin = make_user(UserRole.ADMIN)
+    ticket = make_ticket(customer)
+    persist(tracked_graph, users=[customer, agent, admin], tickets=[ticket])
+
+    with pytest.raises(ValidationError):
+        DeleteTicketRequest.model_validate({"confirm": False})
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        for actor in (customer, agent):
+            with pytest.raises(ForbiddenError) as forbidden:
+                service.delete_ticket(
+                    actor, ticket.id, DeleteTicketRequest(confirm=True)
+                )
+            assert forbidden.value.code is ErrorCode.ROLE_FORBIDDEN
+
+        unconfirmed = DeleteTicketRequest.model_construct(confirm=False)
+        with pytest.raises(ConflictError) as confirmation:
+            service.delete_ticket(admin, ticket.id, unconfirmed)
+        assert confirmation.value.code is ErrorCode.DELETE_CONFIRMATION_REQUIRED
+
+    with Session(engine) as session:
+        saved = session.get(Ticket, ticket.id)
+        assert saved is not None
+        assert saved.deleted_at is None
+        assert saved.deleted_by_id is None
+
+
+def test_admin_delete_soft_deletes_and_retains_ticket_graph(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """Admin 删除后业务不可见，但 Ticket、Message 和删除审计均保留。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    agent = make_user(UserRole.AGENT)
+    admin = make_user(UserRole.ADMIN)
+    ticket = make_ticket(customer, assignee=agent, status=TicketStatus.IN_PROGRESS)
+    message = TicketMessage(
+        ticket_id=ticket.id,
+        author_id=customer.id,
+        message_type=TicketMessageType.PUBLIC_REPLY,
+        content="Retained after deletion.",
+    )
+    existing_audit = TicketAuditLog(
+        ticket_id=ticket.id,
+        actor_id=agent.id,
+        action=TicketAuditAction.STATUS_CHANGED,
+    )
+    persist(
+        tracked_graph,
+        users=[customer, agent, admin],
+        tickets=[ticket],
+        messages=[message],
+        audits=[existing_audit],
+    )
+
+    with Session(engine) as session:
+        service = TicketService(session)
+        service.delete_ticket(admin, ticket.id, DeleteTicketRequest(confirm=True))
+
+        assert service.list_tickets(
+            admin, TicketFilters(query=ticket.ticket_number)
+        ).data == []
+        with pytest.raises(NotFoundError) as hidden:
+            service.get_ticket(admin, ticket.id)
+        assert hidden.value.code is ErrorCode.TICKET_NOT_FOUND
+
+        saved = session.get(Ticket, ticket.id)
+        assert saved is not None
+        assert saved.deleted_at is not None
+        assert saved.deleted_by_id == admin.id
+        assert session.get(TicketMessage, message.id) is not None
+
+        audits = list(
+            session.exec(
+                select(TicketAuditLog)
+                .where(TicketAuditLog.ticket_id == ticket.id)
+                .order_by(col(TicketAuditLog.created_at), col(TicketAuditLog.id))
+            ).all()
+        )
+        deleted_audits = [
+            audit for audit in audits if audit.action is TicketAuditAction.DELETED
+        ]
+        assert len(deleted_audits) == 1
+        deleted_audit = deleted_audits[0]
+        tracked_graph.audit_ids.append(deleted_audit.id)
+        assert deleted_audit.actor_id == admin.id
+        assert deleted_audit.old_value == {"deleted_at": None, "deleted_by_id": None}
+        assert deleted_audit.new_value is not None
+        assert deleted_audit.new_value["deleted_by_id"] == str(admin.id)
+        assert deleted_audit.new_value["deleted_at"] == saved.deleted_at.isoformat()
+
+        with pytest.raises(NotFoundError):
+            service.delete_ticket(admin, ticket.id, DeleteTicketRequest(confirm=True))
+        assert len(
+            list(
+                session.exec(
+                    select(TicketAuditLog).where(
+                        TicketAuditLog.ticket_id == ticket.id,
+                        TicketAuditLog.action == TicketAuditAction.DELETED,
+                    )
+                ).all()
+            )
+        ) == 1
+
+
+def test_delete_ticket_rolls_back_when_deletion_audit_fails(
+    monkeypatch: pytest.MonkeyPatch,
+    tracked_graph: TrackedGraph,
+) -> None:
+    """删除审计写入失败时，软删除标记必须随事务整体回滚。by AI.Coding"""
+    customer = make_user(UserRole.CUSTOMER)
+    admin = make_user(UserRole.ADMIN)
+    ticket = make_ticket(customer)
+    persist(tracked_graph, users=[customer, admin], tickets=[ticket])
+
+    with Session(engine) as session:
+        service = TicketService(session)
+
+        def fail_audit(_: TicketAuditLog) -> None:
+            """模拟删除审计持久化失败。by AI.Coding"""
+            raise RuntimeError("audit failed")
+
+        monkeypatch.setattr(service.ticket_repository, "add_audit", fail_audit)
+        with pytest.raises(RuntimeError, match="audit failed"):
+            service.delete_ticket(admin, ticket.id, DeleteTicketRequest(confirm=True))
+        assert not session.in_transaction()
+
+    with Session(engine) as session:
+        saved = session.get(Ticket, ticket.id)
+        assert saved is not None
+        assert saved.deleted_at is None
+        assert saved.deleted_by_id is None
+        assert session.exec(
+            select(func.count()).select_from(TicketAuditLog).where(
+                TicketAuditLog.ticket_id == ticket.id,
+                TicketAuditLog.action == TicketAuditAction.DELETED,
+            )
+        ).one() == 0

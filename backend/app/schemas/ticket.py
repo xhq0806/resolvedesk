@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import uuid
 from datetime import datetime
-from typing import Any, Self
+from typing import Any, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -109,6 +109,12 @@ class TicketAttributesUpdate(StrictInput):
         if self.priority is None and self.category is None:
             raise ValueError("At least one ticket attribute is required.")
         return self
+
+
+class DeleteTicketRequest(StrictInput):
+    """Admin 删除工单时必须显式确认的输入。by AI.Coding"""
+
+    confirm: Literal[True]
 
 
 class UserSummary(BaseModel):
