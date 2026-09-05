@@ -352,3 +352,133 @@ def test_claim_if_available_updates_only_matching_ticket(
         assert repository.claim_if_available(deleted.id, agent.id, claimed_at) is None
         assert repository.claim_if_available(uuid.uuid4(), agent.id, claimed_at) is None
         session.commit()
+
+
+def test_get_statistics_aggregates_only_the_actor_scope_and_active_tickets(
+    tracked_graph: TrackedGraph,
+) -> None:
+    """统计必须先应用角色范围和软删除过滤，再在数据库内聚合。by AI.Coding"""
+    customer_a = make_user("statistics-customer-a", UserRole.CUSTOMER)
+    customer_b = make_user("statistics-customer-b", UserRole.CUSTOMER)
+    agent_a = make_user("statistics-agent-a", UserRole.AGENT)
+    agent_b = make_user("statistics-agent-b", UserRole.AGENT)
+    admin = make_user("statistics-admin", UserRole.ADMIN)
+    customer_own = make_ticket(
+        "statistics-customer-own",
+        customer_a,
+        status=TicketStatus.OPEN,
+        priority=TicketPriority.HIGH,
+    )
+    customer_waiting = make_ticket(
+        "statistics-customer-waiting",
+        customer_a,
+        status=TicketStatus.WAITING_FOR_CUSTOMER,
+        priority=TicketPriority.URGENT,
+    )
+    customer_deleted = make_ticket(
+        "statistics-customer-deleted",
+        customer_a,
+        status=TicketStatus.CLOSED,
+        deleted_at=datetime.now(UTC),
+    )
+    other_customer = make_ticket(
+        "statistics-other-customer",
+        customer_b,
+        status=TicketStatus.RESOLVED,
+        priority=TicketPriority.LOW,
+    )
+    agent_owned = make_ticket(
+        "statistics-agent-owned",
+        customer_b,
+        assignee=agent_a,
+        status=TicketStatus.IN_PROGRESS,
+        priority=TicketPriority.MEDIUM,
+    )
+    agent_waiting = make_ticket(
+        "statistics-agent-waiting",
+        customer_b,
+        assignee=agent_a,
+        status=TicketStatus.WAITING_FOR_CUSTOMER,
+        priority=TicketPriority.HIGH,
+    )
+    unassigned = make_ticket(
+        "statistics-unassigned",
+        customer_b,
+        status=TicketStatus.OPEN,
+        priority=TicketPriority.URGENT,
+    )
+    other_agent = make_ticket(
+        "statistics-other-agent",
+        customer_b,
+        assignee=agent_b,
+        status=TicketStatus.RESOLVED,
+    )
+    persist(
+        tracked_graph,
+        users=[customer_a, customer_b, agent_a, agent_b, admin],
+        tickets=[
+            customer_own,
+            customer_waiting,
+            customer_deleted,
+            other_customer,
+            agent_owned,
+            agent_waiting,
+            unassigned,
+            other_agent,
+        ],
+    )
+
+    with Session(engine) as session:
+        repository = TicketRepository(session)
+        customer_stats = repository.get_statistics(customer_a)
+        agent_stats = repository.get_statistics(agent_a)
+        admin_stats = repository.get_statistics(admin)
+
+    assert customer_stats.status_counts == {
+        TicketStatus.OPEN: 1,
+        TicketStatus.IN_PROGRESS: 0,
+        TicketStatus.RESOLVED: 0,
+        TicketStatus.CLOSED: 0,
+        TicketStatus.WAITING_FOR_CUSTOMER: 1,
+    }
+    assert customer_stats.priority_counts == {
+        TicketPriority.LOW: 0,
+        TicketPriority.MEDIUM: 0,
+        TicketPriority.HIGH: 1,
+        TicketPriority.URGENT: 1,
+    }
+    assert customer_stats.unassigned_count == 2
+    assert customer_stats.assigned_to_me_count == 0
+    assert customer_stats.waiting_for_customer_count == 1
+
+    assert agent_stats.status_counts == {
+        TicketStatus.IN_PROGRESS: 1,
+        TicketStatus.OPEN: 2,
+        TicketStatus.RESOLVED: 1,
+        TicketStatus.CLOSED: 0,
+        TicketStatus.WAITING_FOR_CUSTOMER: 2,
+    }
+    assert agent_stats.priority_counts == {
+        TicketPriority.LOW: 1,
+        TicketPriority.MEDIUM: 1,
+        TicketPriority.HIGH: 2,
+        TicketPriority.URGENT: 2,
+    }
+    assert agent_stats.unassigned_count == 4
+    assert agent_stats.assigned_to_me_count == 2
+    assert agent_stats.waiting_for_customer_count == 2
+
+    assert admin_stats.status_counts == {
+        TicketStatus.IN_PROGRESS: 1,
+        TicketStatus.OPEN: 2,
+        TicketStatus.RESOLVED: 2,
+        TicketStatus.CLOSED: 0,
+        TicketStatus.WAITING_FOR_CUSTOMER: 2,
+    }
+    assert admin_stats.priority_counts == {
+        TicketPriority.HIGH: 2,
+        TicketPriority.LOW: 1,
+        TicketPriority.MEDIUM: 2,
+        TicketPriority.URGENT: 2,
+    }
+    assert admin_stats.unassigned_count == 4

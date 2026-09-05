@@ -3,6 +3,7 @@
 from app.schemas.auth import NewPassword, Token, TokenPayload, UpdatePassword
 from app.schemas.common import ErrorResponse, Message
 from app.schemas.ticket import (
+    DeleteTicketRequest,
     TicketAssign,
     TicketAuditPublic,
     TicketCreate,
@@ -11,6 +12,7 @@ from app.schemas.ticket import (
     TicketMessagePublic,
     TicketPublic,
     TicketsPublic,
+    TicketStatisticsPublic,
     UserSummary,
 )
 from app.schemas.user import (
@@ -29,6 +31,7 @@ __all__ = [
     "ErrorResponse",
     "Message",
     "NewPassword",
+    "DeleteTicketRequest",
     "TicketAssign",
     "TicketAuditPublic",
     "TicketCreate",
@@ -36,6 +39,7 @@ __all__ = [
     "TicketFilters",
     "TicketMessagePublic",
     "TicketPublic",
+    "TicketStatisticsPublic",
     "TicketsPublic",
     "Token",
     "TokenPayload",

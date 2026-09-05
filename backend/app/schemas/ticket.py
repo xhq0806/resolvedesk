@@ -117,6 +117,17 @@ class DeleteTicketRequest(StrictInput):
     confirm: Literal[True]
 
 
+class TicketStatisticsPublic(BaseModel):
+    """按角色返回工单统计计数。by AI.Coding"""
+
+    role: UserRole
+    status_counts: dict[TicketStatus, int] = Field(default_factory=dict)
+    priority_counts: dict[TicketPriority, int] = Field(default_factory=dict)
+    unassigned_count: int = 0
+    assigned_to_me_count: int = 0
+    waiting_for_customer_count: int = 0
+
+
 class UserSummary(BaseModel):
     """嵌入工单响应的最小用户公开摘要。by AI.Coding"""
 

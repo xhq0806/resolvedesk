@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import uuid
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, cast
 
@@ -14,6 +15,7 @@ from sqlmodel import Session, col, select
 from app.models.enums import (
     TicketAuditAction,
     TicketMessageType,
+    TicketPriority,
     TicketStatus,
     UserRole,
 )
@@ -26,6 +28,17 @@ _CUSTOMER_SAFE_AUDIT_ACTIONS = (
     TicketAuditAction.PRIORITY_CHANGED,
     TicketAuditAction.CATEGORY_CHANGED,
 )
+
+
+@dataclass(frozen=True)
+class TicketStatisticsRow:
+    """Repository 聚合后供 Service 裁剪的统计行。by AI.Coding"""
+
+    status_counts: dict[TicketStatus, int]
+    priority_counts: dict[TicketPriority, int]
+    unassigned_count: int
+    assigned_to_me_count: int
+    waiting_for_customer_count: int
 
 
 class TicketRepository:
@@ -157,6 +170,49 @@ class TicketRepository:
         """将审计记录加入当前 Session，但不提交事务。by AI.Coding"""
         self.session.add(audit)
 
+    def get_statistics(self, actor: User) -> TicketStatisticsRow:
+        """在角色数据范围内聚合活跃工单统计。by AI.Coding"""
+        conditions = self._build_list_conditions(actor, TicketFilters())
+        status_counts = dict.fromkeys(TicketStatus, 0)
+        status_statement = (
+            select(Ticket.status, func.count())
+            .where(*conditions)
+            .group_by(Ticket.status)
+        )
+        for row in self.session.exec(status_statement).all():
+            status, count = cast(tuple[TicketStatus, int], row)
+            status_counts[status] = int(count)
+
+        priority_counts = dict.fromkeys(TicketPriority, 0)
+        priority_statement = (
+            select(Ticket.priority, func.count())
+            .where(*conditions)
+            .group_by(Ticket.priority)
+        )
+        for row in self.session.exec(priority_statement).all():
+            priority, count = cast(tuple[TicketPriority, int], row)
+            priority_counts[priority] = int(count)
+
+        unassigned_count = self._count_statistics(
+            conditions,
+            col(Ticket.assignee_id).is_(None),
+        )
+        assigned_to_me_count = self._count_statistics(
+            conditions,
+            col(Ticket.assignee_id) == actor.id,
+        )
+        waiting_for_customer_count = self._count_statistics(
+            conditions,
+            col(Ticket.status) == TicketStatus.WAITING_FOR_CUSTOMER,
+        )
+        return TicketStatisticsRow(
+            status_counts=status_counts,
+            priority_counts=priority_counts,
+            unassigned_count=unassigned_count,
+            assigned_to_me_count=assigned_to_me_count,
+            waiting_for_customer_count=waiting_for_customer_count,
+        )
+
     @staticmethod
     def _relationship(value: object) -> QueryableAttribute[Any]:
         """收窄 SQLModel Relationship 的静态类型供加载器使用。by AI.Coding"""
@@ -202,3 +258,15 @@ class TicketRepository:
                 )
             )
         return conditions
+
+    def _count_statistics(
+        self,
+        conditions: list[ColumnElement[bool]],
+        condition: ColumnElement[bool],
+    ) -> int:
+        """在已授权的数据范围内执行单个条件计数。by AI.Coding"""
+        statement = select(func.count()).select_from(Ticket).where(
+            *conditions,
+            condition,
+        )
+        return int(self.session.exec(statement).one())
