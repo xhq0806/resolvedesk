@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { LoadingButton } from "@/components/ui/loading-button"
-import useAuth from "@/hooks/useAuth"
+import useAuth, { userKeys } from "@/hooks/useAuth"
 import useCustomToast from "@/hooks/useCustomToast"
 import { handleError } from "@/utils"
 
@@ -32,7 +32,7 @@ const DeleteConfirmation = () => {
     },
     onError: handleError.bind(showErrorToast),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["currentUser"] })
+      queryClient.invalidateQueries({ queryKey: userKeys.current })
     },
   })
 

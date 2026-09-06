@@ -2,7 +2,7 @@
 
 import { type Client, type Options as Options2, type TDataShape, urlSearchParamsBodySerializer } from './client';
 import { client } from './client.gen';
-import type { itemsCreateItemData, itemsCreateItemErrors, itemsCreateItemResponses, itemsDeleteItemData, itemsDeleteItemErrors, itemsDeleteItemResponses, itemsReadItemData, itemsReadItemErrors, itemsReadItemResponses, itemsReadItemsData, itemsReadItemsErrors, itemsReadItemsResponses, itemsUpdateItemData, itemsUpdateItemErrors, itemsUpdateItemResponses, loginLoginAccessTokenData, loginLoginAccessTokenErrors, loginLoginAccessTokenResponses, loginRecoverPasswordData, loginRecoverPasswordErrors, loginRecoverPasswordHtmlContentData, loginRecoverPasswordHtmlContentErrors, loginRecoverPasswordHtmlContentResponses, loginRecoverPasswordResponses, loginResetPasswordData, loginResetPasswordErrors, loginResetPasswordResponses, loginTestTokenData, loginTestTokenResponses, privateCreateUserData, privateCreateUserErrors, privateCreateUserResponses, usersCreateUserData, usersCreateUserErrors, usersCreateUserResponses, usersDeleteUserData, usersDeleteUserErrors, usersDeleteUserMeData, usersDeleteUserMeResponses, usersDeleteUserResponses, usersReadUserByIdData, usersReadUserByIdErrors, usersReadUserByIdResponses, usersReadUserMeData, usersReadUserMeResponses, usersReadUsersData, usersReadUsersErrors, usersReadUsersResponses, usersRegisterUserData, usersRegisterUserErrors, usersRegisterUserResponses, usersUpdatePasswordMeData, usersUpdatePasswordMeErrors, usersUpdatePasswordMeResponses, usersUpdateUserData, usersUpdateUserErrors, usersUpdateUserMeData, usersUpdateUserMeErrors, usersUpdateUserMeResponses, usersUpdateUserResponses, utilsHealthCheckData, utilsHealthCheckResponses, utilsTestEmailData, utilsTestEmailErrors, utilsTestEmailResponses } from './types.gen';
+import type { loginLoginAccessTokenData, loginLoginAccessTokenErrors, loginLoginAccessTokenResponses, loginRecoverPasswordData, loginRecoverPasswordErrors, loginRecoverPasswordHtmlContentData, loginRecoverPasswordHtmlContentErrors, loginRecoverPasswordHtmlContentResponses, loginRecoverPasswordResponses, loginResetPasswordData, loginResetPasswordErrors, loginResetPasswordResponses, loginTestTokenData, loginTestTokenResponses, privateCreateUserData, privateCreateUserErrors, privateCreateUserResponses, ticketsAddCustomerReplyData, ticketsAddCustomerReplyErrors, ticketsAddCustomerReplyResponses, ticketsAddStaffMessageData, ticketsAddStaffMessageErrors, ticketsAddStaffMessageResponses, ticketsAssignTicketData, ticketsAssignTicketErrors, ticketsAssignTicketResponses, ticketsClaimTicketData, ticketsClaimTicketErrors, ticketsClaimTicketResponses, ticketsCreateTicketData, ticketsCreateTicketErrors, ticketsCreateTicketResponses, ticketsDeleteTicketData, ticketsDeleteTicketErrors, ticketsDeleteTicketResponses, ticketsListTicketsData, ticketsListTicketsErrors, ticketsListTicketsResponses, ticketsReadTicketData, ticketsReadTicketErrors, ticketsReadTicketResponses, ticketsReadTicketStatisticsData, ticketsReadTicketStatisticsResponses, ticketsUnassignTicketData, ticketsUnassignTicketErrors, ticketsUnassignTicketResponses, ticketsUpdateAttributesData, ticketsUpdateAttributesErrors, ticketsUpdateAttributesResponses, ticketsUpdateStatusData, ticketsUpdateStatusErrors, ticketsUpdateStatusResponses, usersCreateUserData, usersCreateUserErrors, usersCreateUserResponses, usersDeleteUserData, usersDeleteUserErrors, usersDeleteUserMeData, usersDeleteUserMeResponses, usersDeleteUserResponses, usersReadUserByIdData, usersReadUserByIdErrors, usersReadUserByIdResponses, usersReadUserMeData, usersReadUserMeResponses, usersReadUsersData, usersReadUsersErrors, usersReadUsersResponses, usersRegisterUserData, usersRegisterUserErrors, usersRegisterUserResponses, usersUpdatePasswordMeData, usersUpdatePasswordMeErrors, usersUpdatePasswordMeResponses, usersUpdateUserData, usersUpdateUserErrors, usersUpdateUserMeData, usersUpdateUserMeErrors, usersUpdateUserMeResponses, usersUpdateUserResponses, utilsHealthCheckData, utilsHealthCheckResponses, utilsTestEmailData, utilsTestEmailErrors, utilsTestEmailResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean, TResponse = unknown> = Options2<TData, ThrowOnError, TResponse> & {
     /**
@@ -257,6 +257,179 @@ export class UsersService {
     }
 }
 
+export class TicketsService {
+    /**
+     * Read Ticket Statistics
+     */
+    public static readTicketStatistics<ThrowOnError extends boolean = true>(options?: Options<ticketsReadTicketStatisticsData, ThrowOnError>) {
+        return (options?.client ?? client).get<ticketsReadTicketStatisticsResponses, unknown, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/statistics',
+            ...options
+        });
+    }
+    
+    /**
+     * List Tickets
+     */
+    public static listTickets<ThrowOnError extends boolean = true>(options?: Options<ticketsListTicketsData, ThrowOnError>) {
+        return (options?.client ?? client).get<ticketsListTicketsResponses, ticketsListTicketsErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets',
+            ...options
+        });
+    }
+    
+    /**
+     * Create Ticket
+     */
+    public static createTicket<ThrowOnError extends boolean = true>(options: Options<ticketsCreateTicketData, ThrowOnError>) {
+        return (options.client ?? client).post<ticketsCreateTicketResponses, ticketsCreateTicketErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Delete Ticket
+     */
+    public static deleteTicket<ThrowOnError extends boolean = true>(options: Options<ticketsDeleteTicketData, ThrowOnError>) {
+        return (options.client ?? client).delete<ticketsDeleteTicketResponses, ticketsDeleteTicketErrors, ThrowOnError>({
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Read Ticket
+     */
+    public static readTicket<ThrowOnError extends boolean = true>(options: Options<ticketsReadTicketData, ThrowOnError>) {
+        return (options.client ?? client).get<ticketsReadTicketResponses, ticketsReadTicketErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}',
+            ...options
+        });
+    }
+    
+    /**
+     * Claim Ticket
+     */
+    public static claimTicket<ThrowOnError extends boolean = true>(options: Options<ticketsClaimTicketData, ThrowOnError>) {
+        return (options.client ?? client).post<ticketsClaimTicketResponses, ticketsClaimTicketErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/claim',
+            ...options
+        });
+    }
+    
+    /**
+     * Unassign Ticket
+     */
+    public static unassignTicket<ThrowOnError extends boolean = true>(options: Options<ticketsUnassignTicketData, ThrowOnError>) {
+        return (options.client ?? client).delete<ticketsUnassignTicketResponses, ticketsUnassignTicketErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/assignee',
+            ...options
+        });
+    }
+    
+    /**
+     * Assign Ticket
+     */
+    public static assignTicket<ThrowOnError extends boolean = true>(options: Options<ticketsAssignTicketData, ThrowOnError>) {
+        return (options.client ?? client).put<ticketsAssignTicketResponses, ticketsAssignTicketErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/assignee',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Add Customer Reply
+     */
+    public static addCustomerReply<ThrowOnError extends boolean = true>(options: Options<ticketsAddCustomerReplyData, ThrowOnError>) {
+        return (options.client ?? client).post<ticketsAddCustomerReplyResponses, ticketsAddCustomerReplyErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/replies',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Add Staff Message
+     */
+    public static addStaffMessage<ThrowOnError extends boolean = true>(options: Options<ticketsAddStaffMessageData, ThrowOnError>) {
+        return (options.client ?? client).post<ticketsAddStaffMessageResponses, ticketsAddStaffMessageErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/messages',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Update Status
+     */
+    public static updateStatus<ThrowOnError extends boolean = true>(options: Options<ticketsUpdateStatusData, ThrowOnError>) {
+        return (options.client ?? client).patch<ticketsUpdateStatusResponses, ticketsUpdateStatusErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/status',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+    
+    /**
+     * Update Attributes
+     */
+    public static updateAttributes<ThrowOnError extends boolean = true>(options: Options<ticketsUpdateAttributesData, ThrowOnError>) {
+        return (options.client ?? client).patch<ticketsUpdateAttributesResponses, ticketsUpdateAttributesErrors, ThrowOnError>({
+            responseType: 'json',
+            security: [{ scheme: 'bearer', type: 'http' }],
+            url: '/api/v1/tickets/{ticket_id}/attributes',
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+    }
+}
+
 export class UtilsService {
     /**
      * Test Email
@@ -280,86 +453,6 @@ export class UtilsService {
             responseType: 'json',
             url: '/api/v1/utils/health-check/',
             ...options
-        });
-    }
-}
-
-export class ItemsService {
-    /**
-     * Read Items
-     *
-     * Retrieve items.
-     */
-    public static readItems<ThrowOnError extends boolean = true>(options?: Options<itemsReadItemsData, ThrowOnError>) {
-        return (options?.client ?? client).get<itemsReadItemsResponses, itemsReadItemsErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/',
-            ...options
-        });
-    }
-    
-    /**
-     * Create Item
-     *
-     * Create new item.
-     */
-    public static createItem<ThrowOnError extends boolean = true>(options: Options<itemsCreateItemData, ThrowOnError>) {
-        return (options.client ?? client).post<itemsCreateItemResponses, itemsCreateItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers
-            }
-        });
-    }
-    
-    /**
-     * Delete Item
-     *
-     * Delete an item.
-     */
-    public static deleteItem<ThrowOnError extends boolean = true>(options: Options<itemsDeleteItemData, ThrowOnError>) {
-        return (options.client ?? client).delete<itemsDeleteItemResponses, itemsDeleteItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options
-        });
-    }
-    
-    /**
-     * Read Item
-     *
-     * Get item by ID.
-     */
-    public static readItem<ThrowOnError extends boolean = true>(options: Options<itemsReadItemData, ThrowOnError>) {
-        return (options.client ?? client).get<itemsReadItemResponses, itemsReadItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options
-        });
-    }
-    
-    /**
-     * Update Item
-     *
-     * Update an item.
-     */
-    public static updateItem<ThrowOnError extends boolean = true>(options: Options<itemsUpdateItemData, ThrowOnError>) {
-        return (options.client ?? client).put<itemsUpdateItemResponses, itemsUpdateItemErrors, ThrowOnError>({
-            responseType: 'json',
-            security: [{ scheme: 'bearer', type: 'http' }],
-            url: '/api/v1/items/{id}',
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-                ...options.headers
-            }
         });
     }
 }

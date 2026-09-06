@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { useNavigate } from "@tanstack/react-router"
 
 import {
@@ -8,21 +8,36 @@ import {
   type UserRegister,
   UsersService,
 } from "@/client"
+import { clearAuthSession, queryClient } from "@/lib/queryClient"
 import { handleError } from "@/utils"
 import useCustomToast from "./useCustomToast"
 
 const isLoggedIn = () => {
-  return localStorage.getItem("access_token") !== null
+  return (
+    typeof localStorage !== "undefined" &&
+    localStorage.getItem("access_token") !== null
+  )
 }
+
+export const userKeys = {
+  current: ["currentUser"] as const,
+}
+
+// 当前用户是所有受保护路由和角色导航的单一查询来源。by AI.Coding
+export const currentUserQueryOptions = () => ({
+  queryKey: userKeys.current,
+  queryFn: async (): Promise<UserPublic> =>
+    (await UsersService.readUserMe()).data,
+  retry: false,
+  staleTime: 5 * 60 * 1000,
+})
 
 const useAuth = () => {
   const navigate = useNavigate()
-  const queryClient = useQueryClient()
   const { showErrorToast } = useCustomToast()
 
-  const { data: user } = useQuery<UserPublic | null, Error>({
-    queryKey: ["currentUser"],
-    queryFn: async () => (await UsersService.readUserMe()).data,
+  const currentUserQuery = useQuery({
+    ...currentUserQueryOptions(),
     enabled: isLoggedIn(),
   })
 
@@ -39,10 +54,20 @@ const useAuth = () => {
   })
 
   const login = async (data: AccessToken) => {
+    // 登录前丢弃可能属于上一个账号的查询结果。by AI.Coding
+    queryClient.removeQueries()
     const response = await LoginService.loginAccessToken({
       body: data,
     })
     localStorage.setItem("access_token", response.data.access_token)
+
+    try {
+      // 只有当前用户成功加载后，登录 mutation 才算完成。by AI.Coding
+      await queryClient.fetchQuery(currentUserQueryOptions())
+    } catch (error) {
+      clearAuthSession()
+      throw error
+    }
   }
 
   const loginMutation = useMutation({
@@ -54,15 +79,18 @@ const useAuth = () => {
   })
 
   const logout = () => {
-    localStorage.removeItem("access_token")
-    navigate({ to: "/login" })
+    clearAuthSession()
+    void navigate({ to: "/login", replace: true })
   }
 
   return {
     signUpMutation,
     loginMutation,
     logout,
-    user,
+    user: currentUserQuery.data,
+    isLoading: isLoggedIn() && currentUserQuery.isPending,
+    isError: currentUserQuery.isError,
+    error: currentUserQuery.error,
   }
 }
 

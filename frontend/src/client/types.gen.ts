@@ -35,6 +35,30 @@ export type Body_login_login_access_token = {
 };
 
 /**
+ * CustomerReplyCreate
+ *
+ * Customer 公开回复工单的严格输入。by AI.Coding
+ */
+export type CustomerReplyCreate = {
+    /**
+     * Content
+     */
+    content: string;
+};
+
+/**
+ * DeleteTicketRequest
+ *
+ * Admin 删除工单时必须显式确认的输入。by AI.Coding
+ */
+export type DeleteTicketRequest = {
+    /**
+     * Confirm
+     */
+    confirm: true;
+};
+
+/**
  * HTTPValidationError
  */
 export type HTTPValidationError = {
@@ -45,75 +69,9 @@ export type HTTPValidationError = {
 };
 
 /**
- * ItemCreate
- */
-export type ItemCreate = {
-    /**
-     * Title
-     */
-    title: string;
-    /**
-     * Description
-     */
-    description?: string | null;
-};
-
-/**
- * ItemPublic
- */
-export type ItemPublic = {
-    /**
-     * Title
-     */
-    title: string;
-    /**
-     * Description
-     */
-    description?: string | null;
-    /**
-     * Id
-     */
-    id: string;
-    /**
-     * Owner Id
-     */
-    owner_id: string;
-    /**
-     * Created At
-     */
-    created_at?: string | null;
-};
-
-/**
- * ItemUpdate
- */
-export type ItemUpdate = {
-    /**
-     * Title
-     */
-    title?: string | null;
-    /**
-     * Description
-     */
-    description?: string | null;
-};
-
-/**
- * ItemsPublic
- */
-export type ItemsPublic = {
-    /**
-     * Data
-     */
-    data: Array<ItemPublic>;
-    /**
-     * Count
-     */
-    count: number;
-};
-
-/**
  * Message
+ *
+ * 通用消息响应。by AI.Coding
  */
 export type Message = {
     /**
@@ -124,6 +82,8 @@ export type Message = {
 
 /**
  * NewPassword
+ *
+ * 密码重置请求。by AI.Coding
  */
 export type NewPassword = {
     /**
@@ -159,7 +119,296 @@ export type PrivateUserCreate = {
 };
 
 /**
+ * TicketAssign
+ *
+ * Admin 分派或转派工单的严格输入。by AI.Coding
+ */
+export type TicketAssign = {
+    /**
+     * Assignee Id
+     */
+    assignee_id: string;
+};
+
+/**
+ * TicketAttributesUpdate
+ *
+ * 修改工单优先级或分类的严格输入。by AI.Coding
+ */
+export type TicketAttributesUpdate = {
+    priority?: TicketPriority | null;
+    category?: TicketCategory | null;
+};
+
+/**
+ * TicketAuditAction
+ *
+ * 工单审计动作枚举。by AI.Coding
+ */
+export type TicketAuditAction = 'TAKEN' | 'ASSIGNED' | 'REASSIGNED' | 'UNASSIGNED' | 'STATUS_CHANGED' | 'PRIORITY_CHANGED' | 'CATEGORY_CHANGED' | 'DELETED';
+
+/**
+ * TicketAuditPublic
+ *
+ * 按角色裁剪后的结构化工单审计响应。by AI.Coding
+ */
+export type TicketAuditPublic = {
+    /**
+     * Id
+     */
+    id: string;
+    action: TicketAuditAction;
+    actor: UserSummary;
+    /**
+     * Old Value
+     */
+    old_value?: {
+        [key: string]: unknown;
+    } | null;
+    /**
+     * New Value
+     */
+    new_value?: {
+        [key: string]: unknown;
+    } | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+};
+
+/**
+ * TicketCategory
+ *
+ * 工单分类枚举。by AI.Coding
+ */
+export type TicketCategory = 'ACCOUNT' | 'BILLING' | 'PRODUCT' | 'BUG' | 'FEATURE_REQUEST' | 'OTHER';
+
+/**
+ * TicketCreate
+ *
+ * Customer 创建工单的严格输入。by AI.Coding
+ */
+export type TicketCreate = {
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description: string;
+    category: TicketCategory;
+};
+
+/**
+ * TicketDetailPublic
+ *
+ * 包含角色安全时间线的工单详情响应。by AI.Coding
+ */
+export type TicketDetailPublic = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Ticket Number
+     */
+    ticket_number: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description: string;
+    status: TicketStatus;
+    priority: TicketPriority;
+    category: TicketCategory;
+    requester: UserSummary;
+    assignee?: UserSummary | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+    /**
+     * Messages
+     */
+    messages: Array<TicketMessagePublic>;
+    /**
+     * Audit Logs
+     */
+    audit_logs: Array<TicketAuditPublic>;
+};
+
+/**
+ * TicketMessageCreate
+ *
+ * Staff 创建公开回复或内部备注的严格输入。by AI.Coding
+ */
+export type TicketMessageCreate = {
+    message_type: TicketMessageType;
+    /**
+     * Content
+     */
+    content: string;
+};
+
+/**
+ * TicketMessagePublic
+ *
+ * 按角色裁剪后的工单消息响应。by AI.Coding
+ */
+export type TicketMessagePublic = {
+    /**
+     * Id
+     */
+    id: string;
+    author: UserSummary;
+    message_type: TicketMessageType;
+    /**
+     * Content
+     */
+    content: string;
+    /**
+     * Created At
+     */
+    created_at: string;
+};
+
+/**
+ * TicketMessageType
+ *
+ * 工单消息类型枚举。by AI.Coding
+ */
+export type TicketMessageType = 'PUBLIC_REPLY' | 'INTERNAL_NOTE';
+
+/**
+ * TicketPriority
+ *
+ * 工单优先级枚举。by AI.Coding
+ */
+export type TicketPriority = 'LOW' | 'MEDIUM' | 'HIGH' | 'URGENT';
+
+/**
+ * TicketPublic
+ *
+ * 不包含消息和审计时间线的工单公开响应。by AI.Coding
+ */
+export type TicketPublic = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Ticket Number
+     */
+    ticket_number: string;
+    /**
+     * Title
+     */
+    title: string;
+    /**
+     * Description
+     */
+    description: string;
+    status: TicketStatus;
+    priority: TicketPriority;
+    category: TicketCategory;
+    requester: UserSummary;
+    assignee?: UserSummary | null;
+    /**
+     * Created At
+     */
+    created_at: string;
+    /**
+     * Updated At
+     */
+    updated_at: string;
+};
+
+/**
+ * TicketStatisticsPublic
+ *
+ * 按角色返回工单统计计数。by AI.Coding
+ */
+export type TicketStatisticsPublic = {
+    role: UserRole;
+    /**
+     * Status Counts
+     */
+    status_counts?: {
+        [key in TicketStatus]?: number;
+    };
+    /**
+     * Priority Counts
+     */
+    priority_counts?: {
+        [key in TicketPriority]?: number;
+    };
+    /**
+     * Unassigned Count
+     */
+    unassigned_count?: number;
+    /**
+     * Assigned To Me Count
+     */
+    assigned_to_me_count?: number;
+    /**
+     * Waiting For Customer Count
+     */
+    waiting_for_customer_count?: number;
+};
+
+/**
+ * TicketStatus
+ *
+ * 工单状态枚举。by AI.Coding
+ */
+export type TicketStatus = 'OPEN' | 'IN_PROGRESS' | 'WAITING_FOR_CUSTOMER' | 'RESOLVED' | 'CLOSED';
+
+/**
+ * TicketStatusUpdate
+ *
+ * 主动修改工单状态的严格输入。by AI.Coding
+ */
+export type TicketStatusUpdate = {
+    status: TicketStatus;
+};
+
+/**
+ * TicketsPublic
+ *
+ * 工单服务端分页响应。by AI.Coding
+ */
+export type TicketsPublic = {
+    /**
+     * Data
+     */
+    data: Array<TicketPublic>;
+    /**
+     * Count
+     */
+    count: number;
+    /**
+     * Page
+     */
+    page: number;
+    /**
+     * Page Size
+     */
+    page_size: number;
+};
+
+/**
  * Token
+ *
+ * 访问令牌响应。by AI.Coding
  */
 export type Token = {
     /**
@@ -174,6 +423,8 @@ export type Token = {
 
 /**
  * UpdatePassword
+ *
+ * 当前用户修改密码请求。by AI.Coding
  */
 export type UpdatePassword = {
     /**
@@ -188,6 +439,8 @@ export type UpdatePassword = {
 
 /**
  * UserCreate
+ *
+ * 管理员创建用户请求，保持当前模板字段兼容。by AI.Coding
  */
 export type UserCreate = {
     /**
@@ -214,6 +467,8 @@ export type UserCreate = {
 
 /**
  * UserPublic
+ *
+ * 用户公开响应，不包含密码字段。by AI.Coding
  */
 export type UserPublic = {
     /**
@@ -224,6 +479,7 @@ export type UserPublic = {
      * Is Active
      */
     is_active?: boolean;
+    role?: UserRole;
     /**
      * Is Superuser
      */
@@ -244,6 +500,8 @@ export type UserPublic = {
 
 /**
  * UserRegister
+ *
+ * 公开注册请求，不接受角色和启用状态字段。by AI.Coding
  */
 export type UserRegister = {
     /**
@@ -261,7 +519,37 @@ export type UserRegister = {
 };
 
 /**
+ * UserRole
+ *
+ * 用户单角色枚举。by AI.Coding
+ */
+export type UserRole = 'CUSTOMER' | 'AGENT' | 'ADMIN';
+
+/**
+ * UserSummary
+ *
+ * 嵌入工单响应的最小用户公开摘要。by AI.Coding
+ */
+export type UserSummary = {
+    /**
+     * Id
+     */
+    id: string;
+    /**
+     * Email
+     */
+    email: string;
+    /**
+     * Full Name
+     */
+    full_name?: string | null;
+    role: UserRole;
+};
+
+/**
  * UserUpdate
+ *
+ * 管理员更新用户请求，保持现有接口名称和字段。by AI.Coding
  */
 export type UserUpdate = {
     /**
@@ -288,6 +576,8 @@ export type UserUpdate = {
 
 /**
  * UserUpdateMe
+ *
+ * 当前用户更新个人资料请求。by AI.Coding
  */
 export type UserUpdateMe = {
     /**
@@ -302,6 +592,8 @@ export type UserUpdateMe = {
 
 /**
  * UsersPublic
+ *
+ * 用户分页响应。by AI.Coding
  */
 export type UsersPublic = {
     /**
@@ -724,6 +1016,371 @@ export type usersUpdateUserResponses = {
 
 export type usersUpdateUserResponse = usersUpdateUserResponses[keyof usersUpdateUserResponses];
 
+export type ticketsReadTicketStatisticsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/v1/tickets/statistics';
+};
+
+export type ticketsReadTicketStatisticsResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketStatisticsPublic;
+};
+
+export type ticketsReadTicketStatisticsResponse = ticketsReadTicketStatisticsResponses[keyof ticketsReadTicketStatisticsResponses];
+
+export type ticketsListTicketsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        /**
+         * Status
+         */
+        status?: TicketStatus | null;
+        /**
+         * Priority
+         */
+        priority?: TicketPriority | null;
+        /**
+         * Category
+         */
+        category?: TicketCategory | null;
+        /**
+         * Assignee Id
+         */
+        assignee_id?: string | null;
+        /**
+         * Query
+         */
+        query?: string | null;
+        /**
+         * Page
+         */
+        page?: number;
+        /**
+         * Page Size
+         */
+        page_size?: number;
+    };
+    url: '/api/v1/tickets';
+};
+
+export type ticketsListTicketsErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsListTicketsError = ticketsListTicketsErrors[keyof ticketsListTicketsErrors];
+
+export type ticketsListTicketsResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketsPublic;
+};
+
+export type ticketsListTicketsResponse = ticketsListTicketsResponses[keyof ticketsListTicketsResponses];
+
+export type ticketsCreateTicketData = {
+    body: TicketCreate;
+    path?: never;
+    query?: never;
+    url: '/api/v1/tickets';
+};
+
+export type ticketsCreateTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsCreateTicketError = ticketsCreateTicketErrors[keyof ticketsCreateTicketErrors];
+
+export type ticketsCreateTicketResponses = {
+    /**
+     * Successful Response
+     */
+    201: TicketDetailPublic;
+};
+
+export type ticketsCreateTicketResponse = ticketsCreateTicketResponses[keyof ticketsCreateTicketResponses];
+
+export type ticketsDeleteTicketData = {
+    body: DeleteTicketRequest;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}';
+};
+
+export type ticketsDeleteTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsDeleteTicketError = ticketsDeleteTicketErrors[keyof ticketsDeleteTicketErrors];
+
+export type ticketsDeleteTicketResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type ticketsDeleteTicketResponse = ticketsDeleteTicketResponses[keyof ticketsDeleteTicketResponses];
+
+export type ticketsReadTicketData = {
+    body?: never;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}';
+};
+
+export type ticketsReadTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsReadTicketError = ticketsReadTicketErrors[keyof ticketsReadTicketErrors];
+
+export type ticketsReadTicketResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsReadTicketResponse = ticketsReadTicketResponses[keyof ticketsReadTicketResponses];
+
+export type ticketsClaimTicketData = {
+    body?: never;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/claim';
+};
+
+export type ticketsClaimTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsClaimTicketError = ticketsClaimTicketErrors[keyof ticketsClaimTicketErrors];
+
+export type ticketsClaimTicketResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsClaimTicketResponse = ticketsClaimTicketResponses[keyof ticketsClaimTicketResponses];
+
+export type ticketsUnassignTicketData = {
+    body?: never;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/assignee';
+};
+
+export type ticketsUnassignTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsUnassignTicketError = ticketsUnassignTicketErrors[keyof ticketsUnassignTicketErrors];
+
+export type ticketsUnassignTicketResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsUnassignTicketResponse = ticketsUnassignTicketResponses[keyof ticketsUnassignTicketResponses];
+
+export type ticketsAssignTicketData = {
+    body: TicketAssign;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/assignee';
+};
+
+export type ticketsAssignTicketErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsAssignTicketError = ticketsAssignTicketErrors[keyof ticketsAssignTicketErrors];
+
+export type ticketsAssignTicketResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsAssignTicketResponse = ticketsAssignTicketResponses[keyof ticketsAssignTicketResponses];
+
+export type ticketsAddCustomerReplyData = {
+    body: CustomerReplyCreate;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/replies';
+};
+
+export type ticketsAddCustomerReplyErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsAddCustomerReplyError = ticketsAddCustomerReplyErrors[keyof ticketsAddCustomerReplyErrors];
+
+export type ticketsAddCustomerReplyResponses = {
+    /**
+     * Successful Response
+     */
+    201: TicketMessagePublic;
+};
+
+export type ticketsAddCustomerReplyResponse = ticketsAddCustomerReplyResponses[keyof ticketsAddCustomerReplyResponses];
+
+export type ticketsAddStaffMessageData = {
+    body: TicketMessageCreate;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/messages';
+};
+
+export type ticketsAddStaffMessageErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsAddStaffMessageError = ticketsAddStaffMessageErrors[keyof ticketsAddStaffMessageErrors];
+
+export type ticketsAddStaffMessageResponses = {
+    /**
+     * Successful Response
+     */
+    201: TicketMessagePublic;
+};
+
+export type ticketsAddStaffMessageResponse = ticketsAddStaffMessageResponses[keyof ticketsAddStaffMessageResponses];
+
+export type ticketsUpdateStatusData = {
+    body: TicketStatusUpdate;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/status';
+};
+
+export type ticketsUpdateStatusErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsUpdateStatusError = ticketsUpdateStatusErrors[keyof ticketsUpdateStatusErrors];
+
+export type ticketsUpdateStatusResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsUpdateStatusResponse = ticketsUpdateStatusResponses[keyof ticketsUpdateStatusResponses];
+
+export type ticketsUpdateAttributesData = {
+    body: TicketAttributesUpdate;
+    path: {
+        /**
+         * Ticket Id
+         */
+        ticket_id: string;
+    };
+    query?: never;
+    url: '/api/v1/tickets/{ticket_id}/attributes';
+};
+
+export type ticketsUpdateAttributesErrors = {
+    /**
+     * Validation Error
+     */
+    422: HTTPValidationError;
+};
+
+export type ticketsUpdateAttributesError = ticketsUpdateAttributesErrors[keyof ticketsUpdateAttributesErrors];
+
+export type ticketsUpdateAttributesResponses = {
+    /**
+     * Successful Response
+     */
+    200: TicketDetailPublic;
+};
+
+export type ticketsUpdateAttributesResponse = ticketsUpdateAttributesResponses[keyof ticketsUpdateAttributesResponses];
+
 export type utilsTestEmailData = {
     body?: never;
     path?: never;
@@ -771,155 +1428,6 @@ export type utilsHealthCheckResponses = {
 };
 
 export type utilsHealthCheckResponse = utilsHealthCheckResponses[keyof utilsHealthCheckResponses];
-
-export type itemsReadItemsData = {
-    body?: never;
-    path?: never;
-    query?: {
-        /**
-         * Skip
-         */
-        skip?: number;
-        /**
-         * Limit
-         */
-        limit?: number;
-    };
-    url: '/api/v1/items/';
-};
-
-export type itemsReadItemsErrors = {
-    /**
-     * Validation Error
-     */
-    422: HTTPValidationError;
-};
-
-export type itemsReadItemsError = itemsReadItemsErrors[keyof itemsReadItemsErrors];
-
-export type itemsReadItemsResponses = {
-    /**
-     * Successful Response
-     */
-    200: ItemsPublic;
-};
-
-export type itemsReadItemsResponse = itemsReadItemsResponses[keyof itemsReadItemsResponses];
-
-export type itemsCreateItemData = {
-    body: ItemCreate;
-    path?: never;
-    query?: never;
-    url: '/api/v1/items/';
-};
-
-export type itemsCreateItemErrors = {
-    /**
-     * Validation Error
-     */
-    422: HTTPValidationError;
-};
-
-export type itemsCreateItemError = itemsCreateItemErrors[keyof itemsCreateItemErrors];
-
-export type itemsCreateItemResponses = {
-    /**
-     * Successful Response
-     */
-    200: ItemPublic;
-};
-
-export type itemsCreateItemResponse = itemsCreateItemResponses[keyof itemsCreateItemResponses];
-
-export type itemsDeleteItemData = {
-    body?: never;
-    path: {
-        /**
-         * Id
-         */
-        id: string;
-    };
-    query?: never;
-    url: '/api/v1/items/{id}';
-};
-
-export type itemsDeleteItemErrors = {
-    /**
-     * Validation Error
-     */
-    422: HTTPValidationError;
-};
-
-export type itemsDeleteItemError = itemsDeleteItemErrors[keyof itemsDeleteItemErrors];
-
-export type itemsDeleteItemResponses = {
-    /**
-     * Successful Response
-     */
-    200: Message;
-};
-
-export type itemsDeleteItemResponse = itemsDeleteItemResponses[keyof itemsDeleteItemResponses];
-
-export type itemsReadItemData = {
-    body?: never;
-    path: {
-        /**
-         * Id
-         */
-        id: string;
-    };
-    query?: never;
-    url: '/api/v1/items/{id}';
-};
-
-export type itemsReadItemErrors = {
-    /**
-     * Validation Error
-     */
-    422: HTTPValidationError;
-};
-
-export type itemsReadItemError = itemsReadItemErrors[keyof itemsReadItemErrors];
-
-export type itemsReadItemResponses = {
-    /**
-     * Successful Response
-     */
-    200: ItemPublic;
-};
-
-export type itemsReadItemResponse = itemsReadItemResponses[keyof itemsReadItemResponses];
-
-export type itemsUpdateItemData = {
-    body: ItemUpdate;
-    path: {
-        /**
-         * Id
-         */
-        id: string;
-    };
-    query?: never;
-    url: '/api/v1/items/{id}';
-};
-
-export type itemsUpdateItemErrors = {
-    /**
-     * Validation Error
-     */
-    422: HTTPValidationError;
-};
-
-export type itemsUpdateItemError = itemsUpdateItemErrors[keyof itemsUpdateItemErrors];
-
-export type itemsUpdateItemResponses = {
-    /**
-     * Successful Response
-     */
-    200: ItemPublic;
-};
-
-export type itemsUpdateItemResponse = itemsUpdateItemResponses[keyof itemsUpdateItemResponses];
 
 export type privateCreateUserData = {
     body: PrivateUserCreate;

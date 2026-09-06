@@ -14,5 +14,6 @@ export const Route = createRootRoute({
     </>
   ),
   notFoundComponent: () => <NotFound />,
-  errorComponent: () => <ErrorComponent />,
+  // 将路由或 API 错误交给统一页面，以便区分普通错误和 403。by AI.Coding
+  errorComponent: ({ error }) => <ErrorComponent error={error} />,
 })

@@ -1,5 +1,6 @@
-import { Briefcase, Home, Users } from "lucide-react"
+import { Home, Users } from "lucide-react"
 
+import type { UserRole } from "@/client"
 import { SidebarAppearance } from "@/components/Common/Appearance"
 import { Logo } from "@/components/Common/Logo"
 import {
@@ -9,20 +10,21 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import useAuth from "@/hooks/useAuth"
+import { getUserRole } from "@/lib/routeGuards"
 import { type Item, Main } from "./Main"
 import { User } from "./User"
 
-const baseItems: Item[] = [
-  { icon: Home, title: "Dashboard", path: "/" },
-  { icon: Briefcase, title: "Items", path: "/items" },
-]
+const baseItems: Item[] = [{ icon: Home, title: "Dashboard", path: "/" }]
+const itemsByRole: Record<UserRole, Item[]> = {
+  CUSTOMER: baseItems,
+  AGENT: baseItems,
+  ADMIN: [...baseItems, { icon: Users, title: "Admin", path: "/admin" }],
+}
 
 export function AppSidebar() {
   const { user: currentUser } = useAuth()
 
-  const items = currentUser?.is_superuser
-    ? [...baseItems, { icon: Users, title: "Admin", path: "/admin" }]
-    : baseItems
+  const items = itemsByRole[getUserRole(currentUser)] ?? baseItems
 
   return (
     <Sidebar collapsible="icon">

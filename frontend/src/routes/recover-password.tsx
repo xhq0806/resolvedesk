@@ -3,7 +3,6 @@ import { useMutation } from "@tanstack/react-query"
 import {
   createFileRoute,
   Link as RouterLink,
-  redirect,
 } from "@tanstack/react-router"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -20,9 +19,9 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { LoadingButton } from "@/components/ui/loading-button"
-import { isLoggedIn } from "@/hooks/useAuth"
 import useCustomToast from "@/hooks/useCustomToast"
 import { handleError } from "@/utils"
+import { redirectIfAuthenticated } from "@/lib/routeGuards"
 
 const formSchema = z.object({
   email: z.email({ message: "Invalid email address" }),
@@ -32,13 +31,7 @@ type FormData = z.infer<typeof formSchema>
 
 export const Route = createFileRoute("/recover-password")({
   component: RecoverPassword,
-  beforeLoad: async () => {
-    if (isLoggedIn()) {
-      throw redirect({
-        to: "/",
-      })
-    }
-  },
+  beforeLoad: redirectIfAuthenticated(),
   head: () => ({
     meta: [
       {
