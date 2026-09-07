@@ -16,7 +16,9 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
+import { Route as LayoutQueueRouteImport } from './routes/_layout/queue'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
+import { Route as LayoutTicketsRouteImport } from './routes/_layout/tickets'
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
@@ -52,9 +54,19 @@ const LayoutAdminRoute = LayoutAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutQueueRoute = LayoutQueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
+  getParentRoute: () => LayoutRoute,
+} as any)
 const LayoutSettingsRoute = LayoutSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutTicketsRoute = LayoutTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
   getParentRoute: () => LayoutRoute,
 } as any)
 
@@ -65,7 +77,9 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/admin': typeof LayoutAdminRoute
+  '/queue': typeof LayoutQueueRoute
   '/settings': typeof LayoutSettingsRoute
+  '/tickets': typeof LayoutTicketsRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -73,7 +87,9 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/admin': typeof LayoutAdminRoute
+  '/queue': typeof LayoutQueueRoute
   '/settings': typeof LayoutSettingsRoute
+  '/tickets': typeof LayoutTicketsRoute
   '/': typeof LayoutIndexRoute
 }
 export interface FileRoutesById {
@@ -84,7 +100,9 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/_layout/admin': typeof LayoutAdminRoute
+  '/_layout/queue': typeof LayoutQueueRoute
   '/_layout/settings': typeof LayoutSettingsRoute
+  '/_layout/tickets': typeof LayoutTicketsRoute
   '/_layout/': typeof LayoutIndexRoute
 }
 export interface FileRouteTypes {
@@ -96,7 +114,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/admin'
+    | '/queue'
     | '/settings'
+    | '/tickets'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -104,7 +124,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/admin'
+    | '/queue'
     | '/settings'
+    | '/tickets'
     | '/'
   id:
     | '__root__'
@@ -114,7 +136,9 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/_layout/admin'
+    | '/_layout/queue'
     | '/_layout/settings'
+    | '/_layout/tickets'
     | '/_layout/'
   fileRoutesById: FileRoutesById
 }
@@ -177,6 +201,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAdminRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/queue': {
+      id: '/_layout/queue'
+      path: '/queue'
+      fullPath: '/queue'
+      preLoaderRoute: typeof LayoutQueueRouteImport
+      parentRoute: typeof LayoutRoute
+    }
     '/_layout/settings': {
       id: '/_layout/settings'
       path: '/settings'
@@ -184,18 +215,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutSettingsRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/tickets': {
+      id: '/_layout/tickets'
+      path: '/tickets'
+      fullPath: '/tickets'
+      preLoaderRoute: typeof LayoutTicketsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
 interface LayoutRouteChildren {
   LayoutAdminRoute: typeof LayoutAdminRoute
+  LayoutQueueRoute: typeof LayoutQueueRoute
   LayoutSettingsRoute: typeof LayoutSettingsRoute
+  LayoutTicketsRoute: typeof LayoutTicketsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAdminRoute: LayoutAdminRoute,
+  LayoutQueueRoute: LayoutQueueRoute,
   LayoutSettingsRoute: LayoutSettingsRoute,
+  LayoutTicketsRoute: LayoutTicketsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
 }
 

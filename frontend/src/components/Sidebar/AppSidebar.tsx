@@ -1,4 +1,4 @@
-import { Home, Users } from "lucide-react"
+import { Home, Inbox, ListTodo, Users } from "lucide-react"
 
 import type { UserRole } from "@/client"
 import { SidebarAppearance } from "@/components/Common/Appearance"
@@ -16,8 +16,11 @@ import { User } from "./User"
 
 const baseItems: Item[] = [{ icon: Home, title: "Dashboard", path: "/" }]
 const itemsByRole: Record<UserRole, Item[]> = {
-  CUSTOMER: baseItems,
-  AGENT: baseItems,
+  CUSTOMER: [
+    ...baseItems,
+    { icon: Inbox, title: "My tickets", path: "/tickets" },
+  ],
+  AGENT: [...baseItems, { icon: ListTodo, title: "Service queue", path: "/queue" }],
   ADMIN: [...baseItems, { icon: Users, title: "Admin", path: "/admin" }],
 }
 

@@ -88,19 +88,19 @@
   - 目标：完成 currentUser 加载、登录刷新、登出清缓存和三角色路由保护。
   - 涉及文件：`frontend/src/hooks/useAuth.ts`、路由和 guard
   - 预期结果：角色导航和路由体验正确，缓存不跨账号泄漏。
-- [ ] 【通用表格】（前端）扩展服务端分页 DataTable `-> depends: 【认证路由】`
+- [x] 【通用表格】（前端）扩展服务端分页 DataTable `-> depends: 【认证路由】`
   - 目标：增加受控分页、总数、工具栏、空状态和兼容模式。
   - 涉及文件：`frontend/src/components/Common/DataTable.tsx`
   - 预期结果：Ticket 和用户列表可使用服务端分页。
-- [ ] 【工单查询】（前端）建立查询键和筛选组件 `-> depends: 【通用表格】`
+- [x] 【工单查询】（前端）建立查询键和筛选组件 `-> depends: 【通用表格】`
   - 目标：实现 URL 筛选、规范化 Query keys 和缓存失效规则。
   - 涉及文件：`frontend/src/lib/ticketQueries.ts`、Ticket filters
   - 预期结果：筛选、分页和浏览器导航状态稳定。
-- [ ] 【客户工单】（前端）实现 Customer 列表与创建 `-> depends: 【工单查询】`
+- [x] 【客户工单】（前端）实现 Customer 列表与创建 `-> depends: 【工单查询】`
   - 目标：完成我的工单、创建表单、筛选分页和空状态。
   - 涉及文件：Customer Ticket 路由与组件
   - 预期结果：Customer 可以完成工单创建与查询。
-- [ ] 【客服队列】（前端）实现 Agent 队列和接手 `-> depends: 【工单查询】`
+- [x] 【客服队列】（前端）实现 Agent 队列和接手 `-> depends: 【工单查询】`
   - 目标：完成公共队列、我的工单、等待客户、接手和冲突刷新。
   - 涉及文件：Agent Queue 路由与组件
   - 预期结果：Agent 只能访问未分派或自己负责的工单。
@@ -142,4 +142,4 @@
 
 ## 完成状态
 
-> 进度：19/31 已完成
+> 进度：23/31 已完成
