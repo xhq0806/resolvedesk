@@ -3,12 +3,14 @@ import { z } from "zod"
 
 import type {
   TicketCategory,
+  TicketDetailPublic,
   TicketPriority,
   TicketStatus,
   TicketStatisticsPublic,
+  UserPublic,
   TicketsPublic,
 } from "@/client"
-import { TicketsService } from "@/client"
+import { TicketsService, UsersService } from "@/client"
 
 export type TicketScope = "customer" | "agent-queue" | "agent-mine" | "admin"
 
@@ -141,6 +143,24 @@ export const ticketKeys = {
 
 export const agentKeys = ["users", "agents"] as const
 
+// Admin 分派对话框只消费活跃 Agent，列表缓存单独命名以便用户变更后精确失效。by AI.Coding
+export const activeAgentsQueryOptions = () => ({
+  queryKey: agentKeys,
+  queryFn: async (): Promise<UserPublic[]> => {
+    const response = await UsersService.readUsers({
+      query: { page: 1, page_size: 100, role: "AGENT", is_active: true },
+    })
+
+    if (!response.data) {
+      throw new Error("User list response is empty")
+    }
+
+    return response.data.data.filter(
+      (user) => user.role === "AGENT" && user.is_active !== false,
+    )
+  },
+})
+
 export const ticketListQueryOptions = (
   scope: TicketScope,
   filters: Partial<TicketListFilters> = {},
@@ -170,6 +190,22 @@ export const ticketListQueryOptions = (
     },
   }
 }
+
+// 鏌ヨ鍗曚釜宸ュ崟璇︽儏锛岀粺涓€澶勭悊瑙掕壊瑁佸壀鍚庣殑鏃堕棿绾挎暟鎹€俠y AI.Coding
+export const ticketDetailQueryOptions = (ticketId: string) => ({
+  queryKey: ticketKeys.detail(ticketId),
+  queryFn: async (): Promise<TicketDetailPublic> => {
+    const response = await TicketsService.readTicket({
+      path: { ticket_id: ticketId },
+    })
+
+    if (!response.data) {
+      throw new Error("Ticket detail response is empty")
+    }
+
+    return response.data
+  },
+})
 
 // 统计查询与列表使用同一组稳定键，接手后可由统一失效函数刷新。by AI.Coding
 export const ticketStatisticsQueryOptions = () => ({

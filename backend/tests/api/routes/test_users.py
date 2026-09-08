@@ -45,7 +45,13 @@ def test_create_user_new_email(
     ):
         username = random_email()
         password = random_lower_string()
-        data = {"email": username, "password": password}
+        data = {
+            "email": username,
+            "password": password,
+            "full_name": "Created Agent",
+            "role": "AGENT",
+            "is_active": True,
+        }
         r = client.post(
             f"{settings.API_V1_STR}/users/",
             headers=superuser_token_headers,
@@ -56,6 +62,8 @@ def test_create_user_new_email(
         user = crud.get_user_by_email(session=db, email=username)
         assert user
         assert user.email == created_user["email"]
+        assert created_user["role"] == "AGENT"
+        assert created_user["is_active"] is True
 
 
 def test_get_existing_user_as_superuser(
@@ -159,8 +167,8 @@ def test_create_user_existing_username(
         json=data,
     )
     created_user = r.json()
-    assert r.status_code == 400
-    assert "_id" not in created_user
+    assert r.status_code == 409
+    assert created_user["code"] == "EMAIL_CONFLICT"
 
 
 def test_create_user_by_normal_user(
@@ -197,6 +205,45 @@ def test_retrieve_users(
     assert "count" in all_users
     for item in all_users["data"]:
         assert "email" in item
+        assert "role" in item
+
+
+def test_retrieve_users_supports_role_status_query_and_pagination(
+    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+) -> None:
+    """用户列表必须支持角色、启停和分页过滤。by AI.Coding"""
+    marker = f"route-filter-{uuid.uuid4().hex}"
+    with patch("app.utils.send_email", return_value=None):
+        response = client.post(
+            f"{settings.API_V1_STR}/users/",
+            headers=superuser_token_headers,
+            json={
+                "email": f"{marker}@example.com",
+                "password": "valid-password",
+                "full_name": marker,
+                "role": "AGENT",
+                "is_active": False,
+            },
+        )
+    assert response.status_code == 200
+
+    response = client.get(
+        f"{settings.API_V1_STR}/users/",
+        headers=superuser_token_headers,
+        params={
+            "query": marker,
+            "role": "AGENT",
+            "is_active": "false",
+            "page": 1,
+            "page_size": 1,
+        },
+    )
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["count"] == 1
+    assert len(payload["data"]) == 1
+    assert payload["data"][0]["role"] == "AGENT"
+    assert payload["data"][0]["is_active"] is False
 
 
 def test_update_user_me(
@@ -352,8 +399,11 @@ def test_register_user_already_exists_error(client: TestClient) -> None:
         f"{settings.API_V1_STR}/users/signup",
         json=data,
     )
-    assert r.status_code == 400
-    assert r.json()["detail"] == "The user with this email already exists in the system"
+    assert r.status_code == 409
+    payload = r.json()
+    assert payload["code"] == "EMAIL_CONFLICT"
+    assert payload["message"] == "The email already exists."
+    assert payload["request_id"]
 
 
 def test_update_user(
@@ -392,7 +442,7 @@ def test_update_user_not_exists(
         json=data,
     )
     assert r.status_code == 404
-    assert r.json()["detail"] == "The user with this id does not exist in the system"
+    assert r.json()["code"] == "USER_NOT_FOUND"
 
 
 def test_update_user_email_exists(
@@ -415,108 +465,30 @@ def test_update_user_email_exists(
         json=data,
     )
     assert r.status_code == 409
-    assert r.json()["detail"] == "User with this email already exists"
+    assert r.json()["code"] == "EMAIL_CONFLICT"
 
 
-def test_delete_user_me(client: TestClient, db: Session) -> None:
-    username = random_email()
-    password = random_lower_string()
-    user_in = UserCreate(email=username, password=password)
-    user = crud.create_user(session=db, user_create=user_in)
-    user_id = user.id
-
-    login_data = {
-        "username": username,
-        "password": password,
-    }
-    r = client.post(f"{settings.API_V1_STR}/login/access-token", data=login_data)
-    tokens = r.json()
-    a_token = tokens["access_token"]
-    headers = {"Authorization": f"Bearer {a_token}"}
-
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/me",
-        headers=headers,
-    )
-    assert r.status_code == 200
-    deleted_user = r.json()
-    assert deleted_user["message"] == "User deleted successfully"
-    result = db.exec(select(User).where(User.id == user_id)).first()
-    assert result is None
-
-    user_query = select(User).where(User.id == user_id)
-    user_db = db.execute(user_query).first()
-    assert user_db is None
-
-
-def test_delete_user_me_as_superuser(
+def test_update_last_active_admin_returns_stable_error(
     client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/me",
+    """最后一个活跃 Admin 触发稳定的结构化 409 错误。by AI.Coding"""
+    current = client.get(
+        f"{settings.API_V1_STR}/users/me", headers=superuser_token_headers
+    ).json()
+    response = client.patch(
+        f"{settings.API_V1_STR}/users/{current['id']}",
         headers=superuser_token_headers,
+        json={"is_active": False},
     )
-    assert r.status_code == 403
-    response = r.json()
-    assert response["detail"] == "Super users are not allowed to delete themselves"
+    assert response.status_code == 409
+    assert response.json()["code"] == "LAST_ACTIVE_ADMIN"
+    assert response.json()["message"] == "At least one active administrator is required."
 
 
-def test_delete_user_super_user(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
-) -> None:
-    username = random_email()
-    password = random_lower_string()
-    user_in = UserCreate(email=username, password=password)
-    user = crud.create_user(session=db, user_create=user_in)
-    user_id = user.id
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/{user_id}",
-        headers=superuser_token_headers,
-    )
-    assert r.status_code == 200
-    deleted_user = r.json()
-    assert deleted_user["message"] == "User deleted successfully"
-    result = db.exec(select(User).where(User.id == user_id)).first()
-    assert result is None
-
-
-def test_delete_user_not_found(
+def test_user_delete_endpoints_are_removed(
     client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/{uuid.uuid4()}",
-        headers=superuser_token_headers,
-    )
-    assert r.status_code == 404
-    assert r.json()["detail"] == "User not found"
-
-
-def test_delete_user_current_super_user_error(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
-) -> None:
-    super_user = crud.get_user_by_email(session=db, email=settings.FIRST_SUPERUSER)
-    assert super_user
-    user_id = super_user.id
-
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/{user_id}",
-        headers=superuser_token_headers,
-    )
-    assert r.status_code == 403
-    assert r.json()["detail"] == "Super users are not allowed to delete themselves"
-
-
-def test_delete_user_without_privileges(
-    client: TestClient, normal_user_token_headers: dict[str, str], db: Session
-) -> None:
-    username = random_email()
-    password = random_lower_string()
-    user_in = UserCreate(email=username, password=password)
-    user = crud.create_user(session=db, user_create=user_in)
-
-    r = client.delete(
-        f"{settings.API_V1_STR}/users/{user.id}",
-        headers=normal_user_token_headers,
-    )
-    assert r.status_code == 403
-    assert r.json()["detail"] == "The user doesn't have enough privileges"
+    """用户管理仅支持角色和启停，不再暴露物理删除端点。by AI.Coding"""
+    for path in (f"{settings.API_V1_STR}/users/me", f"{settings.API_V1_STR}/users/{uuid.uuid4()}"):
+        response = client.delete(path, headers=superuser_token_headers)
+        assert response.status_code == 405

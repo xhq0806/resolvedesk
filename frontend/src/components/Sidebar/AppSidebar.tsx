@@ -1,4 +1,4 @@
-import { Home, Inbox, ListTodo, Users } from "lucide-react"
+import { Home, Inbox, ListTodo, Settings, Users } from "lucide-react"
 
 import type { UserRole } from "@/client"
 import { SidebarAppearance } from "@/components/Common/Appearance"
@@ -14,14 +14,21 @@ import { getUserRole } from "@/lib/routeGuards"
 import { type Item, Main } from "./Main"
 import { User } from "./User"
 
-const baseItems: Item[] = [{ icon: Home, title: "Dashboard", path: "/" }]
+const baseItems: Item[] = [
+  { icon: Home, title: "Dashboard", path: "/" },
+  { icon: Settings, title: "Settings", path: "/settings" },
+]
 const itemsByRole: Record<UserRole, Item[]> = {
   CUSTOMER: [
     ...baseItems,
     { icon: Inbox, title: "My tickets", path: "/tickets" },
   ],
   AGENT: [...baseItems, { icon: ListTodo, title: "Service queue", path: "/queue" }],
-  ADMIN: [...baseItems, { icon: Users, title: "Admin", path: "/admin" }],
+  ADMIN: [
+    ...baseItems,
+    { icon: Inbox, title: "Tickets", path: "/admin/tickets" },
+    { icon: Users, title: "Users", path: "/admin" },
+  ],
 }
 
 export function AppSidebar() {

@@ -1,11 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { isAxiosError } from "axios"
 import { Pencil } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { type UserPublic, UsersService } from "@/client"
+import type { UserPublic, UserRole } from "@/client"
+import { UsersService } from "@/client"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -28,7 +30,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { LoadingButton } from "@/components/ui/loading-button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import useCustomToast from "@/hooks/useCustomToast"
+import useAuth from "@/hooks/useAuth"
+import { invalidateUserQueries } from "@/lib/userQueries"
 import { handleError } from "@/utils"
 
 const formSchema = z
@@ -41,8 +46,8 @@ const formSchema = z
       .optional()
       .or(z.literal("")),
     confirm_password: z.string().optional(),
-    is_superuser: z.boolean().optional(),
-    is_active: z.boolean().optional(),
+    role: z.enum(["CUSTOMER", "AGENT", "ADMIN"]),
+    is_active: z.boolean(),
   })
   .refine((data) => !data.password || data.password === data.confirm_password, {
     message: "The passwords don't match",
@@ -56,9 +61,17 @@ interface EditUserProps {
   onSuccess: () => void
 }
 
+const roleOptions: Array<{ value: UserRole; label: string }> = [
+  { value: "CUSTOMER", label: "Customer" },
+  { value: "AGENT", label: "Agent" },
+  { value: "ADMIN", label: "Admin" },
+]
+
 const EditUser = ({ user, onSuccess }: EditUserProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const queryClient = useQueryClient()
+  // 当前用户用于判断是否需要刷新自身缓存，避免编辑后页面仍显示旧状态。by AI.Coding
+  const { user: currentUser } = useAuth()
   const { showSuccessToast, showErrorToast } = useCustomToast()
 
   const form = useForm<FormData>({
@@ -68,27 +81,55 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
     defaultValues: {
       email: user.email,
       full_name: user.full_name ?? undefined,
-      is_superuser: user.is_superuser,
-      is_active: user.is_active,
+      role: user.role ?? "CUSTOMER",
+      is_active: user.is_active ?? true,
     },
   })
+
+  useEffect(() => {
+    if (!isOpen) return
+    form.reset({
+      email: user.email,
+      full_name: user.full_name ?? undefined,
+      role: user.role ?? "CUSTOMER",
+      is_active: user.is_active ?? true,
+      password: "",
+      confirm_password: "",
+    })
+  }, [form, isOpen, user])
 
   const mutation = useMutation({
     mutationFn: (data: FormData) =>
       UsersService.updateUser({ path: { user_id: user.id }, body: data }),
-    onSuccess: () => {
+    onSuccess: async () => {
+      await invalidateUserQueries(queryClient, {
+        includeCurrentUser: user.id === currentUser?.id,
+      })
       showSuccessToast("User updated successfully")
       setIsOpen(false)
       onSuccess()
     },
-    onError: handleError.bind(showErrorToast),
+    onError: (error: Error) => {
+      handleError.call(showErrorToast, error)
+      // 最后一个活跃 Admin 的限制由结构化 code 返回，这里直接映射到表单错误。by AI.Coding
+      const errorCode = isAxiosError(error)
+        ? (error.response?.data as { code?: string } | undefined)?.code
+        : undefined
+      if (errorCode === "LAST_ACTIVE_ADMIN") {
+        form.setError("role", {
+          message: "At least one active administrator is required.",
+        })
+        form.setError("is_active", {
+          message: "At least one active administrator is required.",
+        })
+      }
+    },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] })
+      void invalidateUserQueries(queryClient)
     },
   })
 
   const onSubmit = (data: FormData) => {
-    // exclude confirm_password from submission data and remove password if empty
     const { confirm_password: _, ...submitData } = data
     if (!submitData.password) {
       delete submitData.password
@@ -98,21 +139,16 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DropdownMenuItem
-        onSelect={(e) => e.preventDefault()}
-        onClick={() => setIsOpen(true)}
-      >
+      <DropdownMenuItem onSelect={(e) => e.preventDefault()} onClick={() => setIsOpen(true)}>
         <Pencil />
-        Edit User
+        Edit user
       </DropdownMenuItem>
       <DialogContent className="sm:max-w-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Edit User</DialogTitle>
-              <DialogDescription>
-                Update the user details below.
-              </DialogDescription>
+              <DialogTitle>Edit user</DialogTitle>
+              <DialogDescription>Update the user details below.</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <FormField
@@ -120,16 +156,9 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      Email <span className="text-destructive">*</span>
-                    </FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Email"
-                        type="email"
-                        {...field}
-                        required
-                      />
+                      <Input placeholder="Email" type="email" {...field} required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -141,7 +170,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="full_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Full name</FormLabel>
                     <FormControl>
                       <Input placeholder="Full name" type="text" {...field} />
                     </FormControl>
@@ -152,16 +181,37 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
 
               <FormField
                 control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {roleOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Set Password</FormLabel>
+                    <FormLabel>Set password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Password"
-                        type="password"
-                        {...field}
-                      />
+                      <Input placeholder="Password" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -173,31 +223,11 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="confirm_password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm Password</FormLabel>
+                    <FormLabel>Confirm password</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Password"
-                        type="password"
-                        {...field}
-                      />
+                      <Input placeholder="Password" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="is_superuser"
-                render={({ field }) => (
-                  <FormItem className="flex items-center gap-3 space-y-0">
-                    <FormControl>
-                      <Checkbox
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <FormLabel className="font-normal">Is superuser?</FormLabel>
                   </FormItem>
                 )}
               />
@@ -213,7 +243,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Is active?</FormLabel>
+                    <FormLabel className="font-normal">Active</FormLabel>
                   </FormItem>
                 )}
               />

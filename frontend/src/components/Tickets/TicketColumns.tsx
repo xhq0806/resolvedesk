@@ -1,4 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table"
+import { Link } from "@tanstack/react-router"
 
 import type { TicketPublic } from "@/client"
 import { Badge } from "@/components/ui/badge"
@@ -54,7 +55,15 @@ const formatDate = (value: string) =>
     timeStyle: "short",
   }).format(new Date(value))
 
-export const ticketColumns: ColumnDef<TicketPublic>[] = [
+type TicketDetailRoute =
+  | "/tickets/$ticketId"
+  | "/queue/$ticketId"
+  | "/admin/tickets/$ticketId"
+
+// 按工作台生成工单列，确保 Customer 和 Agent 点击后进入各自的受保护详情路由。by AI.Coding
+export const createTicketColumns = (
+  detailRoute: TicketDetailRoute = "/tickets/$ticketId",
+): ColumnDef<TicketPublic>[] => [
   {
     accessorKey: "ticket_number",
     header: "Ticket",
@@ -67,16 +76,52 @@ export const ticketColumns: ColumnDef<TicketPublic>[] = [
   {
     accessorKey: "title",
     header: "Title",
-    cell: ({ row }) => (
-      <div className="min-w-48 max-w-md">
-        <p className="truncate font-medium text-foreground">
-          {row.original.title}
-        </p>
-        <p className="truncate text-xs text-muted-foreground">
-          {row.original.description}
-        </p>
-      </div>
-    ),
+    cell: ({ row }) => {
+      const title = row.original.title
+      const description = row.original.description
+      const linkClass =
+        "block truncate font-medium text-foreground hover:underline"
+
+      // Admin 详情路由没有 search schema，因此单独渲染无查询参数的链接。by AI.Coding
+      const link =
+        detailRoute === "/admin/tickets/$ticketId" ? (
+          <Link
+            to={detailRoute}
+            params={{ ticketId: row.original.id }}
+            search={{ page: 1, pageSize: 25, query: "" }}
+            className={linkClass}
+          >
+            {title}
+          </Link>
+        ) : detailRoute === "/queue/$ticketId" ? (
+          <Link
+            to={detailRoute}
+            params={{ ticketId: row.original.id }}
+            search={{ view: "unassigned", page: 1, pageSize: 25, query: "" }}
+            className={linkClass}
+          >
+            {title}
+          </Link>
+        ) : (
+          <Link
+            to={detailRoute}
+            params={{ ticketId: row.original.id }}
+            search={{ page: 1, pageSize: 25, query: "" }}
+            className={linkClass}
+          >
+            {title}
+          </Link>
+        )
+
+      return (
+        <div className="min-w-48 max-w-md">
+          {link}
+          <p className="truncate text-xs text-muted-foreground">
+            {description}
+          </p>
+        </div>
+      )
+    },
   },
   {
     accessorKey: "status",
@@ -130,3 +175,5 @@ export const ticketColumns: ColumnDef<TicketPublic>[] = [
     ),
   },
 ]
+
+export const ticketColumns = createTicketColumns()

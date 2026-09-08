@@ -3,7 +3,7 @@ import { Hand, Loader2 } from "lucide-react"
 
 import type { TicketPublic } from "@/client"
 import { Button } from "@/components/ui/button"
-import { ticketColumns } from "./TicketColumns"
+import { createTicketColumns } from "./TicketColumns"
 
 interface AgentQueueColumnsOptions {
   onClaim: (ticketId: string) => void
@@ -15,7 +15,7 @@ export const createAgentQueueColumns = ({
   onClaim,
   claimingTicketId,
 }: AgentQueueColumnsOptions): ColumnDef<TicketPublic>[] => [
-  ...ticketColumns,
+  ...createTicketColumns("/queue/$ticketId"),
   {
     id: "actions",
     header: "Action",

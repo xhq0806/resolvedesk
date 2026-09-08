@@ -36,7 +36,10 @@ export function Main({ items }: MainProps) {
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => {
-            const isActive = currentPath === item.path
+            // 进入详情页时仍沿用父级导航高亮，避免侧栏丢失上下文。by AI.Coding
+            const isActive =
+              currentPath === item.path ||
+              (item.path !== "/" && currentPath.startsWith(`${item.path}/`))
 
             return (
               <SidebarMenuItem key={item.title}>

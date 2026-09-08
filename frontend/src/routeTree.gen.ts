@@ -19,6 +19,11 @@ import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
 import { Route as LayoutQueueRouteImport } from './routes/_layout/queue'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
 import { Route as LayoutTicketsRouteImport } from './routes/_layout/tickets'
+import { Route as LayoutAdminIndexRouteImport } from './routes/_layout/admin/index'
+import { Route as LayoutAdminTicketsRouteImport } from './routes/_layout/admin/tickets'
+import { Route as LayoutQueueTicketIdRouteImport } from './routes/_layout/queue/$ticketId'
+import { Route as LayoutTicketsTicketIdRouteImport } from './routes/_layout/tickets/$ticketId'
+import { Route as LayoutAdminTicketsTicketIdRouteImport } from './routes/_layout/admin/tickets/$ticketId'
 
 const LayoutRoute = LayoutRouteImport.update({
   id: '/_layout',
@@ -69,6 +74,32 @@ const LayoutTicketsRoute = LayoutTicketsRouteImport.update({
   path: '/tickets',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutAdminIndexRoute = LayoutAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutAdminTicketsRoute = LayoutAdminTicketsRouteImport.update({
+  id: '/tickets',
+  path: '/tickets',
+  getParentRoute: () => LayoutAdminRoute,
+} as any)
+const LayoutQueueTicketIdRoute = LayoutQueueTicketIdRouteImport.update({
+  id: '/$ticketId',
+  path: '/$ticketId',
+  getParentRoute: () => LayoutQueueRoute,
+} as any)
+const LayoutTicketsTicketIdRoute = LayoutTicketsTicketIdRouteImport.update({
+  id: '/$ticketId',
+  path: '/$ticketId',
+  getParentRoute: () => LayoutTicketsRoute,
+} as any)
+const LayoutAdminTicketsTicketIdRoute =
+  LayoutAdminTicketsTicketIdRouteImport.update({
+    id: '/$ticketId',
+    path: '/$ticketId',
+    getParentRoute: () => LayoutAdminTicketsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LayoutIndexRoute
@@ -76,21 +107,30 @@ export interface FileRoutesByFullPath {
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/admin': typeof LayoutAdminRoute
-  '/queue': typeof LayoutQueueRoute
+  '/admin': typeof LayoutAdminRouteWithChildren
+  '/queue': typeof LayoutQueueRouteWithChildren
   '/settings': typeof LayoutSettingsRoute
-  '/tickets': typeof LayoutTicketsRoute
+  '/tickets': typeof LayoutTicketsRouteWithChildren
+  '/admin/tickets': typeof LayoutAdminTicketsRouteWithChildren
+  '/queue/$ticketId': typeof LayoutQueueTicketIdRoute
+  '/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
+  '/admin/': typeof LayoutAdminIndexRoute
+  '/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/admin': typeof LayoutAdminRoute
-  '/queue': typeof LayoutQueueRoute
+  '/queue': typeof LayoutQueueRouteWithChildren
   '/settings': typeof LayoutSettingsRoute
-  '/tickets': typeof LayoutTicketsRoute
+  '/tickets': typeof LayoutTicketsRouteWithChildren
   '/': typeof LayoutIndexRoute
+  '/admin/tickets': typeof LayoutAdminTicketsRouteWithChildren
+  '/queue/$ticketId': typeof LayoutQueueTicketIdRoute
+  '/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
+  '/admin': typeof LayoutAdminIndexRoute
+  '/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -99,11 +139,16 @@ export interface FileRoutesById {
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
-  '/_layout/admin': typeof LayoutAdminRoute
-  '/_layout/queue': typeof LayoutQueueRoute
+  '/_layout/admin': typeof LayoutAdminRouteWithChildren
+  '/_layout/queue': typeof LayoutQueueRouteWithChildren
   '/_layout/settings': typeof LayoutSettingsRoute
-  '/_layout/tickets': typeof LayoutTicketsRoute
+  '/_layout/tickets': typeof LayoutTicketsRouteWithChildren
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/admin/tickets': typeof LayoutAdminTicketsRouteWithChildren
+  '/_layout/queue/$ticketId': typeof LayoutQueueTicketIdRoute
+  '/_layout/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
+  '/_layout/admin/': typeof LayoutAdminIndexRoute
+  '/_layout/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -117,17 +162,26 @@ export interface FileRouteTypes {
     | '/queue'
     | '/settings'
     | '/tickets'
+    | '/admin/tickets'
+    | '/queue/$ticketId'
+    | '/tickets/$ticketId'
+    | '/admin/'
+    | '/admin/tickets/$ticketId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
     | '/recover-password'
     | '/reset-password'
     | '/signup'
-    | '/admin'
     | '/queue'
     | '/settings'
     | '/tickets'
     | '/'
+    | '/admin/tickets'
+    | '/queue/$ticketId'
+    | '/tickets/$ticketId'
+    | '/admin'
+    | '/admin/tickets/$ticketId'
   id:
     | '__root__'
     | '/_layout'
@@ -140,6 +194,11 @@ export interface FileRouteTypes {
     | '/_layout/settings'
     | '/_layout/tickets'
     | '/_layout/'
+    | '/_layout/admin/tickets'
+    | '/_layout/queue/$ticketId'
+    | '/_layout/tickets/$ticketId'
+    | '/_layout/admin/'
+    | '/_layout/admin/tickets/$ticketId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -222,22 +281,106 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutTicketsRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/admin/': {
+      id: '/_layout/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof LayoutAdminIndexRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/admin/tickets': {
+      id: '/_layout/admin/tickets'
+      path: '/tickets'
+      fullPath: '/admin/tickets'
+      preLoaderRoute: typeof LayoutAdminTicketsRouteImport
+      parentRoute: typeof LayoutAdminRoute
+    }
+    '/_layout/queue/$ticketId': {
+      id: '/_layout/queue/$ticketId'
+      path: '/$ticketId'
+      fullPath: '/queue/$ticketId'
+      preLoaderRoute: typeof LayoutQueueTicketIdRouteImport
+      parentRoute: typeof LayoutQueueRoute
+    }
+    '/_layout/tickets/$ticketId': {
+      id: '/_layout/tickets/$ticketId'
+      path: '/$ticketId'
+      fullPath: '/tickets/$ticketId'
+      preLoaderRoute: typeof LayoutTicketsTicketIdRouteImport
+      parentRoute: typeof LayoutTicketsRoute
+    }
+    '/_layout/admin/tickets/$ticketId': {
+      id: '/_layout/admin/tickets/$ticketId'
+      path: '/$ticketId'
+      fullPath: '/admin/tickets/$ticketId'
+      preLoaderRoute: typeof LayoutAdminTicketsTicketIdRouteImport
+      parentRoute: typeof LayoutAdminTicketsRoute
+    }
   }
 }
 
+interface LayoutAdminTicketsRouteChildren {
+  LayoutAdminTicketsTicketIdRoute: typeof LayoutAdminTicketsTicketIdRoute
+}
+
+const LayoutAdminTicketsRouteChildren: LayoutAdminTicketsRouteChildren = {
+  LayoutAdminTicketsTicketIdRoute: LayoutAdminTicketsTicketIdRoute,
+}
+
+const LayoutAdminTicketsRouteWithChildren =
+  LayoutAdminTicketsRoute._addFileChildren(LayoutAdminTicketsRouteChildren)
+
+interface LayoutAdminRouteChildren {
+  LayoutAdminTicketsRoute: typeof LayoutAdminTicketsRouteWithChildren
+  LayoutAdminIndexRoute: typeof LayoutAdminIndexRoute
+}
+
+const LayoutAdminRouteChildren: LayoutAdminRouteChildren = {
+  LayoutAdminTicketsRoute: LayoutAdminTicketsRouteWithChildren,
+  LayoutAdminIndexRoute: LayoutAdminIndexRoute,
+}
+
+const LayoutAdminRouteWithChildren = LayoutAdminRoute._addFileChildren(
+  LayoutAdminRouteChildren,
+)
+
+interface LayoutQueueRouteChildren {
+  LayoutQueueTicketIdRoute: typeof LayoutQueueTicketIdRoute
+}
+
+const LayoutQueueRouteChildren: LayoutQueueRouteChildren = {
+  LayoutQueueTicketIdRoute: LayoutQueueTicketIdRoute,
+}
+
+const LayoutQueueRouteWithChildren = LayoutQueueRoute._addFileChildren(
+  LayoutQueueRouteChildren,
+)
+
+interface LayoutTicketsRouteChildren {
+  LayoutTicketsTicketIdRoute: typeof LayoutTicketsTicketIdRoute
+}
+
+const LayoutTicketsRouteChildren: LayoutTicketsRouteChildren = {
+  LayoutTicketsTicketIdRoute: LayoutTicketsTicketIdRoute,
+}
+
+const LayoutTicketsRouteWithChildren = LayoutTicketsRoute._addFileChildren(
+  LayoutTicketsRouteChildren,
+)
+
 interface LayoutRouteChildren {
-  LayoutAdminRoute: typeof LayoutAdminRoute
-  LayoutQueueRoute: typeof LayoutQueueRoute
+  LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
+  LayoutQueueRoute: typeof LayoutQueueRouteWithChildren
   LayoutSettingsRoute: typeof LayoutSettingsRoute
-  LayoutTicketsRoute: typeof LayoutTicketsRoute
+  LayoutTicketsRoute: typeof LayoutTicketsRouteWithChildren
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
-  LayoutAdminRoute: LayoutAdminRoute,
-  LayoutQueueRoute: LayoutQueueRoute,
+  LayoutAdminRoute: LayoutAdminRouteWithChildren,
+  LayoutQueueRoute: LayoutQueueRouteWithChildren,
   LayoutSettingsRoute: LayoutSettingsRoute,
-  LayoutTicketsRoute: LayoutTicketsRoute,
+  LayoutTicketsRoute: LayoutTicketsRouteWithChildren,
   LayoutIndexRoute: LayoutIndexRoute,
 }
 
