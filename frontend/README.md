@@ -1,123 +1,96 @@
-# FastAPI Project - Frontend
+# ResolveDesk Frontend
 
-The frontend is built with [Vite](https://vitejs.dev/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [TanStack Query](https://tanstack.com/query), [TanStack Router](https://tanstack.com/router), [Tailwind CSS](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/).
+The frontend is a React single-page application for the ResolveDesk customer, agent, and admin workflows. It uses Vite, TypeScript, TanStack Router, TanStack Query, TanStack Table, Tailwind CSS, shadcn/ui, and the generated OpenAPI client.
 
 ## Requirements
 
 - [Bun](https://bun.sh/)
+- A running ResolveDesk backend for API requests
 
-## Quick Start
+## Local Development
 
-From the project root, install the dependencies and start the frontend development server:
+From the project root:
 
 ```bash
 bun install
 bun run dev
 ```
 
-Then open <http://localhost:5173/> in your browser.
+Open <http://localhost:5173>. The Vite development server uses `VITE_API_URL` from `frontend/.env`, which defaults to `http://localhost:8000`.
 
-Run `uv run bash scripts/prestart.sh` and `uv run fastapi dev` from the `backend` directory, with PostgreSQL running in Docker Compose. See [../development.md](../development.md) for the complete setup.
+Start PostgreSQL and Mailpit, then prepare and run the backend in a separate terminal. The complete workflow is documented in [../development.md](../development.md).
 
-To serve the frontend with FastAPI, run `bun run build` from the `frontend` directory and open `http://localhost:8000`.
+## Role-Based Application Areas
 
-Check `frontend/package.json` to see the other available commands.
+- Customers use `/tickets` to create, filter, search, and reply to their own tickets.
+- Agents use `/queue` to view unassigned work, claim tickets, reply, add internal notes, and update tickets they own.
+- Admins use `/admin/tickets` for global ticket management and `/admin` for user, role, and account-status management.
+- All authenticated users share the dashboard and account settings pages.
 
-## Removing the Frontend
+Route guards are enforced in the frontend for navigation ergonomics. The backend remains the source of truth for authorization and resource-level access.
 
-If you are developing an API-only app and want to remove the frontend, you can do it easily:
+## Build and Serve from FastAPI
 
-* Remove the `./frontend` directory.
+Build the frontend from `frontend/`:
 
-* In the `backend/app/main.py` file, remove the `app.frontend()` call.
+```bash
+bun run build
+```
 
-* In the `backend/Dockerfile` file, remove the frontend build stage and the `COPY --from=frontend-build` instruction.
+The build is written to `backend/app/frontend` and is served by FastAPI at <http://localhost:8000>.
 
-* In the `compose.override.yml` file, remove the `playwright` service.
+## Generate the API Client
 
-* In the `.github/workflows/deploy.yml` file, remove the **Set up Bun**, **Install frontend dependencies**, and **Build frontend** steps.
-
-* In the `.fastapicloudignore` file, remove the `!backend/app/frontend/` entry.
-
-Done, you now have an API-only app. 🤓
-
-## Generate Client
-
-### Automatically
-
-* From the project root, run the script:
+The client is generated from the backend OpenAPI contract. Regenerate it whenever a backend API change affects the schema:
 
 ```bash
 bash ./scripts/generate-client.sh
 ```
 
-* Commit the changes.
+Commit the generated changes under `frontend/src/client/` and `frontend/.generated-client/` when that directory is present in the local workflow. Do not maintain a second hand-written API client.
 
-### Manually
-
-* Make sure the backend is running.
-
-* Download the OpenAPI JSON file from `http://localhost:8000/api/v1/openapi.json` and copy it to a new file `openapi.json` at the root of the `frontend` directory.
-
-* To generate the frontend client, run:
+For a manual generation workflow, start the backend, download `/api/v1/openapi.json` to `frontend/openapi.json`, and run:
 
 ```bash
 bun run generate-client
 ```
 
-* Commit the changes.
-
-Regenerate the client whenever backend changes affect the OpenAPI schema.
-
-## Using a Remote API
-
-By default, the built frontend uses the same origin as the FastAPI app. If you want to use a remote API while running the Vite development server, you can set the environment variable `VITE_API_URL` to the URL of the remote API. For example, you can set it in the `frontend/.env` file:
-
-```env
-VITE_API_URL=https://my-domain.example.com
-```
-
-Then, when you run the frontend, it will use that URL as the base URL for the API.
-
 ## Code Structure
 
-The frontend code is structured as follows:
+- `src/routes/` contains file-based routes, URL filter state, and role guards.
+- `src/components/Tickets/` contains ticket lists, detail views, timelines, replies, actions, and statistics.
+- `src/components/Admin/` contains user management views.
+- `src/components/Common/` contains shared layout and table primitives.
+- `src/lib/` contains query options, cache keys, and shared utilities.
+- `src/client/` contains the generated OpenAPI client.
+- `tests/` contains Playwright end-to-end tests for authentication, role navigation, tickets, queues, and user management.
 
-* `frontend/src` - The main frontend code.
-* `frontend/public` - Static assets.
-* `frontend/src/client` - The generated OpenAPI client.
-* `frontend/src/components` - The components of the frontend, including the shadcn/ui components in `frontend/src/components/ui`.
-* `frontend/src/hooks` - Custom hooks.
-* `frontend/src/lib` - Shared frontend utilities.
-* `frontend/src/routes` - The frontend routes and pages.
+## Linting, Build, and End-to-End Tests
 
-## End-to-End Testing with Playwright
-
-The frontend includes initial end-to-end tests using Playwright. To run the tests, you need to have the Docker Compose stack running. Start the stack with the following command:
+Run frontend checks from the project root:
 
 ```bash
+bun run --filter frontend lint
+bun run --filter frontend build
+```
+
+For Playwright tests, start the Compose stack first:
+
+```bash
+docker compose build
 docker compose run --rm backend bash scripts/prestart.sh
 docker compose up -d --wait backend
 ```
 
-Then, you can run the tests with the following command:
+Then run the browser suite:
 
 ```bash
-bunx playwright test
+bun run --filter frontend test
+bun run --filter frontend test:ui
 ```
 
-You can also run your tests in UI mode to see the browser and interact with it running:
-
-```bash
-bunx playwright test --ui
-```
-
-To stop and remove the Docker Compose stack and clean the data created in tests, use the following command:
+To stop the test stack and remove its data:
 
 ```bash
 docker compose down -v
 ```
-
-To update the tests, navigate to the tests directory and modify the existing test files or add new ones as needed.
-
-For more information on writing and running Playwright tests, refer to the official [Playwright documentation](https://playwright.dev/docs/intro).

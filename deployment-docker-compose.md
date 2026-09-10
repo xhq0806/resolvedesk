@@ -1,11 +1,11 @@
-# FastAPI Project - Docker Compose Deployment
+# ResolveDesk Docker Compose Deployment
 
 You can deploy the project to your own remote server with Docker Compose. The deployment configuration includes Traefik to handle HTTPS and route incoming traffic to the application.
 
 ## Preparation
 
 * Have a remote server ready and available.
-* Configure DNS records pointing to the server for the application domain and any supporting service subdomains you want to expose, such as `fastapi-project.example.com` and `adminer.fastapi-project.example.com`.
+* Configure DNS records pointing to the server for the application domain and any supporting service subdomains you want to expose, such as `resolvedesk.example.com` and `adminer.resolvedesk.example.com`.
 * Install and configure [Docker](https://docs.docker.com/engine/install/) on the remote server (Docker Engine, not Docker Desktop).
 
 ## Copy the Code
@@ -20,11 +20,11 @@ The `--filter=":- .gitignore"` option tells `rsync` to use the same ignore rules
 
 ### Environment Variables
 
-Set the application domain, project name, and first superuser email:
+Set the application domain, project name, and initial administrator email:
 
 ```bash
-export DOMAIN=fastapi-project.example.com
-export PROJECT_NAME="Full Stack FastAPI Project"
+export DOMAIN=resolvedesk.example.com
+export PROJECT_NAME="ResolveDesk"
 export FIRST_SUPERUSER=admin@example.com
 ```
 
@@ -37,7 +37,7 @@ You can also configure these environment variables as needed:
 
 ### Secrets
 
-Generate and set secure values for the database password, token signing key, and first superuser password:
+Generate and set secure values for the database password, token signing key, and initial administrator password:
 
 ```bash
 export POSTGRES_PASSWORD="$(python -c 'import secrets; print(secrets.token_urlsafe(32))')"
@@ -120,10 +120,10 @@ When the runner is online, open the repository's **Actions** tab, select **Deplo
 
 ## URLs
 
-Replace `fastapi-project.example.com` with your domain.
+Replace `resolvedesk.example.com` with your domain.
 
-Application (frontend and API): `https://fastapi-project.example.com`
+Application (frontend and API): `https://resolvedesk.example.com`
 
-Interactive API docs: `https://fastapi-project.example.com/docs`
+Interactive API docs: `https://resolvedesk.example.com/docs`
 
-Adminer: `https://adminer.fastapi-project.example.com`
+Adminer: `https://adminer.resolvedesk.example.com`

@@ -1,145 +1,97 @@
-# FastAPI Project - Backend
+# ResolveDesk Backend
+
+The backend is a synchronous FastAPI application that serves the ResolveDesk API and, in production builds, the compiled frontend from the same origin.
 
 ## Requirements
 
-* [Docker](https://www.docker.com/).
-* [uv](https://docs.astral.sh/uv/) for Python package and environment management.
+- [Docker](https://www.docker.com/) for PostgreSQL and Mailpit.
+- [uv](https://docs.astral.sh/uv/) for Python package and environment management.
+- Python 3.14 or newer.
 
 ## Local Development
 
-Run the backend locally and connect it to PostgreSQL in Docker Compose.
+From the project root, start the supporting services:
 
-From the project root, start PostgreSQL and Mailpit:
-
-```console
-$ docker compose up -d db mailpit
+```bash
+docker compose up -d db mailpit
 ```
 
-Then, from `./backend/`, install the dependencies, prepare the database, and start the development server:
+From `backend/`, install dependencies, apply migrations, and start the API:
 
-```console
-$ uv sync
-$ uv run bash scripts/prestart.sh
-$ uv run fastapi dev
+```bash
+uv sync
+uv run bash scripts/prestart.sh
+uv run fastapi dev
 ```
 
-The API is available at `http://localhost:8000`, with automatic interactive docs at `http://localhost:8000/docs`.
+The API is available at <http://localhost:8000>. OpenAPI JSON is available at <http://localhost:8000/api/v1/openapi.json>, and Swagger UI is available at <http://localhost:8000/docs>.
 
-## General Workflow
+## Backend Responsibilities
 
-Run backend commands from `./backend/` with `uv run`. Make sure your editor uses the Python interpreter at `.venv/bin/python` in the project root.
+- `app/api/routes/` declares HTTP endpoints and maps domain errors to API responses.
+- `app/models/` contains SQLModel entities and database enums.
+- `app/schemas/` contains request, response, filter, and error schemas.
+- `app/repositories/` owns database queries, role-aware filtering, pagination, conditional updates, and aggregates.
+- `app/services/` owns ticket state transitions, permissions, user lifecycle rules, statistics, transactions, and audit records.
+- `app/core/` contains configuration, authentication, database setup, request IDs, and error handling.
+- `tests/` contains unit, API, migration, OpenAPI, and integration coverage.
 
-Modify or add SQLModel models for data and SQL tables in `./backend/app/models.py`, API endpoints in `./backend/app/api/`, CRUD (Create, Read, Update, Delete) utils in `./backend/app/crud.py`.
-
-## VS Code
-
-There are already configurations in place to run the backend through the VS Code debugger, so that you can use breakpoints, pause and explore variables, etc.
-
-The setup is also already configured so you can run the tests through the VS Code Python tests tab.
+The main business resources are users, tickets, ticket messages, and ticket audit records. `Item` is no longer part of the product or API.
 
 ## Full Stack with Docker Compose
 
-To run the backend and built frontend in Docker Compose:
+To run the backend and the built frontend in Docker Compose:
 
-```console
-$ docker compose run --rm backend bash scripts/prestart.sh
-$ docker compose watch
+```bash
+docker compose build
+docker compose run --rm backend bash scripts/prestart.sh
+docker compose up -d --wait backend adminer
 ```
 
-The application is available at `http://localhost:8000`.
-
-### Docker Compose Override
-
-The `compose.override.yml` file contains local settings for published ports, source synchronization, automatic image rebuilds, and backend reloads. Docker Compose applies it automatically when you run `docker compose` without an explicit file list.
-
-To open a shell in the backend container:
-
-```console
-$ docker compose exec backend bash
-```
+The application is available at <http://localhost:8000>. Use `docker compose exec backend bash` to open a shell in the backend container.
 
 ## Backend Tests
 
-To test the backend from the `backend` directory, run:
+Run the backend checks from `backend/`:
 
-```console
-$ uv run bash scripts/test.sh
+```bash
+uv run bash scripts/test.sh
 ```
 
-The tests run with Pytest. Modify existing tests or add new ones in `./backend/tests/`.
-
-If you use GitHub Actions, the tests will run automatically.
-
-### Test a Running Stack
-
-If your stack is already up and you just want to run the tests, you can use:
+To run tests against an already running Compose stack:
 
 ```bash
 docker compose exec backend bash scripts/tests-start.sh
 ```
 
-The `/app/backend/scripts/tests-start.sh` script calls `pytest` after making sure that the rest of the stack is running. If you need to pass extra arguments to `pytest`, you can pass them to that command and they will be forwarded.
-
-For example, to stop on first error:
+Extra Pytest arguments are forwarded:
 
 ```bash
 docker compose exec backend bash scripts/tests-start.sh -x
 ```
 
-### Test Coverage
-
-When the tests run, they generate `htmlcov/index.html`. Open it in your browser to inspect the test coverage.
+Coverage output is written to `backend/htmlcov/`.
 
 ## Migrations
 
-Make sure you create a revision of your models and upgrade the database with that revision every time you change them. From the `backend` directory, use `uv` to run Alembic against the PostgreSQL container:
+Create and apply an Alembic revision from `backend/` after changing a model:
 
-* Alembic is already configured to import your SQLModel models from `./backend/app/models.py`.
-
-* After changing a model (for example, adding a column), create a revision:
-
-```console
-$ uv run alembic revision --autogenerate -m "Add column last_name to User model"
+```bash
+uv run alembic revision --autogenerate -m "Describe the schema change"
+uv run alembic upgrade head
 ```
 
-* Commit to the git repository the files generated in the alembic directory.
-
-* After creating the revision, run the migration in the database (this is what will actually change the database):
-
-```console
-$ uv run alembic upgrade head
-```
-
-If you don't want to use migrations at all, uncomment the lines in the file at `./backend/app/core/db.py` that end in:
-
-```python
-SQLModel.metadata.create_all(engine)
-```
-
-and comment the line in the file `scripts/prestart.sh` that contains:
-
-```console
-$ alembic upgrade head
-```
-
-If you don't want to start with the default models and want to remove them / modify them, from the beginning, without having any previous revision, you can remove the revision files (`.py` Python files) under `./backend/app/alembic/versions/`. And then create a first migration as described above.
+Commit generated files under `app/alembic/versions/`. The current migration history includes the transition from the template's `Item` model to the ResolveDesk ticket platform and maps existing superusers to the `ADMIN` role.
 
 ## Email Templates
 
-The email templates are written with [React Email](https://react.email) in `./packages/react-email/`. The `emails` directory holds one component per email and the `ui` directory holds the shared components (layout, heading, button, link, callout).
+Email source components live in `packages/react-email/`. The rendered templates consumed by the backend live in `app/email-templates/` and should not be edited by hand.
 
-The rendered HTML in `./backend/app/email-templates/` is generated from those components. It is what the application sends and should not be edited by hand.
+Preview and export the templates from the project root:
 
-To preview the emails while editing them, start the dev server from the root of the project:
-
-```console
-$ bun run email:dev
+```bash
+bun run email:dev
+bun run email:export
 ```
 
-Values coming from the backend are declared as Jinja placeholders in the component props, for example `username = "{{ username }}"`. The context for each email is built in `generate_*_email()` in `./backend/app/utils.py`, so a new placeholder needs to be added there too.
-
-Once you are done, regenerate the templates used by the application:
-
-```console
-$ bun run email:export
-```
+Password recovery and new-account email behavior depends on the SMTP variables described in the [development guide](../development.md).

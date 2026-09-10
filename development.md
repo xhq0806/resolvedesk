@@ -1,8 +1,8 @@
-# FastAPI Project - Development
+# ResolveDesk Development Guide
 
 ## Local Development
 
-For local development, run PostgreSQL and Mailpit with Docker Compose, and run the FastAPI and Vite development servers locally.
+For local development, run PostgreSQL and Mailpit with Docker Compose, and run the ResolveDesk FastAPI API and Vite frontend locally.
 
 Start the supporting services:
 
@@ -17,7 +17,7 @@ uv sync
 uv run bash scripts/prestart.sh
 ```
 
-Start the FastAPI development server:
+Start the ResolveDesk API:
 
 ```bash
 uv run fastapi dev
@@ -42,7 +42,7 @@ Mailpit: <http://localhost:8025>
 
 The frontend development server uses the backend at `http://localhost:8000`, as configured in `frontend/.env`.
 
-### Frontend Served by FastAPI
+### Frontend Served by the API
 
 Build the frontend from the `frontend` directory:
 
@@ -50,7 +50,7 @@ Build the frontend from the `frontend` directory:
 bun run build
 ```
 
-The build is written to `backend/app/frontend` and served by FastAPI at <http://localhost:8000>. Rebuild the frontend after making frontend changes.
+The build is written to `backend/app/frontend` and served by the ResolveDesk API at <http://localhost:8000>. Rebuild the frontend after making frontend changes.
 
 ## Full Stack with Docker Compose
 
@@ -63,7 +63,7 @@ docker compose watch
 
 Now you can open these URLs:
 
-Application, with the frontend and API served by FastAPI: <http://localhost:8000>
+ResolveDesk, with the frontend and API served by FastAPI: <http://localhost:8000>
 
 Automatic interactive API documentation with Swagger UI: <http://localhost:8000/docs>
 
@@ -73,7 +73,7 @@ Traefik UI, to see how the routes are being handled by the proxy: <http://localh
 
 Mailpit: <http://localhost:8025>
 
-Stop a locally running FastAPI server before starting the Compose backend because both use port `8000`.
+Stop a locally running API server before starting the Compose backend because both use port `8000`.
 
 **Note**: The first time you start the stack, it might take a minute for all the services to be ready. To monitor it, use `docker compose logs`, or `docker compose logs backend` for the backend service.
 
@@ -99,7 +99,7 @@ docker compose watch
 
 ## The `.env` File
 
-The tracked `.env` file contains local development defaults, passwords, and other configuration. Its hostnames use `localhost` for processes running on your machine. Docker Compose overrides hostnames such as the database and SMTP server with their Compose service names.
+The tracked `.env` file contains local development defaults, including placeholder passwords and other configuration. Its hostnames use `localhost` for processes running on your machine. Docker Compose overrides hostnames such as the database and SMTP server with their Compose service names.
 
 Do not store deployment secrets in `.env`. Configure them as described in the [FastAPI Cloud deployment guide](./deployment.md) or the [Docker Compose deployment guide](./deployment-docker-compose.md).
 

@@ -1,6 +1,6 @@
-# FastAPI Project - Deployment
+# ResolveDesk Deployment
 
-Deploy the project to [FastAPI Cloud](https://fastapicloud.com) with the included GitHub Actions workflow.
+Deploy ResolveDesk to [FastAPI Cloud](https://fastapicloud.com) with the included GitHub Actions workflow.
 
 ## Create the FastAPI Cloud Application
 
@@ -15,7 +15,7 @@ Connect a PostgreSQL database using the [Neon](https://fastapicloud.com/docs/int
 Add these required [environment variables](https://fastapicloud.com/docs/builds-and-deployments/environment-variables/) to the FastAPI Cloud application:
 
 * `PROJECT_NAME`: The name of the project, used in the API documentation and emails.
-* `FIRST_SUPERUSER`: The email address of the first superuser.
+* `FIRST_SUPERUSER`: The email address of the initial administrator. The environment variable name is retained for compatibility with the initialization script.
 * `FRONTEND_HOST`: The public URL of the application, such as the generated `https://your-app.fastapicloud.dev` URL or a custom domain.
 
 To enable emails, add these optional environment variables with values from your email provider:
@@ -31,7 +31,7 @@ To enable Sentry, configure `SENTRY_DSN`.
 Add these required values and mark them as secrets:
 
 * `SECRET_KEY`: A secret key used to sign security tokens.
-* `FIRST_SUPERUSER_PASSWORD`: The password of the first superuser.
+* `FIRST_SUPERUSER_PASSWORD`: The password of the initial administrator.
 * `DATABASE_URL`: The PostgreSQL connection URL, configured automatically when using a database integration.
 
 To enable emails with an authenticated provider, add `SMTP_PASSWORD` as a secret.
@@ -55,7 +55,7 @@ uv run fastapi cloud setup-ci --secrets-only --app-id <your-app-id>
 
 If the GitHub CLI is installed and authenticated, the command configures `FASTAPI_CLOUD_TOKEN` and `FASTAPI_CLOUD_APP_ID` automatically. Otherwise, it prints the values so you can add them in your repository under **Settings** > **Secrets and variables** > **Actions**.
 
-The workflow runs database migrations and creates the first superuser before deploying. In the repository's **Settings** > **Secrets and variables** > **Actions** page, add these repository variables:
+The workflow runs database migrations and creates the initial administrator before deploying. In the repository's **Settings** > **Secrets and variables** > **Actions** page, add these repository variables:
 
 * `PROJECT_NAME`
 * `FIRST_SUPERUSER`
@@ -71,7 +71,7 @@ Use the same values configured in FastAPI Cloud. For `DATABASE_URL`, use the con
 The deployment workflow performs these steps:
 
 1. Installs and builds the frontend into `backend/app/frontend`.
-2. Runs `backend/scripts/prestart.sh` to apply database migrations and create the first superuser.
+2. Runs `backend/scripts/prestart.sh` to apply database migrations and create the initial administrator.
 3. Deploys the project with `uv run fastapi deploy`.
 
 ## URLs
@@ -86,12 +86,6 @@ Interactive API docs: `https://your-app.fastapicloud.dev/docs`
 
 For deployment to your own server, see the [Docker Compose deployment guide](./deployment-docker-compose.md).
 
-## GitHub Repository Automation
+## Repository Automation
 
-Install the following GitHub Apps to enable the included repository automation:
-
-* [Latest Changes](https://github.com/apps/latest-changes) updates `release-notes.md` when a pull request is merged.
-* [PR Push](https://github.com/apps/pr-push) lets the pre-commit workflow push automated fixes to pull request branches.
-* [PR Submit](https://github.com/apps/pr-submit) lets the **Bump pre-commit hooks** and **Prepare Release** workflows create pull requests.
-
-To publish code coverage with [Smokeshow](https://github.com/samuelcolvin/smokeshow), add `SMOKESHOW_AUTH_KEY` as a repository secret.
+The repository includes GitHub Actions for backend tests, Docker Compose smoke tests, frontend checks, deployment, release preparation, and pre-commit validation. Review the workflow files under `.github/workflows/` before changing CI or deployment behavior.

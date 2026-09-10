@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_layout/admin/")({
   component: AdminUsers,
   validateSearch: userSearchSchema,
   head: () => ({
-    meta: [{ title: "Admin - FastAPI Template" }],
+    meta: [{ title: "Users - ResolveDesk" }],
   }),
 })
 

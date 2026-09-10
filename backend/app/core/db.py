@@ -11,7 +11,7 @@ engine = create_engine(str(settings.DATABASE_URL))
 
 # make sure all SQLModel models are imported (app.models) before initializing DB
 # otherwise, SQLModel might fail to initialize relationships properly
-# for more details: https://github.com/fastapi/full-stack-fastapi-template/issues/28
+# 导入完整模型包，确保关系和表元数据在初始化前已经注册。
 
 
 def init_db(session: Session) -> None:

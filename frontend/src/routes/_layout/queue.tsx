@@ -44,7 +44,7 @@ export const Route = createFileRoute("/_layout/queue")({
   validateSearch: queueSearchSchema,
   beforeLoad: requireRoles({ allowed: ["AGENT"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "Service queue - FastAPI Template" }],
+    meta: [{ title: "Service queue - ResolveDesk" }],
   }),
 })
 

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_layout/tickets")({
   validateSearch: ticketSearchSchema,
   beforeLoad: requireRoles({ allowed: ["CUSTOMER"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "My tickets - FastAPI Template" }],
+    meta: [{ title: "My tickets - ResolveDesk" }],
   }),
 })
 

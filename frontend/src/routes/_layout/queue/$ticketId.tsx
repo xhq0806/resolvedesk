@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_layout/queue/$ticketId")({
   component: AgentTicketDetailRoute,
   beforeLoad: requireRoles({ allowed: ["AGENT"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "Ticket details - FastAPI Template" }],
+    meta: [{ title: "Ticket details - ResolveDesk" }],
   }),
 })
 

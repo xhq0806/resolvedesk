@@ -1,5 +1,5 @@
 {
-  "name": "fastapi-full-stack-template",
+  "name": "resolvedesk",
   "private": true,
   "workspaces": [
     "frontend",

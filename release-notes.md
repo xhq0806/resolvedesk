@@ -1,18 +1,26 @@
 # Release Notes
 
+The numbered sections from `0.12.0` and earlier are the inherited upstream template baseline. ResolveDesk release notes start at `0.13.0`.
+
 ## Latest Changes
 
-### Fixes
+## 0.13.0 (2026-09-10)
 
-* 🐛 Add background to the sticky layout header. PR [#2384](https://github.com/fastapi/full-stack-fastapi-template/pull/2384) by [@istoutjesdijk](https://github.com/istoutjesdijk).
+#### Product
 
-### Refactors
+- Complete the three-role customer support workflow for `CUSTOMER`, `AGENT`, and `ADMIN`.
+- Add ticket creation, filtering, search, server-side pagination, detail views, and role-aware statistics.
+- Add ticket assignment, reassignment, unassignment, state transitions, public replies, and internal notes.
+- Add Admin user management with role changes, account activation, and last-active-Admin protection.
+- Add soft deletion with retained ticket audit records.
 
-* ♻️ Replace Mailcatcher with Mailpit for local email testing. PR [#2436](https://github.com/fastapi/full-stack-fastapi-template/pull/2436) by [@alejsdev](https://github.com/alejsdev).
+#### Engineering
 
-### Docs
-
-* 📝 Simplify project documentation. PR [#2442](https://github.com/fastapi/full-stack-fastapi-template/pull/2442) by [@tiangolo](https://github.com/tiangolo).
+- Replace the template Item domain with the ResolveDesk ticket domain.
+- Split backend responsibilities into API routes, schemas, repositories, services, and domain models.
+- Generate the frontend API client from the backend OpenAPI contract.
+- Add role-aware frontend routes, dashboards, queues, ticket timelines, and Playwright coverage.
+- Keep PostgreSQL, Alembic, Docker Compose, Mailpit, CI, and deployment workflows available.
 
 ## 0.12.0 (2026-08-12)
 
