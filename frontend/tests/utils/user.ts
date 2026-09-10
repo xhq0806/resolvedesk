@@ -13,7 +13,8 @@ export async function signUpNewUser(
   await page.getByTestId("password-input").fill(password)
   await page.getByTestId("confirm-password-input").fill(password)
   await page.getByRole("button", { name: "Sign Up" }).click()
-  await page.goto("/login")
+  // 等待注册请求成功并由 mutation 导航到登录页，避免提前跳转取消请求。
+  await page.waitForURL("/login")
 }
 
 export async function logInUser(page: Page, email: string, password: string) {

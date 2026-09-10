@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Outlet, useMatch } from "@tanstack/react-router"
 import { Suspense } from "react"
 import { DataTable } from "@/components/Common/DataTable"
 import PendingTickets from "@/components/Pending/PendingTickets"
@@ -17,13 +17,22 @@ import {
 } from "@/lib/ticketQueries"
 
 export const Route = createFileRoute("/_layout/tickets")({
-  component: TicketsPage,
+  component: TicketsRoute,
   validateSearch: ticketSearchSchema,
   beforeLoad: requireRoles({ allowed: ["CUSTOMER"], redirectTo: "/" }),
   head: () => ({
     meta: [{ title: "My tickets - FastAPI Template" }],
   }),
 })
+
+function TicketsRoute() {
+  const detailMatch = useMatch({
+    from: "/_layout/tickets/$ticketId",
+    shouldThrow: false,
+  })
+
+  return detailMatch ? <Outlet /> : <TicketsPage />
+}
 
 function TicketsTableContent() {
   const search = Route.useSearch()

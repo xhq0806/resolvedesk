@@ -53,11 +53,15 @@ def tracked_graph() -> Iterator[TrackedGraph]:
     with Session(engine) as session:
         if graph.audit_ids:
             session.exec(
-                delete(TicketAuditLog).where(col(TicketAuditLog.id).in_(graph.audit_ids))
+                delete(TicketAuditLog).where(
+                    col(TicketAuditLog.id).in_(graph.audit_ids)
+                )
             )
         if graph.message_ids:
             session.exec(
-                delete(TicketMessage).where(col(TicketMessage.id).in_(graph.message_ids))
+                delete(TicketMessage).where(
+                    col(TicketMessage.id).in_(graph.message_ids)
+                )
             )
         if graph.ticket_ids:
             session.exec(delete(Ticket).where(col(Ticket.id).in_(graph.ticket_ids)))
@@ -255,9 +259,22 @@ def test_agent_claim_is_atomic_with_taken_audit(
             "status": TicketStatus.IN_PROGRESS.value,
         }
 
-        with pytest.raises(ForbiddenError) as forbidden:
-            TicketService(session).claim_ticket(admin, uuid.uuid4())
-        assert forbidden.value.code is ErrorCode.ROLE_FORBIDDEN
+        admin_ticket = make_ticket(customer)
+        session.add(admin_ticket)
+        session.commit()
+        tracked_graph.ticket_ids.append(admin_ticket.id)
+
+        admin_detail = TicketService(session).claim_ticket(admin, admin_ticket.id)
+        assert admin_detail.assignee is not None
+        assert admin_detail.assignee.id == admin.id
+        assert admin_detail.status is TicketStatus.IN_PROGRESS
+        admin_audit = session.exec(
+            select(TicketAuditLog).where(
+                TicketAuditLog.ticket_id == admin_ticket.id,
+                TicketAuditLog.action == TicketAuditAction.TAKEN,
+            )
+        ).one()
+        tracked_graph.audit_ids.append(admin_audit.id)
 
         with pytest.raises(ConflictError) as claimed:
             TicketService(session).claim_ticket(agent, ticket.id)
@@ -363,7 +380,9 @@ def test_assignment_rejects_invalid_target_closed_ticket_and_non_admin(
         assert not session.in_transaction()
 
 
-def test_audit_failure_rolls_back_claim(monkeypatch: pytest.MonkeyPatch, tracked_graph: TrackedGraph) -> None:
+def test_audit_failure_rolls_back_claim(
+    monkeypatch: pytest.MonkeyPatch, tracked_graph: TrackedGraph
+) -> None:
     """审计插入失败时接手条件更新也必须整体回滚。by AI.Coding"""
     customer = make_user(UserRole.CUSTOMER)
     agent = make_user(UserRole.AGENT)
@@ -388,9 +407,9 @@ def test_audit_failure_rolls_back_claim(monkeypatch: pytest.MonkeyPatch, tracked
         assert saved.assignee_id is None
         assert saved.status is TicketStatus.OPEN
         audit_count = session.exec(
-            select(func.count()).select_from(TicketAuditLog).where(
-                TicketAuditLog.ticket_id == ticket.id
-            )
+            select(func.count())
+            .select_from(TicketAuditLog)
+            .where(TicketAuditLog.ticket_id == ticket.id)
         ).one()
         assert audit_count == 0
 
@@ -606,9 +625,7 @@ def test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes(
             ).all()
         )
         tracked_graph.audit_ids.extend(audit.id for audit in audits)
-        assert [audit.action for audit in audits] == [
-            TicketAuditAction.STATUS_CHANGED
-        ]
+        assert [audit.action for audit in audits] == [TicketAuditAction.STATUS_CHANGED]
 
 
 def test_update_attributes_records_each_actual_change(
@@ -654,7 +671,9 @@ def test_update_attributes_records_each_actual_change(
             TicketAuditAction.PRIORITY_CHANGED,
             TicketAuditAction.CATEGORY_CHANGED,
         }
-        assert {audit.new_value and next(iter(audit.new_value.values())) for audit in audits} == {
+        assert {
+            audit.new_value and next(iter(audit.new_value.values())) for audit in audits
+        } == {
             TicketPriority.URGENT.value,
             TicketCategory.BUG.value,
         }
@@ -725,9 +744,10 @@ def test_admin_delete_soft_deletes_and_retains_ticket_graph(
         service = TicketService(session)
         service.delete_ticket(admin, ticket.id, DeleteTicketRequest(confirm=True))
 
-        assert service.list_tickets(
-            admin, TicketFilters(query=ticket.ticket_number)
-        ).data == []
+        assert (
+            service.list_tickets(admin, TicketFilters(query=ticket.ticket_number)).data
+            == []
+        )
         with pytest.raises(NotFoundError) as hidden:
             service.get_ticket(admin, ticket.id)
         assert hidden.value.code is ErrorCode.TICKET_NOT_FOUND
@@ -759,16 +779,19 @@ def test_admin_delete_soft_deletes_and_retains_ticket_graph(
 
         with pytest.raises(NotFoundError):
             service.delete_ticket(admin, ticket.id, DeleteTicketRequest(confirm=True))
-        assert len(
-            list(
-                session.exec(
-                    select(TicketAuditLog).where(
-                        TicketAuditLog.ticket_id == ticket.id,
-                        TicketAuditLog.action == TicketAuditAction.DELETED,
-                    )
-                ).all()
+        assert (
+            len(
+                list(
+                    session.exec(
+                        select(TicketAuditLog).where(
+                            TicketAuditLog.ticket_id == ticket.id,
+                            TicketAuditLog.action == TicketAuditAction.DELETED,
+                        )
+                    ).all()
+                )
             )
-        ) == 1
+            == 1
+        )
 
 
 def test_delete_ticket_rolls_back_when_deletion_audit_fails(
@@ -798,9 +821,14 @@ def test_delete_ticket_rolls_back_when_deletion_audit_fails(
         assert saved is not None
         assert saved.deleted_at is None
         assert saved.deleted_by_id is None
-        assert session.exec(
-            select(func.count()).select_from(TicketAuditLog).where(
-                TicketAuditLog.ticket_id == ticket.id,
-                TicketAuditLog.action == TicketAuditAction.DELETED,
-            )
-        ).one() == 0
+        assert (
+            session.exec(
+                select(func.count())
+                .select_from(TicketAuditLog)
+                .where(
+                    TicketAuditLog.ticket_id == ticket.id,
+                    TicketAuditLog.action == TicketAuditAction.DELETED,
+                )
+            ).one()
+            == 0
+        )

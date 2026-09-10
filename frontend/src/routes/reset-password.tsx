@@ -22,8 +22,8 @@ import {
 import { LoadingButton } from "@/components/ui/loading-button"
 import { PasswordInput } from "@/components/ui/password-input"
 import useCustomToast from "@/hooks/useCustomToast"
-import { handleError } from "@/utils"
 import { ensureGuest } from "@/lib/routeGuards"
+import { handleError } from "@/utils"
 
 const searchSchema = z.object({
   token: z.string().catch(""),

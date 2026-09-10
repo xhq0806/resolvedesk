@@ -35,6 +35,10 @@ const formSchema = z
     message: "The passwords don't match",
     path: ["confirm_password"],
   })
+  .refine((data) => data.current_password !== data.new_password, {
+    message: "New password cannot be the same as the current one",
+    path: ["new_password"],
+  })
 
 type FormData = z.infer<typeof formSchema>
 
@@ -53,7 +57,12 @@ const ChangePassword = () => {
 
   const mutation = useMutation({
     mutationFn: (data: UpdatePassword) =>
-      UsersService.updatePasswordMe({ body: data }),
+      UsersService.updatePasswordMe({
+        body: {
+          current_password: data.current_password,
+          new_password: data.new_password,
+        },
+      }),
     onSuccess: () => {
       showSuccessToast("Password updated successfully")
       form.reset()
@@ -61,8 +70,8 @@ const ChangePassword = () => {
     onError: handleError.bind(showErrorToast),
   })
 
-  const onSubmit = async (data: FormData) => {
-    mutation.mutate(data)
+  const onSubmit = async ({ current_password, new_password }: FormData) => {
+    mutation.mutate({ current_password, new_password })
   }
 
   return (

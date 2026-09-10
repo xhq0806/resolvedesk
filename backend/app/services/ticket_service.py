@@ -64,9 +64,7 @@ class TicketService:
         self.ticket_repository = TicketRepository(session)
         self.user_repository = UserRepository(session)
 
-    def create_ticket(
-        self, actor: User, payload: TicketCreate
-    ) -> TicketDetailPublic:
+    def create_ticket(self, actor: User, payload: TicketCreate) -> TicketDetailPublic:
         """由 Customer 创建默认 OPEN、MEDIUM、未分派工单。by AI.Coding"""
         if actor.role is not UserRole.CUSTOMER:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
@@ -98,25 +96,19 @@ class TicketService:
             page_size=filters.page_size,
         )
 
-    def get_ticket(
-        self, actor: User, ticket_id: uuid.UUID
-    ) -> TicketDetailPublic:
+    def get_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
         """先鉴权再按角色裁剪并返回工单详情。by AI.Coding"""
         ticket = self._get_visible_ticket(actor, ticket_id)
         return self._build_detail(actor, ticket)
 
-    def claim_ticket(
-        self, actor: User, ticket_id: uuid.UUID
-    ) -> TicketDetailPublic:
+    def claim_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
         """由活跃 Agent 原子接手 OPEN 且未分派工单。by AI.Coding"""
-        if actor.role is not UserRole.AGENT or not actor.is_active:
+        if actor.role not in {UserRole.AGENT, UserRole.ADMIN} or not actor.is_active:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
 
         def operation() -> Ticket:
             now = get_datetime_utc()
-            ticket = self.ticket_repository.claim_if_available(
-                ticket_id, actor.id, now
-            )
+            ticket = self.ticket_repository.claim_if_available(ticket_id, actor.id, now)
             if ticket is None:
                 # 条件更新失败后再读取，仅用于区分不存在与业务冲突。
                 existing = self.ticket_repository.get_active_by_id(ticket_id)
@@ -186,9 +178,7 @@ class TicketService:
         ticket = self._write(operation, refresh=True)
         return self._build_detail(actor, ticket)
 
-    def unassign_ticket(
-        self, actor: User, ticket_id: uuid.UUID
-    ) -> TicketDetailPublic:
+    def unassign_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
         """由 Admin 取消负责人并将未关闭工单退回 OPEN 队列。by AI.Coding"""
         self._require_admin(actor)
 
@@ -460,9 +450,7 @@ class TicketService:
             },
             new_value={
                 "assignee_id": (
-                    str(ticket.assignee_id)
-                    if ticket.assignee_id is not None
-                    else None
+                    str(ticket.assignee_id) if ticket.assignee_id is not None else None
                 ),
                 "status": ticket.status.value,
             },

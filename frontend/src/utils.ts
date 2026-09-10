@@ -2,7 +2,7 @@ import { AxiosError } from "axios"
 
 function extractErrorMessage(err: Error): string {
   if (err instanceof AxiosError) {
-    // 鍏煎棰嗗煙閿欒鐨勭粨鏋勫寲 message 鍜岀幇鏈夌殑 detail 鍝嶅簲銆俠y AI.Coding
+    // 兼容领域错误的结构化 message 和现有的 detail 响应。by AI.Coding
     const payload = err.response?.data as {
       message?: unknown
       detail?: unknown

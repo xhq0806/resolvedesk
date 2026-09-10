@@ -5,10 +5,10 @@ import type {
   TicketCategory,
   TicketDetailPublic,
   TicketPriority,
-  TicketStatus,
   TicketStatisticsPublic,
-  UserPublic,
+  TicketStatus,
   TicketsPublic,
+  UserPublic,
 } from "@/client"
 import { TicketsService, UsersService } from "@/client"
 
@@ -35,7 +35,7 @@ export type TicketFilterChange = Partial<
 
 export const DEFAULT_TICKET_LIST_FILTERS: TicketListFilters = {
   page: 1,
-  pageSize: 25,
+  pageSize: 20,
   query: "",
   status: null,
   priority: null,
@@ -64,7 +64,7 @@ const ticketCategoryValues = [
 
 export const ticketSearchSchema = z.object({
   page: z.coerce.number().int().min(1).catch(1),
-  pageSize: z.coerce.number().int().min(1).max(100).catch(25),
+  pageSize: z.coerce.number().int().min(1).max(100).catch(20),
   query: z.string().trim().catch(""),
   status: z.enum(ticketStatusValues).optional(),
   priority: z.enum(ticketPriorityValues).optional(),
@@ -191,7 +191,7 @@ export const ticketListQueryOptions = (
   }
 }
 
-// 鏌ヨ鍗曚釜宸ュ崟璇︽儏锛岀粺涓€澶勭悊瑙掕壊瑁佸壀鍚庣殑鏃堕棿绾挎暟鎹€俠y AI.Coding
+// 查询单个工单详情，统一处理角色裁剪后的时间线数据。by AI.Coding
 export const ticketDetailQueryOptions = (ticketId: string) => ({
   queryKey: ticketKeys.detail(ticketId),
   queryFn: async (): Promise<TicketDetailPublic> => {

@@ -23,6 +23,7 @@ import { Route as LayoutAdminIndexRouteImport } from './routes/_layout/admin/ind
 import { Route as LayoutAdminTicketsRouteImport } from './routes/_layout/admin/tickets'
 import { Route as LayoutQueueTicketIdRouteImport } from './routes/_layout/queue/$ticketId'
 import { Route as LayoutTicketsTicketIdRouteImport } from './routes/_layout/tickets/$ticketId'
+import { Route as LayoutAdminTicketsIndexRouteImport } from './routes/_layout/admin/tickets/index'
 import { Route as LayoutAdminTicketsTicketIdRouteImport } from './routes/_layout/admin/tickets/$ticketId'
 
 const LayoutRoute = LayoutRouteImport.update({
@@ -94,6 +95,11 @@ const LayoutTicketsTicketIdRoute = LayoutTicketsTicketIdRouteImport.update({
   path: '/$ticketId',
   getParentRoute: () => LayoutTicketsRoute,
 } as any)
+const LayoutAdminTicketsIndexRoute = LayoutAdminTicketsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LayoutAdminTicketsRoute,
+} as any)
 const LayoutAdminTicketsTicketIdRoute =
   LayoutAdminTicketsTicketIdRouteImport.update({
     id: '/$ticketId',
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
   '/admin/': typeof LayoutAdminIndexRoute
   '/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
+  '/admin/tickets/': typeof LayoutAdminTicketsIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -126,11 +133,11 @@ export interface FileRoutesByTo {
   '/settings': typeof LayoutSettingsRoute
   '/tickets': typeof LayoutTicketsRouteWithChildren
   '/': typeof LayoutIndexRoute
-  '/admin/tickets': typeof LayoutAdminTicketsRouteWithChildren
   '/queue/$ticketId': typeof LayoutQueueTicketIdRoute
   '/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
   '/admin': typeof LayoutAdminIndexRoute
   '/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
+  '/admin/tickets': typeof LayoutAdminTicketsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,6 +156,7 @@ export interface FileRoutesById {
   '/_layout/tickets/$ticketId': typeof LayoutTicketsTicketIdRoute
   '/_layout/admin/': typeof LayoutAdminIndexRoute
   '/_layout/admin/tickets/$ticketId': typeof LayoutAdminTicketsTicketIdRoute
+  '/_layout/admin/tickets/': typeof LayoutAdminTicketsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -167,6 +175,7 @@ export interface FileRouteTypes {
     | '/tickets/$ticketId'
     | '/admin/'
     | '/admin/tickets/$ticketId'
+    | '/admin/tickets/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -177,11 +186,11 @@ export interface FileRouteTypes {
     | '/settings'
     | '/tickets'
     | '/'
-    | '/admin/tickets'
     | '/queue/$ticketId'
     | '/tickets/$ticketId'
     | '/admin'
     | '/admin/tickets/$ticketId'
+    | '/admin/tickets'
   id:
     | '__root__'
     | '/_layout'
@@ -199,6 +208,7 @@ export interface FileRouteTypes {
     | '/_layout/tickets/$ticketId'
     | '/_layout/admin/'
     | '/_layout/admin/tickets/$ticketId'
+    | '/_layout/admin/tickets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -309,6 +319,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutTicketsTicketIdRouteImport
       parentRoute: typeof LayoutTicketsRoute
     }
+    '/_layout/admin/tickets/': {
+      id: '/_layout/admin/tickets/'
+      path: '/'
+      fullPath: '/admin/tickets/'
+      preLoaderRoute: typeof LayoutAdminTicketsIndexRouteImport
+      parentRoute: typeof LayoutAdminTicketsRoute
+    }
     '/_layout/admin/tickets/$ticketId': {
       id: '/_layout/admin/tickets/$ticketId'
       path: '/$ticketId'
@@ -321,10 +338,12 @@ declare module '@tanstack/react-router' {
 
 interface LayoutAdminTicketsRouteChildren {
   LayoutAdminTicketsTicketIdRoute: typeof LayoutAdminTicketsTicketIdRoute
+  LayoutAdminTicketsIndexRoute: typeof LayoutAdminTicketsIndexRoute
 }
 
 const LayoutAdminTicketsRouteChildren: LayoutAdminTicketsRouteChildren = {
   LayoutAdminTicketsTicketIdRoute: LayoutAdminTicketsTicketIdRoute,
+  LayoutAdminTicketsIndexRoute: LayoutAdminTicketsIndexRoute,
 }
 
 const LayoutAdminTicketsRouteWithChildren =

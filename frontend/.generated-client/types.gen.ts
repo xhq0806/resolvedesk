@@ -541,6 +541,10 @@ export type UserSummary = {
      */
     full_name?: string | null;
     role: UserRole;
+    /**
+     * Is Active
+     */
+    is_active?: boolean;
 };
 
 /**

@@ -1,14 +1,13 @@
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { Link, createFileRoute } from "@tanstack/react-router"
-import { ArrowRight, Inbox, ListTodo, Users, type LucideIcon } from "lucide-react"
-import { Suspense, type ReactNode } from "react"
+import { createFileRoute, Link } from "@tanstack/react-router"
+import { ArrowRight, Inbox, ListTodo, type LucideIcon, Users } from "lucide-react"
+import { type ReactNode, Suspense } from "react"
 import { z } from "zod"
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   TicketStatistics,
   TicketStatisticsHeading,
 } from "@/components/Tickets/TicketStatistics"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import useAuth from "@/hooks/useAuth"
 import { getUserRole } from "@/lib/routeGuards"
 import { ticketStatisticsQueryOptions } from "@/lib/ticketQueries"
@@ -68,7 +67,7 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
       >
         <Link
           to="/tickets"
-          search={{ page: 1, pageSize: 25, query: "" }}
+          search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
           <QuickLinkContent icon={Inbox} label="Open my tickets" />
@@ -85,7 +84,7 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
       >
         <Link
           to="/queue"
-          search={{ view: "unassigned", page: 1, pageSize: 25, query: "" }}
+          search={{ view: "unassigned", page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
           <QuickLinkContent icon={ListTodo} label="Open service queue" />
@@ -102,14 +101,14 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
       <div className="flex flex-wrap gap-3">
         <Link
           to="/admin/tickets"
-          search={{ page: 1, pageSize: 25, query: "" }}
+          search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
           <QuickLinkContent icon={Inbox} label="Manage tickets" />
         </Link>
         <Link
           to="/admin"
-          search={{ page: 1, pageSize: 25, query: "" }}
+          search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
           <QuickLinkContent icon={Users} label="Manage users" />

@@ -137,6 +137,7 @@ class UserSummary(BaseModel):
     email: str
     full_name: str | None = None
     role: UserRole
+    is_active: bool = True
 
 
 class TicketPublic(BaseModel):

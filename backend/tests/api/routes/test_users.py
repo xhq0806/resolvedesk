@@ -209,7 +209,7 @@ def test_retrieve_users(
 
 
 def test_retrieve_users_supports_role_status_query_and_pagination(
-    client: TestClient, superuser_token_headers: dict[str, str], db: Session
+    client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     """用户列表必须支持角色、启停和分页过滤。by AI.Coding"""
     marker = f"route-filter-{uuid.uuid4().hex}"
@@ -482,13 +482,18 @@ def test_update_last_active_admin_returns_stable_error(
     )
     assert response.status_code == 409
     assert response.json()["code"] == "LAST_ACTIVE_ADMIN"
-    assert response.json()["message"] == "At least one active administrator is required."
+    assert (
+        response.json()["message"] == "At least one active administrator is required."
+    )
 
 
 def test_user_delete_endpoints_are_removed(
     client: TestClient, superuser_token_headers: dict[str, str]
 ) -> None:
     """用户管理仅支持角色和启停，不再暴露物理删除端点。by AI.Coding"""
-    for path in (f"{settings.API_V1_STR}/users/me", f"{settings.API_V1_STR}/users/{uuid.uuid4()}"):
+    for path in (
+        f"{settings.API_V1_STR}/users/me",
+        f"{settings.API_V1_STR}/users/{uuid.uuid4()}",
+    ):
         response = client.delete(path, headers=superuser_token_headers)
         assert response.status_code == 405

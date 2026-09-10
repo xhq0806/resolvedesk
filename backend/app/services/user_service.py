@@ -104,9 +104,7 @@ class UserService:
             removes_active_admin = (
                 target.role is UserRole.ADMIN
                 and target.is_active
-                and not (
-                    next_role is UserRole.ADMIN and next_is_active is True
-                )
+                and not (next_role is UserRole.ADMIN and next_is_active is True)
             )
             if removes_active_admin and len(active_admins) <= 1:
                 raise ConflictError(ErrorCode.LAST_ACTIVE_ADMIN)

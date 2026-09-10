@@ -1,4 +1,4 @@
-﻿import uuid
+import uuid
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -21,17 +21,19 @@ from app.schemas.user import (
     UserUpdateAdmin,
     UserUpdateMe,
 )
-from app.utils import generate_new_account_email, send_email
 from app.services.user_service import UserService
+from app.utils import generate_new_account_email, send_email
 
 router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.get("/", response_model=UsersPublic)
 def read_users(
-    session: SessionDep, current_user: CurrentUser, filters: Annotated[UserFilters, Depends()]
+    session: SessionDep,
+    current_user: CurrentUser,
+    filters: Annotated[UserFilters, Depends()],
 ) -> Any:
-    """鎸夎鑹层€佸惎鍋滃拰鍏抽敭瀛楄繑鍥炴湇鍔＄鍒嗛〉鐢ㄦ埛鍒楄〃銆俠y AI.Coding"""
+    """按角色、启停和关键字返回服务端分页用户列表。by AI.Coding"""
     return UserService(session).list_users(current_user, filters)
 
 
@@ -42,7 +44,7 @@ def create_user(
     current_user: CurrentUser,
     user_in: UserCreateAdmin,
 ) -> Any:
-    """鐢?Admin 鍒涘缓鎸囧畾瑙掕壊鍜屽惎鐢ㄧ姸鎬佺殑鐢ㄦ埛銆俠y AI.Coding"""
+    """由 Admin 创建指定角色和启用状态的用户。by AI.Coding"""
     user = UserService(session).create_user(current_user, user_in)
     if user_in.email:
         email_data = generate_new_account_email(
@@ -148,5 +150,5 @@ def update_user(
     user_id: uuid.UUID,
     user_in: UserUpdateAdmin,
 ) -> Any:
-    """鐢?Admin 淇敼鍏朵粬鐢ㄦ埛鐨勮鑹层€佸惎鍋滃拰涓汉璧勬枡銆俠y AI.Coding"""
+    """由 Admin 修改其他用户的角色、启停和个人资料。by AI.Coding"""
     return UserService(session).update_user(current_user, user_id, user_in)

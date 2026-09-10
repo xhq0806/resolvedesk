@@ -1,22 +1,22 @@
-import { isAxiosError } from "axios"
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query"
 import { Link, useNavigate } from "@tanstack/react-router"
+import { isAxiosError } from "axios"
 import { ArrowLeft, Hand, LockKeyhole } from "lucide-react"
 
 import type { TicketDetailPublic, TicketStatus, UserRole } from "@/client"
 import { TicketsService } from "@/client"
+import PendingTickets from "@/components/Pending/PendingTickets"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import PendingTickets from "@/components/Pending/PendingTickets"
 import useAuth from "@/hooks/useAuth"
+import useCustomToast from "@/hooks/useCustomToast"
+import { getUserRole } from "@/lib/routeGuards"
 import {
   invalidateTicketQueries,
   ticketDetailQueryOptions,
 } from "@/lib/ticketQueries"
-import { getUserRole } from "@/lib/routeGuards"
 import { handleError } from "@/utils"
-import useCustomToast from "@/hooks/useCustomToast"
 import { TicketActionPanel } from "./TicketActionPanel"
 import { TicketReplyForm } from "./TicketReplyForm"
 import { TicketTimeline } from "./TicketTimeline"
@@ -104,7 +104,8 @@ export function TicketDetailPage({
     (role === "CUSTOMER" || role === "ADMIN" || isAssignedToCurrentAgent)
   const allowInternal =
     canCompose && (role === "ADMIN" || isAssignedToCurrentAgent)
-  const canClaim = view === "agent" && !ticket.assignee && !isClosed
+  const canClaim =
+    (view === "agent" || view === "admin") && !ticket.assignee && !isClosed
 
   const claimMutation = useMutation({
     mutationFn: () =>
@@ -126,18 +127,18 @@ export function TicketDetailPage({
 
   const backLink =
     view === "customer"
-      ? { to: "/tickets" as const, search: { page: 1, pageSize: 25, query: "" } }
+      ? { to: "/tickets" as const, search: { page: 1, pageSize: 20, query: "" } }
       : view === "agent"
         ? {
             to: "/queue" as const,
             search: {
               view: "unassigned" as const,
               page: 1,
-              pageSize: 25,
+              pageSize: 20,
               query: "",
             },
           }
-        : { to: "/admin" as const, search: { page: 1, pageSize: 25, query: "" } }
+        : { to: "/admin" as const, search: { page: 1, pageSize: 20, query: "" } }
 
   return (
     <div className="flex flex-col gap-6">
@@ -240,7 +241,11 @@ export function TicketDetailPage({
               />
               <DetailField
                 label="Assignee"
-                value={ticket.assignee ? personName(ticket.assignee) : "Unassigned"}
+                value={
+                  ticket.assignee
+                    ? `${personName(ticket.assignee)}${ticket.assignee.is_active ? "" : " (Inactive)"}`
+                    : "Unassigned"
+                }
               />
               <DetailField label="Created" value={formatDate(ticket.created_at)} />
             </CardContent>
@@ -254,7 +259,7 @@ export function TicketDetailPage({
                 // 删除或归档后统一回到 Admin 列表默认页，保持路由状态稳定。by AI.Coding
                 void navigate({
                   to: "/admin",
-                  search: { page: 1, pageSize: 25, query: "" },
+                  search: { page: 1, pageSize: 20, query: "" },
                 })
               }}
             />

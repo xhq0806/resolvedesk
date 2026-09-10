@@ -18,7 +18,7 @@ export type UserFilterChange = Partial<UserListFilters>
 
 export const DEFAULT_USER_LIST_FILTERS: UserListFilters = {
   page: 1,
-  pageSize: 25,
+  pageSize: 20,
   query: "",
   role: null,
   isActive: null,
@@ -51,7 +51,7 @@ const parseSearchBoolean = (value: unknown) => {
 
 export const userSearchSchema = z.object({
   page: z.coerce.number().int().min(1).catch(1),
-  pageSize: z.coerce.number().int().min(1).max(100).catch(25),
+  pageSize: z.coerce.number().int().min(1).max(100).catch(20),
   query: z.string().trim().catch(""),
   role: z.enum(userRoleValues).optional(),
   isActive: z.preprocess(parseSearchBoolean, z.boolean().optional()),

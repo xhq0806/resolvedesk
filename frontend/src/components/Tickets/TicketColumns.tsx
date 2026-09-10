@@ -1,5 +1,5 @@
-import type { ColumnDef } from "@tanstack/react-table"
 import { Link } from "@tanstack/react-router"
+import type { ColumnDef } from "@tanstack/react-table"
 
 import type { TicketPublic } from "@/client"
 import { Badge } from "@/components/ui/badge"
@@ -88,7 +88,7 @@ export const createTicketColumns = (
           <Link
             to={detailRoute}
             params={{ ticketId: row.original.id }}
-            search={{ page: 1, pageSize: 25, query: "" }}
+            search={{ page: 1, pageSize: 20, query: "" }}
             className={linkClass}
           >
             {title}
@@ -97,7 +97,7 @@ export const createTicketColumns = (
           <Link
             to={detailRoute}
             params={{ ticketId: row.original.id }}
-            search={{ view: "unassigned", page: 1, pageSize: 25, query: "" }}
+            search={{ view: "unassigned", page: 1, pageSize: 20, query: "" }}
             className={linkClass}
           >
             {title}
@@ -106,7 +106,7 @@ export const createTicketColumns = (
           <Link
             to={detailRoute}
             params={{ ticketId: row.original.id }}
-            search={{ page: 1, pageSize: 25, query: "" }}
+            search={{ page: 1, pageSize: 20, query: "" }}
             className={linkClass}
           >
             {title}
@@ -159,6 +159,11 @@ export const createTicketColumns = (
           <p className="truncate text-xs text-muted-foreground">
             {assignee.email}
           </p>
+          {!assignee.is_active && (
+            <Badge variant="outline" className="mt-1">
+              Inactive
+            </Badge>
+          )}
         </div>
       ) : (
         <span className="text-muted-foreground">Unassigned</span>

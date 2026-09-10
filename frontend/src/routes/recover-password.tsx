@@ -20,8 +20,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { LoadingButton } from "@/components/ui/loading-button"
 import useCustomToast from "@/hooks/useCustomToast"
-import { handleError } from "@/utils"
 import { redirectIfAuthenticated } from "@/lib/routeGuards"
+import { handleError } from "@/utils"
 
 const formSchema = z.object({
   email: z.email({ message: "Invalid email address" }),

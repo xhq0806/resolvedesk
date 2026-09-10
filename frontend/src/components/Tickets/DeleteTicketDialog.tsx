@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dialog"
 import { LoadingButton } from "@/components/ui/loading-button"
 import useCustomToast from "@/hooks/useCustomToast"
-import { invalidateTicketQueries } from "@/lib/ticketQueries"
+import { invalidateTicketQueries, ticketKeys } from "@/lib/ticketQueries"
 import { handleError } from "@/utils"
 
 // Admin 删除入口必须经过可见确认，并把 confirm=true 传给后端契约。by AI.Coding
@@ -40,11 +40,12 @@ export function DeleteTicketDialog({
         body: { confirm: true },
       }),
     onSuccess: async () => {
-      await invalidateTicketQueries(queryClient, { ticketId })
+      queryClient.removeQueries({ queryKey: ticketKeys.detail(ticketId) })
       showSuccessToast("Ticket deleted.")
       setOpen(false)
       setConfirmed(false)
       onDeleted()
+      await invalidateTicketQueries(queryClient)
     },
     onError: handleError.bind(showErrorToast),
   })
@@ -72,8 +73,12 @@ export function DeleteTicketDialog({
             Its audit record is retained.
           </DialogDescription>
         </DialogHeader>
-        <label className="flex items-start gap-3 rounded-md border p-3 text-sm">
+        <label
+          htmlFor="confirm-ticket-deletion"
+          className="flex items-start gap-3 rounded-md border p-3 text-sm"
+        >
           <Checkbox
+            id="confirm-ticket-deletion"
             checked={confirmed}
             onCheckedChange={(value) => setConfirmed(value === true)}
             disabled={mutation.isPending}

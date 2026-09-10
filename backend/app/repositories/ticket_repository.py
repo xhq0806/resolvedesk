@@ -128,9 +128,7 @@ class TicketRepository:
         self, ticket_id: uuid.UUID, *, include_internal: bool
     ) -> list[TicketMessage]:
         """按可见性读取工单消息时间线。by AI.Coding"""
-        statement = select(TicketMessage).where(
-            TicketMessage.ticket_id == ticket_id
-        )
+        statement = select(TicketMessage).where(TicketMessage.ticket_id == ticket_id)
         if not include_internal:
             statement = statement.where(
                 TicketMessage.message_type == TicketMessageType.PUBLIC_REPLY
@@ -147,9 +145,7 @@ class TicketRepository:
         self, ticket_id: uuid.UUID, *, customer_safe_only: bool
     ) -> list[TicketAuditLog]:
         """读取完整或 Customer 安全的结构化审计时间线。by AI.Coding"""
-        statement = select(TicketAuditLog).where(
-            TicketAuditLog.ticket_id == ticket_id
-        )
+        statement = select(TicketAuditLog).where(TicketAuditLog.ticket_id == ticket_id)
         if customer_safe_only:
             statement = statement.where(
                 col(TicketAuditLog.action).in_(_CUSTOMER_SAFE_AUDIT_ACTIONS)
@@ -223,9 +219,7 @@ class TicketRepository:
         actor: User, filters: TicketFilters
     ) -> list[ColumnElement[bool]]:
         """构造 active、角色范围与筛选共用谓词。by AI.Coding"""
-        conditions: list[ColumnElement[bool]] = [
-            col(Ticket.deleted_at).is_(None)
-        ]
+        conditions: list[ColumnElement[bool]] = [col(Ticket.deleted_at).is_(None)]
         if actor.role is UserRole.CUSTOMER:
             conditions.append(col(Ticket.requester_id) == actor.id)
         elif actor.role is UserRole.AGENT:
@@ -265,8 +259,12 @@ class TicketRepository:
         condition: ColumnElement[bool],
     ) -> int:
         """在已授权的数据范围内执行单个条件计数。by AI.Coding"""
-        statement = select(func.count()).select_from(Ticket).where(
-            *conditions,
-            condition,
+        statement = (
+            select(func.count())
+            .select_from(Ticket)
+            .where(
+                *conditions,
+                condition,
+            )
         )
         return int(self.session.exec(statement).one())

@@ -1,29 +1,29 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-query"
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, Outlet, useMatch } from "@tanstack/react-router"
 import { isAxiosError } from "axios"
 import { Headset, Inbox, UserRound, UsersRound } from "lucide-react"
 import { Suspense, useMemo } from "react"
 import { z } from "zod"
 
 import { TicketsService } from "@/client"
+import { DataTable } from "@/components/Common/DataTable"
+import PendingTickets from "@/components/Pending/PendingTickets"
 import { createAgentQueueColumns } from "@/components/Tickets/AgentQueueColumns"
 import { TicketFilters } from "@/components/Tickets/TicketFilters"
-import PendingTickets from "@/components/Pending/PendingTickets"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import useAuth from "@/hooks/useAuth"
+import useCustomToast from "@/hooks/useCustomToast"
 import { requireRoles } from "@/lib/routeGuards"
 import {
   invalidateTicketQueries,
   normalizeTicketListFilters,
-  ticketListQueryOptions,
-  ticketStatisticsQueryOptions,
   type TicketFilterChange,
   type TicketListFilters,
+  ticketListQueryOptions,
+  ticketStatisticsQueryOptions,
 } from "@/lib/ticketQueries"
 import { handleError } from "@/utils"
-import useCustomToast from "@/hooks/useCustomToast"
-import { DataTable } from "@/components/Common/DataTable"
 
 const queueViewValues = ["unassigned", "mine", "waiting"] as const
 type QueueView = (typeof queueViewValues)[number]
@@ -31,7 +31,7 @@ type QueueView = (typeof queueViewValues)[number]
 const queueSearchSchema = z.object({
   view: z.enum(queueViewValues).catch("unassigned"),
   page: z.coerce.number().int().min(1).catch(1),
-  pageSize: z.coerce.number().int().min(1).max(100).catch(25),
+  pageSize: z.coerce.number().int().min(1).max(100).catch(20),
   query: z.string().trim().catch(""),
   priority: z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]).optional(),
   category: z
@@ -40,7 +40,7 @@ const queueSearchSchema = z.object({
 })
 
 export const Route = createFileRoute("/_layout/queue")({
-  component: QueuePage,
+  component: QueueRoute,
   validateSearch: queueSearchSchema,
   beforeLoad: requireRoles({ allowed: ["AGENT"], redirectTo: "/" }),
   head: () => ({
@@ -50,6 +50,15 @@ export const Route = createFileRoute("/_layout/queue")({
 
 const isQueueView = (value: string): value is QueueView =>
   queueViewValues.includes(value as QueueView)
+
+function QueueRoute() {
+  const detailMatch = useMatch({
+    from: "/_layout/queue/$ticketId",
+    shouldThrow: false,
+  })
+
+  return detailMatch ? <Outlet /> : <QueuePage />
+}
 
 type QueueFilterSource = Partial<
   Pick<
@@ -212,7 +221,7 @@ function QueueTable({ view }: { view: QueueView }) {
           ? claimMutation.variables
           : undefined,
       }),
-    [claimMutation.isPending, claimMutation.variables],
+    [claimMutation.isPending, claimMutation.variables, claimMutation.mutate],
   )
 
   return (

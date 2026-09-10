@@ -19,9 +19,7 @@ class UserRepository:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-    def get_by_id(
-        self, user_id: uuid.UUID, *, for_update: bool = False
-    ) -> User | None:
+    def get_by_id(self, user_id: uuid.UUID, *, for_update: bool = False) -> User | None:
         """按主键读取用户，并可在当前事务中锁定该行。by AI.Coding"""
         statement = select(User).where(User.id == user_id)
         if for_update:
