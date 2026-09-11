@@ -15,19 +15,19 @@ import { type Item, Main } from "./Main"
 import { User } from "./User"
 
 const baseItems: Item[] = [
-  { icon: Home, title: "Dashboard", path: "/" },
-  { icon: Settings, title: "Settings", path: "/settings" },
+  { icon: Home, title: "工作台", path: "/" },
+  { icon: Settings, title: "设置", path: "/settings" },
 ]
 const itemsByRole: Record<UserRole, Item[]> = {
   CUSTOMER: [
     ...baseItems,
-    { icon: Inbox, title: "My tickets", path: "/tickets" },
+    { icon: Inbox, title: "我的工单", path: "/tickets" },
   ],
-  AGENT: [...baseItems, { icon: ListTodo, title: "Service queue", path: "/queue" }],
+  AGENT: [...baseItems, { icon: ListTodo, title: "客服队列", path: "/queue" }],
   ADMIN: [
     ...baseItems,
-    { icon: Inbox, title: "Tickets", path: "/admin/tickets" },
-    { icon: Users, title: "Users", path: "/admin" },
+    { icon: Inbox, title: "全部工单", path: "/admin/tickets" },
+    { icon: Users, title: "用户管理", path: "/admin" },
   ],
 }
 

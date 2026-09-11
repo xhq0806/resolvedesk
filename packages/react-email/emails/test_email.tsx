@@ -14,21 +14,20 @@ export default function TestEmail({
 }: TestEmailProps) {
   return (
     <Layout
-      title={`${project_name} - Test email`}
-      preview={`${project_name} email delivery is working`}
+      title={`${project_name} - 测试邮件`}
+      preview={`${project_name} 邮件投递正常`}
       project_name={project_name}
     >
-      <Heading>Test email</Heading>
-      <Text className="text-[15px] leading-7 text-body">Hi,</Text>
+      <Heading>测试邮件</Heading>
+      <Text className="text-[15px] leading-7 text-body">你好：</Text>
       <Text className="text-[15px] leading-7 text-body">
-        This is a test email from {project_name}. If you're reading it, email
-        delivery is configured correctly.
+        这是来自 {project_name} 的测试邮件。如果你能看到这封邮件，说明邮件投递配置正确。
       </Text>
       <Callout>
-        <Detail label="Sent to" value={email} />
+        <Detail label="发送至" value={email} />
       </Callout>
       <Text className="text-sm leading-6 text-muted">
-        If you weren't expecting this email, you can safely ignore it.
+        如果你没有预期收到这封邮件，可以放心忽略。
       </Text>
     </Layout>
   )

@@ -29,8 +29,8 @@ const formSchema = z.object({
   content: z
     .string()
     .trim()
-    .min(1, "Message is required")
-    .max(10000, "Message must be 10,000 characters or fewer"),
+    .min(1, "请输入消息")
+    .max(10000, "消息不能超过 10,000 个字符"),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -76,8 +76,8 @@ export function TicketReplyForm({
     onSuccess: (_response, data) => {
       showSuccessToast(
         data.messageType === "INTERNAL_NOTE"
-          ? "Internal note added."
-          : "Reply sent successfully.",
+      ? "内部备注已添加。"
+      : "回复发送成功。",
       )
       form.reset({ messageType: data.messageType, content: "" })
     },
@@ -94,7 +94,7 @@ export function TicketReplyForm({
       <div className="mb-4 flex items-center gap-2">
         <MessageSquare className="h-4 w-4 text-muted-foreground" />
         <h2 className="font-semibold">
-          {isInternal ? "Add an internal note" : "Write a reply"}
+      {isInternal ? "添加内部备注" : "撰写回复"}
         </h2>
       </div>
       {allowInternal && (
@@ -106,8 +106,8 @@ export function TicketReplyForm({
           className="mb-4"
         >
           <TabsList>
-            <TabsTrigger value="PUBLIC_REPLY">Public reply</TabsTrigger>
-            <TabsTrigger value="INTERNAL_NOTE">Internal note</TabsTrigger>
+          <TabsTrigger value="PUBLIC_REPLY">公开回复</TabsTrigger>
+          <TabsTrigger value="INTERNAL_NOTE">内部备注</TabsTrigger>
           </TabsList>
         </Tabs>
       )}
@@ -121,13 +121,13 @@ export function TicketReplyForm({
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{isInternal ? "Note" : "Reply"}</FormLabel>
+              <FormLabel>{isInternal ? "备注" : "回复"}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder={
                       isInternal
-                        ? "Add context for the support team"
-                        : "Share an update with the requester"
+              ? "为客服团队补充上下文"
+              : "向提单人分享最新进展"
                     }
                     className="min-h-28 resize-y"
                     {...field}
@@ -140,7 +140,7 @@ export function TicketReplyForm({
           <div className="flex justify-end">
             <LoadingButton type="submit" loading={mutation.isPending}>
               <Send className="h-4 w-4" />
-              {isInternal ? "Add note" : "Send reply"}
+              {isInternal ? "添加备注" : "发送回复"}
             </LoadingButton>
           </div>
         </form>

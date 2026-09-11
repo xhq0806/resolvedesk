@@ -107,7 +107,7 @@ class TicketAttributesUpdate(StrictInput):
     def ensure_any_attribute(self) -> Self:
         """至少提供一个可变更属性，避免空 PATCH 成为假成功。by AI.Coding"""
         if self.priority is None and self.category is None:
-            raise ValueError("At least one ticket attribute is required.")
+            raise ValueError("至少需要提供一个工单属性。")
         return self
 
 

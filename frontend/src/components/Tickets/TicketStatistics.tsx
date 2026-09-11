@@ -30,11 +30,11 @@ type StatisticCard = {
 }
 
 const statusLabels: Record<TicketStatus, string> = {
-  OPEN: "Open",
-  IN_PROGRESS: "In progress",
-  WAITING_FOR_CUSTOMER: "Waiting for customer",
-  RESOLVED: "Resolved",
-  CLOSED: "Closed",
+  OPEN: "待处理",
+  IN_PROGRESS: "处理中",
+  WAITING_FOR_CUSTOMER: "等待客户",
+  RESOLVED: "已解决",
+  CLOSED: "已关闭",
 }
 
 const statusIcons: Record<TicketStatus, LucideIcon> = {
@@ -46,9 +46,9 @@ const statusIcons: Record<TicketStatus, LucideIcon> = {
 }
 
 const roleLabels: Record<UserRole, string> = {
-  CUSTOMER: "Customer overview",
-  AGENT: "Agent overview",
-  ADMIN: "Admin overview",
+  CUSTOMER: "客户工作台",
+  AGENT: "客服工作台",
+  ADMIN: "管理员工作台",
 }
 
 const toneClasses: Record<StatisticCard["tone"], string> = {
@@ -73,7 +73,7 @@ export function TicketStatistics({
 
   return (
     <section
-      aria-label="Ticket statistics"
+      aria-label="工单统计"
       className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
       {cards.map(({ label, value, icon: Icon, tone }) => (
@@ -100,25 +100,25 @@ function getStatisticCards(statistics: TicketStatisticsPublic): StatisticCard[] 
   if (statistics.role === "AGENT") {
     return [
       {
-        label: "Unassigned",
+        label: "未分派",
         value: statistics.unassigned_count ?? 0,
         icon: Inbox,
         tone: "warning",
       },
       {
-        label: "Assigned to me",
+        label: "分派给我",
         value: statistics.assigned_to_me_count ?? 0,
         icon: UserRound,
         tone: "default",
       },
       {
-        label: "Waiting for customer",
+        label: "等待客户",
         value: statistics.waiting_for_customer_count ?? 0,
         icon: UsersRound,
         tone: "warning",
       },
       {
-        label: "Active work",
+        label: "进行中的工作",
         value: getStatusTotal(statistics, ["OPEN", "IN_PROGRESS"]),
         icon: ListChecks,
         tone: "success",
@@ -129,7 +129,7 @@ function getStatisticCards(statistics: TicketStatisticsPublic): StatisticCard[] 
   if (statistics.role === "ADMIN") {
     return [
       {
-        label: "Total tickets",
+        label: "工单总数",
         value: getStatusTotal(statistics, [
           "OPEN",
           "IN_PROGRESS",
@@ -141,19 +141,19 @@ function getStatisticCards(statistics: TicketStatisticsPublic): StatisticCard[] 
         tone: "default",
       },
       {
-        label: "Open",
+        label: "待处理",
         value: statistics.status_counts?.OPEN ?? 0,
         icon: statusIcons.OPEN,
         tone: "default",
       },
       {
-        label: "Unassigned",
+        label: "未分派",
         value: statistics.unassigned_count ?? 0,
         icon: Inbox,
         tone: "warning",
       },
       {
-        label: "Urgent",
+        label: "紧急",
         value: statistics.priority_counts?.URGENT ?? 0,
         icon: TriangleAlert,
         tone: "warning",
@@ -189,13 +189,13 @@ export function TicketStatisticsHeading({
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-        ResolveDesk workspace
+        ResolveDesk 工作台
       </p>
       <h1 className="mt-2 text-2xl font-semibold tracking-tight">
         {roleLabels[role]}
       </h1>
       <p className="mt-1 text-muted-foreground">
-        Keep customer requests moving with a clear view of your work.
+        清晰掌握工作进展，持续推进客户请求。
       </p>
     </div>
   )

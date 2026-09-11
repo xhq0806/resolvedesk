@@ -1,80 +1,80 @@
-# ResolveDesk Frontend
+# ResolveDesk 前端
 
-The frontend is a React single-page application for the ResolveDesk customer, agent, and admin workflows. It uses Vite, TypeScript, TanStack Router, TanStack Query, TanStack Table, Tailwind CSS, shadcn/ui, and the generated OpenAPI client.
+前端是 ResolveDesk 的 React 单页应用，承载客户、客服和管理员三类角色的工作流程。它使用 Vite、TypeScript、TanStack Router、TanStack Query、TanStack Table、Tailwind CSS、shadcn/ui，以及由后端 OpenAPI 契约生成的客户端。
 
-## Requirements
+## 环境要求
 
 - [Bun](https://bun.sh/)
-- A running ResolveDesk backend for API requests
+- 一个正在运行的 ResolveDesk 后端，用于处理 API 请求
 
-## Local Development
+## 本地开发
 
-From the project root:
+在项目根目录执行：
 
 ```bash
 bun install
 bun run dev
 ```
 
-Open <http://localhost:5173>. The Vite development server uses `VITE_API_URL` from `frontend/.env`, which defaults to `http://localhost:8000`.
+打开 <http://localhost:5173> 访问前端。Vite 开发服务器会读取 `frontend/.env` 中的 `VITE_API_URL`，默认指向 `http://localhost:8000`。
 
-Start PostgreSQL and Mailpit, then prepare and run the backend in a separate terminal. The complete workflow is documented in [../development.md](../development.md).
+请在另一个终端中启动 PostgreSQL 和 Mailpit，并准备、运行后端。完整流程见 [../development.md](../development.md)。
 
-## Role-Based Application Areas
+## 按角色划分的应用区域
 
-- Customers use `/tickets` to create, filter, search, and reply to their own tickets.
-- Agents use `/queue` to view unassigned work, claim tickets, reply, add internal notes, and update tickets they own.
-- Admins use `/admin/tickets` for global ticket management and `/admin` for user, role, and account-status management.
-- All authenticated users share the dashboard and account settings pages.
+- 客户使用 `/tickets` 创建、筛选、搜索和回复自己的工单。
+- 客服使用 `/queue` 查看未分派工单、接手工单、回复客户、添加内部备注，并更新自己负责的工单。
+- 管理员使用 `/admin/tickets` 进行全局工单管理，使用 `/admin` 管理用户、角色和账号状态。
+- 所有已登录用户共用 Dashboard 和账号设置页面。
 
-Route guards are enforced in the frontend for navigation ergonomics. The backend remains the source of truth for authorization and resource-level access.
+前端路由守卫用于改善导航体验。权限判定和资源级访问控制仍以后端为准。
 
-## Build and Serve from FastAPI
+## 构建并由 FastAPI 托管
 
-Build the frontend from `frontend/`:
+在 `frontend/` 目录中构建前端：
 
 ```bash
 bun run build
 ```
 
-The build is written to `backend/app/frontend` and is served by FastAPI at <http://localhost:8000>.
+构建产物会写入 `backend/app/frontend`，并由 FastAPI 在 <http://localhost:8000> 提供访问。
 
-## Generate the API Client
+## 生成 API 客户端
 
-The client is generated from the backend OpenAPI contract. Regenerate it whenever a backend API change affects the schema:
+客户端由后端 OpenAPI 契约生成。只要后端 API 变更影响 schema，就需要重新生成：
 
 ```bash
 bash ./scripts/generate-client.sh
 ```
 
-Commit the generated changes under `frontend/src/client/` and `frontend/.generated-client/` when that directory is present in the local workflow. Do not maintain a second hand-written API client.
+当本地工作流产生 `frontend/src/client/` 和 `frontend/.generated-client/` 下的变更时，请一起提交。不要再维护第二套手写 API 客户端。
 
-For a manual generation workflow, start the backend, download `/api/v1/openapi.json` to `frontend/openapi.json`, and run:
+如果需要手动生成，请先启动后端，将 `/api/v1/openapi.json` 下载到 `frontend/openapi.json`，然后运行：
 
 ```bash
 bun run generate-client
 ```
 
-## Code Structure
+## 代码结构
 
-- `src/routes/` contains file-based routes, URL filter state, and role guards.
-- `src/components/Tickets/` contains ticket lists, detail views, timelines, replies, actions, and statistics.
-- `src/components/Admin/` contains user management views.
-- `src/components/Common/` contains shared layout and table primitives.
-- `src/lib/` contains query options, cache keys, and shared utilities.
-- `src/client/` contains the generated OpenAPI client.
-- `tests/` contains Playwright end-to-end tests for authentication, role navigation, tickets, queues, and user management.
+- `src/routes/` 包含基于文件的路由、URL 筛选状态和角色守卫。
+- `src/components/Tickets/` 包含工单列表、详情、时间线、回复、操作和统计组件。
+- `src/components/Admin/` 包含用户管理视图。
+- `src/components/Common/` 包含共享布局和表格基础组件。
+- `src/lib/` 包含查询配置、缓存键和共享工具函数。
+- `src/client/` 包含生成的 OpenAPI 客户端。
+- `tests/` 包含认证、角色导航、工单、队列和用户管理的 Playwright 端到端测试。
 
-## Linting, Build, and End-to-End Tests
+## Lint、构建和端到端测试
 
-Run frontend checks from the project root:
+在项目根目录运行前端检查：
 
 ```bash
 bun run --filter frontend lint
 bun run --filter frontend build
 ```
 
-For Playwright tests, start the Compose stack first:
+运行 Playwright 测试前，请先启动 Compose 服务：
 
 ```bash
 docker compose build
@@ -82,14 +82,14 @@ docker compose run --rm backend bash scripts/prestart.sh
 docker compose up -d --wait backend
 ```
 
-Then run the browser suite:
+然后运行浏览器测试：
 
 ```bash
 bun run --filter frontend test
 bun run --filter frontend test:ui
 ```
 
-To stop the test stack and remove its data:
+停止测试服务并删除测试数据：
 
 ```bash
 docker compose down -v

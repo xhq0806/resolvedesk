@@ -49,35 +49,31 @@ class ErrorDefinition:
 
 _ERROR_DEFINITIONS = MappingProxyType(
     {
-        ErrorCode.AUTH_REQUIRED: ErrorDefinition(401, "Authentication is required."),
-        ErrorCode.USER_INACTIVE: ErrorDefinition(403, "The user is inactive."),
-        ErrorCode.ROLE_FORBIDDEN: ErrorDefinition(403, "The role is not allowed."),
+        ErrorCode.AUTH_REQUIRED: ErrorDefinition(401, "需要登录认证。"),
+        ErrorCode.USER_INACTIVE: ErrorDefinition(403, "该用户已停用。"),
+        ErrorCode.ROLE_FORBIDDEN: ErrorDefinition(403, "不允许使用该角色。"),
         ErrorCode.TICKET_FORBIDDEN: ErrorDefinition(
-            403, "The ticket operation is not allowed."
+            403, "不允许执行该工单操作。"
         ),
-        ErrorCode.TICKET_NOT_FOUND: ErrorDefinition(404, "Ticket not found."),
-        ErrorCode.USER_NOT_FOUND: ErrorDefinition(404, "User not found."),
-        ErrorCode.EMAIL_CONFLICT: ErrorDefinition(409, "The email already exists."),
+        ErrorCode.TICKET_NOT_FOUND: ErrorDefinition(404, "工单不存在。"),
+        ErrorCode.USER_NOT_FOUND: ErrorDefinition(404, "用户不存在。"),
+        ErrorCode.EMAIL_CONFLICT: ErrorDefinition(409, "该邮箱已被使用。"),
         ErrorCode.TICKET_ALREADY_CLAIMED: ErrorDefinition(
-            409, "The ticket has already been claimed."
+            409, "该工单已被其他客服接手。"
         ),
-        ErrorCode.INVALID_ASSIGNEE: ErrorDefinition(409, "The assignee is invalid."),
+        ErrorCode.INVALID_ASSIGNEE: ErrorDefinition(409, "负责人无效。"),
         ErrorCode.INVALID_STATUS_TRANSITION: ErrorDefinition(
-            409, "The status transition is invalid."
+            409, "无效的状态流转。"
         ),
-        ErrorCode.TICKET_CLOSED: ErrorDefinition(409, "The ticket is closed."),
+        ErrorCode.TICKET_CLOSED: ErrorDefinition(409, "该工单已关闭。"),
         ErrorCode.LAST_ACTIVE_ADMIN: ErrorDefinition(
-            409, "At least one active administrator is required."
+            409, "系统至少需要一名启用中的管理员。"
         ),
         ErrorCode.DELETE_CONFIRMATION_REQUIRED: ErrorDefinition(
-            409, "Delete confirmation is required."
+            409, "需要确认删除工单。"
         ),
-        ErrorCode.VALIDATION_ERROR: ErrorDefinition(
-            422, "The request validation failed."
-        ),
-        ErrorCode.INTERNAL_ERROR: ErrorDefinition(
-            500, "An internal server error occurred."
-        ),
+        ErrorCode.VALIDATION_ERROR: ErrorDefinition(422, "请求参数校验失败。"),
+        ErrorCode.INTERNAL_ERROR: ErrorDefinition(500, "服务器内部发生错误。"),
     }
 )
 

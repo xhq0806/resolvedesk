@@ -1,26 +1,26 @@
-# Release Notes
+# 发布说明
 
-The numbered sections from `0.12.0` and earlier are the inherited upstream template baseline. ResolveDesk release notes start at `0.13.0`.
+`0.12.0` 及更早的编号章节来自上游模板基线。ResolveDesk 自 `0.13.0` 起开始记录自己的发布说明。
 
-## Latest Changes
+## 最新变更
 
 ## 0.13.0 (2026-09-10)
 
-#### Product
+#### 产品
 
-- Complete the three-role customer support workflow for `CUSTOMER`, `AGENT`, and `ADMIN`.
-- Add ticket creation, filtering, search, server-side pagination, detail views, and role-aware statistics.
-- Add ticket assignment, reassignment, unassignment, state transitions, public replies, and internal notes.
-- Add Admin user management with role changes, account activation, and last-active-Admin protection.
-- Add soft deletion with retained ticket audit records.
+- 完成 `CUSTOMER`、`AGENT` 和 `ADMIN` 三类角色的客服支持工作流。
+- 增加工单创建、筛选、搜索、服务端分页、详情查看和按角色展示的统计。
+- 增加工单分派、转派、取消分派、状态流转、公开回复和内部备注。
+- 增加 Admin 用户管理能力，包括角色修改、账号启用/停用和最后一个活跃 Admin 保护。
+- 增加工单软删除，并保留工单审计记录。
 
-#### Engineering
+#### 工程
 
-- Replace the template Item domain with the ResolveDesk ticket domain.
-- Split backend responsibilities into API routes, schemas, repositories, services, and domain models.
-- Generate the frontend API client from the backend OpenAPI contract.
-- Add role-aware frontend routes, dashboards, queues, ticket timelines, and Playwright coverage.
-- Keep PostgreSQL, Alembic, Docker Compose, Mailpit, CI, and deployment workflows available.
+- 用 ResolveDesk 工单领域替换模板中的 Item 领域。
+- 将后端职责拆分为 API 路由、schema、repository、service 和领域模型。
+- 根据后端 OpenAPI 契约生成前端 API 客户端。
+- 增加按角色控制的前端路由、Dashboard、队列、工单时间线和 Playwright 覆盖。
+- 保留 PostgreSQL、Alembic、Docker Compose、Mailpit、CI 和部署工作流。
 
 ## 0.12.0 (2026-08-12)
 

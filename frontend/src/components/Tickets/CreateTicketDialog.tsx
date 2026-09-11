@@ -44,25 +44,25 @@ import { invalidateTicketQueries } from "@/lib/ticketQueries"
 import { handleError } from "@/utils"
 
 const categoryOptions: Array<{ value: TicketCategory; label: string }> = [
-  { value: "ACCOUNT", label: "Account" },
-  { value: "BILLING", label: "Billing" },
-  { value: "PRODUCT", label: "Product" },
-  { value: "BUG", label: "Bug" },
-  { value: "FEATURE_REQUEST", label: "Feature request" },
-  { value: "OTHER", label: "Other" },
+  { value: "ACCOUNT", label: "账号问题" },
+  { value: "BILLING", label: "账单问题" },
+  { value: "PRODUCT", label: "产品咨询" },
+  { value: "BUG", label: "缺陷反馈" },
+  { value: "FEATURE_REQUEST", label: "功能建议" },
+  { value: "OTHER", label: "其他" },
 ]
 
 const formSchema = z.object({
   title: z
     .string()
     .trim()
-    .min(1, "Title is required")
-    .max(200, "Title must be 200 characters or fewer"),
+    .min(1, "请输入标题")
+    .max(200, "标题不能超过 200 个字符"),
   description: z
     .string()
     .trim()
-    .min(1, "Description is required")
-    .max(10000, "Description must be 10,000 characters or fewer"),
+    .min(1, "请输入描述")
+    .max(10000, "描述不能超过 10,000 个字符"),
   category: z.enum([
     "ACCOUNT",
     "BILLING",
@@ -94,7 +94,7 @@ export function CreateTicketDialog() {
     mutationFn: (data: TicketCreate) =>
       TicketsService.createTicket({ body: data }),
     onSuccess: () => {
-      showSuccessToast("Ticket created successfully")
+      showSuccessToast("工单创建成功")
       form.reset()
       setIsOpen(false)
     },
@@ -111,14 +111,14 @@ export function CreateTicketDialog() {
       <DialogTrigger asChild>
         <Button>
           <Plus className="h-4 w-4" />
-          New ticket
+          新建工单
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Create a ticket</DialogTitle>
+          <DialogTitle>创建工单</DialogTitle>
           <DialogDescription>
-            Provide a concise summary and enough context for our support team.
+            请简要描述问题，并提供足够的上下文，方便客服团队处理。
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -128,10 +128,10 @@ export function CreateTicketDialog() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>标题</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="What do you need help with?"
+                      placeholder="你需要什么帮助？"
                       {...field}
                     />
                   </FormControl>
@@ -144,10 +144,10 @@ export function CreateTicketDialog() {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>问题描述</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Describe the issue, impact, and relevant details"
+                      placeholder="请描述问题、影响和相关细节"
                       className="min-h-32 resize-y"
                       {...field}
                     />
@@ -161,11 +161,11 @@ export function CreateTicketDialog() {
               name="category"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category</FormLabel>
+                  <FormLabel>分类</FormLabel>
                   <Select value={field.value} onValueChange={field.onChange}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a category" />
+                        <SelectValue placeholder="请选择分类" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -183,11 +183,11 @@ export function CreateTicketDialog() {
             <DialogFooter>
               <DialogClose asChild>
                 <Button type="button" variant="outline">
-                  Cancel
+                  取消
                 </Button>
               </DialogClose>
               <LoadingButton type="submit" loading={mutation.isPending}>
-                Create ticket
+                创建工单
               </LoadingButton>
             </DialogFooter>
           </form>

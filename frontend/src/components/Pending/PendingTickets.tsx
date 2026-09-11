@@ -12,13 +12,13 @@ const PendingTickets = () => (
   <Table>
     <TableHeader>
       <TableRow>
-        <TableHead>Ticket</TableHead>
-        <TableHead>Title</TableHead>
-        <TableHead>Status</TableHead>
-        <TableHead>Priority</TableHead>
-        <TableHead>Category</TableHead>
-        <TableHead>Assignee</TableHead>
-        <TableHead>Updated</TableHead>
+        <TableHead>工单</TableHead>
+        <TableHead>标题</TableHead>
+        <TableHead>状态</TableHead>
+        <TableHead>优先级</TableHead>
+        <TableHead>分类</TableHead>
+        <TableHead>负责人</TableHead>
+        <TableHead>更新时间</TableHead>
       </TableRow>
     </TableHeader>
     <TableBody>

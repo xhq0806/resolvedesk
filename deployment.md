@@ -1,91 +1,91 @@
-# ResolveDesk Deployment
+# ResolveDesk 部署
 
-Deploy ResolveDesk to [FastAPI Cloud](https://fastapicloud.com) with the included GitHub Actions workflow.
+可以使用仓库内置的 GitHub Actions 工作流，将 ResolveDesk 部署到 [FastAPI Cloud](https://fastapicloud.com)。
 
-## Create the FastAPI Cloud Application
+## 创建 FastAPI Cloud 应用
 
-Create an application in FastAPI Cloud and set its [Application Directory](https://fastapicloud.com/docs/builds-and-deployments/application-directory/) to `backend`.
+在 FastAPI Cloud 中创建应用，并将 [Application Directory](https://fastapicloud.com/docs/builds-and-deployments/application-directory/) 设置为 `backend`。
 
-Connect a PostgreSQL database using the [Neon](https://fastapicloud.com/docs/integrations/neon-integration/) or [Supabase](https://fastapicloud.com/docs/integrations/supabase-integration/) integration. Both integrations configure a `DATABASE_URL` secret automatically. You can also configure `DATABASE_URL` manually for another PostgreSQL provider.
+使用 [Neon](https://fastapicloud.com/docs/integrations/neon-integration/) 或 [Supabase](https://fastapicloud.com/docs/integrations/supabase-integration/) 集成连接 PostgreSQL 数据库。这两个集成都可以自动配置 `DATABASE_URL` secret。也可以为其他 PostgreSQL 服务商手动配置 `DATABASE_URL`。
 
-## Configure the Application
+## 配置应用
 
-### Environment Variables
+### 环境变量
 
-Add these required [environment variables](https://fastapicloud.com/docs/builds-and-deployments/environment-variables/) to the FastAPI Cloud application:
+在 FastAPI Cloud 应用中添加以下必需的 [环境变量](https://fastapicloud.com/docs/builds-and-deployments/environment-variables/)：
 
-* `PROJECT_NAME`: The name of the project, used in the API documentation and emails.
-* `FIRST_SUPERUSER`: The email address of the initial administrator. The environment variable name is retained for compatibility with the initialization script.
-* `FRONTEND_HOST`: The public URL of the application, such as the generated `https://your-app.fastapicloud.dev` URL or a custom domain.
+* `PROJECT_NAME`：项目名称，用于 API 文档和邮件。
+* `FIRST_SUPERUSER`：初始管理员邮箱。环境变量名为了兼容现有初始化脚本而保留。
+* `FRONTEND_HOST`：应用的公网 URL，例如生成的 `https://your-app.fastapicloud.dev` 地址或自定义域名。
 
-To enable emails, add these optional environment variables with values from your email provider:
+如需启用邮件，请根据邮件服务商提供的值添加以下可选环境变量：
 
 * `SMTP_HOST`
 * `SMTP_USER`
 * `EMAILS_FROM_EMAIL`
 
-To enable Sentry, configure `SENTRY_DSN`.
+如需启用 Sentry，请配置 `SENTRY_DSN`。
 
-### Secrets
+### Secret
 
-Add these required values and mark them as secrets:
+添加以下必需值，并标记为 secret：
 
-* `SECRET_KEY`: A secret key used to sign security tokens.
-* `FIRST_SUPERUSER_PASSWORD`: The password of the initial administrator.
-* `DATABASE_URL`: The PostgreSQL connection URL, configured automatically when using a database integration.
+* `SECRET_KEY`：用于签发安全令牌的密钥。
+* `FIRST_SUPERUSER_PASSWORD`：初始管理员密码。
+* `DATABASE_URL`：PostgreSQL 连接 URL；使用数据库集成时会自动配置。
 
-To enable emails with an authenticated provider, add `SMTP_PASSWORD` as a secret.
+如需使用带认证的邮件服务商，请把 `SMTP_PASSWORD` 添加为 secret。
 
-You can generate secure values for `SECRET_KEY` and `FIRST_SUPERUSER_PASSWORD` with:
+可以用以下命令为 `SECRET_KEY` 和 `FIRST_SUPERUSER_PASSWORD` 生成安全值：
 
 ```bash
 python -c "import secrets; print(secrets.token_urlsafe(32))"
 ```
 
-## Configure Continuous Deployment
+## 配置持续部署
 
-The included `.github/workflows/deploy.yml` workflow builds the frontend, prepares the database, and deploys the application whenever changes are pushed to `master`. You can also run it manually from the **Actions** tab.
+仓库内置的 `.github/workflows/deploy.yml` 会在变更推送到 `master` 时构建前端、准备数据库并部署应用。也可以在 **Actions** 页面手动运行。
 
-Log in to FastAPI Cloud and configure the [deploy token](https://fastapicloud.com/docs/advanced-features/deploy-tokens/) and application ID as GitHub repository secrets:
+登录 FastAPI Cloud，并将 [deploy token](https://fastapicloud.com/docs/advanced-features/deploy-tokens/) 和应用 ID 配置为 GitHub 仓库 secret：
 
 ```bash
 uv run fastapi login
 uv run fastapi cloud setup-ci --secrets-only --app-id <your-app-id>
 ```
 
-If the GitHub CLI is installed and authenticated, the command configures `FASTAPI_CLOUD_TOKEN` and `FASTAPI_CLOUD_APP_ID` automatically. Otherwise, it prints the values so you can add them in your repository under **Settings** > **Secrets and variables** > **Actions**.
+如果已经安装并登录 GitHub CLI，该命令会自动配置 `FASTAPI_CLOUD_TOKEN` 和 `FASTAPI_CLOUD_APP_ID`。否则，它会打印这些值，你可以在仓库的 **Settings** > **Secrets and variables** > **Actions** 中手动添加。
 
-The workflow runs database migrations and creates the initial administrator before deploying. In the repository's **Settings** > **Secrets and variables** > **Actions** page, add these repository variables:
+部署前，工作流会运行数据库迁移并创建初始管理员。请在仓库 **Settings** > **Secrets and variables** > **Actions** 页面添加以下 repository variables：
 
 * `PROJECT_NAME`
 * `FIRST_SUPERUSER`
 
-Add these repository secrets:
+添加以下 repository secrets：
 
 * `DATABASE_URL`
 * `SECRET_KEY`
 * `FIRST_SUPERUSER_PASSWORD`
 
-Use the same values configured in FastAPI Cloud. For `DATABASE_URL`, use the connection URL from your database provider. The database must be reachable from GitHub-hosted runners so the preparation step can connect to it.
+请使用与 FastAPI Cloud 中一致的配置值。`DATABASE_URL` 使用数据库服务商提供的连接 URL。数据库必须能被 GitHub 托管 runner 访问，这样准备步骤才能连接数据库。
 
-The deployment workflow performs these steps:
+部署工作流会执行以下步骤：
 
-1. Installs and builds the frontend into `backend/app/frontend`.
-2. Runs `backend/scripts/prestart.sh` to apply database migrations and create the initial administrator.
-3. Deploys the project with `uv run fastapi deploy`.
+1. 安装前端依赖，并将前端构建到 `backend/app/frontend`。
+2. 运行 `backend/scripts/prestart.sh`，应用数据库迁移并创建初始管理员。
+3. 使用 `uv run fastapi deploy` 部署项目。
 
-## URLs
+## URL
 
-Replace `your-app.fastapicloud.dev` with the URL of your FastAPI Cloud application.
+请将 `your-app.fastapicloud.dev` 替换为你的 FastAPI Cloud 应用 URL。
 
-Application (frontend and API): `https://your-app.fastapicloud.dev`
+应用（前端和 API）：`https://your-app.fastapicloud.dev`
 
-Interactive API docs: `https://your-app.fastapicloud.dev/docs`
+交互式 API 文档：`https://your-app.fastapicloud.dev/docs`
 
 ## Docker Compose
 
-For deployment to your own server, see the [Docker Compose deployment guide](./deployment-docker-compose.md).
+如果要部署到自己的服务器，请参阅 [Docker Compose 部署指南](./deployment-docker-compose.md)。
 
-## Repository Automation
+## 仓库自动化
 
-The repository includes GitHub Actions for backend tests, Docker Compose smoke tests, frontend checks, deployment, release preparation, and pre-commit validation. Review the workflow files under `.github/workflows/` before changing CI or deployment behavior.
+仓库包含用于后端测试、Docker Compose 冒烟测试、前端检查、部署、发布准备和 pre-commit 校验的 GitHub Actions。修改 CI 或部署行为前，请先查看 `.github/workflows/` 下的工作流文件。

@@ -11,18 +11,18 @@ type TimelineEntry =
   | { kind: "audit"; value: TicketAuditPublic }
 
 const auditLabels: Record<TicketAuditAction, string> = {
-  TAKEN: "Ticket claimed",
-  ASSIGNED: "Ticket assigned",
-  REASSIGNED: "Ticket reassigned",
-  UNASSIGNED: "Assignment removed",
-  STATUS_CHANGED: "Status changed",
-  PRIORITY_CHANGED: "Priority changed",
-  CATEGORY_CHANGED: "Category changed",
-  DELETED: "Ticket deleted",
+  TAKEN: "工单已接手",
+  ASSIGNED: "工单已分派",
+  REASSIGNED: "工单已转派",
+  UNASSIGNED: "已取消分派",
+  STATUS_CHANGED: "状态已变更",
+  PRIORITY_CHANGED: "优先级已变更",
+  CATEGORY_CHANGED: "分类已变更",
+  DELETED: "工单已删除",
 }
 
 const formatDate = (value: string) =>
-  new Intl.DateTimeFormat("en-US", {
+  new Intl.DateTimeFormat("zh-CN", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value))
@@ -30,11 +30,18 @@ const formatDate = (value: string) =>
 const displayName = (author: TicketMessagePublic["author"]) =>
   author.full_name?.trim() || author.email
 
+const snapshotLabels: Record<string, string> = {
+  assignee_id: "负责人",
+  category: "分类",
+  priority: "优先级",
+  status: "状态",
+}
+
 const formatSnapshot = (value: Record<string, unknown> | null | undefined) => {
   if (!value) return ""
 
   return Object.entries(value)
-    .map(([key, entry]) => `${key.replace(/_/g, " ")}: ${String(entry)}`)
+    .map(([key, entry]) => `${snapshotLabels[key] ?? key}: ${String(entry)}`)
     .join(" · ")
 }
 
@@ -61,7 +68,7 @@ export function TicketTimeline({
   if (entries.length === 0) {
     return (
       <div className="rounded-lg border border-dashed px-6 py-10 text-center text-sm text-muted-foreground">
-        No updates have been posted yet.
+        暂无更新记录。
       </div>
     )
   }
@@ -119,7 +126,7 @@ export function TicketTimeline({
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium">{displayName(message.author)}</p>
                   <Badge variant={isInternal ? "outline" : "secondary"}>
-                    {isInternal ? "Internal note" : "Public reply"}
+                    {isInternal ? "内部备注" : "公开回复"}
                   </Badge>
                 </div>
                 <time className="text-xs text-muted-foreground">

@@ -36,29 +36,29 @@ import { handleError } from "@/utils"
 
 const formSchema = z
   .object({
-    email: z.email({ message: "Invalid email address" }),
+    email: z.email({ message: "请输入有效的邮箱地址" }),
     full_name: z.string().optional(),
     password: z
       .string()
-      .min(1, { message: "Password is required" })
-      .min(8, { message: "Password must be at least 8 characters" }),
+      .min(1, { message: "请输入密码" })
+      .min(8, { message: "密码至少需要 8 个字符" }),
     confirm_password: z
       .string()
-      .min(1, { message: "Please confirm your password" }),
+      .min(1, { message: "请再次输入密码" }),
     role: z.enum(["CUSTOMER", "AGENT", "ADMIN"]),
     is_active: z.boolean(),
   })
   .refine((data) => data.password === data.confirm_password, {
-    message: "The passwords don't match",
+    message: "两次输入的密码不一致",
     path: ["confirm_password"],
   })
 
 type FormData = z.infer<typeof formSchema>
 
 const roleOptions: Array<{ value: UserRole; label: string }> = [
-  { value: "CUSTOMER", label: "Customer" },
-  { value: "AGENT", label: "Agent" },
-  { value: "ADMIN", label: "Admin" },
+  { value: "CUSTOMER", label: "客户" },
+  { value: "AGENT", label: "客服" },
+  { value: "ADMIN", label: "管理员" },
 ]
 
 // Admin 新建用户必须显式选择角色和启用状态，避免沿用旧的 superuser 布尔开关。by AI.Coding
@@ -85,7 +85,7 @@ const AddUser = () => {
     mutationFn: (data: UserCreateAdmin) => UsersService.createUser({ body: data }),
     onSuccess: async () => {
       await invalidateUserQueries(queryClient)
-      showSuccessToast("User created successfully")
+      showSuccessToast("用户创建成功")
       form.reset()
       setIsOpen(false)
     },
@@ -102,14 +102,14 @@ const AddUser = () => {
       <DialogTrigger asChild>
         <Button>
           <Plus className="mr-2" />
-          Add user
+          添加用户
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Add user</DialogTitle>
+          <DialogTitle>添加用户</DialogTitle>
           <DialogDescription>
-            Create a user, choose the role, and set the active state.
+            创建用户，选择角色并设置账号是否启用。
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -120,9 +120,9 @@ const AddUser = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>邮箱</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" type="email" {...field} required />
+                      <Input placeholder="请输入邮箱" type="email" {...field} required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -134,9 +134,9 @@ const AddUser = () => {
                 name="full_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full name</FormLabel>
+                    <FormLabel>姓名</FormLabel>
                     <FormControl>
-                      <Input placeholder="Full name" type="text" {...field} />
+                      <Input placeholder="请输入姓名" type="text" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -148,11 +148,11 @@ const AddUser = () => {
                 name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Role</FormLabel>
+                    <FormLabel>角色</FormLabel>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a role" />
+                          <SelectValue placeholder="请选择角色" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -173,9 +173,9 @@ const AddUser = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>密码</FormLabel>
                     <FormControl>
-                      <Input placeholder="Password" type="password" {...field} required />
+                      <Input placeholder="请输入密码" type="password" {...field} required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -187,10 +187,10 @@ const AddUser = () => {
                 name="confirm_password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm password</FormLabel>
+                    <FormLabel>确认密码</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Password"
+                        placeholder="请再次输入密码"
                         type="password"
                         {...field}
                         required
@@ -212,7 +212,7 @@ const AddUser = () => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Active</FormLabel>
+                    <FormLabel className="font-normal">启用账号</FormLabel>
                   </FormItem>
                 )}
               />
@@ -221,11 +221,11 @@ const AddUser = () => {
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline" disabled={mutation.isPending}>
-                  Cancel
+                  取消
                 </Button>
               </DialogClose>
               <LoadingButton type="submit" loading={mutation.isPending}>
-                Save
+                保存
               </LoadingButton>
             </DialogFooter>
           </form>

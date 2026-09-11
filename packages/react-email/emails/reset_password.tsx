@@ -19,28 +19,26 @@ export default function ResetPassword({
 }: ResetPasswordProps) {
   return (
     <Layout
-      title={`${project_name} - Password recovery`}
-      preview={`Reset your ${project_name} password`}
+      title={`${project_name} - 找回密码`}
+      preview={`重置你的 ${project_name} 密码`}
       project_name={project_name}
     >
-      <Heading>Reset your password</Heading>
-      <Text className="text-[15px] leading-7 text-body">Hi {username},</Text>
+      <Heading>重置密码</Heading>
+      <Text className="text-[15px] leading-7 text-body">你好，{username}：</Text>
       <Text className="text-[15px] leading-7 text-body">
-        We've received a request to reset the password for your {project_name}{" "}
-        account. Choose a new one by clicking the button below:
+        我们收到了重置你的 {project_name} 账号密码的请求。请点击下方按钮设置新密码：
       </Text>
-      <LinkButton href={link}>Reset password</LinkButton>
+      <LinkButton href={link}>重置密码</LinkButton>
       <Text className="text-sm leading-6 text-muted">
-        Or copy and paste this link into your browser:
+        或复制以下链接并粘贴到浏览器中：
         <br />
         <Link href={link}>{link}</Link>
       </Text>
       <Text className="text-sm leading-6 text-muted">
-        This link will expire in {valid_hours} hours.
+        此链接将在 {valid_hours} 小时后失效。
       </Text>
       <Text className="text-sm leading-6 text-muted">
-        If you didn't request a password recovery, you can safely ignore this
-        email.
+        如果你没有申请找回密码，可以放心忽略此邮件。
       </Text>
     </Layout>
   )

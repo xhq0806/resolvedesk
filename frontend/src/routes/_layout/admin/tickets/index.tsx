@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_layout/admin/tickets/")({
   component: AdminTicketsPage,
   validateSearch: ticketSearchSchema,
   head: () => ({
-    meta: [{ title: "All tickets - ResolveDesk" }],
+    meta: [{ title: "全部工单 - ResolveDesk" }],
   }),
 })
 
@@ -51,13 +51,13 @@ function AdminTicketsContent() {
     <div className="flex flex-col gap-6">
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          Admin workspace
+          管理员工作台
         </p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-          All tickets
+          全部工单
         </h1>
         <p className="mt-1 text-muted-foreground">
-          Review, assign, and resolve every customer request.
+          查看、分派并处理所有客户请求。
         </p>
       </div>
       <DataTable
@@ -70,7 +70,7 @@ function AdminTicketsContent() {
             assignees={assignees}
           />
         }
-        emptyState="No tickets match the current filters."
+        emptyState="没有符合当前筛选条件的工单。"
         isFetching={isFetching}
         pagination={{
           pageIndex: filters.page - 1,

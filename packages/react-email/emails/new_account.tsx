@@ -20,31 +20,30 @@ export default function NewAccount({
 }: NewAccountProps) {
   return (
     <Layout
-      title={`${project_name} - New account`}
-      preview={`Your ${project_name} account is ready`}
+      title={`${project_name} - 新账号`}
+      preview={`${project_name} 账号已准备就绪`}
       project_name={project_name}
     >
-      <Heading>Welcome to {project_name}!</Heading>
-      <Text className="text-[15px] leading-7 text-body">Hi,</Text>
+      <Heading>欢迎使用 {project_name}！</Heading>
+      <Text className="text-[15px] leading-7 text-body">你好：</Text>
       <Text className="text-[15px] leading-7 text-body">
-        Your account has been successfully created and is ready to use. These
-        are your credentials:
+        你的账号已创建成功，可以开始使用。以下是你的登录信息：
       </Text>
       <Callout>
-        <Detail label="Username" value={username} />
-        <Detail label="Password" value={password} />
+        <Detail label="用户名" value={username} />
+        <Detail label="密码" value={password} />
       </Callout>
       <Text className="text-[15px] leading-7 text-body">
-        Get started by signing in to your dashboard:
+        请登录工作台开始使用：
       </Text>
-      <LinkButton href={link}>Go to Dashboard</LinkButton>
+      <LinkButton href={link}>进入工作台</LinkButton>
       <Text className="text-sm leading-6 text-muted">
-        Or copy and paste this link into your browser:
+        或复制以下链接并粘贴到浏览器中：
         <br />
         <Link href={link}>{link}</Link>
       </Text>
       <Text className="text-sm leading-6 text-muted">
-        For security reasons, change your password after your first sign in.
+        出于安全考虑，请在首次登录后修改密码。
       </Text>
     </Layout>
   )

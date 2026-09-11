@@ -156,7 +156,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-32 text-center text-muted-foreground"
                 >
-                  {emptyState ?? "No results found."}
+              {emptyState ?? "没有找到结果。"}
                 </TableCell>
               </TableRow>
             )}
@@ -167,11 +167,11 @@ export function DataTable<TData, TValue>({
           <div
             className="absolute inset-0 flex items-center justify-center bg-background/70 backdrop-blur-[1px]"
             role="status"
-            aria-label="Loading"
+            aria-label="正在加载"
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Loading...</span>
+              <span>正在加载……</span>
             </div>
           </div>
         )}
@@ -181,12 +181,12 @@ export function DataTable<TData, TValue>({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 border-t bg-muted/20">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="text-sm text-muted-foreground">
-              Showing {firstEntry} to {lastEntry} of{" "}
+              显示第 {firstEntry}–{lastEntry} 条，共{" "}
               <span className="font-medium text-foreground">{totalCount}</span>{" "}
-              entries
+              条
             </div>
             <div className="flex items-center gap-x-2">
-              <p className="text-sm text-muted-foreground">Rows per page</p>
+              <p className="text-sm text-muted-foreground">每页行数</p>
               <Select
                 value={`${currentPageSize}`}
                 onValueChange={(value) => {
@@ -209,11 +209,11 @@ export function DataTable<TData, TValue>({
 
           <div className="flex items-center gap-x-6">
             <div className="flex items-center gap-x-1 text-sm text-muted-foreground">
-              <span>Page</span>
+              <span>第</span>
               <span className="font-medium text-foreground">
                 {currentPageIndex + 1}
               </span>
-              <span>of</span>
+              <span>页，共</span>
               <span className="font-medium text-foreground">{pageCount}</span>
             </div>
 
@@ -225,7 +225,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => goToPage(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to first page</span>
+                <span className="sr-only">跳转到第一页</span>
                 <ChevronsLeft className="h-4 w-4" />
               </Button>
               <Button
@@ -235,7 +235,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => goToPage(currentPageIndex - 1)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to previous page</span>
+                <span className="sr-only">跳转到上一页</span>
                 <ChevronLeft className="h-4 w-4" />
               </Button>
               <Button
@@ -245,7 +245,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => goToPage(currentPageIndex + 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to next page</span>
+                <span className="sr-only">跳转到下一页</span>
                 <ChevronRight className="h-4 w-4" />
               </Button>
               <Button
@@ -255,7 +255,7 @@ export function DataTable<TData, TValue>({
                 onClick={() => goToPage(pageCount - 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to last page</span>
+                <span className="sr-only">跳转到最后一页</span>
                 <ChevronsRight className="h-4 w-4" />
               </Button>
             </div>

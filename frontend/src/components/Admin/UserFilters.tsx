@@ -15,14 +15,14 @@ import type { UserFilterChange, UserListFilters } from "@/lib/userQueries"
 const ALL = "__all__"
 
 const roleOptions: Array<{ value: UserRole; label: string }> = [
-  { value: "CUSTOMER", label: "Customer" },
-  { value: "AGENT", label: "Agent" },
-  { value: "ADMIN", label: "Admin" },
+  { value: "CUSTOMER", label: "客户" },
+  { value: "AGENT", label: "客服" },
+  { value: "ADMIN", label: "管理员" },
 ]
 
 const activeOptions = [
-  { value: "true", label: "Active" },
-  { value: "false", label: "Inactive" },
+  { value: "true", label: "启用" },
+  { value: "false", label: "停用" },
 ] as const
 
 const isUserRole = (value: string): value is UserRole =>
@@ -44,7 +44,7 @@ export function UserFilters({
     <div className="flex w-full flex-wrap items-end gap-3 border-b bg-muted/20 p-4">
       <div className="relative min-w-56 flex-1">
         <label htmlFor="user-filter-query" className="sr-only">
-          Search users
+          搜索用户
         </label>
         <Search
           aria-hidden="true"
@@ -54,7 +54,7 @@ export function UserFilters({
           id="user-filter-query"
           value={filters.query}
           onChange={(event) => onChange({ page: 1, query: event.target.value })}
-          placeholder="Search name or email"
+          placeholder="搜索姓名或邮箱"
           className="pl-9"
         />
       </div>
@@ -73,10 +73,10 @@ export function UserFilters({
           }
         >
           <SelectTrigger id="user-filter-role" className="w-36">
-            <SelectValue placeholder="Role" />
+          <SelectValue placeholder="角色" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All roles</SelectItem>
+            <SelectItem value={ALL}>全部角色</SelectItem>
             {roleOptions.map(({ value, label }) => (
               <SelectItem key={value} value={value}>
                 {label}
@@ -100,10 +100,10 @@ export function UserFilters({
           }
         >
           <SelectTrigger id="user-filter-active" className="w-36">
-            <SelectValue placeholder="Status" />
+          <SelectValue placeholder="状态" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All statuses</SelectItem>
+            <SelectItem value={ALL}>全部状态</SelectItem>
             {activeOptions.map(({ value, label }) => (
               <SelectItem key={value} value={value}>
                 {label}
@@ -126,8 +126,8 @@ export function UserFilters({
               isActive: null,
             })
           }
-          aria-label="Reset filters"
-          title="Reset filters"
+          aria-label="重置筛选条件"
+          title="重置筛选条件"
         >
           <RotateCcw className="h-4 w-4" />
         </Button>

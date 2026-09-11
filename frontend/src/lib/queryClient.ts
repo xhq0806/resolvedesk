@@ -19,7 +19,7 @@ export const isAuthenticationError = (error: unknown) => {
     ?.detail
   if (status === 401) return true
 
-  return status === 403 && detail === "Could not validate credentials"
+  return status === 403 && detail === "无法验证登录凭据"
 }
 
 // 仅凭证失效时清理会话；普通 403 交给角色守卫或页面展示权限错误。by AI.Coding

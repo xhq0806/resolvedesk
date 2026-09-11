@@ -64,7 +64,7 @@ export function TicketAssignmentDialog({
     onSuccess: async () => {
       await refresh()
       setOpen(false)
-      showSuccessToast(ticket.assignee ? "Ticket reassigned." : "Ticket assigned.")
+      showSuccessToast(ticket.assignee ? "工单已转派。" : "工单已分派。")
     },
     onError: handleError.bind(showErrorToast),
   })
@@ -75,7 +75,7 @@ export function TicketAssignmentDialog({
     onSuccess: async () => {
       await refresh()
       setOpen(false)
-      showSuccessToast("Ticket returned to the unassigned queue.")
+      showSuccessToast("工单已返回未分派队列。")
     },
     onError: handleError.bind(showErrorToast),
   })
@@ -94,19 +94,19 @@ export function TicketAssignmentDialog({
       <DialogTrigger asChild>
         <Button type="button" variant="outline" className="w-full">
           <UserRoundCog className="h-4 w-4" />
-          {hasAssignee ? "Change assignee" : "Assign ticket"}
+          {hasAssignee ? "更换负责人" : "分派工单"}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{hasAssignee ? "Change assignee" : "Assign ticket"}</DialogTitle>
+          <DialogTitle>{hasAssignee ? "更换负责人" : "分派工单"}</DialogTitle>
           <DialogDescription>
-            Only active Agent accounts can receive this ticket.
+            只有已启用的客服账号可以接收工单。
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-2">
           <label htmlFor="ticket-assignee" className="text-sm font-medium">
-            Agent
+            客服
           </label>
           <Select
             value={selectedAgentId}
@@ -116,7 +116,7 @@ export function TicketAssignmentDialog({
             <SelectTrigger id="ticket-assignee">
               <SelectValue
                 placeholder={
-                  agentsQuery.isPending ? "Loading agents..." : "Select an agent"
+                  agentsQuery.isPending ? "正在加载客服……" : "请选择客服"
                 }
               />
             </SelectTrigger>
@@ -139,14 +139,14 @@ export function TicketAssignmentDialog({
                 disabled={isPending}
                 onClick={() => unassignMutation.mutate()}
               >
-                Unassign
+                取消分派
               </LoadingButton>
             )}
           </div>
           <div className="flex gap-2">
             <DialogClose asChild>
               <Button type="button" variant="outline" disabled={isPending}>
-                Cancel
+                取消
               </Button>
             </DialogClose>
             <LoadingButton
@@ -155,7 +155,7 @@ export function TicketAssignmentDialog({
               disabled={!canAssign || isPending}
               onClick={() => assignMutation.mutate(selectedAgentId)}
             >
-              Save assignment
+              保存分派
             </LoadingButton>
           </div>
         </DialogFooter>

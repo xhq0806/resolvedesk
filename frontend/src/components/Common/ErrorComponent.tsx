@@ -18,19 +18,19 @@ const ErrorComponent = ({ error }: ErrorComponentProps) => {
       <div className="flex items-center z-10">
         <div className="flex flex-col ml-4 items-center justify-center p-4">
           <span className="text-6xl md:text-8xl font-bold leading-none mb-4">
-            {isForbidden ? "403" : "Error"}
+          {isForbidden ? "403" : "错误"}
           </span>
-          <span className="text-2xl font-bold mb-2">Oops!</span>
+        <span className="text-2xl font-bold mb-2">出错了！</span>
         </div>
       </div>
 
       <p className="text-lg text-muted-foreground mb-4 text-center z-10">
         {isForbidden
-          ? "You do not have permission to access this area."
-          : "Something went wrong. Please try again."}
+          ? "你没有权限访问该区域。"
+          : "发生了一些问题，请重试。"}
       </p>
       <Link to="/">
-        <Button>Go Home</Button>
+        <Button>返回首页</Button>
       </Link>
     </div>
   )

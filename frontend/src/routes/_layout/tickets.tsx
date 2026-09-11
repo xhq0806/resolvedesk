@@ -21,7 +21,7 @@ export const Route = createFileRoute("/_layout/tickets")({
   validateSearch: ticketSearchSchema,
   beforeLoad: requireRoles({ allowed: ["CUSTOMER"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "My tickets - ResolveDesk" }],
+    meta: [{ title: "我的工单 - ResolveDesk" }],
   }),
 })
 
@@ -52,7 +52,7 @@ function TicketsTableContent() {
       columns={ticketColumns}
       data={tickets.data}
       toolbar={<TicketFilters filters={filters} onChange={updateFilters} />}
-      emptyState="No tickets match the current filters."
+      emptyState="没有符合当前筛选条件的工单。"
       isFetching={isFetching}
       pagination={{
         pageIndex: filters.page - 1,
@@ -79,13 +79,13 @@ function TicketsPage() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            Customer workspace
+            客户工作台
           </p>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-            My tickets
+            我的工单
           </h1>
           <p className="mt-1 text-muted-foreground">
-            Track requests, updates, and support conversations in one place.
+            在一个页面跟踪请求、进展和客服沟通。
           </p>
         </div>
         <CreateTicketDialog />

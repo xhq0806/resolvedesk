@@ -24,27 +24,27 @@ import { DeleteTicketDialog } from "./DeleteTicketDialog"
 import { TicketAssignmentDialog } from "./TicketAssignmentDialog"
 
 const statusLabels: Record<TicketStatus, string> = {
-  OPEN: "Open",
-  IN_PROGRESS: "In progress",
-  WAITING_FOR_CUSTOMER: "Waiting for customer",
-  RESOLVED: "Resolved",
-  CLOSED: "Closed",
+  OPEN: "待处理",
+  IN_PROGRESS: "处理中",
+  WAITING_FOR_CUSTOMER: "等待客户",
+  RESOLVED: "已解决",
+  CLOSED: "已关闭",
 }
 
 const priorityLabels: Record<TicketPriority, string> = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
-  URGENT: "Urgent",
+  LOW: "低",
+  MEDIUM: "中",
+  HIGH: "高",
+  URGENT: "紧急",
 }
 
 const categoryLabels: Record<TicketCategory, string> = {
-  ACCOUNT: "Account",
-  BILLING: "Billing",
-  PRODUCT: "Product",
-  BUG: "Bug",
-  FEATURE_REQUEST: "Feature request",
-  OTHER: "Other",
+  ACCOUNT: "账号问题",
+  BILLING: "账单问题",
+  PRODUCT: "产品咨询",
+  BUG: "缺陷反馈",
+  FEATURE_REQUEST: "功能建议",
+  OTHER: "其他",
 }
 
 const statusTargets: Record<
@@ -108,7 +108,7 @@ export function TicketActionPanel({
       }),
     onSuccess: async () => {
       await invalidateTicketQueries(queryClient, { ticketId: ticket.id })
-      showSuccessToast("Ticket status updated.")
+      showSuccessToast("工单状态已更新。")
     },
     onError: handleError.bind(showErrorToast),
   })
@@ -121,7 +121,7 @@ export function TicketActionPanel({
       }),
     onSuccess: async () => {
       await invalidateTicketQueries(queryClient, { ticketId: ticket.id })
-      showSuccessToast("Ticket details updated.")
+      showSuccessToast("工单详情已更新。")
     },
     onError: handleError.bind(showErrorToast),
   })
@@ -133,14 +133,14 @@ export function TicketActionPanel({
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Settings2 className="h-4 w-4" />
-          Ticket actions
+          工单操作
         </CardTitle>
       </CardHeader>
       <CardContent className="grid gap-4">
         {allowedStatuses.length > 0 && (
           <ActionSelect
             id="ticket-status"
-            label="Status"
+            label="状态"
             value={ticket.status}
             disabled={isPending}
             options={[ticket.status, ...allowedStatuses].filter(
@@ -155,7 +155,7 @@ export function TicketActionPanel({
           <>
             <ActionSelect
               id="ticket-priority"
-              label="Priority"
+              label="优先级"
               value={ticket.priority}
               disabled={isPending}
               options={Object.keys(priorityLabels) as TicketPriority[]}
@@ -166,7 +166,7 @@ export function TicketActionPanel({
             />
             <ActionSelect
               id="ticket-category"
-              label="Category"
+              label="分类"
               value={ticket.category}
               disabled={isPending}
               options={Object.keys(categoryLabels) as TicketCategory[]}
@@ -188,7 +188,7 @@ export function TicketActionPanel({
 
         {isClosed && (
           <p className="text-sm text-muted-foreground">
-            Closed tickets are read-only.
+            已关闭的工单只能查看，不能编辑。
           </p>
         )}
       </CardContent>

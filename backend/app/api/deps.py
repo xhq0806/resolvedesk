@@ -37,13 +37,13 @@ def get_current_user(session: SessionDep, token: TokenDep) -> User:
     except InvalidTokenError, ValidationError:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Could not validate credentials",
+            detail="无法验证登录凭据",
         )
     user = session.get(User, token_data.sub)
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
+        raise HTTPException(status_code=404, detail="用户不存在")
     if not user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
+        raise HTTPException(status_code=400, detail="用户已停用")
     return user
 
 
@@ -54,6 +54,6 @@ def get_current_active_superuser(current_user: CurrentUser) -> User:
     """迁移期沿用旧依赖名称，并通过单角色模型识别 Admin。by AI.Coding"""
     if not current_user.is_superuser:
         raise HTTPException(
-            status_code=403, detail="The user doesn't have enough privileges"
+            status_code=403, detail="用户权限不足"
         )
     return current_user

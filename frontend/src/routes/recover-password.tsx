@@ -24,7 +24,7 @@ import { redirectIfAuthenticated } from "@/lib/routeGuards"
 import { handleError } from "@/utils"
 
 const formSchema = z.object({
-  email: z.email({ message: "Invalid email address" }),
+  email: z.email({ message: "请输入有效的邮箱地址" }),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -35,7 +35,7 @@ export const Route = createFileRoute("/recover-password")({
   head: () => ({
     meta: [
       {
-        title: "Recover Password - ResolveDesk",
+        title: "找回密码 - ResolveDesk",
       },
     ],
   }),
@@ -59,7 +59,7 @@ function RecoverPassword() {
   const mutation = useMutation({
     mutationFn: recoverPassword,
     onSuccess: () => {
-      showSuccessToast("Password recovery email sent successfully")
+      showSuccessToast("密码找回邮件已发送")
       form.reset()
     },
     onError: handleError.bind(showErrorToast),
@@ -78,7 +78,7 @@ function RecoverPassword() {
           className="flex flex-col gap-6"
         >
           <div className="flex flex-col items-center gap-2 text-center">
-            <h1 className="text-2xl font-bold">Password Recovery</h1>
+            <h1 className="text-2xl font-bold">找回密码</h1>
           </div>
 
           <div className="grid gap-4">
@@ -87,7 +87,7 @@ function RecoverPassword() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>邮箱</FormLabel>
                   <FormControl>
                     <Input
                       data-testid="email-input"
@@ -106,14 +106,14 @@ function RecoverPassword() {
               className="w-full"
               loading={mutation.isPending}
             >
-              Continue
+              继续
             </LoadingButton>
           </div>
 
           <div className="text-center text-sm">
-            Remember your password?{" "}
+            想起密码了？{" "}
             <RouterLink to="/login" className="underline underline-offset-4">
-              Log in
+              登录
             </RouterLink>
           </div>
         </form>

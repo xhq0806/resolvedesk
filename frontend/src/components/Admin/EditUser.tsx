@@ -38,11 +38,11 @@ import { handleError } from "@/utils"
 
 const formSchema = z
   .object({
-    email: z.email({ message: "Invalid email address" }),
+    email: z.email({ message: "请输入有效的邮箱地址" }),
     full_name: z.string().optional(),
     password: z
       .string()
-      .min(8, { message: "Password must be at least 8 characters" })
+      .min(8, { message: "密码至少需要 8 个字符" })
       .optional()
       .or(z.literal("")),
     confirm_password: z.string().optional(),
@@ -50,7 +50,7 @@ const formSchema = z
     is_active: z.boolean(),
   })
   .refine((data) => !data.password || data.password === data.confirm_password, {
-    message: "The passwords don't match",
+    message: "两次输入的密码不一致",
     path: ["confirm_password"],
   })
 
@@ -62,9 +62,9 @@ interface EditUserProps {
 }
 
 const roleOptions: Array<{ value: UserRole; label: string }> = [
-  { value: "CUSTOMER", label: "Customer" },
-  { value: "AGENT", label: "Agent" },
-  { value: "ADMIN", label: "Admin" },
+  { value: "CUSTOMER", label: "客户" },
+  { value: "AGENT", label: "客服" },
+  { value: "ADMIN", label: "管理员" },
 ]
 
 const EditUser = ({ user, onSuccess }: EditUserProps) => {
@@ -105,7 +105,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
       await invalidateUserQueries(queryClient, {
         includeCurrentUser: user.id === currentUser?.id,
       })
-      showSuccessToast("User updated successfully")
+      showSuccessToast("用户更新成功")
       setIsOpen(false)
       onSuccess()
     },
@@ -117,10 +117,10 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
         : undefined
       if (errorCode === "LAST_ACTIVE_ADMIN") {
         form.setError("role", {
-          message: "At least one active administrator is required.",
+          message: "系统至少需要一名启用中的管理员。",
         })
         form.setError("is_active", {
-          message: "At least one active administrator is required.",
+          message: "系统至少需要一名启用中的管理员。",
         })
       }
     },
@@ -141,14 +141,14 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuItem onSelect={(e) => e.preventDefault()} onClick={() => setIsOpen(true)}>
         <Pencil />
-        Edit user
+        编辑用户
       </DropdownMenuItem>
       <DialogContent className="sm:max-w-md">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <DialogHeader>
-              <DialogTitle>Edit user</DialogTitle>
-              <DialogDescription>Update the user details below.</DialogDescription>
+              <DialogTitle>编辑用户</DialogTitle>
+              <DialogDescription>请在下方更新用户信息。</DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <FormField
@@ -156,9 +156,9 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>邮箱</FormLabel>
                     <FormControl>
-                      <Input placeholder="Email" type="email" {...field} required />
+                    <Input placeholder="请输入邮箱" type="email" {...field} required />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -170,9 +170,9 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="full_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full name</FormLabel>
+                    <FormLabel>姓名</FormLabel>
                     <FormControl>
-                      <Input placeholder="Full name" type="text" {...field} />
+                    <Input placeholder="请输入姓名" type="text" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -184,11 +184,11 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="role"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Role</FormLabel>
+                    <FormLabel>角色</FormLabel>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a role" />
+                          <SelectValue placeholder="请选择角色" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -209,9 +209,9 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Set password</FormLabel>
+                    <FormLabel>设置密码</FormLabel>
                     <FormControl>
-                      <Input placeholder="Password" type="password" {...field} />
+                    <Input placeholder="请输入密码" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -223,9 +223,9 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                 name="confirm_password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Confirm password</FormLabel>
+                    <FormLabel>确认密码</FormLabel>
                     <FormControl>
-                      <Input placeholder="Password" type="password" {...field} />
+                    <Input placeholder="请再次输入密码" type="password" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -243,7 +243,7 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
                         onCheckedChange={field.onChange}
                       />
                     </FormControl>
-                    <FormLabel className="font-normal">Active</FormLabel>
+                  <FormLabel className="font-normal">启用账号</FormLabel>
                   </FormItem>
                 )}
               />
@@ -252,11 +252,11 @@ const EditUser = ({ user, onSuccess }: EditUserProps) => {
             <DialogFooter>
               <DialogClose asChild>
                 <Button variant="outline" disabled={mutation.isPending}>
-                  Cancel
+                取消
                 </Button>
               </DialogClose>
               <LoadingButton type="submit" loading={mutation.isPending}>
-                Save
+              保存
               </LoadingButton>
             </DialogFooter>
           </form>

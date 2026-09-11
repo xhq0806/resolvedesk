@@ -22,7 +22,7 @@ export const Route = createFileRoute("/_layout/admin/")({
   component: AdminUsers,
   validateSearch: userSearchSchema,
   head: () => ({
-    meta: [{ title: "Users - ResolveDesk" }],
+    meta: [{ title: "用户管理 - ResolveDesk" }],
   }),
 })
 
@@ -55,7 +55,7 @@ function UsersTableContent() {
       toolbar={
         <UserFilters filters={filters} onChange={updateFilters} />
       }
-      emptyState="No users match the current filters."
+      emptyState="没有符合当前筛选条件的用户。"
       isFetching={isFetching}
       pagination={{
         pageIndex: filters.page - 1,
@@ -81,9 +81,9 @@ function AdminUsers() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Users</h1>
+          <h1 className="text-2xl font-bold tracking-tight">用户管理</h1>
           <p className="text-muted-foreground">
-            Manage user accounts and permissions
+            管理用户账号和权限
           </p>
         </div>
         <AddUser />

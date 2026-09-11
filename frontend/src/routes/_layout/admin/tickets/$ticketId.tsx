@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_layout/admin/tickets/$ticketId")({
   component: AdminTicketDetailRoute,
   beforeLoad: requireRoles({ allowed: ["ADMIN"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "Ticket details - ResolveDesk" }],
+    meta: [{ title: "工单详情 - ResolveDesk" }],
   }),
 })
 

@@ -41,7 +41,7 @@ export function DeleteTicketDialog({
       }),
     onSuccess: async () => {
       queryClient.removeQueries({ queryKey: ticketKeys.detail(ticketId) })
-      showSuccessToast("Ticket deleted.")
+      showSuccessToast("工单已删除。")
       setOpen(false)
       setConfirmed(false)
       onDeleted()
@@ -62,15 +62,14 @@ export function DeleteTicketDialog({
       <DialogTrigger asChild>
         <Button type="button" variant="destructive" className="w-full">
           <Trash2 className="h-4 w-4" />
-          Delete ticket
+          删除工单
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Delete ticket</DialogTitle>
+          <DialogTitle>删除工单</DialogTitle>
           <DialogDescription>
-            This removes the ticket from business queries and cannot be undone.
-            Its audit record is retained.
+            工单将从业务查询中移除，且无法撤销；系统仍会保留其审计记录。
           </DialogDescription>
         </DialogHeader>
         <label
@@ -83,12 +82,12 @@ export function DeleteTicketDialog({
             onCheckedChange={(value) => setConfirmed(value === true)}
             disabled={mutation.isPending}
           />
-          <span>I understand this ticket will no longer be available.</span>
+          <span>我了解该工单删除后将不再可用。</span>
         </label>
         <DialogFooter>
           <DialogClose asChild>
             <Button type="button" variant="outline" disabled={mutation.isPending}>
-              Cancel
+              取消
             </Button>
           </DialogClose>
           <LoadingButton
@@ -98,7 +97,7 @@ export function DeleteTicketDialog({
             disabled={!confirmed}
             onClick={() => mutation.mutate()}
           >
-            Delete ticket
+            删除工单
           </LoadingButton>
         </DialogFooter>
       </DialogContent>

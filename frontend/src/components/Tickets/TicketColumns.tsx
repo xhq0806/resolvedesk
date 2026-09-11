@@ -5,27 +5,27 @@ import type { TicketPublic } from "@/client"
 import { Badge } from "@/components/ui/badge"
 
 const statusLabels: Record<TicketPublic["status"], string> = {
-  OPEN: "Open",
-  IN_PROGRESS: "In progress",
-  WAITING_FOR_CUSTOMER: "Waiting for customer",
-  RESOLVED: "Resolved",
-  CLOSED: "Closed",
+  OPEN: "待处理",
+  IN_PROGRESS: "处理中",
+  WAITING_FOR_CUSTOMER: "等待客户",
+  RESOLVED: "已解决",
+  CLOSED: "已关闭",
 }
 
 const priorityLabels: Record<TicketPublic["priority"], string> = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
-  URGENT: "Urgent",
+  LOW: "低",
+  MEDIUM: "中",
+  HIGH: "高",
+  URGENT: "紧急",
 }
 
 const categoryLabels: Record<TicketPublic["category"], string> = {
-  ACCOUNT: "Account",
-  BILLING: "Billing",
-  PRODUCT: "Product",
-  BUG: "Bug",
-  FEATURE_REQUEST: "Feature request",
-  OTHER: "Other",
+  ACCOUNT: "账号问题",
+  BILLING: "账单问题",
+  PRODUCT: "产品咨询",
+  BUG: "缺陷反馈",
+  FEATURE_REQUEST: "功能建议",
+  OTHER: "其他",
 }
 
 const statusVariants: Record<
@@ -66,7 +66,7 @@ export const createTicketColumns = (
 ): ColumnDef<TicketPublic>[] => [
   {
     accessorKey: "ticket_number",
-    header: "Ticket",
+    header: "工单",
     cell: ({ row }) => (
       <span className="font-mono text-xs text-muted-foreground">
         {row.original.ticket_number}
@@ -75,7 +75,7 @@ export const createTicketColumns = (
   },
   {
     accessorKey: "title",
-    header: "Title",
+    header: "标题",
     cell: ({ row }) => {
       const title = row.original.title
       const description = row.original.description
@@ -125,7 +125,7 @@ export const createTicketColumns = (
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "状态",
     cell: ({ row }) => (
       <Badge variant={statusVariants[row.original.status]}>
         {statusLabels[row.original.status]}
@@ -134,7 +134,7 @@ export const createTicketColumns = (
   },
   {
     accessorKey: "priority",
-    header: "Priority",
+    header: "优先级",
     cell: ({ row }) => (
       <Badge variant={priorityVariants[row.original.priority]}>
         {priorityLabels[row.original.priority]}
@@ -143,12 +143,12 @@ export const createTicketColumns = (
   },
   {
     accessorKey: "category",
-    header: "Category",
+    header: "分类",
     cell: ({ row }) => categoryLabels[row.original.category],
   },
   {
     accessorKey: "assignee",
-    header: "Assignee",
+    header: "负责人",
     cell: ({ row }) => {
       const assignee = row.original.assignee
       return assignee ? (
@@ -161,18 +161,18 @@ export const createTicketColumns = (
           </p>
           {!assignee.is_active && (
             <Badge variant="outline" className="mt-1">
-              Inactive
+              已停用
             </Badge>
           )}
         </div>
       ) : (
-        <span className="text-muted-foreground">Unassigned</span>
+        <span className="text-muted-foreground">未分派</span>
       )
     },
   },
   {
     accessorKey: "updated_at",
-    header: "Updated",
+    header: "更新时间",
     cell: ({ row }) => (
       <span className="whitespace-nowrap text-sm text-muted-foreground">
         {formatDate(row.original.updated_at)}

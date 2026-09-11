@@ -1,22 +1,22 @@
-# ResolveDesk Backend
+# ResolveDesk 后端
 
-The backend is a synchronous FastAPI application that serves the ResolveDesk API and, in production builds, the compiled frontend from the same origin.
+后端是一个同步 FastAPI 应用，负责提供 ResolveDesk API；在生产构建中，也会从同一域名提供编译后的前端资源。
 
-## Requirements
+## 环境要求
 
-- [Docker](https://www.docker.com/) for PostgreSQL and Mailpit.
-- [uv](https://docs.astral.sh/uv/) for Python package and environment management.
-- Python 3.14 or newer.
+- [Docker](https://www.docker.com/)，用于运行 PostgreSQL 和 Mailpit。
+- [uv](https://docs.astral.sh/uv/)，用于 Python 依赖和虚拟环境管理。
+- Python 3.14 或更高版本。
 
-## Local Development
+## 本地开发
 
-From the project root, start the supporting services:
+在项目根目录启动配套服务：
 
 ```bash
 docker compose up -d db mailpit
 ```
 
-From `backend/`, install dependencies, apply migrations, and start the API:
+进入 `backend/`，安装依赖、执行数据库迁移并启动 API：
 
 ```bash
 uv sync
@@ -24,23 +24,23 @@ uv run bash scripts/prestart.sh
 uv run fastapi dev
 ```
 
-The API is available at <http://localhost:8000>. OpenAPI JSON is available at <http://localhost:8000/api/v1/openapi.json>, and Swagger UI is available at <http://localhost:8000/docs>.
+API 地址为 <http://localhost:8000>。OpenAPI JSON 地址为 <http://localhost:8000/api/v1/openapi.json>，Swagger UI 地址为 <http://localhost:8000/docs>。
 
-## Backend Responsibilities
+## 后端职责
 
-- `app/api/routes/` declares HTTP endpoints and maps domain errors to API responses.
-- `app/models/` contains SQLModel entities and database enums.
-- `app/schemas/` contains request, response, filter, and error schemas.
-- `app/repositories/` owns database queries, role-aware filtering, pagination, conditional updates, and aggregates.
-- `app/services/` owns ticket state transitions, permissions, user lifecycle rules, statistics, transactions, and audit records.
-- `app/core/` contains configuration, authentication, database setup, request IDs, and error handling.
-- `tests/` contains unit, API, migration, OpenAPI, and integration coverage.
+- `app/api/routes/`：声明 HTTP 接口，并将领域错误映射为 API 响应。
+- `app/models/`：保存 SQLModel 实体和数据库枚举。
+- `app/schemas/`：保存请求、响应、筛选和错误模型。
+- `app/repositories/`：负责数据库查询、按角色过滤、分页、条件更新和聚合查询。
+- `app/services/`：负责工单状态流转、权限、用户生命周期、统计、事务和审计记录。
+- `app/core/`：保存配置、认证、数据库初始化、请求 ID 和错误处理逻辑。
+- `tests/`：保存单元、API、迁移、OpenAPI 和集成测试。
 
-The main business resources are users, tickets, ticket messages, and ticket audit records. `Item` is no longer part of the product or API.
+当前主要业务资源包括用户、工单、工单消息和工单审计记录。`Item` 已不再属于产品或 API。
 
-## Full Stack with Docker Compose
+## 使用 Docker Compose 运行全栈
 
-To run the backend and the built frontend in Docker Compose:
+在 Docker Compose 中运行后端和构建后的前端：
 
 ```bash
 docker compose build
@@ -48,50 +48,50 @@ docker compose run --rm backend bash scripts/prestart.sh
 docker compose up -d --wait backend adminer
 ```
 
-The application is available at <http://localhost:8000>. Use `docker compose exec backend bash` to open a shell in the backend container.
+应用地址为 <http://localhost:8000>。如需进入后端容器，可以执行 `docker compose exec backend bash`。
 
-## Backend Tests
+## 后端测试
 
-Run the backend checks from `backend/`:
+在 `backend/` 目录运行后端检查：
 
 ```bash
 uv run bash scripts/test.sh
 ```
 
-To run tests against an already running Compose stack:
+如果 Docker Compose 环境已经运行，可以直接执行：
 
 ```bash
 docker compose exec backend bash scripts/tests-start.sh
 ```
 
-Extra Pytest arguments are forwarded:
+额外的 Pytest 参数会继续传递：
 
 ```bash
 docker compose exec backend bash scripts/tests-start.sh -x
 ```
 
-Coverage output is written to `backend/htmlcov/`.
+覆盖率报告写入 `backend/htmlcov/`。
 
-## Migrations
+## 数据库迁移
 
-Create and apply an Alembic revision from `backend/` after changing a model:
+修改模型后，在 `backend/` 目录创建并执行 Alembic 迁移：
 
 ```bash
-uv run alembic revision --autogenerate -m "Describe the schema change"
+uv run alembic revision --autogenerate -m "描述数据库结构变更"
 uv run alembic upgrade head
 ```
 
-Commit generated files under `app/alembic/versions/`. The current migration history includes the transition from the template's `Item` model to the ResolveDesk ticket platform and maps existing superusers to the `ADMIN` role.
+请提交 `app/alembic/versions/` 下生成的文件。当前迁移历史包含从模板 `Item` 模型到 ResolveDesk 工单平台的迁移，并会将已有超级管理员映射为 `ADMIN` 角色。
 
-## Email Templates
+## 邮件模板
 
-Email source components live in `packages/react-email/`. The rendered templates consumed by the backend live in `app/email-templates/` and should not be edited by hand.
+邮件源组件位于 `packages/react-email/`。后端实际使用的渲染模板位于 `app/email-templates/`，不应直接手动修改。
 
-Preview and export the templates from the project root:
+在项目根目录预览和导出邮件模板：
 
 ```bash
 bun run email:dev
 bun run email:export
 ```
 
-Password recovery and new-account email behavior depends on the SMTP variables described in the [development guide](../development.md).
+密码找回和新账号邮件功能依赖的 SMTP 配置，请参阅[开发指南](../development.md)。

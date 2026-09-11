@@ -24,11 +24,11 @@ import { TicketTimeline } from "./TicketTimeline"
 type DetailView = "customer" | "agent" | "admin"
 
 const statusLabels: Record<TicketStatus, string> = {
-  OPEN: "Open",
-  IN_PROGRESS: "In progress",
-  WAITING_FOR_CUSTOMER: "Waiting for customer",
-  RESOLVED: "Resolved",
-  CLOSED: "Closed",
+  OPEN: "待处理",
+  IN_PROGRESS: "处理中",
+  WAITING_FOR_CUSTOMER: "等待客户",
+  RESOLVED: "已解决",
+  CLOSED: "已关闭",
 }
 
 const statusVariants: Record<
@@ -43,23 +43,23 @@ const statusVariants: Record<
 }
 
 const priorityLabels = {
-  LOW: "Low",
-  MEDIUM: "Medium",
-  HIGH: "High",
-  URGENT: "Urgent",
+  LOW: "低",
+  MEDIUM: "中",
+  HIGH: "高",
+  URGENT: "紧急",
 } as const
 
 const categoryLabels = {
-  ACCOUNT: "Account",
-  BILLING: "Billing",
-  PRODUCT: "Product",
-  BUG: "Bug",
-  FEATURE_REQUEST: "Feature request",
-  OTHER: "Other",
+  ACCOUNT: "账号问题",
+  BILLING: "账单问题",
+  PRODUCT: "产品咨询",
+  BUG: "缺陷反馈",
+  FEATURE_REQUEST: "功能建议",
+  OTHER: "其他",
 } as const
 
 const formatDate = (value: string) =>
-  new Intl.DateTimeFormat("en-US", {
+  new Intl.DateTimeFormat("zh-CN", {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value))
@@ -112,12 +112,12 @@ export function TicketDetailPage({
       TicketsService.claimTicket({ path: { ticket_id: ticketId } }),
     onSuccess: async () => {
       await invalidateTicketQueries(queryClient, { ticketId })
-      showSuccessToast("Ticket claimed and added to your work queue.")
+      showSuccessToast("工单已接手，并已加入你的工作队列。")
     },
     onError: async (error: Error) => {
       if (isClaimConflict(error)) {
         await invalidateTicketQueries(queryClient, { ticketId })
-        showErrorToast("Another agent claimed this ticket. The detail was refreshed.")
+        showErrorToast("其他客服已接手该工单，详情已刷新。")
         return
       }
 
@@ -144,7 +144,7 @@ export function TicketDetailPage({
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4 border-b pb-6">
         <div className="flex min-w-0 items-start gap-3">
-          <Button asChild variant="ghost" size="icon" aria-label="Back">
+          <Button asChild variant="ghost" size="icon" aria-label="返回">
             <Link {...backLink}>
               <ArrowLeft className="h-4 w-4" />
             </Link>
@@ -157,7 +157,7 @@ export function TicketDetailPage({
               {ticket.title}
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
-              Updated {formatDate(ticket.updated_at)}
+              更新时间：{formatDate(ticket.updated_at)}
             </p>
           </div>
         </div>
@@ -175,7 +175,7 @@ export function TicketDetailPage({
               disabled={claimMutation.isPending || isFetching}
             >
               <Hand className="h-4 w-4" />
-              Claim ticket
+              接手工单
             </Button>
           )}
         </div>
@@ -185,7 +185,7 @@ export function TicketDetailPage({
         <div className="grid min-w-0 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Ticket description</CardTitle>
+              <CardTitle>工单描述</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="whitespace-pre-wrap text-sm leading-6 text-foreground">
@@ -197,10 +197,10 @@ export function TicketDetailPage({
           <section className="grid gap-4" aria-labelledby="timeline-heading">
             <div>
               <h2 id="timeline-heading" className="text-lg font-semibold">
-                Conversation timeline
+                沟通时间线
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Updates and replies visible to your role.
+                当前角色可见的进展和回复。
               </p>
             </div>
             <TicketTimeline
@@ -212,7 +212,7 @@ export function TicketDetailPage({
           {isClosed ? (
             <div className="flex items-start gap-3 rounded-lg border border-dashed px-4 py-3 text-sm text-muted-foreground">
               <LockKeyhole className="mt-0.5 h-4 w-4 shrink-0" />
-              <p>This ticket is closed and is read-only.</p>
+              <p>该工单已关闭，只能查看。</p>
             </div>
           ) : (
             canCompose && (
@@ -228,26 +228,26 @@ export function TicketDetailPage({
         <aside className="grid h-fit gap-6">
           <Card>
             <CardHeader>
-              <CardTitle>Ticket details</CardTitle>
+              <CardTitle>工单详情</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4 text-sm">
               <DetailField
-                label="Category"
+                label="分类"
                 value={categoryLabels[ticket.category]}
               />
               <DetailField
-                label="Requester"
+                label="提单人"
                 value={personName(ticket.requester)}
               />
               <DetailField
-                label="Assignee"
+                label="负责人"
                 value={
                   ticket.assignee
-                    ? `${personName(ticket.assignee)}${ticket.assignee.is_active ? "" : " (Inactive)"}`
-                    : "Unassigned"
+                    ? `${personName(ticket.assignee)}${ticket.assignee.is_active ? "" : "（已停用）"}`
+                    : "未分派"
                 }
               />
-              <DetailField label="Created" value={formatDate(ticket.created_at)} />
+              <DetailField label="创建时间" value={formatDate(ticket.created_at)} />
             </CardContent>
           </Card>
           {canViewActions && (

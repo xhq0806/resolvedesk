@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_layout/")({
   component: Dashboard,
   validateSearch: searchSchema,
   head: () => ({
-    meta: [{ title: "Dashboard - ResolveDesk" }],
+    meta: [{ title: "工作台 - ResolveDesk" }],
   }),
 })
 
@@ -42,13 +42,13 @@ function DashboardContent() {
     <div className="flex flex-col gap-8">
       {access === "denied" && (
         <p className="rounded-md border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-          You do not have permission to access that area.
+          你没有权限访问该区域。
         </p>
       )}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <TicketStatisticsHeading role={role} />
         <p className="text-sm text-muted-foreground">
-          Signed in as {currentUser?.full_name || currentUser?.email}
+          当前登录账号：{currentUser?.full_name || currentUser?.email}
         </p>
       </div>
       <TicketStatistics statistics={statistics} />
@@ -62,15 +62,15 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
   if (role === "CUSTOMER") {
     return (
       <QuickLinksCard
-        title="Continue with your support requests"
-        description="Review existing tickets or start a new conversation with the support team."
+        title="继续处理你的客服请求"
+        description="查看已有工单，或向客服团队发起新的咨询。"
       >
         <Link
           to="/tickets"
           search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
-          <QuickLinkContent icon={Inbox} label="Open my tickets" />
+          <QuickLinkContent icon={Inbox} label="查看我的工单" />
         </Link>
       </QuickLinksCard>
     )
@@ -79,15 +79,15 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
   if (role === "AGENT") {
     return (
       <QuickLinksCard
-        title="Keep the queue moving"
-        description="Claim unassigned work, respond to customers, and close resolved requests."
+        title="让客服队列持续运转"
+        description="接手未分派工单、回复客户，并关闭已解决的请求。"
       >
         <Link
           to="/queue"
           search={{ view: "unassigned", page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
-          <QuickLinkContent icon={ListTodo} label="Open service queue" />
+          <QuickLinkContent icon={ListTodo} label="打开客服队列" />
         </Link>
       </QuickLinksCard>
     )
@@ -95,8 +95,8 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
 
   return (
     <QuickLinksCard
-      title="Manage the workspace"
-      description="Review the global ticket queue or update roles and account status."
+        title="管理工作空间"
+        description="查看全局工单队列，或更新用户角色和账号状态。"
     >
       <div className="flex flex-wrap gap-3">
         <Link
@@ -104,14 +104,14 @@ function QuickLinks({ role }: { role: ReturnType<typeof getUserRole> }) {
           search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
-          <QuickLinkContent icon={Inbox} label="Manage tickets" />
+          <QuickLinkContent icon={Inbox} label="管理工单" />
         </Link>
         <Link
           to="/admin"
           search={{ page: 1, pageSize: 20, query: "" }}
           className="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors hover:bg-muted"
         >
-          <QuickLinkContent icon={Users} label="Manage users" />
+          <QuickLinkContent icon={Users} label="管理用户" />
         </Link>
       </div>
     </QuickLinksCard>
@@ -159,7 +159,7 @@ function DashboardSkeleton() {
     <div
       className="flex flex-col gap-6"
       role="status"
-      aria-label="Loading dashboard"
+      aria-label="正在加载工作台"
     >
       <div className="h-20 animate-pulse rounded-xl bg-muted" />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

@@ -55,7 +55,7 @@ export const Layout = ({
         },
       }}
     >
-      <Html lang="en" dir="ltr">
+      <Html lang="zh-CN" dir="ltr">
         <Head>
           <title>{title}</title>
           <meta
@@ -75,7 +75,7 @@ export const Layout = ({
           <Hr className="border-0 border-t border-solid border-rule mt-10 mb-5" />
           <Section>
             <Text className="text-xs leading-5 text-muted m-0">
-              © {new Date().getFullYear()} {project_name}. All rights reserved.
+              © {new Date().getFullYear()} {project_name}。版权所有。
             </Text>
           </Section>
         </Body>

@@ -18,7 +18,7 @@ export const createAgentQueueColumns = ({
   ...createTicketColumns("/queue/$ticketId"),
   {
     id: "actions",
-    header: "Action",
+    header: "操作",
     cell: ({ row }) => {
       const ticket = row.original
       const isClaiming = claimingTicketId === ticket.id
@@ -32,14 +32,14 @@ export const createAgentQueueColumns = ({
           size="sm"
           onClick={() => onClaim(ticket.id)}
           disabled={claimingTicketId !== undefined}
-          aria-label={`Claim ${ticket.ticket_number}`}
+          aria-label={`接手工单 ${ticket.ticket_number}`}
         >
           {isClaiming ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
             <Hand className="h-4 w-4" />
           )}
-          Claim
+          接手
         </Button>
       )
     },

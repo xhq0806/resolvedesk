@@ -20,27 +20,27 @@ import type { TicketFilterChange, TicketListFilters } from "@/lib/ticketQueries"
 const ALL = "__all__"
 
 const statusOptions: Array<{ value: TicketStatus; label: string }> = [
-  { value: "OPEN", label: "Open" },
-  { value: "IN_PROGRESS", label: "In progress" },
-  { value: "WAITING_FOR_CUSTOMER", label: "Waiting for customer" },
-  { value: "RESOLVED", label: "Resolved" },
-  { value: "CLOSED", label: "Closed" },
+  { value: "OPEN", label: "待处理" },
+  { value: "IN_PROGRESS", label: "处理中" },
+  { value: "WAITING_FOR_CUSTOMER", label: "等待客户" },
+  { value: "RESOLVED", label: "已解决" },
+  { value: "CLOSED", label: "已关闭" },
 ]
 
 const priorityOptions: Array<{ value: TicketPriority; label: string }> = [
-  { value: "LOW", label: "Low" },
-  { value: "MEDIUM", label: "Medium" },
-  { value: "HIGH", label: "High" },
-  { value: "URGENT", label: "Urgent" },
+  { value: "LOW", label: "低" },
+  { value: "MEDIUM", label: "中" },
+  { value: "HIGH", label: "高" },
+  { value: "URGENT", label: "紧急" },
 ]
 
 const categoryOptions: Array<{ value: TicketCategory; label: string }> = [
-  { value: "ACCOUNT", label: "Account" },
-  { value: "BILLING", label: "Billing" },
-  { value: "PRODUCT", label: "Product" },
-  { value: "BUG", label: "Bug" },
-  { value: "FEATURE_REQUEST", label: "Feature request" },
-  { value: "OTHER", label: "Other" },
+  { value: "ACCOUNT", label: "账号问题" },
+  { value: "BILLING", label: "账单问题" },
+  { value: "PRODUCT", label: "产品咨询" },
+  { value: "BUG", label: "缺陷反馈" },
+  { value: "FEATURE_REQUEST", label: "功能建议" },
+  { value: "OTHER", label: "其他" },
 ]
 
 const isTicketStatus = (value: string): value is TicketStatus =>
@@ -93,7 +93,7 @@ export function TicketFilters({
     <div className="flex w-full flex-wrap items-end gap-3 border-b bg-muted/20 p-4">
       <div className="relative min-w-56 flex-1">
         <label htmlFor="ticket-filter-query" className="sr-only">
-          Search tickets
+          搜索工单
         </label>
         <Search
           aria-hidden="true"
@@ -103,7 +103,7 @@ export function TicketFilters({
           id="ticket-filter-query"
           value={filters.query}
           onChange={(event) => onChange({ page: 1, query: event.target.value })}
-          placeholder="Search by title or ticket number"
+          placeholder="按标题或工单编号搜索"
           className="pl-9"
         />
       </div>
@@ -111,7 +111,7 @@ export function TicketFilters({
       {showStatus && (
         <div>
           <label htmlFor="ticket-filter-status" className="sr-only">
-            Status
+            状态
           </label>
           <Select
             value={filters.status ?? ALL}
@@ -123,10 +123,10 @@ export function TicketFilters({
             }}
           >
             <SelectTrigger id="ticket-filter-status" className="w-44">
-              <SelectValue placeholder="Status" />
+              <SelectValue placeholder="状态" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value={ALL}>All statuses</SelectItem>
+              <SelectItem value={ALL}>全部状态</SelectItem>
               {statusOptions.map(({ value, label }) => (
                 <SelectItem key={value} value={value}>
                   {label}
@@ -139,7 +139,7 @@ export function TicketFilters({
 
       <div>
         <label htmlFor="ticket-filter-priority" className="sr-only">
-          Priority
+          优先级
         </label>
         <Select
           value={filters.priority ?? ALL}
@@ -152,10 +152,10 @@ export function TicketFilters({
           }}
         >
           <SelectTrigger id="ticket-filter-priority" className="w-32">
-            <SelectValue placeholder="Priority" />
+            <SelectValue placeholder="优先级" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All priorities</SelectItem>
+            <SelectItem value={ALL}>全部优先级</SelectItem>
             {priorityOptions.map(({ value, label }) => (
               <SelectItem key={value} value={value}>
                 {label}
@@ -167,7 +167,7 @@ export function TicketFilters({
 
       <div>
         <label htmlFor="ticket-filter-category" className="sr-only">
-          Category
+          分类
         </label>
         <Select
           value={filters.category ?? ALL}
@@ -180,10 +180,10 @@ export function TicketFilters({
           }}
         >
           <SelectTrigger id="ticket-filter-category" className="w-40">
-            <SelectValue placeholder="Category" />
+            <SelectValue placeholder="分类" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={ALL}>All categories</SelectItem>
+            <SelectItem value={ALL}>全部分类</SelectItem>
             {categoryOptions.map(({ value, label }) => (
               <SelectItem key={value} value={value}>
                 {label}
@@ -196,7 +196,7 @@ export function TicketFilters({
       {assignees.length > 0 && (
         <div>
           <label htmlFor="ticket-filter-assignee" className="sr-only">
-            Assignee
+            负责人
           </label>
           <Select
             value={filters.assigneeId ?? ALL}
@@ -205,10 +205,10 @@ export function TicketFilters({
             }
           >
             <SelectTrigger id="ticket-filter-assignee" className="w-44">
-              <SelectValue placeholder="Assignee" />
+              <SelectValue placeholder="负责人" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value={ALL}>All assignees</SelectItem>
+              <SelectItem value={ALL}>全部负责人</SelectItem>
               {assignees.map((assignee) => (
                 <SelectItem key={assignee.id} value={assignee.id}>
                   {getAssigneeLabel(assignee)}
@@ -225,8 +225,8 @@ export function TicketFilters({
           variant="ghost"
           size="icon"
           onClick={resetFilters}
-          aria-label="Reset filters"
-          title="Reset filters"
+          aria-label="重置筛选条件"
+          title="重置筛选条件"
         >
           <RotateCcw className="h-4 w-4" />
         </Button>

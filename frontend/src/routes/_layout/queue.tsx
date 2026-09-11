@@ -44,7 +44,7 @@ export const Route = createFileRoute("/_layout/queue")({
   validateSearch: queueSearchSchema,
   beforeLoad: requireRoles({ allowed: ["AGENT"], redirectTo: "/" }),
   head: () => ({
-    meta: [{ title: "Service queue - ResolveDesk" }],
+    meta: [{ title: "客服队列 - ResolveDesk" }],
   }),
 })
 
@@ -128,18 +128,18 @@ function AgentQueueContent() {
       <div className="flex flex-col gap-4 border-b pb-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-            Operations / Agent desk
+            运营 / 客服工作台
           </p>
           <h1 className="mt-2 text-2xl font-semibold tracking-tight">
-            Service queue
+            客服队列
           </h1>
           <p className="mt-1 text-muted-foreground">
-            Triage incoming requests and keep customer work moving.
+            分拣新请求，持续推进客户问题处理。
           </p>
         </div>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Headset className="h-4 w-4" />
-          <span>Agent workspace</span>
+          <span>客服工作台</span>
         </div>
       </div>
 
@@ -147,21 +147,21 @@ function AgentQueueContent() {
         <TabsList className="grid h-auto w-full grid-cols-1 p-1 sm:grid-cols-3">
           <TabsTrigger value="unassigned" className="h-10 justify-start px-4 sm:justify-center">
             <Inbox className="h-4 w-4" />
-            Unassigned queue
+            未分派队列
             <Badge variant="secondary" className="ml-1">
               {statistics.unassigned_count}
             </Badge>
           </TabsTrigger>
           <TabsTrigger value="mine" className="h-10 justify-start px-4 sm:justify-center">
             <UserRound className="h-4 w-4" />
-            My tickets
+            我的工单
             <Badge variant="secondary" className="ml-1">
               {statistics.assigned_to_me_count}
             </Badge>
           </TabsTrigger>
           <TabsTrigger value="waiting" className="h-10 justify-start px-4 sm:justify-center">
             <UsersRound className="h-4 w-4" />
-            Waiting for customer
+            等待客户回复
             <Badge variant="secondary" className="ml-1">
               {statistics.waiting_for_customer_count}
             </Badge>
@@ -200,12 +200,12 @@ function QueueTable({ view }: { view: QueueView }) {
       TicketsService.claimTicket({ path: { ticket_id: ticketId } }),
     onSuccess: async (_response, ticketId) => {
       await invalidateTicketQueries(client, { ticketId })
-      showSuccessToast("Ticket claimed and added to your work queue.")
+      showSuccessToast("工单已接手，并已加入你的工作队列。")
     },
     onError: async (error: Error, ticketId) => {
       if (isClaimConflict(error)) {
         await invalidateTicketQueries(client, { ticketId })
-        showErrorToast("Another agent claimed this ticket. The queue was refreshed.")
+        showErrorToast("其他客服已接手该工单，队列已刷新。")
         return
       }
 
@@ -237,10 +237,10 @@ function QueueTable({ view }: { view: QueueView }) {
       }
       emptyState={
         view === "unassigned"
-          ? "No unassigned tickets are waiting."
+          ? "当前没有等待处理的未分派工单。"
           : view === "waiting"
-            ? "No tickets are waiting for a customer reply."
-            : "Your queue is clear."
+            ? "当前没有等待客户回复的工单。"
+            : "你的队列已清空。"
       }
       isFetching={isFetching || claimMutation.isPending}
       pagination={{
