@@ -2,12 +2,18 @@ import { createFileRoute } from "@tanstack/react-router"
 
 import ChangePassword from "@/components/UserSettings/ChangePassword"
 import UserInformation from "@/components/UserSettings/UserInformation"
+import { ProviderSettings } from "@/components/AI/ProviderSettings"
+import { AiWorkbench } from "@/components/AI/AiWorkbench"
+import { KnowledgePanel } from "@/components/Knowledge/KnowledgePanel"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 // 设置页保留资料和密码两个入口，删除账号能力已从当前契约移除。by AI.Coding
 const tabsConfig = [
   { value: "my-profile", title: "我的资料", component: UserInformation },
   { value: "password", title: "密码", component: ChangePassword },
+  { value: "ai-provider", title: "AI Provider", component: ProviderSettings },
+  { value: "knowledge", title: "知识库", component: KnowledgePanel },
+  { value: "ai-workbench", title: "AI 工作台", component: AiWorkbench },
 ]
 
 export const Route = createFileRoute("/_layout/settings")({

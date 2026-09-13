@@ -7,7 +7,7 @@ from collections.abc import Iterator
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import Session, col, delete
+from sqlmodel import Session, col, delete, select
 
 from app.core.config import settings
 from app.core.db import engine
@@ -21,6 +21,7 @@ from app.models.enums import (
 )
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
+from app.models.workspace import Workspace, WorkspaceMember, WorkspaceRole
 from tests.utils.utils import random_email, random_lower_string
 
 
@@ -50,6 +51,11 @@ def tracked_graph() -> Iterator[TrackedGraph]:
         if graph.ticket_ids:
             session.exec(delete(Ticket).where(col(Ticket.id).in_(graph.ticket_ids)))
         if graph.user_ids:
+            session.exec(
+                delete(WorkspaceMember).where(
+                    col(WorkspaceMember.user_id).in_(graph.user_ids)
+                )
+            )
             session.exec(delete(User).where(col(User.id).in_(graph.user_ids)))
         session.commit()
 
@@ -82,7 +88,39 @@ def auth_headers(client: TestClient, *, email: str, password: str) -> dict[str, 
         data={"username": email, "password": password},
     )
     token = response.json()["access_token"]
-    return {"Authorization": f"Bearer {token}"}
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.email == email)).one()
+        workspace = session.exec(
+            select(Workspace).where(Workspace.slug == "default")
+        ).one()
+        member = session.exec(
+            select(WorkspaceMember).where(
+                WorkspaceMember.workspace_id == workspace.id,
+                WorkspaceMember.user_id == user.id,
+            )
+        ).first()
+        if member is None:
+            role = (
+                WorkspaceRole.OWNER
+                if user.role is UserRole.ADMIN
+                else WorkspaceRole.AGENT
+                if user.role is UserRole.AGENT
+                else WorkspaceRole.CUSTOMER
+            )
+            session.add(
+                WorkspaceMember(
+                    workspace_id=workspace.id,
+                    user_id=user.id,
+                    role=role,
+                )
+            )
+            session.commit()
+        workspace_id = workspace.id
+    return {
+        "Authorization": f"Bearer {token}",
+        # 在 session 关闭前复制租户 ID，避免 commit 后对象过期导致 detached instance。by AI.Coding
+        "X-Workspace-ID": str(workspace_id),
+    }
 
 
 def create_ticket(
@@ -98,6 +136,9 @@ def create_ticket(
         description="Ticket route contract test.",
         category=TicketCategory.OTHER,
         requester_id=requester.id,
+        workspace_id=db.exec(
+            select(Workspace.id).where(Workspace.slug == "default")
+        ).one(),
         assignee_id=assignee.id if assignee else None,
         status=status,
         priority=TicketPriority.MEDIUM,

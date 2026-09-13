@@ -1,7 +1,25 @@
 """API Schema 的稳定聚合导出入口。by AI.Coding"""
 
+from app.schemas.ai import (
+    AgentEventPublic,
+    ConversationCreate,
+    ConversationPublic,
+    MessageCreate,
+    ProviderConfigPatch,
+    ProviderConfigPublic,
+    ProviderTestKind,
+    ProviderTestRequest,
+    ProviderTestResult,
+)
+from app.schemas.attachment import AttachmentPublic
 from app.schemas.auth import NewPassword, Token, TokenPayload, UpdatePassword
 from app.schemas.common import ErrorResponse, Message
+from app.schemas.knowledge import (
+    DocumentIngestionJobPublic,
+    KnowledgeDocumentPublic,
+    KnowledgeSearchRequest,
+    RetrievedChunkPublic,
+)
 from app.schemas.ticket import (
     DeleteTicketRequest,
     TicketAssign,
@@ -15,6 +33,7 @@ from app.schemas.ticket import (
     TicketStatisticsPublic,
     UserSummary,
 )
+from app.schemas.tools import ToolPermissionPatch, ToolPermissionPublic
 from app.schemas.user import (
     UserCreate,
     UserCreateAdmin,
@@ -31,6 +50,20 @@ __all__ = [
     "ErrorResponse",
     "Message",
     "NewPassword",
+    "ProviderConfigPatch",
+    "AgentEventPublic",
+    "AttachmentPublic",
+    "ConversationCreate",
+    "ConversationPublic",
+    "MessageCreate",
+    "ProviderConfigPublic",
+    "ProviderTestKind",
+    "ProviderTestRequest",
+    "ProviderTestResult",
+    "DocumentIngestionJobPublic",
+    "KnowledgeDocumentPublic",
+    "KnowledgeSearchRequest",
+    "RetrievedChunkPublic",
     "DeleteTicketRequest",
     "TicketAssign",
     "TicketAuditPublic",
@@ -38,6 +71,8 @@ __all__ = [
     "TicketDetailPublic",
     "TicketFilters",
     "TicketMessagePublic",
+    "ToolPermissionPatch",
+    "ToolPermissionPublic",
     "TicketPublic",
     "TicketStatisticsPublic",
     "TicketsPublic",

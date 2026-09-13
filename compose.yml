@@ -18,7 +18,8 @@ services:
       - --log
 
   db:
-    image: postgres:18
+    # 使用内置 pgvector 扩展的 PostgreSQL 镜像，避免迁移时动态安装扩展。by AI.Coding
+    image: pgvector/pgvector:pg17
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d app"]
       interval: 10s

@@ -13,7 +13,7 @@ from psycopg.rows import dict_row
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
 OLD_HEAD = "fe56fa70289e"
-NEW_HEAD = "7d8f3a1c2b4e"
+NEW_HEAD = "f2b7c4d9e6a1"
 
 
 def run_alembic(
@@ -21,14 +21,20 @@ def run_alembic(
 ) -> subprocess.CompletedProcess[str]:
     """在独立进程中运行 Alembic，避免 Settings 缓存污染连接。by AI.Coding"""
     environment = {**os.environ, "DATABASE_URL": database_url}
-    return subprocess.run(
+    result = subprocess.run(
         ["uv", "run", "alembic", *arguments],
         cwd=BACKEND_DIR,
         env=environment,
-        check=check,
+        check=False,
         capture_output=True,
         text=True,
     )
+    if check and result.returncode != 0:
+        raise AssertionError(
+            f"Alembic {' '.join(arguments)} failed with exit code "
+            f"{result.returncode}:\n{result.stderr}"
+        )
+    return result
 
 
 def insert_legacy_user(
@@ -138,10 +144,35 @@ def test_upgrade_backfills_roles_and_replaces_items(
                 """
             ).fetchall()
         }
+        extensions = {
+            row["extname"]
+            for row in conn.execute(
+                "SELECT extname FROM pg_extension WHERE extname = 'vector'"
+            ).fetchall()
+        }
 
     assert roles[admin_id] == "ADMIN"
     assert roles[customer_id] == "CUSTOMER"
-    assert {"ticket", "ticket_message", "ticket_audit_log"}.issubset(tables)
+    assert {
+        "ticket",
+        "ticket_message",
+        "ticket_audit_log",
+        "workspace",
+        "workspace_member",
+        "workspace_invitation",
+        "ai_agent",
+        "ai_provider_config",
+        "knowledge_document",
+        "knowledge_chunk",
+        "document_ingestion_job",
+        "ai_conversation",
+        "ai_message",
+        "ai_run",
+        "ai_run_event",
+        "ai_tool_permission",
+        "attachment",
+    }.issubset(tables)
+    assert extensions == {"vector"}
     assert "item" not in tables
     assert "role" in user_columns
     assert "is_superuser" not in user_columns

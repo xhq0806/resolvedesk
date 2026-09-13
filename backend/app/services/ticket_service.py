@@ -15,6 +15,7 @@ from app.core.errors import (
     ForbiddenError,
     NotFoundError,
 )
+from app.core.workspace import WorkspaceContext
 from app.models.enums import (
     TicketAuditAction,
     TicketMessageType,
@@ -24,8 +25,10 @@ from app.models.enums import (
 )
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User, get_datetime_utc
+from app.models.workspace import MembershipStatus, WorkspaceRole
 from app.repositories.ticket_repository import TicketRepository
 from app.repositories.user_repository import UserRepository
+from app.repositories.workspace_repository import WorkspaceRepository
 from app.schemas.ticket import (
     CustomerReplyCreate,
     DeleteTicketRequest,
@@ -63,10 +66,18 @@ class TicketService:
         self.session = session
         self.ticket_repository = TicketRepository(session)
         self.user_repository = UserRepository(session)
+        self.workspace_repository = WorkspaceRepository(session)
 
-    def create_ticket(self, actor: User, payload: TicketCreate) -> TicketDetailPublic:
+    def create_ticket(
+        self,
+        actor: User,
+        payload: TicketCreate,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketDetailPublic:
         """由 Customer 创建默认 OPEN、MEDIUM、未分派工单。by AI.Coding"""
-        if actor.role is not UserRole.CUSTOMER:
+        role = context.role if context else actor.role
+        if role is not WorkspaceRole.CUSTOMER and role is not UserRole.CUSTOMER:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
 
         def operation() -> Ticket:
@@ -76,6 +87,7 @@ class TicketService:
                 description=payload.description,
                 category=payload.category,
                 requester_id=actor.id,
+                workspace_id=context.workspace_id if context else None,
                 status=TicketStatus.OPEN,
                 priority=TicketPriority.MEDIUM,
                 assignee_id=None,
@@ -84,11 +96,22 @@ class TicketService:
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
-    def list_tickets(self, actor: User, filters: TicketFilters) -> TicketsPublic:
+    def list_tickets(
+        self,
+        actor: User,
+        filters: TicketFilters,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketsPublic:
         """返回角色范围内筛选后的工单稳定分页。by AI.Coding"""
-        tickets, count = self.ticket_repository.list_for_actor(actor, filters)
+        tickets, count = self.ticket_repository.list_for_actor(
+            actor,
+            filters,
+            workspace_id=context.workspace_id if context else None,
+            role=context.role if context else None,
+        )
         return TicketsPublic(
             data=[TicketPublic.model_validate(ticket) for ticket in tickets],
             count=count,
@@ -96,22 +119,49 @@ class TicketService:
             page_size=filters.page_size,
         )
 
-    def get_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
+    def get_ticket(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketDetailPublic:
         """先鉴权再按角色裁剪并返回工单详情。by AI.Coding"""
-        ticket = self._get_visible_ticket(actor, ticket_id)
-        return self._build_detail(actor, ticket)
+        ticket = self._get_visible_ticket(actor, ticket_id, context=context)
+        return self._build_detail(actor, ticket, context=context)
 
-    def claim_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
+    def claim_ticket(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketDetailPublic:
         """由活跃 Agent 原子接手 OPEN 且未分派工单。by AI.Coding"""
-        if actor.role not in {UserRole.AGENT, UserRole.ADMIN} or not actor.is_active:
+        role = context.role if context else actor.role
+        if role not in {
+            UserRole.AGENT,
+            UserRole.ADMIN,
+            WorkspaceRole.AGENT,
+            WorkspaceRole.ADMIN,
+            WorkspaceRole.OWNER,
+        } or not actor.is_active:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
 
         def operation() -> Ticket:
             now = get_datetime_utc()
-            ticket = self.ticket_repository.claim_if_available(ticket_id, actor.id, now)
+            ticket = self.ticket_repository.claim_if_available(
+                ticket_id,
+                actor.id,
+                now,
+                workspace_id=context.workspace_id if context else None,
+            )
             if ticket is None:
                 # 条件更新失败后再读取，仅用于区分不存在与业务冲突。
-                existing = self.ticket_repository.get_active_by_id(ticket_id)
+                existing = self.ticket_repository.get_active_by_id(
+                    ticket_id,
+                    workspace_id=context.workspace_id if context else None,
+                )
                 if existing is None:
                     raise NotFoundError(ErrorCode.TICKET_NOT_FOUND)
                 raise ConflictError(ErrorCode.TICKET_ALREADY_CLAIMED)
@@ -122,31 +172,32 @@ class TicketService:
                     action=TicketAuditAction.TAKEN,
                     old_assignee_id=None,
                     old_status=TicketStatus.OPEN,
+                    workspace_id=context.workspace_id if context else None,
                 )
             )
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
     def assign_ticket(
         self,
         actor: User,
         ticket_id: uuid.UUID,
         payload: TicketAssign,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> TicketDetailPublic:
         """由 Admin 分派或转派未关闭工单给活跃 Agent。by AI.Coding"""
-        self._require_admin(actor)
+        self._require_admin(actor, context=context)
 
         def operation() -> Ticket:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_open_for_assignment(ticket)
             assignee = self.user_repository.get_by_id(payload.assignee_id)
-            if (
-                assignee is None
-                or assignee.role is not UserRole.AGENT
-                or not assignee.is_active
-            ):
+            if not self._is_assignable_agent(assignee, context=context):
+                raise ConflictError(ErrorCode.INVALID_ASSIGNEE)
+            if assignee is None:
                 raise ConflictError(ErrorCode.INVALID_ASSIGNEE)
             if ticket.assignee_id == assignee.id:
                 raise ConflictError(ErrorCode.INVALID_ASSIGNEE)
@@ -171,19 +222,26 @@ class TicketService:
                     action=action,
                     old_assignee_id=old_assignee_id,
                     old_status=old_status,
+                    workspace_id=context.workspace_id if context else None,
                 )
             )
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
-    def unassign_ticket(self, actor: User, ticket_id: uuid.UUID) -> TicketDetailPublic:
+    def unassign_ticket(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketDetailPublic:
         """由 Admin 取消负责人并将未关闭工单退回 OPEN 队列。by AI.Coding"""
-        self._require_admin(actor)
+        self._require_admin(actor, context=context)
 
         def operation() -> Ticket:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_open_for_assignment(ticket)
             if ticket.assignee_id is None:
                 # 重复取消分派是无变化请求，直接返回当前详情且不写成功审计。
@@ -201,27 +259,30 @@ class TicketService:
                     action=TicketAuditAction.UNASSIGNED,
                     old_assignee_id=old_assignee_id,
                     old_status=old_status,
+                    workspace_id=context.workspace_id if context else None,
                 )
             )
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
     def add_customer_reply(
         self,
         actor: User,
         ticket_id: uuid.UUID,
         payload: CustomerReplyCreate,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> TicketMessagePublic:
         """Customer 发送公开回复，并按状态机自动重开等待或已解决工单。by AI.Coding"""
-        if actor.role is not UserRole.CUSTOMER:
+        if self._role(context, actor) is not UserRole.CUSTOMER:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
 
         def operation() -> TicketMessage:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_writable(ticket)
-            if not can_reply_publicly(actor, ticket):
+            if not can_reply_publicly(actor, ticket, role=self._role(context, actor)):
                 raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
 
             now = get_datetime_utc()
@@ -229,6 +290,7 @@ class TicketService:
             target_status = customer_reply_status_target(ticket)
             message = TicketMessage(
                 ticket_id=ticket.id,
+                workspace_id=context.workspace_id if context else None,
                 author_id=actor.id,
                 message_type=TicketMessageType.PUBLIC_REPLY,
                 content=payload.content,
@@ -243,6 +305,7 @@ class TicketService:
                         ticket=ticket,
                         actor=actor,
                         old_status=old_status,
+                        workspace_id=context.workspace_id if context else None,
                     )
                 )
             self.ticket_repository.add(ticket)
@@ -256,23 +319,30 @@ class TicketService:
         actor: User,
         ticket_id: uuid.UUID,
         payload: TicketMessageCreate,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> TicketMessagePublic:
         """Agent 或 Admin 对未关闭工单发送公开回复或内部备注。by AI.Coding"""
-        if actor.role not in {UserRole.AGENT, UserRole.ADMIN}:
+        if self._role(context, actor) not in {UserRole.AGENT, UserRole.ADMIN}:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
 
         def operation() -> TicketMessage:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_writable(ticket)
             if payload.message_type is TicketMessageType.INTERNAL_NOTE:
-                allowed = can_add_internal_note(actor, ticket)
+                allowed = can_add_internal_note(
+                    actor, ticket, role=self._role(context, actor)
+                )
             else:
-                allowed = can_reply_publicly(actor, ticket)
+                allowed = can_reply_publicly(
+                    actor, ticket, role=self._role(context, actor)
+                )
             if not allowed:
                 raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
 
             message = TicketMessage(
                 ticket_id=ticket.id,
+                workspace_id=context.workspace_id if context else None,
                 author_id=actor.id,
                 message_type=payload.message_type,
                 content=payload.content,
@@ -291,15 +361,19 @@ class TicketService:
         actor: User,
         ticket_id: uuid.UUID,
         payload: TicketStatusUpdate,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> TicketDetailPublic:
         """按状态机主动修改工单状态并写入状态审计。by AI.Coding"""
 
         def operation() -> Ticket:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_writable(ticket)
-            if not can_manage_ticket(actor, ticket):
+            if not can_manage_ticket(actor, ticket, role=self._role(context, actor)):
                 raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
-            if payload.status not in allowed_status_targets(actor, ticket):
+            if payload.status not in allowed_status_targets(
+                actor, ticket, role=self._role(context, actor)
+            ):
                 raise ConflictError(ErrorCode.INVALID_STATUS_TRANSITION)
 
             old_status = ticket.status
@@ -307,28 +381,40 @@ class TicketService:
             ticket.updated_at = get_datetime_utc()
             self.ticket_repository.add(ticket)
             self.ticket_repository.add_audit(
-                self._status_audit(ticket=ticket, actor=actor, old_status=old_status)
+                self._status_audit(
+                    ticket=ticket,
+                    actor=actor,
+                    old_status=old_status,
+                    workspace_id=context.workspace_id if context else None,
+                )
             )
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
     def update_attributes(
         self,
         actor: User,
         ticket_id: uuid.UUID,
         payload: TicketAttributesUpdate,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> TicketDetailPublic:
         """修改工单优先级或分类，并为实际变化写入审计。by AI.Coding"""
 
         def operation() -> Ticket:
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             self._ensure_ticket_writable(ticket)
-            if not can_manage_ticket(actor, ticket):
+            if not can_manage_ticket(actor, ticket, role=self._role(context, actor)):
                 raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
 
-            audits = self._attribute_audits(ticket=ticket, actor=actor, payload=payload)
+            audits = self._attribute_audits(
+                ticket=ticket,
+                actor=actor,
+                payload=payload,
+                workspace_id=context.workspace_id if context else None,
+            )
             if audits:
                 # 多个属性变化共享同一个更新时间，但分别保留可筛选的审计动作。
                 ticket.updated_at = get_datetime_utc()
@@ -338,22 +424,24 @@ class TicketService:
             return ticket
 
         ticket = self._write(operation, refresh=True)
-        return self._build_detail(actor, ticket)
+        return self._build_detail(actor, ticket, context=context)
 
     def delete_ticket(
         self,
         actor: User,
         ticket_id: uuid.UUID,
         payload: DeleteTicketRequest,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> None:
         """Admin 确认后软删除工单，并在同一事务保留删除审计。by AI.Coding"""
-        self._require_admin(actor)
+        self._require_admin(actor, context=context)
 
         def operation() -> None:
             if payload.confirm is not True:
                 raise ConflictError(ErrorCode.DELETE_CONFIRMATION_REQUIRED)
 
-            ticket = self._get_locked_active_ticket(ticket_id)
+            ticket = self._get_locked_active_ticket(ticket_id, context=context)
             now = get_datetime_utc()
             ticket.deleted_at = now
             ticket.deleted_by_id = actor.id
@@ -363,6 +451,7 @@ class TicketService:
             self.ticket_repository.add_audit(
                 TicketAuditLog(
                     ticket_id=ticket.id,
+                    workspace_id=context.workspace_id if context else None,
                     actor_id=actor.id,
                     action=TicketAuditAction.DELETED,
                     old_value={"deleted_at": None, "deleted_by_id": None},
@@ -375,15 +464,25 @@ class TicketService:
 
         self._write(operation, refresh=False)
 
-    def _build_detail(self, actor: User, ticket: Ticket) -> TicketDetailPublic:
+    def _build_detail(
+        self,
+        actor: User,
+        ticket: Ticket,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> TicketDetailPublic:
         """使用数据库侧裁剪结果显式组装安全详情。by AI.Coding"""
         messages = self.ticket_repository.list_messages(
             ticket.id,
-            include_internal=can_view_internal_notes(actor, ticket),
+            include_internal=can_view_internal_notes(
+                actor, ticket, role=self._role(context, actor)
+            ),
+            workspace_id=context.workspace_id if context else None,
         )
         audits = self.ticket_repository.list_audits(
             ticket.id,
-            customer_safe_only=actor.role is UserRole.CUSTOMER,
+            customer_safe_only=self._role(context, actor) is UserRole.CUSTOMER,
+            workspace_id=context.workspace_id if context else None,
         )
         public = TicketPublic.model_validate(ticket)
         return TicketDetailPublic(
@@ -394,18 +493,36 @@ class TicketService:
             audit_logs=[TicketAuditPublic.model_validate(audit) for audit in audits],
         )
 
-    def _get_visible_ticket(self, actor: User, ticket_id: uuid.UUID) -> Ticket:
+    def _get_visible_ticket(
+        self,
+        actor: User,
+        ticket_id: uuid.UUID,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> Ticket:
         """读取 active Ticket 并执行资源级可见性检查。by AI.Coding"""
-        ticket = self.ticket_repository.get_active_by_id(ticket_id)
+        ticket = self.ticket_repository.get_active_by_id(
+            ticket_id,
+            workspace_id=context.workspace_id if context else None,
+        )
         if ticket is None:
             raise NotFoundError(ErrorCode.TICKET_NOT_FOUND)
-        if not can_view_ticket(actor, ticket):
+        if not can_view_ticket(actor, ticket, role=self._role(context, actor)):
             raise ForbiddenError(ErrorCode.TICKET_FORBIDDEN)
         return ticket
 
-    def _get_locked_active_ticket(self, ticket_id: uuid.UUID) -> Ticket:
+    def _get_locked_active_ticket(
+        self,
+        ticket_id: uuid.UUID,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> Ticket:
         """锁定 active Ticket 供负责人变更事务使用。by AI.Coding"""
-        ticket = self.ticket_repository.get_active_by_id(ticket_id, for_update=True)
+        ticket = self.ticket_repository.get_active_by_id(
+            ticket_id,
+            workspace_id=context.workspace_id if context else None,
+            for_update=True,
+        )
         if ticket is None:
             raise NotFoundError(ErrorCode.TICKET_NOT_FOUND)
         return ticket
@@ -423,10 +540,46 @@ class TicketService:
             raise ConflictError(ErrorCode.TICKET_CLOSED)
 
     @staticmethod
-    def _require_admin(actor: User) -> None:
+    def _require_admin(
+        actor: User, *, context: WorkspaceContext | None = None
+    ) -> None:
         """限制负责人管理能力仅对 Admin 开放。by AI.Coding"""
-        if actor.role is not UserRole.ADMIN:
+        role = context.role if context else actor.role
+        if role not in {UserRole.ADMIN, WorkspaceRole.ADMIN, WorkspaceRole.OWNER}:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
+
+    @staticmethod
+    def _role(
+        context: WorkspaceContext | None, actor: User
+    ) -> UserRole:
+        """将 Workspace 角色映射为一期权限函数使用的角色。by AI.Coding"""
+        if context is None:
+            return actor.role
+        if context.role is WorkspaceRole.CUSTOMER:
+            return UserRole.CUSTOMER
+        if context.role is WorkspaceRole.AGENT:
+            return UserRole.AGENT
+        return UserRole.ADMIN
+
+    def _is_assignable_agent(
+        self,
+        assignee: User | None,
+        *,
+        context: WorkspaceContext | None,
+    ) -> bool:
+        """校验负责人属于当前 Workspace 且具备 Agent 角色。by AI.Coding"""
+        if assignee is None or not assignee.is_active:
+            return False
+        if context is None:
+            return assignee.role is UserRole.AGENT
+        member = self.workspace_repository.get_member(
+            context.workspace_id, assignee.id
+        )
+        return (
+            member is not None
+            and member.status is MembershipStatus.ACTIVE
+            and member.role is WorkspaceRole.AGENT
+        )
 
     @staticmethod
     def _assignment_audit(
@@ -436,10 +589,12 @@ class TicketService:
         action: TicketAuditAction,
         old_assignee_id: uuid.UUID | None,
         old_status: TicketStatus,
+        workspace_id: uuid.UUID | None = None,
     ) -> TicketAuditLog:
         """创建负责人和状态的结构化前后快照审计。by AI.Coding"""
         return TicketAuditLog(
             ticket_id=ticket.id,
+            workspace_id=workspace_id,
             actor_id=actor.id,
             action=action,
             old_value={
@@ -458,11 +613,16 @@ class TicketService:
 
     @staticmethod
     def _status_audit(
-        *, ticket: Ticket, actor: User, old_status: TicketStatus
+        *,
+        ticket: Ticket,
+        actor: User,
+        old_status: TicketStatus,
+        workspace_id: uuid.UUID | None = None,
     ) -> TicketAuditLog:
         """创建状态变化的结构化前后快照审计。by AI.Coding"""
         return TicketAuditLog(
             ticket_id=ticket.id,
+            workspace_id=workspace_id,
             actor_id=actor.id,
             action=TicketAuditAction.STATUS_CHANGED,
             old_value={"status": old_status.value},
@@ -471,7 +631,11 @@ class TicketService:
 
     @staticmethod
     def _attribute_audits(
-        *, ticket: Ticket, actor: User, payload: TicketAttributesUpdate
+        *,
+        ticket: Ticket,
+        actor: User,
+        payload: TicketAttributesUpdate,
+        workspace_id: uuid.UUID | None = None,
     ) -> list[TicketAuditLog]:
         """应用优先级和分类变化，并返回对应结构化审计。by AI.Coding"""
         audits: list[TicketAuditLog] = []
@@ -481,6 +645,7 @@ class TicketService:
             audits.append(
                 TicketAuditLog(
                     ticket_id=ticket.id,
+                    workspace_id=workspace_id,
                     actor_id=actor.id,
                     action=TicketAuditAction.PRIORITY_CHANGED,
                     old_value={"priority": old_priority.value},
@@ -493,6 +658,7 @@ class TicketService:
             audits.append(
                 TicketAuditLog(
                     ticket_id=ticket.id,
+                    workspace_id=workspace_id,
                     actor_id=actor.id,
                     action=TicketAuditAction.CATEGORY_CHANGED,
                     old_value={"category": old_category.value},

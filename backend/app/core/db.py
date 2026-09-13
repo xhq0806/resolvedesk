@@ -1,9 +1,13 @@
+import uuid
+
 from sqlmodel import Session, col, create_engine, select
 
 from app import crud
 from app.core.config import settings
+from app.models.ai import AiAgent, AiProviderConfig
 from app.models.enums import UserRole
 from app.models.user import User
+from app.models.workspace import Workspace, WorkspaceMember, WorkspaceRole
 from app.schemas.user import UserCreate
 
 engine = create_engine(str(settings.DATABASE_URL))
@@ -42,3 +46,27 @@ def init_db(session: Session) -> None:
     ).first()
     if active_admin is None:
         raise RuntimeError("数据库初始化失败：系统中必须至少存在一位活跃管理员。")
+
+    workspace = session.exec(
+        select(Workspace).order_by(col(Workspace.created_at))
+    ).first()
+    if workspace is None:
+        # 首次空库启动在 Admin 创建后补齐默认租户与独立 AI Agent。by AI.Coding
+        workspace = Workspace(
+            id=uuid.uuid4(),
+            name="Default Workspace",
+            slug="default",
+            owner_user_id=active_admin.id,
+        )
+        session.add(workspace)
+        session.flush()
+        session.add(
+            WorkspaceMember(
+                workspace_id=workspace.id,
+                user_id=active_admin.id,
+                role=WorkspaceRole.OWNER,
+            )
+        )
+        session.add(AiAgent(workspace_id=workspace.id))
+        session.add(AiProviderConfig(workspace_id=workspace.id))
+        session.commit()

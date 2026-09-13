@@ -16,6 +16,8 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
+import { Route as LayoutAiRouteImport } from './routes/_layout/ai'
+import { Route as LayoutKnowledgeRouteImport } from './routes/_layout/knowledge'
 import { Route as LayoutQueueRouteImport } from './routes/_layout/queue'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
 import { Route as LayoutTicketsRouteImport } from './routes/_layout/tickets'
@@ -58,6 +60,16 @@ const LayoutIndexRoute = LayoutIndexRouteImport.update({
 const LayoutAdminRoute = LayoutAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutAiRoute = LayoutAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutKnowledgeRoute = LayoutKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
   getParentRoute: () => LayoutRoute,
 } as any)
 const LayoutQueueRoute = LayoutQueueRouteImport.update({
@@ -114,6 +126,8 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/admin': typeof LayoutAdminRouteWithChildren
+  '/ai': typeof LayoutAiRoute
+  '/knowledge': typeof LayoutKnowledgeRoute
   '/queue': typeof LayoutQueueRouteWithChildren
   '/settings': typeof LayoutSettingsRoute
   '/tickets': typeof LayoutTicketsRouteWithChildren
@@ -129,6 +143,8 @@ export interface FileRoutesByTo {
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
+  '/ai': typeof LayoutAiRoute
+  '/knowledge': typeof LayoutKnowledgeRoute
   '/queue': typeof LayoutQueueRouteWithChildren
   '/settings': typeof LayoutSettingsRoute
   '/tickets': typeof LayoutTicketsRouteWithChildren
@@ -147,6 +163,8 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/signup': typeof SignupRoute
   '/_layout/admin': typeof LayoutAdminRouteWithChildren
+  '/_layout/ai': typeof LayoutAiRoute
+  '/_layout/knowledge': typeof LayoutKnowledgeRoute
   '/_layout/queue': typeof LayoutQueueRouteWithChildren
   '/_layout/settings': typeof LayoutSettingsRoute
   '/_layout/tickets': typeof LayoutTicketsRouteWithChildren
@@ -167,6 +185,8 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/admin'
+    | '/ai'
+    | '/knowledge'
     | '/queue'
     | '/settings'
     | '/tickets'
@@ -182,6 +202,8 @@ export interface FileRouteTypes {
     | '/recover-password'
     | '/reset-password'
     | '/signup'
+    | '/ai'
+    | '/knowledge'
     | '/queue'
     | '/settings'
     | '/tickets'
@@ -199,6 +221,8 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/signup'
     | '/_layout/admin'
+    | '/_layout/ai'
+    | '/_layout/knowledge'
     | '/_layout/queue'
     | '/_layout/settings'
     | '/_layout/tickets'
@@ -268,6 +292,20 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof LayoutAdminRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/ai': {
+      id: '/_layout/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof LayoutAiRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/knowledge': {
+      id: '/_layout/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof LayoutKnowledgeRouteImport
       parentRoute: typeof LayoutRoute
     }
     '/_layout/queue': {
@@ -389,6 +427,8 @@ const LayoutTicketsRouteWithChildren = LayoutTicketsRoute._addFileChildren(
 
 interface LayoutRouteChildren {
   LayoutAdminRoute: typeof LayoutAdminRouteWithChildren
+  LayoutAiRoute: typeof LayoutAiRoute
+  LayoutKnowledgeRoute: typeof LayoutKnowledgeRoute
   LayoutQueueRoute: typeof LayoutQueueRouteWithChildren
   LayoutSettingsRoute: typeof LayoutSettingsRoute
   LayoutTicketsRoute: typeof LayoutTicketsRouteWithChildren
@@ -397,6 +437,8 @@ interface LayoutRouteChildren {
 
 const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutAdminRoute: LayoutAdminRouteWithChildren,
+  LayoutAiRoute: LayoutAiRoute,
+  LayoutKnowledgeRoute: LayoutKnowledgeRoute,
   LayoutQueueRoute: LayoutQueueRouteWithChildren,
   LayoutSettingsRoute: LayoutSettingsRoute,
   LayoutTicketsRoute: LayoutTicketsRouteWithChildren,

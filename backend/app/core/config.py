@@ -1,4 +1,5 @@
 import warnings
+from pathlib import Path
 from typing import Literal, Self
 
 from pydantic import (
@@ -64,6 +65,12 @@ class Settings(BaseSettings):
     EMAIL_TEST_USER: EmailStr = "test@example.com"
     FIRST_SUPERUSER: EmailStr
     FIRST_SUPERUSER_PASSWORD: str
+
+    # 知识库采用本地隔离目录，后续可替换为对象存储而不改变业务键。by AI.Coding
+    KNOWLEDGE_STORAGE_DIR: Path = Path("./.data/knowledge")
+    KNOWLEDGE_MAX_FILE_BYTES: int = 20 * 1024 * 1024
+    ATTACHMENT_STORAGE_DIR: Path = Path("./.data/attachments")
+    ATTACHMENT_MAX_FILE_BYTES: int = 10 * 1024 * 1024
 
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == "changethis":

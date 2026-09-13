@@ -21,6 +21,7 @@ from app.models.enums import (
 )
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
+from app.models.workspace import WorkspaceRole
 from app.schemas.ticket import TicketFilters
 
 _CUSTOMER_SAFE_AUDIT_ACTIONS = (
@@ -52,32 +53,49 @@ class TicketRepository:
         self.session.add(ticket)
 
     def get_active_by_id(
-        self, ticket_id: uuid.UUID, *, for_update: bool = False
+        self,
+        ticket_id: uuid.UUID,
+        *,
+        workspace_id: uuid.UUID | None = None,
+        for_update: bool = False,
     ) -> Ticket | None:
         """按主键读取未软删除工单，并可锁定和刷新该行。by AI.Coding"""
         statement = select(Ticket).where(
             Ticket.id == ticket_id,
             col(Ticket.deleted_at).is_(None),
         )
+        if workspace_id is not None:
+            statement = statement.where(col(Ticket.workspace_id) == workspace_id)
         if for_update:
             statement = statement.with_for_update().execution_options(
                 populate_existing=True
             )
         return self.session.exec(statement).one_or_none()
 
-    def get_active_by_number(self, ticket_number: str) -> Ticket | None:
+    def get_active_by_number(
+        self, ticket_number: str, *, workspace_id: uuid.UUID | None = None
+    ) -> Ticket | None:
         """按外部工单编号读取未软删除工单。by AI.Coding"""
         statement = select(Ticket).where(
             Ticket.ticket_number == ticket_number,
             col(Ticket.deleted_at).is_(None),
         )
+        if workspace_id is not None:
+            statement = statement.where(col(Ticket.workspace_id) == workspace_id)
         return self.session.exec(statement).one_or_none()
 
     def list_for_actor(
-        self, actor: User, filters: TicketFilters
+        self,
+        actor: User,
+        filters: TicketFilters,
+        *,
+        workspace_id: uuid.UUID | None = None,
+        role: UserRole | WorkspaceRole | None = None,
     ) -> tuple[list[Ticket], int]:
         """按角色数据范围和组合筛选返回稳定分页及总数。by AI.Coding"""
-        conditions = self._build_list_conditions(actor, filters)
+        conditions = self._build_list_conditions(
+            actor, filters, workspace_id=workspace_id, role=role
+        )
         count_statement = select(func.count()).select_from(Ticket).where(*conditions)
         count = self.session.exec(count_statement).one()
 
@@ -104,6 +122,8 @@ class TicketRepository:
         ticket_id: uuid.UUID,
         agent_id: uuid.UUID,
         updated_at: datetime,
+        *,
+        workspace_id: uuid.UUID | None = None,
     ) -> Ticket | None:
         """以单条条件更新原子接手 OPEN 且未分派的活跃工单。by AI.Coding"""
         statement = (
@@ -121,14 +141,24 @@ class TicketRepository:
             )
             .returning(Ticket)
         )
+        if workspace_id is not None:
+            statement = statement.where(col(Ticket.workspace_id) == workspace_id)
         result = self.session.execute(statement).scalars().one_or_none()  # ty: ignore[deprecated]
         return cast(Ticket | None, result)
 
     def list_messages(
-        self, ticket_id: uuid.UUID, *, include_internal: bool
+        self,
+        ticket_id: uuid.UUID,
+        *,
+        include_internal: bool,
+        workspace_id: uuid.UUID | None = None,
     ) -> list[TicketMessage]:
         """按可见性读取工单消息时间线。by AI.Coding"""
         statement = select(TicketMessage).where(TicketMessage.ticket_id == ticket_id)
+        if workspace_id is not None:
+            statement = statement.where(
+                col(TicketMessage.workspace_id) == workspace_id
+            )
         if not include_internal:
             statement = statement.where(
                 TicketMessage.message_type == TicketMessageType.PUBLIC_REPLY
@@ -142,10 +172,18 @@ class TicketRepository:
         return list(self.session.exec(statement).all())
 
     def list_audits(
-        self, ticket_id: uuid.UUID, *, customer_safe_only: bool
+        self,
+        ticket_id: uuid.UUID,
+        *,
+        customer_safe_only: bool,
+        workspace_id: uuid.UUID | None = None,
     ) -> list[TicketAuditLog]:
         """读取完整或 Customer 安全的结构化审计时间线。by AI.Coding"""
         statement = select(TicketAuditLog).where(TicketAuditLog.ticket_id == ticket_id)
+        if workspace_id is not None:
+            statement = statement.where(
+                col(TicketAuditLog.workspace_id) == workspace_id
+            )
         if customer_safe_only:
             statement = statement.where(
                 col(TicketAuditLog.action).in_(_CUSTOMER_SAFE_AUDIT_ACTIONS)
@@ -166,9 +204,17 @@ class TicketRepository:
         """将审计记录加入当前 Session，但不提交事务。by AI.Coding"""
         self.session.add(audit)
 
-    def get_statistics(self, actor: User) -> TicketStatisticsRow:
+    def get_statistics(
+        self,
+        actor: User,
+        *,
+        workspace_id: uuid.UUID | None = None,
+        role: UserRole | WorkspaceRole | None = None,
+    ) -> TicketStatisticsRow:
         """在角色数据范围内聚合活跃工单统计。by AI.Coding"""
-        conditions = self._build_list_conditions(actor, TicketFilters())
+        conditions = self._build_list_conditions(
+            actor, TicketFilters(), workspace_id=workspace_id, role=role
+        )
         status_counts = dict.fromkeys(TicketStatus, 0)
         status_statement = (
             select(Ticket.status, func.count())
@@ -216,13 +262,28 @@ class TicketRepository:
 
     @staticmethod
     def _build_list_conditions(
-        actor: User, filters: TicketFilters
+        actor: User,
+        filters: TicketFilters,
+        *,
+        workspace_id: uuid.UUID | None = None,
+        role: UserRole | WorkspaceRole | None = None,
     ) -> list[ColumnElement[bool]]:
         """构造 active、角色范围与筛选共用谓词。by AI.Coding"""
         conditions: list[ColumnElement[bool]] = [col(Ticket.deleted_at).is_(None)]
-        if actor.role is UserRole.CUSTOMER:
+        if workspace_id is not None:
+            conditions.append(col(Ticket.workspace_id) == workspace_id)
+        effective_role = role or actor.role
+        if effective_role is WorkspaceRole.OWNER:
+            effective_role = WorkspaceRole.ADMIN
+        if effective_role is WorkspaceRole.CUSTOMER:
+            effective_role = UserRole.CUSTOMER
+        elif effective_role is WorkspaceRole.AGENT:
+            effective_role = UserRole.AGENT
+        elif effective_role is WorkspaceRole.ADMIN:
+            effective_role = UserRole.ADMIN
+        if effective_role is UserRole.CUSTOMER:
             conditions.append(col(Ticket.requester_id) == actor.id)
-        elif actor.role is UserRole.AGENT:
+        elif effective_role is UserRole.AGENT:
             conditions.append(
                 or_(
                     col(Ticket.assignee_id).is_(None),

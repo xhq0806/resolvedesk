@@ -109,6 +109,13 @@ def test_error_codes_match_design_statuses() -> None:
         ErrorCode.TICKET_CLOSED: 409,
         ErrorCode.LAST_ACTIVE_ADMIN: 409,
         ErrorCode.DELETE_CONFIRMATION_REQUIRED: 409,
+        ErrorCode.WORKSPACE_REQUIRED: 400,
+        ErrorCode.WORKSPACE_RESOURCE_NOT_FOUND: 404,
+        ErrorCode.WORKSPACE_ROLE_FORBIDDEN: 403,
+        ErrorCode.WORKSPACE_MEMBER_CONFLICT: 409,
+        ErrorCode.PROVIDER_UNAVAILABLE: 409,
+        ErrorCode.AI_RUN_IN_PROGRESS: 409,
+        ErrorCode.TOOL_NOT_ALLOWED: 409,
         ErrorCode.VALIDATION_ERROR: 422,
         ErrorCode.INTERNAL_ERROR: 500,
     }

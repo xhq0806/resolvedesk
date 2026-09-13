@@ -124,6 +124,20 @@ def test_models_package_registers_migrated_domain_tables() -> None:
         "ticket",
         "ticket_message",
         "ticket_audit_log",
+        "workspace",
+        "workspace_member",
+        "workspace_invitation",
+        "ai_agent",
+        "ai_provider_config",
+        "ai_conversation",
+        "ai_message",
+        "ai_run",
+        "ai_run_event",
+        "ai_tool_permission",
+        "attachment",
+        "knowledge_document",
+        "knowledge_chunk",
+        "document_ingestion_job",
     }
     assert "role" in User.model_fields
     assert "is_superuser" not in User.model_fields

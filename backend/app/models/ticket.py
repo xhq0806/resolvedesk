@@ -64,6 +64,10 @@ class Ticket(SQLModel, table=True):
     )
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    # 租户归属由 Workspace 上下文强制注入；保留可空以兼容尚未迁移的测试构造。by AI.Coding
+    workspace_id: uuid.UUID | None = Field(
+        default=None, foreign_key="workspace.id", nullable=True, index=True
+    )
     ticket_number: str = Field(default_factory=get_ticket_number, max_length=40)
     title: str = Field(max_length=200)
     description: str = Field(sa_column=Column(Text, nullable=False))
@@ -159,6 +163,10 @@ class TicketMessage(SQLModel, table=True):
     )
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    # 消息单独保存租户键，避免查询时依赖 Ticket join 才能完成隔离。by AI.Coding
+    workspace_id: uuid.UUID | None = Field(
+        default=None, foreign_key="workspace.id", nullable=True, index=True
+    )
     ticket_id: uuid.UUID = Field(
         foreign_key="ticket.id", nullable=False, ondelete="RESTRICT", index=True
     )
@@ -198,6 +206,10 @@ class TicketAuditLog(SQLModel, table=True):
     )
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    # 审计记录保留租户键，支持独立审计查询和跨租户安全测试。by AI.Coding
+    workspace_id: uuid.UUID | None = Field(
+        default=None, foreign_key="workspace.id", nullable=True, index=True
+    )
     ticket_id: uuid.UUID = Field(
         foreign_key="ticket.id", nullable=False, ondelete="RESTRICT", index=True
     )

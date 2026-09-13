@@ -35,6 +35,13 @@ class ErrorCode(StrEnum):
     TICKET_CLOSED = "TICKET_CLOSED"
     LAST_ACTIVE_ADMIN = "LAST_ACTIVE_ADMIN"
     DELETE_CONFIRMATION_REQUIRED = "DELETE_CONFIRMATION_REQUIRED"
+    WORKSPACE_REQUIRED = "WORKSPACE_REQUIRED"
+    WORKSPACE_RESOURCE_NOT_FOUND = "WORKSPACE_RESOURCE_NOT_FOUND"
+    WORKSPACE_ROLE_FORBIDDEN = "WORKSPACE_ROLE_FORBIDDEN"
+    WORKSPACE_MEMBER_CONFLICT = "WORKSPACE_MEMBER_CONFLICT"
+    PROVIDER_UNAVAILABLE = "PROVIDER_UNAVAILABLE"
+    AI_RUN_IN_PROGRESS = "AI_RUN_IN_PROGRESS"
+    TOOL_NOT_ALLOWED = "TOOL_NOT_ALLOWED"
     VALIDATION_ERROR = "VALIDATION_ERROR"
     INTERNAL_ERROR = "INTERNAL_ERROR"
 
@@ -52,9 +59,7 @@ _ERROR_DEFINITIONS = MappingProxyType(
         ErrorCode.AUTH_REQUIRED: ErrorDefinition(401, "需要登录认证。"),
         ErrorCode.USER_INACTIVE: ErrorDefinition(403, "该用户已停用。"),
         ErrorCode.ROLE_FORBIDDEN: ErrorDefinition(403, "不允许使用该角色。"),
-        ErrorCode.TICKET_FORBIDDEN: ErrorDefinition(
-            403, "不允许执行该工单操作。"
-        ),
+        ErrorCode.TICKET_FORBIDDEN: ErrorDefinition(403, "不允许执行该工单操作。"),
         ErrorCode.TICKET_NOT_FOUND: ErrorDefinition(404, "工单不存在。"),
         ErrorCode.USER_NOT_FOUND: ErrorDefinition(404, "用户不存在。"),
         ErrorCode.EMAIL_CONFLICT: ErrorDefinition(409, "该邮箱已被使用。"),
@@ -62,15 +67,32 @@ _ERROR_DEFINITIONS = MappingProxyType(
             409, "该工单已被其他客服接手。"
         ),
         ErrorCode.INVALID_ASSIGNEE: ErrorDefinition(409, "负责人无效。"),
-        ErrorCode.INVALID_STATUS_TRANSITION: ErrorDefinition(
-            409, "无效的状态流转。"
-        ),
+        ErrorCode.INVALID_STATUS_TRANSITION: ErrorDefinition(409, "无效的状态流转。"),
         ErrorCode.TICKET_CLOSED: ErrorDefinition(409, "该工单已关闭。"),
         ErrorCode.LAST_ACTIVE_ADMIN: ErrorDefinition(
             409, "系统至少需要一名启用中的管理员。"
         ),
         ErrorCode.DELETE_CONFIRMATION_REQUIRED: ErrorDefinition(
             409, "需要确认删除工单。"
+        ),
+        ErrorCode.WORKSPACE_REQUIRED: ErrorDefinition(400, "请选择 Workspace。"),
+        ErrorCode.WORKSPACE_RESOURCE_NOT_FOUND: ErrorDefinition(
+            404, "Workspace 资源不存在。"
+        ),
+        ErrorCode.WORKSPACE_ROLE_FORBIDDEN: ErrorDefinition(
+            403, "不允许执行该 Workspace 操作。"
+        ),
+        ErrorCode.WORKSPACE_MEMBER_CONFLICT: ErrorDefinition(
+            409, "Workspace 成员状态冲突。"
+        ),
+        ErrorCode.PROVIDER_UNAVAILABLE: ErrorDefinition(
+            409, "AI Provider 尚不可用。"
+        ),
+        ErrorCode.AI_RUN_IN_PROGRESS: ErrorDefinition(
+            409, "当前会话已有运行中的 AI 任务。"
+        ),
+        ErrorCode.TOOL_NOT_ALLOWED: ErrorDefinition(
+            409, "AI 工具未获得授权或参数不合法。"
         ),
         ErrorCode.VALIDATION_ERROR: ErrorDefinition(422, "请求参数校验失败。"),
         ErrorCode.INTERNAL_ERROR: ErrorDefinition(500, "服务器内部发生错误。"),
