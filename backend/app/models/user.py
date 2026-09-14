@@ -51,6 +51,7 @@ class User(SQLModel, table=True):
         ),
     )
     full_name: str | None = Field(default=None, max_length=255)
+    avatar_url: str | None = Field(default=None, max_length=2048)
     hashed_password: str
     created_at: datetime | None = Field(
         default_factory=get_datetime_utc,

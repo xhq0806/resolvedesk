@@ -3,8 +3,8 @@ import type {
   TicketAuditPublic,
   TicketMessagePublic,
 } from "@/client"
+import { UserAvatar } from "@/components/Common/UserAvatar"
 import { Badge } from "@/components/ui/badge"
-import { getInitials } from "@/utils"
 
 type TimelineEntry =
   | { kind: "message"; value: TicketMessagePublic }
@@ -82,9 +82,12 @@ export function TicketTimeline({
 
           return (
             <div key={`audit-${audit.id}`} className="relative flex gap-3">
-              <div className="z-[1] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border bg-background text-xs font-semibold text-muted-foreground">
-                ·
-              </div>
+              <UserAvatar
+                name={audit.actor.full_name}
+                email={audit.actor.email}
+                avatarUrl={audit.actor.avatar_url}
+                className="z-[1] size-8 border bg-background"
+              />
               <div className="min-w-0 flex-1 rounded-lg border bg-muted/30 px-4 py-3">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-sm font-medium">{auditLabels[audit.action]}</p>
@@ -106,15 +109,17 @@ export function TicketTimeline({
 
         return (
           <div key={`message-${message.id}`} className="relative flex gap-3">
-            <div
-              className={`z-[1] flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
+            <UserAvatar
+              name={message.author.full_name}
+              email={message.author.email}
+              avatarUrl={message.author.avatar_url}
+              className="z-[1] size-8"
+              fallbackClassName={
                 isInternal
                   ? "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200"
                   : "bg-primary text-primary-foreground"
-              }`}
-            >
-              {getInitials(displayName(message.author)) || "?"}
-            </div>
+              }
+            />
             <div
               className={`min-w-0 flex-1 rounded-lg border px-4 py-3 ${
                 isInternal

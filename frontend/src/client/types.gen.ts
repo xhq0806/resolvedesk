@@ -486,6 +486,10 @@ export type UserPublic = {
      */
     full_name?: string | null;
     /**
+     * Avatar Url
+     */
+    avatar_url?: string | null;
+    /**
      * Id
      */
     id: string;
@@ -540,6 +544,10 @@ export type UserSummary = {
      * Full Name
      */
     full_name?: string | null;
+    /**
+     * Avatar Url
+     */
+    avatar_url?: string | null;
     role: UserRole;
     /**
      * Is Active
@@ -586,6 +594,10 @@ export type UserUpdateMe = {
      * Email
      */
     email?: string | null;
+    /**
+     * Avatar Url
+     */
+    avatar_url?: string | null;
 };
 
 /**

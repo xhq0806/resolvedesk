@@ -136,6 +136,7 @@ class UserSummary(BaseModel):
     id: uuid.UUID
     email: str
     full_name: str | None = None
+    avatar_url: str | None = None
     role: UserRole
     is_active: bool = True
 

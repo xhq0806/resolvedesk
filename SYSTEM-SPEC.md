@@ -2,12 +2,12 @@
 
 > 更新时间：2026-09-14
 > 文档状态：已归档系统行为规格
-> 当前归档：`changes/archive/2026-09-14-ai-agent-support-copilot/`
-> 规格依据：`changes/archive/2026-09-14-ai-agent-support-copilot/spec.md`
+> 当前归档：`changes/archive/2026-09-14-conversation-avatars/`
+> 规格依据：`changes/archive/2026-09-14-conversation-avatars/spec.md`
 
 ## 1. 文档目的
 
-本文档描述 ResolveDesk 当前系统行为，用于后续需求分析、coding、review 和 verify。已归档需求的完整上下文保存在 `changes/archive/2026-09-14-ai-agent-support-copilot/`。
+本文档描述 ResolveDesk 当前系统行为，用于后续需求分析、coding、review 和 verify。已归档需求的完整上下文保存在 `changes/archive/`。
 
 状态标记：
 
@@ -31,6 +31,7 @@ ResolveDesk 是带 AI Agent 的 Workspace 级客服工单平台。客户优先�
 | AI/RAG | 已实现基线 | 支持 Provider 配置、知识库入库、向量检索、AI 会话和 SSE run |
 | 在线咨询 | 已实现基线 | Customer 通过悬浮入口使用 AI Agent，对话可转人工生成工单 |
 | 自动分派 | 已实现基线 | 转人工工单优先分派给当前 Workspace 可用 Agent |
+| 用户头像 | 已实现基线 | 用户资料支持头像 URL，侧边栏、工单、在线咨询展示头像并提供兜底 |
 
 ## 4. Workspace 与角色
 
@@ -65,6 +66,7 @@ ResolveDesk 是带 AI Agent 的 Workspace 级客服工单平台。客户优先�
 Customer 可以：
 
 - 查看和修改自己的资料与密码；
+- 设置、修改或清除自己的头像 URL；
 - 在右下角打开“在线咨询”面板；
 - 与 AI Agent 对话，并查看回答、来源摘要和失败提示；
 - 请求转人工，由系统创建工单；
@@ -84,6 +86,7 @@ Customer 不可以：
 
 Agent 可以：
 
+- 设置、修改或清除自己的头像 URL；
 - 查看未分派公共队列；
 - 查看分派给自己的工单；
 - 接手未分派且未关闭工单；
@@ -107,6 +110,7 @@ Agent 不可以：
 
 Admin/Owner 可以：
 
+- 设置、修改或清除自己的头像 URL；
 - 查看、筛选和搜索当前 Workspace 内全部工单；
 - 分派、转派、取消分派、关闭和删除工单；
 - 对未关闭工单发送公开回复和内部备注；
@@ -148,13 +152,14 @@ Admin/Owner 不可以：
 - Customer 登录后，在应用右下角看到“在线咨询”悬浮按钮。
 - Agent/Admin 不显示该悬浮按钮。
 - 点击按钮打开咨询面板，不离开当前页面。
-- 面板包含标题、关闭按钮、推荐问题、消息列表、输入框、发送按钮和“转人工”入口。
+- 面板包含标题、关闭按钮、推荐问题、带头像的消息列表、输入框、发送按钮和“转人工”入口。
 - 面板必须有加载、发送中、失败、空会话和无依据状态。
 - 移动端和桌面端均不得遮挡主要导航和关键操作。
 
 ### 7.2 对话行为
 
 - Customer 发送消息后，系统在当前 Workspace 创建或复用该 Customer 的 AI conversation。
+- Customer 消息显示当前用户头像；AI Agent 回复显示固定 AI 头像，头像不可用时显示可见 `AI` 兜底。
 - 同一 conversation 同时只允许一个 AI run 处于生成中。
 - AI 回复以流式事件展示文本、来源、完成和失败状态。
 - 客户端断开或用户取消时，不得生成半条完整 AI 回复。
@@ -232,7 +237,17 @@ CLOSED
 - `CLOSED` 工单只读。
 - 不符合状态机的请求必须拒绝，且不能部分更新。
 
-## 10. 前端导航
+## 10. 用户头像
+
+- 所有登录角色都可以在个人资料中设置、修改或清除自己的头像 URL。
+- 头像 URL 是用户公开资料字段，可出现在当前用户响应、用户列表、工单 requester、assignee、message author 和 audit actor 摘要中。
+- 第一版头像只支持 `http://` 或 `https://` 外链 URL；空值表示未设置头像。
+- 前端在侧边栏用户菜单、工单列表客户/负责人列、工单时间线、在线咨询用户消息中展示用户头像。
+- 用户头像缺失或图片加载失败时，前端必须显示姓名或邮箱首字母兜底。
+- AI Agent 在在线咨询中使用固定系统头像；头像兜底必须可见显示 `AI`。
+- 本能力不包含本地文件上传、图片裁剪、对象存储、CDN 或 Workspace 级独立头像。
+
+## 11. 前端导航
 
 Customer 登录后主要看到：
 
@@ -263,7 +278,7 @@ Admin/Owner 登录后主要看到：
 - 前端隐藏不能替代后端权限校验。
 - Workspace 切换后不得展示上一 Workspace 的缓存数据。
 
-## 11. 测试与验收基线
+## 12. 测试与验收基线
 
 ### 后端必须覆盖
 
@@ -279,6 +294,7 @@ Admin/Owner 登录后主要看到：
 - 无可用 Agent 时进入未分派队列；
 - Agent 处理转人工工单的权限边界；
 - 工单状态机和审计回归。
+- 用户头像 URL 可保存、读取、清空并随用户摘要返回。
 
 ### 前端 E2E 必须覆盖
 
@@ -292,6 +308,9 @@ Admin/Owner 登录后主要看到：
 - 有 Agent 时工单进入该 Agent 工作范围；
 - 无 Agent 时工单进入公共队列；
 - 重复点击转人工不创建重复工单。
+- 个人资料页可编辑头像 URL 并显示预览；
+- 侧边栏、工单列表、工单时间线和在线咨询均显示头像；
+- 用户头像缺失或加载失败时显示首字母，AI 头像兜底显示 `AI`。
 
 ### 运行验收
 
@@ -301,7 +320,7 @@ Admin/Owner 登录后主要看到：
 - Playwright 关键流程通过；
 - Docker Compose 启动和健康检查通过。
 
-## 12. 明确排除范围
+## 13. 明确排除范围
 
 本期不包含：
 
@@ -313,9 +332,10 @@ Admin/Owner 登录后主要看到：
 - 跨 Workspace 知识共享；
 - Customer/Agent 直接浏览知识库；
 - 人工客服实时 IM 替代工单；
-- AI 删除工单、管理成员、修改 Provider 或绕过工具授权。
+- AI 删除工单、管理成员、修改 Provider 或绕过工具授权；
+- 本地头像上传、图片裁剪、对象存储、CDN 和 Workspace 级独立头像。
 
-## 13. 归档状态
+## 14. 归档状态
 
 本规格已完成二期 Delta 归档。归档内容包括：
 
@@ -323,6 +343,7 @@ Admin/Owner 登录后主要看到：
 - Customer 右下角“在线咨询”入口；
 - Customer 专用 AI conversation 与服务端内部 RAG；
 - 转人工创建工单、幂等关联 conversation 和自动分派；
-- Agent 查看转人工上下文并按既有工单权限处理。
+- Agent 查看转人工上下文并按既有工单权限处理；
+- 用户头像 URL 设置、持久化和会话/工单头像展示。
 
 后续需求若修改以上行为，必须在新的 `changes/active/` 目录中通过 proposal、spec、design、coding、review、archive 流程更新本文件。

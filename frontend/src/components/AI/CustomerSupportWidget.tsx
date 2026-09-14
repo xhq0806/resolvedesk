@@ -9,6 +9,7 @@ import {
   streamCustomerConversation,
   type Conversation,
 } from "@/lib/aiApi"
+import { AiAvatar, UserAvatar } from "@/components/Common/UserAvatar"
 import { openCustomerSupportEvent } from "@/lib/customerSupportEvents"
 import { useCurrentWorkspace } from "@/lib/workspaceQueries"
 import { Badge } from "@/components/ui/badge"
@@ -20,6 +21,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import useAuth from "@/hooks/useAuth"
 import useCustomToast from "@/hooks/useCustomToast"
 
 type ChatMessage = {
@@ -36,6 +38,7 @@ type SourcePreview = {
 
 export function CustomerSupportWidget() {
   const { workspace, role } = useCurrentWorkspace()
+  const { user: currentUser } = useAuth()
   const { showErrorToast, showSuccessToast } = useCustomToast()
   const [open, setOpen] = useState(false)
   const [conversation, setConversation] = useState<Conversation | null>(null)
@@ -209,11 +212,31 @@ export function CustomerSupportWidget() {
                 key={message.id}
                 className={
                   message.role === "user"
-                    ? "ml-auto max-w-[82%] rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground"
-                    : "mr-auto max-w-[88%] rounded-lg bg-muted px-3 py-2 text-sm"
+                    ? "ml-auto flex max-w-[92%] flex-row-reverse items-start gap-2"
+                    : "mr-auto flex max-w-[92%] items-start gap-2"
                 }
               >
-                {message.content || "正在回复..."}
+                {message.role === "user" ? (
+                  <UserAvatar
+                    name={currentUser?.full_name}
+                    email={currentUser?.email}
+                    avatarUrl={currentUser?.avatar_url}
+                    className="mt-1 size-8"
+                    fallbackClassName="bg-primary text-primary-foreground"
+                  />
+                ) : (
+                  <AiAvatar className="mt-1 size-8" />
+                )}
+                <div
+                  className={
+                    message.role === "user"
+                      ? "rounded-lg bg-primary px-3 py-2 text-sm text-primary-foreground"
+                      : "rounded-lg bg-muted px-3 py-2 text-sm"
+                  }
+                >
+                  {/* 消息头像和气泡一起渲染，避免客户与 AI 回复在对话中失去身份识别。by AI.Coding */}
+                  {message.content || "正在回复..."}
+                </div>
               </div>
             ))}
             {sources.length > 0 && (

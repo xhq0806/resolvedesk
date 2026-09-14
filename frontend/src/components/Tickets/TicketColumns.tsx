@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router"
 import type { ColumnDef } from "@tanstack/react-table"
 
 import type { TicketPublic } from "@/client"
+import { UserAvatar } from "@/components/Common/UserAvatar"
 import { Badge } from "@/components/ui/badge"
 
 const statusLabels: Record<TicketPublic["status"], string> = {
@@ -153,13 +154,21 @@ export const createTicketColumns = (
       const requester = row.original.requester
       // 客户信息入口依赖工单请求人字段，列表中直接呈现服务对象上下文。by AI.Coding
       return (
-        <div className="max-w-40 truncate">
-          <p className="truncate text-sm">
-            {requester.full_name?.trim() || requester.email}
-          </p>
-          <p className="truncate text-xs text-muted-foreground">
-            {requester.email}
-          </p>
+        <div className="flex max-w-48 items-center gap-2 truncate">
+          <UserAvatar
+            name={requester.full_name}
+            email={requester.email}
+            avatarUrl={requester.avatar_url}
+            className="size-7"
+          />
+          <div className="min-w-0">
+            <p className="truncate text-sm">
+              {requester.full_name?.trim() || requester.email}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              {requester.email}
+            </p>
+          </div>
         </div>
       )
     },
@@ -170,18 +179,26 @@ export const createTicketColumns = (
     cell: ({ row }) => {
       const assignee = row.original.assignee
       return assignee ? (
-        <div className="max-w-40 truncate">
-          <p className="truncate text-sm">
-            {assignee.full_name?.trim() || assignee.email}
-          </p>
-          <p className="truncate text-xs text-muted-foreground">
-            {assignee.email}
-          </p>
-          {!assignee.is_active && (
-            <Badge variant="outline" className="mt-1">
-              已停用
-            </Badge>
-          )}
+        <div className="flex max-w-48 items-center gap-2 truncate">
+          <UserAvatar
+            name={assignee.full_name}
+            email={assignee.email}
+            avatarUrl={assignee.avatar_url}
+            className="size-7"
+          />
+          <div className="min-w-0">
+            <p className="truncate text-sm">
+              {assignee.full_name?.trim() || assignee.email}
+            </p>
+            <p className="truncate text-xs text-muted-foreground">
+              {assignee.email}
+            </p>
+            {!assignee.is_active && (
+              <Badge variant="outline" className="mt-1">
+                已停用
+              </Badge>
+            )}
+          </div>
         </div>
       ) : (
         <span className="text-muted-foreground">未分派</span>

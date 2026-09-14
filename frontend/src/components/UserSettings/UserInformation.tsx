@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { UsersService, type UserUpdateMe } from "@/client"
+import { UserAvatar } from "@/components/Common/UserAvatar"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -24,6 +25,16 @@ import { handleError } from "@/utils"
 const formSchema = z.object({
   full_name: z.string().max(30).optional(),
   email: z.email({ message: "请输入有效的邮箱地址" }),
+  avatar_url: z
+    .string()
+    .trim()
+    .max(2048, "头像 URL 不能超过 2048 个字符")
+    .refine(
+      (value) =>
+        !value || value.startsWith("http://") || value.startsWith("https://"),
+      "头像 URL 必须以 http:// 或 https:// 开头",
+    )
+    .optional(),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -41,6 +52,7 @@ const UserInformation = () => {
     defaultValues: {
       full_name: currentUser?.full_name ?? undefined,
       email: currentUser?.email,
+      avatar_url: currentUser?.avatar_url ?? "",
     },
   })
 
@@ -63,13 +75,17 @@ const UserInformation = () => {
 
   const onSubmit = (data: FormData) => {
     const updateData: UserUpdateMe = {}
+    const nextAvatarUrl = data.avatar_url?.trim() || null
 
-    // only include fields that have changed
+    // 只提交发生变化的个人资料字段，头像 URL 为空时表示清除头像。by AI.Coding
     if (data.full_name !== currentUser?.full_name) {
       updateData.full_name = data.full_name
     }
     if (data.email !== currentUser?.email) {
       updateData.email = data.email
+    }
+    if (nextAvatarUrl !== (currentUser?.avatar_url ?? null)) {
+      updateData.avatar_url = nextAvatarUrl
     }
 
     mutation.mutate(updateData)
@@ -114,6 +130,55 @@ const UserInformation = () => {
                 </FormItem>
               )
             }
+          />
+
+          <FormField
+            control={form.control}
+            name="avatar_url"
+            render={({ field }) => {
+              const avatarUrl = field.value?.trim() || currentUser?.avatar_url
+              return editMode ? (
+                <FormItem>
+                  <FormLabel>头像 URL</FormLabel>
+                  <div className="flex items-center gap-3">
+                    <UserAvatar
+                      name={form.watch("full_name") || currentUser?.full_name}
+                      email={form.watch("email") || currentUser?.email}
+                      avatarUrl={avatarUrl}
+                      className="size-12"
+                    />
+                    <FormControl>
+                      <Input
+                        type="url"
+                        placeholder="https://example.com/avatar.png"
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              ) : (
+                <FormItem>
+                  <FormLabel>头像</FormLabel>
+                  <div className="flex items-center gap-3 py-2">
+                    <UserAvatar
+                      name={currentUser?.full_name}
+                      email={currentUser?.email}
+                      avatarUrl={currentUser?.avatar_url}
+                      className="size-12"
+                    />
+                    <p
+                      className={cn(
+                        "truncate text-sm max-w-xs",
+                        !field.value && "text-muted-foreground",
+                      )}
+                    >
+                      {field.value || "未设置"}
+                    </p>
+                  </div>
+                </FormItem>
+              )
+            }}
           />
 
           <FormField
