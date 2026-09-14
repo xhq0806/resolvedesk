@@ -7,7 +7,10 @@ import asyncio
 import httpx
 import pytest
 
-from app.providers.embedding import OpenAICompatibleEmbeddingProvider
+from app.providers.embedding import (
+    OpenAICompatibleEmbeddingProvider,
+    VolcengineArkEmbeddingProvider,
+)
 
 
 @pytest.mark.anyio
@@ -90,3 +93,35 @@ def test_embedding_provider_rejects_boolean_values() -> None:
 
     with pytest.raises(ValueError, match="非法向量值"):
         asyncio.run(provider.embed(["hello"]))
+
+
+def test_volcengine_ark_embedding_provider_posts_multimodal_text_payload() -> None:
+    """方舟 Embedding Provider 应调用多模态接口并传入纯文本内容块。by AI.Coding"""
+    requests: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        """捕获方舟向量请求并返回 1024 维测试向量。by AI.Coding"""
+        requests.append(request)
+        return httpx.Response(
+            200,
+            json={"data": {"embedding": [0.1] * 1024}, "model": "doubao"},
+        )
+
+    provider = VolcengineArkEmbeddingProvider(
+        base_url="https://ark.cn-beijing.volces.com/api/v3",
+        api_key="ark-secret",
+        model="doubao-embedding-vision-251215",
+        transport=httpx.MockTransport(handler),
+    )
+    vectors = asyncio.run(provider.embed(["ResolveDesk FAQ"]))
+
+    body = requests[0].read().decode()
+    assert len(vectors) == 1
+    assert len(vectors[0]) == 1024
+    assert (
+        requests[0].url
+        == "https://ark.cn-beijing.volces.com/api/v3/embeddings/multimodal"
+    )
+    assert requests[0].headers["authorization"] == "Bearer ark-secret"
+    assert '"dimensions":1024' in body
+    assert '"type":"text"' in body

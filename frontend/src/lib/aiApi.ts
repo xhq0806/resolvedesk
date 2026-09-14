@@ -3,10 +3,10 @@
 export type ProviderConfig = {
   id: string
   workspace_id: string
-  chat_provider: string
+  chat_provider: "openai-compatible" | "volcengine-ark-responses"
   chat_base_url: string | null
   chat_model: string
-  embedding_provider: string
+  embedding_provider: "openai-compatible" | "volcengine-ark"
   embedding_base_url: string | null
   embedding_model: string
   embedding_dimension: number

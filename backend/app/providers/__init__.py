@@ -5,8 +5,13 @@ from app.providers.chat import (
     ChatMessage,
     ChatProvider,
     OpenAICompatibleChatProvider,
+    VolcengineArkResponsesChatProvider,
 )
-from app.providers.embedding import EmbeddingProvider, OpenAICompatibleEmbeddingProvider
+from app.providers.embedding import (
+    EmbeddingProvider,
+    OpenAICompatibleEmbeddingProvider,
+    VolcengineArkEmbeddingProvider,
+)
 
 __all__ = [
     "ChatCompletionResult",
@@ -15,4 +20,6 @@ __all__ = [
     "EmbeddingProvider",
     "OpenAICompatibleChatProvider",
     "OpenAICompatibleEmbeddingProvider",
+    "VolcengineArkEmbeddingProvider",
+    "VolcengineArkResponsesChatProvider",
 ]

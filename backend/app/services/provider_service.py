@@ -21,8 +21,15 @@ from app.core.secret_crypto import SecretCipher, secret_cipher_from_settings
 from app.core.workspace import WorkspaceContext, WorkspacePolicy
 from app.models.ai import AiProviderConfig
 from app.models.user import get_datetime_utc
-from app.providers.chat import ChatMessage, OpenAICompatibleChatProvider
-from app.providers.embedding import OpenAICompatibleEmbeddingProvider
+from app.providers.chat import (
+    ChatMessage,
+    OpenAICompatibleChatProvider,
+    VolcengineArkResponsesChatProvider,
+)
+from app.providers.embedding import (
+    OpenAICompatibleEmbeddingProvider,
+    VolcengineArkEmbeddingProvider,
+)
 from app.schemas.ai import (
     ProviderConfigPatch,
     ProviderConfigPublic,
@@ -32,6 +39,11 @@ from app.schemas.ai import (
 )
 
 ResultType = TypeVar("ResultType")
+
+VOLCENGINE_ARK_BASE_URL = "https://ark.cn-beijing.volces.com/api/v3"
+VOLCENGINE_ARK_CHAT_MODEL = "doubao-seed-2-1-pro-260628"
+VOLCENGINE_ARK_EMBEDDING_MODEL = "doubao-embedding-vision-251215"
+SUPPORTED_EMBEDDING_DIMENSION = 1024
 
 
 class ProviderService:
@@ -134,12 +146,20 @@ class ProviderService:
             latency_ms=self._latency_ms(start),
         )
 
-    def build_chat_provider(self, context: WorkspaceContext) -> OpenAICompatibleChatProvider:
+    def build_chat_provider(
+        self, context: WorkspaceContext
+    ) -> OpenAICompatibleChatProvider | VolcengineArkResponsesChatProvider:
         """从已启用配置创建 Chat Provider。by AI.Coding"""
         config = self._get_or_create_config(context)
         self._ensure_ready(config)
         if config.chat_base_url is None or config.encrypted_api_key is None:
             raise ConflictError(ErrorCode.PROVIDER_UNAVAILABLE)
+        if config.chat_provider == "volcengine-ark-responses":
+            return VolcengineArkResponsesChatProvider(
+                base_url=config.chat_base_url,
+                api_key=self.cipher.decrypt(config.encrypted_api_key),
+                model=config.chat_model,
+            )
         return OpenAICompatibleChatProvider(
             base_url=config.chat_base_url,
             api_key=self.cipher.decrypt(config.encrypted_api_key),
@@ -148,12 +168,19 @@ class ProviderService:
 
     def build_embedding_provider(
         self, context: WorkspaceContext
-    ) -> OpenAICompatibleEmbeddingProvider:
+    ) -> OpenAICompatibleEmbeddingProvider | VolcengineArkEmbeddingProvider:
         """从已启用配置创建 Embedding Provider。by AI.Coding"""
         config = self._get_or_create_config(context)
         self._ensure_ready(config)
         if config.embedding_base_url is None or config.encrypted_api_key is None:
             raise ConflictError(ErrorCode.PROVIDER_UNAVAILABLE)
+        if config.embedding_provider == "volcengine-ark":
+            return VolcengineArkEmbeddingProvider(
+                base_url=config.embedding_base_url,
+                api_key=self.cipher.decrypt(config.encrypted_api_key),
+                model=config.embedding_model,
+                dimension=config.embedding_dimension,
+            )
         return OpenAICompatibleEmbeddingProvider(
             base_url=config.embedding_base_url,
             api_key=self.cipher.decrypt(config.encrypted_api_key),
@@ -212,7 +239,7 @@ class ProviderService:
             or not config.embedding_base_url
             or not config.chat_model
             or not config.embedding_model
-            or config.embedding_dimension != 1536
+            or config.embedding_dimension != SUPPORTED_EMBEDDING_DIMENSION
             or config.encrypted_api_key is None
         ):
             raise ConflictError(ErrorCode.PROVIDER_UNAVAILABLE)
@@ -247,14 +274,24 @@ class ProviderService:
         """向 Chat Provider 发起最小健康检查请求。by AI.Coding"""
         if not config.chat_base_url:
             raise ValueError("Chat base URL 未配置。")
-        provider = OpenAICompatibleChatProvider(
+        if config.chat_provider == "volcengine-ark-responses":
+            ark_provider = VolcengineArkResponsesChatProvider(
+                base_url=config.chat_base_url,
+                api_key=api_key,
+                model=config.chat_model,
+                timeout_seconds=15.0,
+                transport=transport,
+            )
+            await ark_provider.complete([ChatMessage(role="user", content="ping")])
+            return
+        compatible_provider = OpenAICompatibleChatProvider(
             base_url=config.chat_base_url,
             api_key=api_key,
             model=config.chat_model,
             timeout_seconds=15.0,
             transport=transport,
         )
-        await provider.complete([ChatMessage(role="user", content="ping")])
+        await compatible_provider.complete([ChatMessage(role="user", content="ping")])
 
     async def _test_embedding(
         self,
@@ -266,7 +303,18 @@ class ProviderService:
         """向 Embedding Provider 发起最小健康检查请求。by AI.Coding"""
         if not config.embedding_base_url:
             raise ValueError("Embedding base URL 未配置。")
-        provider = OpenAICompatibleEmbeddingProvider(
+        if config.embedding_provider == "volcengine-ark":
+            ark_provider = VolcengineArkEmbeddingProvider(
+                base_url=config.embedding_base_url,
+                api_key=api_key,
+                model=config.embedding_model,
+                dimension=config.embedding_dimension,
+                timeout_seconds=15.0,
+                transport=transport,
+            )
+            await ark_provider.embed(["ResolveDesk provider test"])
+            return
+        compatible_provider = OpenAICompatibleEmbeddingProvider(
             base_url=config.embedding_base_url,
             api_key=api_key,
             model=config.embedding_model,
@@ -274,7 +322,7 @@ class ProviderService:
             timeout_seconds=15.0,
             transport=transport,
         )
-        await provider.embed(["ResolveDesk provider test"])
+        await compatible_provider.embed(["ResolveDesk provider test"])
 
     def _failed(
         self,

@@ -93,7 +93,7 @@ class KnowledgeChunk(SQLModel, table=True):
     )
     embedding: list[float] | None = Field(
         default=None,
-        sa_column=Column(Vector(1536), nullable=True),
+        sa_column=Column(Vector(1024), nullable=True),
     )
     created_at: datetime = Field(
         default_factory=get_datetime_utc,

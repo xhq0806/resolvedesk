@@ -78,7 +78,7 @@ def upgrade() -> None:
         sa.Column("chunk_index", sa.Integer(), nullable=False),
         sa.Column("content", sa.Text(), nullable=False),
         sa.Column("source_meta", postgresql.JSONB(), nullable=False),
-        sa.Column("embedding", Vector(1536), nullable=True),
+        sa.Column("embedding", Vector(1024), nullable=True),
         sa.Column("created_at", sa.DateTime(timezone=True), nullable=False),
         sa.ForeignKeyConstraint(["workspace_id"], ["workspace.id"], ondelete="CASCADE"),
         sa.ForeignKeyConstraint(

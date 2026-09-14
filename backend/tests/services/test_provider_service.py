@@ -17,6 +17,8 @@ from app.core.secret_crypto import SecretCipher
 from app.core.workspace import WorkspaceContext
 from app.models.ai import AiProviderConfig
 from app.models.workspace import Workspace, WorkspaceMember, WorkspaceRole
+from app.providers.chat import VolcengineArkResponsesChatProvider
+from app.providers.embedding import VolcengineArkEmbeddingProvider
 from app.schemas.ai import ProviderConfigPatch, ProviderTestKind, ProviderTestRequest
 from app.services.provider_service import ProviderService
 
@@ -89,6 +91,40 @@ def test_update_config_encrypts_and_hides_api_key(
     assert result.chat_base_url == "https://provider.example/v1"
 
 
+def test_default_config_uses_volcengine_ark_template(
+    provider_session: Session,
+    owner_context: WorkspaceContext,
+) -> None:
+    """新 Workspace Provider 配置应预置火山方舟模板但保持未启用。by AI.Coding"""
+    result = ProviderService(
+        provider_session, cipher=SecretCipher("provider-test-key")
+    ).get_config(owner_context)
+
+    assert result.chat_provider == "volcengine-ark-responses"
+    assert result.chat_base_url == "https://ark.cn-beijing.volces.com/api/v3"
+    assert result.chat_model == "doubao-seed-2-1-pro-260628"
+    assert result.embedding_provider == "volcengine-ark"
+    assert result.embedding_model == "doubao-embedding-vision-251215"
+    assert result.embedding_dimension == 1024
+    assert result.has_api_key is False
+    assert result.enabled is False
+
+
+def test_build_provider_uses_volcengine_ark_adapters(
+    provider_session: Session,
+    owner_context: WorkspaceContext,
+) -> None:
+    """火山方舟配置启用后应创建 Responses 和多模态 Embedding 适配器。by AI.Coding"""
+    service = ProviderService(provider_session, cipher=SecretCipher("provider-test-key"))
+    service.update_config(
+        owner_context,
+        ProviderConfigPatch(api_key="ark-secret", enabled=True),
+    )
+
+    assert isinstance(service.build_chat_provider(owner_context), VolcengineArkResponsesChatProvider)
+    assert isinstance(service.build_embedding_provider(owner_context), VolcengineArkEmbeddingProvider)
+
+
 def test_enabling_incomplete_config_returns_provider_unavailable(
     provider_session: Session,
     owner_context: WorkspaceContext,
@@ -135,8 +171,11 @@ def test_chat_connection_failure_does_not_leak_api_key(
     service.update_config(
         owner_context,
         ProviderConfigPatch(
+            chat_provider="openai-compatible",
             chat_base_url="https://provider.example/v1",
+            embedding_provider="openai-compatible",
             embedding_base_url="https://provider.example/v1",
+            embedding_dimension=1024,
             api_key=secret,
         ),
     )

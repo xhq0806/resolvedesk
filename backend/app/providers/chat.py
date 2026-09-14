@@ -180,3 +180,142 @@ class OpenAICompatibleChatProvider:
                     if not isinstance(event, dict):
                         raise ValueError("Chat provider SSE 事件格式无效。")
                     yield event
+
+
+@dataclass(frozen=True)
+class VolcengineArkResponsesChatProvider:
+    """调用火山方舟 OpenAI SDK 兼容的 Responses API。by AI.Coding"""
+
+    base_url: str
+    api_key: str
+    model: str
+    timeout_seconds: float = 60.0
+    transport: httpx.AsyncBaseTransport | None = None
+
+    def _input(self, messages: list[ChatMessage]) -> list[dict[str, Any]]:
+        """把内部 ChatMessage 转为方舟 Responses API 的 input 消息。by AI.Coding"""
+        result: list[dict[str, Any]] = []
+        for message in messages:
+            if message.content is None:
+                continue
+            # 方舟模板采用 input_text 内容块；这里只传文本，避免把未授权多模态 URL 写进模型请求。by AI.Coding
+            result.append(
+                {
+                    "type": "message",
+                    "role": message.role,
+                    "content": [{"type": "input_text", "text": message.content}],
+                }
+            )
+        return result
+
+    def _payload(
+        self,
+        messages: list[ChatMessage],
+        *,
+        temperature: float | None,
+        stream: bool,
+    ) -> dict[str, Any]:
+        """构造火山方舟 Responses 请求体。by AI.Coding"""
+        payload: dict[str, Any] = {
+            "model": self.model,
+            "input": self._input(messages),
+            "stream": stream,
+        }
+        if temperature is not None:
+            payload["temperature"] = temperature
+        return payload
+
+    def _client(self) -> httpx.AsyncClient:
+        """创建带超时和测试 transport 的 HTTP 客户端。by AI.Coding"""
+        return httpx.AsyncClient(timeout=self.timeout_seconds, transport=self.transport)
+
+    async def complete(
+        self,
+        messages: list[ChatMessage],
+        *,
+        tools: list[dict[str, Any]] | None = None,
+        temperature: float | None = None,
+    ) -> ChatCompletionResult:
+        """发送非流式 Responses 请求并提取 assistant 文本。by AI.Coding"""
+        del tools
+        endpoint = f"{self.base_url.rstrip('/')}/responses"
+        headers = {"Authorization": f"Bearer {self.api_key}"}
+        async with self._client() as client:
+            response = await client.post(
+                endpoint,
+                json=self._payload(messages, temperature=temperature, stream=False),
+                headers=headers,
+            )
+        response.raise_for_status()
+        body = response.json()
+        if not isinstance(body, dict):
+            raise ValueError("火山方舟返回格式无效。")
+        return ChatCompletionResult(
+            content=self._extract_response_text(body),
+            tool_calls=[],
+            finish_reason=self._finish_reason(body),
+            raw=body,
+        )
+
+    async def stream(
+        self,
+        messages: list[ChatMessage],
+        *,
+        tools: list[dict[str, Any]] | None = None,
+        temperature: float | None = None,
+    ) -> AsyncIterator[dict[str, Any]]:
+        """解析 Responses SSE 并转换为项目内部兼容的 delta chunk。by AI.Coding"""
+        del tools
+        endpoint = f"{self.base_url.rstrip('/')}/responses"
+        headers = {"Authorization": f"Bearer {self.api_key}"}
+        async with self._client() as client:
+            async with client.stream(
+                "POST",
+                endpoint,
+                json=self._payload(messages, temperature=temperature, stream=True),
+                headers=headers,
+            ) as response:
+                response.raise_for_status()
+                async for line in response.aiter_lines():
+                    if not line.startswith("data:"):
+                        continue
+                    data = line[5:].strip()
+                    if data == "[DONE]":
+                        return
+                    try:
+                        event = json.loads(data)
+                    except json.JSONDecodeError as exc:
+                        raise ValueError("火山方舟返回了无效 SSE 数据。") from exc
+                    if not isinstance(event, dict):
+                        raise ValueError("火山方舟 SSE 事件格式无效。")
+                    delta = event.get("delta")
+                    if event.get("type") == "response.output_text.delta" and isinstance(
+                        delta, str
+                    ):
+                        yield {"choices": [{"delta": {"content": delta}}]}
+
+    @staticmethod
+    def _extract_response_text(body: dict[str, Any]) -> str:
+        """从 Responses 完整响应中提取文本内容。by AI.Coding"""
+        output = body.get("output")
+        if not isinstance(output, list):
+            raise ValueError("火山方舟未返回 output。")
+        parts: list[str] = []
+        for item in output:
+            if not isinstance(item, dict) or item.get("type") != "message":
+                continue
+            content = item.get("content")
+            if not isinstance(content, list):
+                continue
+            for block in content:
+                if isinstance(block, dict) and isinstance(block.get("text"), str):
+                    parts.append(block["text"])
+        if not parts:
+            raise ValueError("火山方舟未返回文本内容。")
+        return "".join(parts)
+
+    @staticmethod
+    def _finish_reason(body: dict[str, Any]) -> str | None:
+        """把 Responses 状态映射为项目使用的结束原因。by AI.Coding"""
+        status = body.get("status")
+        return status if isinstance(status, str) else None

@@ -22,13 +22,13 @@ class ProviderTestKind(StrEnum):
 class ProviderConfigPatch(StrictInput):
     """Owner/Admin 更新模型 Provider 配置的输入。by AI.Coding"""
 
-    chat_provider: Literal["openai-compatible"] | None = None
+    chat_provider: Literal["openai-compatible", "volcengine-ark-responses"] | None = None
     chat_base_url: str | None = Field(default=None, min_length=1, max_length=500)
     chat_model: str | None = Field(default=None, min_length=1, max_length=120)
-    embedding_provider: Literal["openai-compatible"] | None = None
+    embedding_provider: Literal["openai-compatible", "volcengine-ark"] | None = None
     embedding_base_url: str | None = Field(default=None, min_length=1, max_length=500)
     embedding_model: str | None = Field(default=None, min_length=1, max_length=120)
-    embedding_dimension: Literal[1536] | None = None
+    embedding_dimension: Literal[1024] | None = None
     api_key: str | None = Field(default=None, min_length=1, max_length=4096)
     clear_api_key: bool = False
     enabled: bool | None = None

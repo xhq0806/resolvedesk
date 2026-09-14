@@ -79,13 +79,17 @@ class AiProviderConfig(SQLModel, table=True):
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     workspace_id: uuid.UUID = Field(foreign_key="workspace.id", nullable=False)
-    chat_provider: str = Field(default="openai-compatible", max_length=50)
-    chat_base_url: str | None = Field(default=None, max_length=500)
-    chat_model: str = Field(default="gpt-4o-mini", max_length=120)
-    embedding_provider: str = Field(default="openai-compatible", max_length=50)
-    embedding_base_url: str | None = Field(default=None, max_length=500)
-    embedding_model: str = Field(default="text-embedding-3-small", max_length=120)
-    embedding_dimension: int = Field(default=1536)
+    chat_provider: str = Field(default="volcengine-ark-responses", max_length=50)
+    chat_base_url: str | None = Field(
+        default="https://ark.cn-beijing.volces.com/api/v3", max_length=500
+    )
+    chat_model: str = Field(default="doubao-seed-2-1-pro-260628", max_length=120)
+    embedding_provider: str = Field(default="volcengine-ark", max_length=50)
+    embedding_base_url: str | None = Field(
+        default="https://ark.cn-beijing.volces.com/api/v3", max_length=500
+    )
+    embedding_model: str = Field(default="doubao-embedding-vision-251215", max_length=120)
+    embedding_dimension: int = Field(default=1024)
     encrypted_api_key: bytes | None = Field(
         default=None,
         sa_column=Column(LargeBinary, nullable=True),

@@ -15,8 +15,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const workspaceKey = "resolvedesk.workspace_id"
+const arkTemplate = {
+  chatProvider: "volcengine-ark-responses" as const,
+  embeddingProvider: "volcengine-ark" as const,
+  baseUrl: "https://ark.cn-beijing.volces.com/api/v3",
+  chatModel: "doubao-seed-2-1-pro-260628",
+  embeddingModel: "doubao-embedding-vision-251215",
+  embeddingDimension: 1024,
+}
 
 export function ProviderSettings() {
   const queryClient = useQueryClient()
@@ -28,6 +37,7 @@ export function ProviderSettings() {
   const [chatModel, setChatModel] = useState("")
   const [embeddingUrl, setEmbeddingUrl] = useState("")
   const [embeddingModel, setEmbeddingModel] = useState("")
+  const [embeddingDimension, setEmbeddingDimension] = useState("1024")
   const [enabled, setEnabled] = useState(false)
   const [tools, setTools] = useState<{ tool_name: string; enabled: boolean }[]>([])
 
@@ -44,16 +54,20 @@ export function ProviderSettings() {
     setChatModel(config.chat_model)
     setEmbeddingUrl(config.embedding_base_url ?? "")
     setEmbeddingModel(config.embedding_model)
+    setEmbeddingDimension(String(config.embedding_dimension))
     setEnabled(config.enabled)
   }, [configQuery.data])
 
   const saveMutation = useMutation({
     mutationFn: () =>
       updateProviderConfig(workspaceId, {
+        chat_provider: arkTemplate.chatProvider,
         chat_base_url: chatUrl || undefined,
         chat_model: chatModel || undefined,
+        embedding_provider: arkTemplate.embeddingProvider,
         embedding_base_url: embeddingUrl || undefined,
         embedding_model: embeddingModel || undefined,
+        embedding_dimension: Number(embeddingDimension),
         api_key: apiKey || undefined,
         enabled,
       }),
@@ -82,15 +96,31 @@ export function ProviderSettings() {
     onSuccess: (data) => setTools(data),
   })
 
+  const applyArkTemplate = () => {
+    setChatUrl(arkTemplate.baseUrl)
+    setChatModel(arkTemplate.chatModel)
+    setEmbeddingUrl(arkTemplate.baseUrl)
+    setEmbeddingModel(arkTemplate.embeddingModel)
+    setEmbeddingDimension(String(arkTemplate.embeddingDimension))
+  }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>AI Provider</CardTitle>
         <p className="text-sm text-muted-foreground">
-          OpenAI-compatible Chat/Embedding 配置，密钥只在服务端加密保存。
+          火山方舟配置会调用 Responses API 与多模态 Embedding，密钥只在服务端加密保存。
         </p>
       </CardHeader>
       <CardContent className="space-y-5">
+        <div className="flex flex-wrap items-center gap-3">
+          <Button type="button" variant="outline" onClick={applyArkTemplate}>
+            应用火山方舟模板
+          </Button>
+          <span className="text-sm text-muted-foreground">
+            模板使用北京区域 API v3，Chat 模型来自你提供的接入示例。
+          </span>
+        </div>
         <div className="space-y-2">
           <Label htmlFor="workspace-id">Workspace ID</Label>
           <Input
@@ -120,6 +150,17 @@ export function ProviderSettings() {
           <div className="space-y-2">
             <Label htmlFor="embedding-model">Embedding Model</Label>
             <Input id="embedding-model" value={embeddingModel} onChange={(e) => setEmbeddingModel(e.target.value)} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="embedding-dimension">Embedding Dimension</Label>
+            <Select value={embeddingDimension} onValueChange={setEmbeddingDimension}>
+              <SelectTrigger id="embedding-dimension" className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1024">1024</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
         <div className="space-y-2">
