@@ -8,6 +8,7 @@ from app import crud
 from app.core.config import settings
 from app.core.security import verify_password
 from app.models.user import User
+from app.models.workspace import WorkspaceMember
 from app.schemas.user import UserCreate
 from tests.utils.user import create_random_user
 from tests.utils.utils import random_email, random_lower_string
@@ -39,7 +40,7 @@ def test_create_user_new_email(
     client: TestClient, superuser_token_headers: dict[str, str], db: Session
 ) -> None:
     with (
-        patch("app.utils.send_email", return_value=None),
+        patch("app.api.routes.users.send_email", return_value=None),
         patch("app.core.config.settings.SMTP_HOST", "smtp.example.com"),
         patch("app.core.config.settings.SMTP_USER", "admin@example.com"),
     ):
@@ -64,6 +65,15 @@ def test_create_user_new_email(
         assert user.email == created_user["email"]
         assert created_user["role"] == "AGENT"
         assert created_user["is_active"] is True
+        workspace_id = uuid.UUID(superuser_token_headers["X-Workspace-ID"])
+        member = db.exec(
+            select(WorkspaceMember).where(
+                WorkspaceMember.workspace_id == workspace_id,
+                WorkspaceMember.user_id == user.id,
+            )
+        ).one()
+        assert member.role.value == "AGENT"
+        assert member.status.value == "ACTIVE"
 
 
 def test_get_existing_user_as_superuser(

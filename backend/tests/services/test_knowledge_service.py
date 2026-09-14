@@ -44,6 +44,25 @@ def test_upload_validation_rejects_unsafe_or_mismatched_files(
         validate_upload_metadata(filename, content_type, 10)
 
 
+@pytest.mark.parametrize(
+    ("filename", "content_type"),
+    [
+        ("faq.md", "text/plain"),
+        ("faq.md", "application/octet-stream"),
+        ("faq.docx", "application/octet-stream"),
+        ("faq.pdf", "application/octet-stream"),
+        ("faq.txt", ""),
+    ],
+)
+def test_upload_validation_accepts_browser_mime_variants(
+    filename: str, content_type: str
+) -> None:
+    """浏览器常见 MIME 变体不应误伤合法文档上传。by AI.Coding"""
+    extension, mime_type = validate_upload_metadata(filename, content_type, 10)
+    assert extension == f".{filename.rsplit('.', 1)[1]}"
+    assert mime_type
+
+
 def test_markdown_parser_preserves_document_source() -> None:
     """Markdown 解析应返回可用于引用的文档来源元数据。by AI.Coding"""
     segments = parse_document(b"# FAQ\n\nReset password here.", ".md")

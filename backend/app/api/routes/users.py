@@ -7,6 +7,7 @@ from app import crud
 from app.api.deps import (
     CurrentUser,
     SessionDep,
+    WorkspaceContextDep,
 )
 from app.core.security import get_password_hash, verify_password
 from app.models.user import User
@@ -42,10 +43,11 @@ def create_user(
     *,
     session: SessionDep,
     current_user: CurrentUser,
+    context: WorkspaceContextDep,
     user_in: UserCreateAdmin,
 ) -> Any:
     """由 Admin 创建指定角色和启用状态的用户。by AI.Coding"""
-    user = UserService(session).create_user(current_user, user_in)
+    user = UserService(session).create_user(current_user, user_in, context=context)
     if user_in.email:
         email_data = generate_new_account_email(
             email_to=str(user_in.email),
@@ -147,8 +149,11 @@ def update_user(
     *,
     session: SessionDep,
     current_user: CurrentUser,
+    context: WorkspaceContextDep,
     user_id: uuid.UUID,
     user_in: UserUpdateAdmin,
 ) -> Any:
     """由 Admin 修改其他用户的角色、启停和个人资料。by AI.Coding"""
-    return UserService(session).update_user(current_user, user_id, user_in)
+    return UserService(session).update_user(
+        current_user, user_id, user_in, context=context
+    )

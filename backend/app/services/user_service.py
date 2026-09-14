@@ -6,7 +6,7 @@ import uuid
 from collections.abc import Callable
 
 from sqlalchemy.exc import IntegrityError
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from app.core.errors import (
     AppError,
@@ -16,8 +16,10 @@ from app.core.errors import (
     NotFoundError,
 )
 from app.core.security import get_password_hash
+from app.core.workspace import WorkspaceContext
 from app.models.enums import UserRole
 from app.models.user import User
+from app.models.workspace import MembershipStatus, WorkspaceMember, WorkspaceRole
 from app.repositories.user_repository import UserRepository
 from app.schemas.user import (
     UserCreateAdmin,
@@ -54,8 +56,14 @@ class UserService:
 
         return self._write(operation)
 
-    def create_user(self, actor: User, payload: UserCreateAdmin) -> UserPublic:
-        """由 Admin 创建指定角色和启用状态的用户。by AI.Coding"""
+    def create_user(
+        self,
+        actor: User,
+        payload: UserCreateAdmin,
+        *,
+        context: WorkspaceContext | None = None,
+    ) -> UserPublic:
+        """由 Admin 创建用户，并在当前 Workspace 建立成员关系。by AI.Coding"""
         self._require_admin(actor)
 
         def operation() -> User:
@@ -68,6 +76,21 @@ class UserService:
                 hashed_password=get_password_hash(payload.password),
             )
             self.repository.add(user)
+            if context is not None:
+                # User 与 WorkspaceMember 必须同事务提交，避免新账号登录后没有可访问租户。by AI.Coding
+                self.session.flush()
+                self.session.add(
+                    WorkspaceMember(
+                        workspace_id=context.workspace_id,
+                        user_id=user.id,
+                        role=self._workspace_role(payload.role),
+                        status=(
+                            MembershipStatus.ACTIVE
+                            if payload.is_active
+                            else MembershipStatus.REMOVED
+                        ),
+                    )
+                )
             return user
 
         return self._write(operation)
@@ -86,8 +109,10 @@ class UserService:
         actor: User,
         user_id: uuid.UUID,
         payload: UserUpdateAdmin,
+        *,
+        context: WorkspaceContext | None = None,
     ) -> UserPublic:
-        """由 Admin 更新用户，并保护最后一名活跃 Admin。by AI.Coding"""
+        """由 Admin 更新用户、成员角色并保护最后一名活跃 Admin。by AI.Coding"""
         self._require_admin(actor)
 
         def operation() -> User:
@@ -121,6 +146,9 @@ class UserService:
             )
             target.sqlmodel_update(changes, update=extra_data)
             self.repository.add(target)
+            if context is not None:
+                # 管理端修改全局角色时同步当前 Workspace，避免导航角色和租户角色分裂。by AI.Coding
+                self._sync_workspace_member(context, target.id, next_role, next_is_active)
             return target
 
         return self._write(operation)
@@ -175,6 +203,45 @@ class UserService:
         """限制用户管理能力仅对 Admin 开放。by AI.Coding"""
         if actor.role is not UserRole.ADMIN:
             raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
+
+    @staticmethod
+    def _workspace_role(role: UserRole) -> WorkspaceRole:
+        """将兼容期全局角色映射为 Workspace 成员角色。by AI.Coding"""
+        return WorkspaceRole(role.value)
+
+    def _sync_workspace_member(
+        self,
+        context: WorkspaceContext,
+        user_id: uuid.UUID,
+        role: UserRole,
+        is_active: bool,
+    ) -> None:
+        """确保当前 Workspace 始终存在与用户账号一致的成员记录。by AI.Coding"""
+        member = self.session.exec(
+            select(WorkspaceMember).where(
+                WorkspaceMember.workspace_id == context.workspace_id,
+                WorkspaceMember.user_id == user_id,
+            )
+        ).first()
+        if member is None:
+            member = WorkspaceMember(
+                workspace_id=context.workspace_id,
+                user_id=user_id,
+                role=self._workspace_role(role),
+                status=(
+                    MembershipStatus.ACTIVE
+                    if is_active
+                    else MembershipStatus.REMOVED
+                ),
+            )
+        else:
+            member.role = self._workspace_role(role)
+            member.status = (
+                MembershipStatus.ACTIVE
+                if is_active
+                else MembershipStatus.REMOVED
+            )
+        self.session.add(member)
 
     @staticmethod
     def _is_email_unique_violation(error: IntegrityError) -> bool:

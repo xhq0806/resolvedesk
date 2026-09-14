@@ -43,6 +43,23 @@ export const getCurrentWorkspaceId = () =>
     ? ""
     : localStorage.getItem(workspaceStorageKey) ?? ""
 
+// 进入受保护页面前校正失效的租户 ID，避免数据库恢复或租户删除后全站请求继续携带旧值。by AI.Coding
+export const ensureCurrentWorkspace = async (): Promise<string> => {
+  const workspaces = await listWorkspaces()
+  const activeWorkspaces = workspaces.filter(
+    (workspace) => workspace.status === "ACTIVE",
+  )
+  const currentId = getCurrentWorkspaceId()
+  const selected =
+    activeWorkspaces.find((workspace) => workspace.id === currentId) ??
+    activeWorkspaces[0]
+
+  if (selected && selected.id !== currentId) {
+    localStorage.setItem(workspaceStorageKey, selected.id)
+  }
+  return selected?.id ?? ""
+}
+
 export const switchWorkspace = (workspaceId: string) => {
   localStorage.setItem(workspaceStorageKey, workspaceId)
   queryClient.clear()

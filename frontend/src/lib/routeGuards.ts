@@ -7,6 +7,7 @@ import {
   isAuthenticationError,
   queryClient,
 } from "./queryClient"
+import { ensureCurrentWorkspace } from "./workspaceQueries"
 
 type RequireRolesOptions = {
   allowed: readonly UserRole[]
@@ -71,5 +72,8 @@ export function requireRoles({ allowed, redirectTo }: RequireRolesOptions) {
         ...(redirectTo === "/" ? { search: { access: "denied" } } : {}),
       })
     }
+
+    // 先校正当前租户，再渲染工作台/工单页面，避免子查询使用已失效的旧 Workspace UUID。by AI.Coding
+    await ensureCurrentWorkspace()
   }
 }

@@ -16,6 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import useCustomToast from "@/hooks/useCustomToast"
 
 const workspaceKey = "resolvedesk.workspace_id"
 const arkTemplate = {
@@ -29,6 +30,7 @@ const arkTemplate = {
 
 export function ProviderSettings() {
   const queryClient = useQueryClient()
+  const { showErrorToast, showSuccessToast } = useCustomToast()
   const [workspaceId, setWorkspaceId] = useState(
     () => localStorage.getItem(workspaceKey) ?? "",
   )
@@ -40,6 +42,7 @@ export function ProviderSettings() {
   const [embeddingDimension, setEmbeddingDimension] = useState("1024")
   const [enabled, setEnabled] = useState(false)
   const [tools, setTools] = useState<{ tool_name: string; enabled: boolean }[]>([])
+  const [feedback, setFeedback] = useState<{ kind: "success" | "error"; message: string } | null>(null)
 
   const configQuery = useQuery({
     queryKey: ["ai-provider", workspaceId],
@@ -74,11 +77,31 @@ export function ProviderSettings() {
     onSuccess: (data) => {
       setApiKey("")
       queryClient.setQueryData(["ai-provider", workspaceId], data)
+      setFeedback({ kind: "success", message: "Provider 配置已保存。" })
+      showSuccessToast("Provider 配置已保存，可以继续测试 Chat 或 Embedding。")
+    },
+    onError: (error) => {
+      const message = error instanceof Error ? error.message : "保存 Provider 配置失败。"
+      setFeedback({ kind: "error", message })
+      showErrorToast(message)
     },
   })
 
   const testMutation = useMutation({
     mutationFn: (kind: "CHAT" | "EMBEDDING") => testProvider(workspaceId, kind),
+    onSuccess: (data) => {
+      const message = data.ok
+        ? `${data.kind === "CHAT" ? "Chat" : "Embedding"} 连接成功（${data.latency_ms} ms）。`
+        : `${data.message} (${data.code ?? "ERROR"})`
+      setFeedback({ kind: data.ok ? "success" : "error", message })
+      if (data.ok) showSuccessToast(message)
+      else showErrorToast(message)
+    },
+    onError: (error) => {
+      const message = error instanceof Error ? error.message : "Provider 测试失败。"
+      setFeedback({ kind: "error", message })
+      showErrorToast(message)
+    },
   })
 
   const toolsQuery = useQuery({
@@ -211,25 +234,25 @@ export function ProviderSettings() {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button disabled={!workspaceId || saveMutation.isPending} onClick={() => saveMutation.mutate()}>
-            保存配置
+            {saveMutation.isPending ? "保存中…" : "保存配置"}
           </Button>
           <Button
             variant="outline"
             disabled={!workspaceId || testMutation.isPending}
             onClick={() => testMutation.mutate("CHAT")}
           >
-            测试 Chat
+            {testMutation.isPending ? "测试中…" : "测试 Chat"}
           </Button>
           <Button
             variant="outline"
             disabled={!workspaceId || testMutation.isPending}
             onClick={() => testMutation.mutate("EMBEDDING")}
           >
-            测试 Embedding
+            {testMutation.isPending ? "测试中…" : "测试 Embedding"}
           </Button>
-          {testMutation.data && (
+          {feedback && (
             <span className="self-center text-sm text-muted-foreground">
-              {testMutation.data.ok ? "连接成功" : `${testMutation.data.message} (${testMutation.data.code ?? "ERROR"})`}
+              {feedback.message}
             </span>
           )}
         </div>

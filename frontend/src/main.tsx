@@ -14,6 +14,16 @@ client.setConfig({
   auth: () => localStorage.getItem("access_token") || "",
 })
 
+// 工单与统计接口依赖当前租户上下文；拦截器动态读取 Workspace，避免切换租户后仍发送旧 header。by AI.Coding
+client.instance.interceptors.request.use((config) => {
+  const workspaceId = localStorage.getItem("resolvedesk.workspace_id")
+  if (workspaceId) {
+    config.headers = config.headers ?? {}
+    config.headers["X-Workspace-ID"] = workspaceId
+  }
+  return config
+})
+
 const router = createRouter({ routeTree })
 declare module "@tanstack/react-router" {
   interface Register {

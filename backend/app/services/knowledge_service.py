@@ -34,6 +34,17 @@ SUPPORTED_MIME_TYPES = {
     ".markdown": "text/markdown",
     ".txt": "text/plain",
 }
+# 浏览器在 Windows 上可能把文档标记为空 MIME 或 octet-stream；这些值仍可由扩展名安全识别。by AI.Coding
+UPLOAD_MIME_ALIASES = {
+    ".md": {"text/markdown", "text/plain", "application/octet-stream"},
+    ".markdown": {"text/markdown", "text/plain", "application/octet-stream"},
+    ".txt": {"text/plain", "application/octet-stream"},
+    ".pdf": {"application/pdf", "application/octet-stream"},
+    ".docx": {
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/octet-stream",
+    },
+}
 CHUNK_SIZE_CHARS = 2800
 CHUNK_OVERLAP_CHARS = 400
 
@@ -73,7 +84,9 @@ def validate_upload_metadata(
     if expected_mime is None or size_bytes <= 0 or size_bytes > settings.KNOWLEDGE_MAX_FILE_BYTES:
         raise ValidationError(ErrorCode.VALIDATION_ERROR)
     supplied_mime = (content_type or "").split(";", 1)[0].strip().lower()
-    if supplied_mime and supplied_mime != expected_mime:
+    # 不能要求浏览器上报 MIME 必须精确一致，否则合法的 Markdown/DOCX 会被 422 拒绝。by AI.Coding
+    allowed_mimes = UPLOAD_MIME_ALIASES[extension]
+    if supplied_mime and supplied_mime not in allowed_mimes:
         raise ValidationError(ErrorCode.VALIDATION_ERROR)
     return extension, expected_mime
 
@@ -171,9 +184,11 @@ class KnowledgeService:
             workspace_id=context.workspace_id,
             document_id=document_id,
         )
-        self.session.add(document)
-        self.session.add(job)
         try:
+            self.session.add(document)
+            # 文档与摄取任务没有 ORM relationship，必须先 flush 文档，避免任务先插入触发外键 500。by AI.Coding
+            self.session.flush()
+            self.session.add(job)
             self.session.commit()
         except Exception:
             self.session.rollback()

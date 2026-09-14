@@ -67,7 +67,25 @@ const requestJson = async <T>(
     },
   })
   if (!response.ok) {
-    throw new Error(`请求失败 (${response.status})`)
+    // 优先展示后端稳定错误文案，避免用户只能看到“无反应”。by AI.Coding
+    const raw = await response.text()
+    let message = `请求失败 (${response.status})`
+    try {
+      const payload = JSON.parse(raw) as {
+        message?: unknown
+        detail?: unknown
+      }
+      const serverMessage =
+        typeof payload.message === "string"
+          ? payload.message
+          : typeof payload.detail === "string"
+            ? payload.detail
+            : null
+      if (serverMessage) message = `${serverMessage} (${response.status})`
+    } catch {
+      // 非 JSON 错误响应不包含可安全展示的结构化文案，保留状态码。by AI.Coding
+    }
+    throw new Error(message)
   }
   return (await response.json()) as T
 }
@@ -89,7 +107,13 @@ export const updateProviderConfig = (
   )
 
 export const testProvider = (workspaceId: string, kind: "CHAT" | "EMBEDDING") =>
-  requestJson<{ ok: boolean; code?: string; message: string }>(
+  requestJson<{
+    kind: "CHAT" | "EMBEDDING"
+    ok: boolean
+    code?: string
+    message: string
+    latency_ms: number
+  }>(
     workspaceId,
     `/api/v1/workspaces/${workspaceId}/ai/provider/test`,
     { method: "POST", body: JSON.stringify({ kind }) },
@@ -132,7 +156,24 @@ export const uploadKnowledgeDocument = async (
     `${apiUrl()}/api/v1/workspaces/${workspaceId}/knowledge/documents`,
     { method: "POST", headers: headersFor(workspaceId), body: form },
   )
-  if (!response.ok) throw new Error(`上传失败 (${response.status})`)
+  if (!response.ok) {
+    // 上传接口也要透传后端校验文案，避免 422 只显示“上传失败”而无法定位原因。by AI.Coding
+    const raw = await response.text()
+    let message = `上传失败 (${response.status})`
+    try {
+      const payload = JSON.parse(raw) as { message?: unknown; detail?: unknown }
+      const serverMessage =
+        typeof payload.message === "string"
+          ? payload.message
+          : typeof payload.detail === "string"
+            ? payload.detail
+            : null
+      if (serverMessage) message = `${serverMessage} (${response.status})`
+    } catch {
+      // 非 JSON 响应保留状态码，避免把 HTML 或堆栈直接展示给用户。by AI.Coding
+    }
+    throw new Error(message)
+  }
   return (await response.json()) as KnowledgeDocument
 }
 

@@ -12,6 +12,7 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import useCustomToast from "@/hooks/useCustomToast"
 
 export function KnowledgePanel() {
   const [workspaceId, setWorkspaceId] = useState(
@@ -19,6 +20,7 @@ export function KnowledgePanel() {
   )
   const [file, setFile] = useState<File | null>(null)
   const queryClient = useQueryClient()
+  const { showErrorToast, showSuccessToast } = useCustomToast()
   const documentsQuery = useQuery({
     queryKey: ["knowledge-documents", workspaceId],
     queryFn: () => listKnowledgeDocuments(workspaceId),
@@ -32,6 +34,11 @@ export function KnowledgePanel() {
     onSuccess: () => {
       setFile(null)
       queryClient.invalidateQueries({ queryKey: ["knowledge-documents", workspaceId] })
+      showSuccessToast("文档已上传，后台正在解析并写入向量库。")
+    },
+    onError: (error) => {
+      // 让用户在上传失败时看到可操作的后端错误，而不是无反馈。by AI.Coding
+      showErrorToast(error instanceof Error ? error.message : "上传失败")
     },
   })
   const actionMutation = useMutation({
