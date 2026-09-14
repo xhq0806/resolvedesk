@@ -594,10 +594,6 @@ export type UserUpdateMe = {
      * Email
      */
     email?: string | null;
-    /**
-     * Avatar Url
-     */
-    avatar_url?: string | null;
 };
 
 /**

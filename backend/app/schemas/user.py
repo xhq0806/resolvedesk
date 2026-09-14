@@ -84,29 +84,10 @@ class UserUpdateAdmin(StrictInput):
 
 
 class UserUpdateMe(StrictInput):
-    """当前用户更新个人资料请求。by AI.Coding"""
+    """当前用户更新个人资料请求，不接受头像外链字段。by AI.Coding"""
 
     full_name: str | None = Field(default=None, max_length=255)
     email: EmailStr | None = Field(default=None, max_length=255)
-    avatar_url: str | None = Field(default=None, max_length=2048)
-
-    @field_validator("avatar_url", mode="before")
-    @classmethod
-    def normalize_avatar_url(cls, value: object) -> object:
-        """规范化头像 URL，空字符串清空头像，仅允许 HTTP(S) 外链。by AI.Coding"""
-        if value is None:
-            return None
-        if isinstance(value, str):
-            normalized = value.strip()
-            if not normalized:
-                return None
-            if not (
-                normalized.startswith("http://")
-                or normalized.startswith("https://")
-            ):
-                raise ValueError("头像 URL 必须以 http:// 或 https:// 开头。")
-            return normalized
-        return value
 
 
 class UserPublic(BaseModel):

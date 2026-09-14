@@ -1,9 +1,9 @@
 import uuid
 from typing import Annotated, Any
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from fastapi.responses import FileResponse
 
-from app import crud
 from app.api.deps import (
     CurrentUser,
     SessionDep,
@@ -66,22 +66,27 @@ def create_user(
 def update_user_me(
     *, session: SessionDep, user_in: UserUpdateMe, current_user: CurrentUser
 ) -> Any:
-    """
-    Update own user.
-    """
+    """更新当前用户资料，头像改由专用上传接口管理。by AI.Coding"""
+    return UserService(session).update_me(current_user, user_in)
 
-    if user_in.email:
-        existing_user = crud.get_user_by_email(session=session, email=user_in.email)
-        if existing_user and existing_user.id != current_user.id:
-            raise HTTPException(
-                status_code=409, detail="该邮箱已被其他用户使用"
-            )
-    user_data = user_in.model_dump(exclude_unset=True)
-    current_user.sqlmodel_update(user_data)
-    session.add(current_user)
-    session.commit()
-    session.refresh(current_user)
-    return current_user
+
+@router.post("/me/avatar", response_model=UserPublic)
+async def upload_user_avatar_me(
+    *,
+    session: SessionDep,
+    current_user: CurrentUser,
+    file: UploadFile = File(...),
+) -> Any:
+    """上传当前用户本地头像图片。by AI.Coding"""
+    return await UserService(session).upload_avatar(current_user, file)
+
+
+@router.delete("/me/avatar", response_model=UserPublic)
+def delete_user_avatar_me(
+    *, session: SessionDep, current_user: CurrentUser
+) -> Any:
+    """清除当前用户头像并回退为首字母展示。by AI.Coding"""
+    return UserService(session).delete_avatar(current_user)
 
 
 @router.patch("/me/password", response_model=Message)
@@ -119,6 +124,13 @@ def register_user(session: SessionDep, user_in: UserRegister) -> Any:
     Create new user without the need to be logged in.
     """
     return UserService(session).register_customer(user_in)
+
+
+@router.get("/{user_id}/avatar")
+def read_user_avatar(user_id: uuid.UUID, session: SessionDep) -> FileResponse:
+    """公开读取用户头像图片，供浏览器 img 标签直接加载。by AI.Coding"""
+    path, media_type = UserService(session).get_avatar_content(user_id)
+    return FileResponse(path, media_type=media_type)
 
 
 @router.get("/{user_id}", response_model=UserPublic)

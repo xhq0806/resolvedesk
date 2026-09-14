@@ -71,6 +71,9 @@ class Settings(BaseSettings):
     KNOWLEDGE_MAX_FILE_BYTES: int = 20 * 1024 * 1024
     ATTACHMENT_STORAGE_DIR: Path = Path("./.data/attachments")
     ATTACHMENT_MAX_FILE_BYTES: int = 10 * 1024 * 1024
+    # 头像作为用户公开资料图片单独存储，避免与工单附件授权模型混用。by AI.Coding
+    AVATAR_STORAGE_DIR: Path = Path("./.data/avatars")
+    AVATAR_MAX_FILE_BYTES: int = 2 * 1024 * 1024
 
     def _check_default_secret(self, var_name: str, value: str | None) -> None:
         if value == "changethis":

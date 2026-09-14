@@ -13,7 +13,13 @@ from sqlalchemy import delete, update
 from sqlmodel import Session, select
 
 from app.core.db import engine
-from app.core.errors import ConflictError, ErrorCode, ForbiddenError, NotFoundError
+from app.core.errors import (
+    ConflictError,
+    ErrorCode,
+    ForbiddenError,
+    NotFoundError,
+    ValidationError,
+)
 from app.core.security import verify_password
 from app.models.enums import UserRole
 from app.models.user import User
@@ -25,7 +31,7 @@ from app.schemas.user import (
     UserUpdateAdmin,
     UserUpdateMe,
 )
-from app.services.user_service import UserService
+from app.services.user_service import UserService, validate_avatar_bytes
 
 
 def make_user(
@@ -64,6 +70,38 @@ def persist(user: User, tracked_user_ids: list[uuid.UUID]) -> User:
         session.commit()
     tracked_user_ids.append(user.id)
     return user
+
+
+def test_validate_avatar_bytes_accepts_real_png_header() -> None:
+    """头像校验应接受扩展名、MIME 和图片签名一致的 PNG。by AI.Coding"""
+    content = b"\x89PNG\r\n\x1a\n" + b"avatar-bytes"
+
+    extension, mime_type = validate_avatar_bytes("avatar.png", "image/png", content)
+
+    assert extension == ".png"
+    assert mime_type == "image/png"
+
+
+@pytest.mark.parametrize(
+    ("filename", "content_type", "content"),
+    [
+        ("../avatar.png", "image/png", b"\x89PNG\r\n\x1a\navatar"),
+        ("avatar.txt", "text/plain", b"avatar"),
+        ("avatar.png", "image/jpeg", b"\x89PNG\r\n\x1a\navatar"),
+        ("avatar.jpg", "image/jpeg", b"not-a-jpeg"),
+        ("avatar.webp", "image/webp", b"not-a-webp"),
+    ],
+)
+def test_validate_avatar_bytes_rejects_unsafe_or_fake_images(
+    filename: str,
+    content_type: str,
+    content: bytes,
+) -> None:
+    """头像校验应拒绝路径穿越、非法类型、MIME 伪造和伪图片内容。by AI.Coding"""
+    with pytest.raises(ValidationError) as error:
+        validate_avatar_bytes(filename, content_type, content)
+
+    assert error.value.code is ErrorCode.VALIDATION_ERROR
 
 
 def test_register_customer_forces_active_customer_and_hashes_password(

@@ -4,16 +4,20 @@ from __future__ import annotations
 
 import uuid
 from collections.abc import Callable
+from pathlib import Path
+from typing import Protocol
 
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, select
 
+from app.core.config import settings
 from app.core.errors import (
     AppError,
     ConflictError,
     ErrorCode,
     ForbiddenError,
     NotFoundError,
+    ValidationError,
 )
 from app.core.security import get_password_hash
 from app.core.workspace import WorkspaceContext
@@ -30,6 +34,54 @@ from app.schemas.user import (
     UserUpdateAdmin,
     UserUpdateMe,
 )
+
+AVATAR_MIMES = {
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".webp": "image/webp",
+}
+
+
+class AvatarUpload(Protocol):
+    """头像上传对象所需的最小异步读取接口。by AI.Coding"""
+
+    filename: str | None
+    content_type: str | None
+
+    async def read(self, size: int = -1) -> bytes:
+        """读取上传图片字节。by AI.Coding"""
+        ...
+
+
+def validate_avatar_bytes(
+    filename: str | None,
+    content_type: str | None,
+    content: bytes,
+) -> tuple[str, str]:
+    """校验头像扩展名、MIME、大小和图片文件签名。by AI.Coding"""
+    if not filename or Path(filename).name != filename:
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    extension = Path(filename).suffix.lower()
+    expected_mime = AVATAR_MIMES.get(extension)
+    if (
+        expected_mime is None
+        or not content
+        or len(content) > settings.AVATAR_MAX_FILE_BYTES
+    ):
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    supplied_mime = (content_type or "").split(";", 1)[0].strip().lower()
+    if supplied_mime and supplied_mime != expected_mime:
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    if extension == ".png" and not content.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    if extension in {".jpg", ".jpeg"} and not content.startswith(b"\xff\xd8\xff"):
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    if extension == ".webp" and not (
+        len(content) >= 12 and content.startswith(b"RIFF") and content[8:12] == b"WEBP"
+    ):
+        raise ValidationError(ErrorCode.VALIDATION_ERROR)
+    return extension, expected_mime
 
 
 class UserService:
@@ -167,6 +219,53 @@ class UserService:
 
         return self._write(operation)
 
+    async def upload_avatar(self, actor: User, upload: AvatarUpload) -> UserPublic:
+        """校验并保存当前用户头像，返回带新读取地址的用户资料。by AI.Coding"""
+        filename = upload.filename or ""
+        content = await upload.read(settings.AVATAR_MAX_FILE_BYTES + 1)
+        extension, _mime_type = validate_avatar_bytes(
+            filename,
+            upload.content_type,
+            content,
+        )
+        path = self._avatar_path(actor.id, extension)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self._delete_avatar_files(actor.id)
+        path.write_bytes(content)
+        actor.avatar_url = (
+            f"{settings.API_V1_STR}/users/{actor.id}/avatar"
+            f"?version={uuid.uuid4().hex}"
+        )
+        self.repository.add(actor)
+        try:
+            self.session.commit()
+        except Exception:
+            self.session.rollback()
+            path.unlink(missing_ok=True)
+            raise
+        self.session.refresh(actor)
+        return UserPublic.model_validate(actor)
+
+    def delete_avatar(self, actor: User) -> UserPublic:
+        """删除当前用户本地头像并清空公开头像地址。by AI.Coding"""
+        self._delete_avatar_files(actor.id)
+        actor.avatar_url = None
+        self.repository.add(actor)
+        self.session.commit()
+        self.session.refresh(actor)
+        return UserPublic.model_validate(actor)
+
+    def get_avatar_content(self, user_id: uuid.UUID) -> tuple[Path, str]:
+        """返回公开头像文件路径和 MIME，供浏览器图片标签直接读取。by AI.Coding"""
+        user = self.repository.get_by_id(user_id)
+        if user is None or not user.avatar_url:
+            raise NotFoundError(ErrorCode.USER_NOT_FOUND)
+        for extension, mime_type in AVATAR_MIMES.items():
+            path = self._avatar_path(user_id, extension)
+            if path.is_file():
+                return path, mime_type
+        raise NotFoundError(ErrorCode.USER_NOT_FOUND)
+
     def _write(self, operation: Callable[[], User]) -> UserPublic:
         """执行单次用户写事务并统一翻译数据库冲突。by AI.Coding"""
         try:
@@ -255,3 +354,17 @@ class UserService:
         return sqlstate == "23505" and bool(
             constraint_name and "email" in constraint_name.lower()
         )
+
+    @staticmethod
+    def _avatar_path(user_id: uuid.UUID, extension: str) -> Path:
+        """解析头像本地文件路径并阻断路径穿越。by AI.Coding"""
+        root = settings.AVATAR_STORAGE_DIR.resolve()
+        path = (root / f"{user_id}{extension}").resolve()
+        if root not in path.parents:
+            raise ValueError("非法头像路径")
+        return path
+
+    def _delete_avatar_files(self, user_id: uuid.UUID) -> None:
+        """删除同一用户所有允许格式的历史头像文件。by AI.Coding"""
+        for extension in AVATAR_MIMES:
+            self._avatar_path(user_id, extension).unlink(missing_ok=True)

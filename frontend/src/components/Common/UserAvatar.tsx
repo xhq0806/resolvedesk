@@ -1,6 +1,7 @@
 // 用户与 AI 头像展示组件，统一图片加载和首字母兜底行为。by AI.Coding
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { resolveAvatarUrl } from "@/lib/userAvatarApi"
 import { cn } from "@/lib/utils"
 import { getInitials } from "@/utils"
 
@@ -21,10 +22,13 @@ export function UserAvatar({
 }: UserAvatarProps) {
   // 用户头像统一优先显示 URL 图片，失败或缺失时显示姓名/邮箱首字母。by AI.Coding
   const label = name?.trim() || email?.trim() || "用户"
+  const resolvedAvatarUrl = resolveAvatarUrl(avatarUrl)
 
   return (
     <Avatar className={cn("size-8", className)}>
-      {avatarUrl && <AvatarImage src={avatarUrl} alt={`${label} 的头像`} />}
+      {resolvedAvatarUrl && (
+        <AvatarImage src={resolvedAvatarUrl} alt={`${label} 的头像`} />
+      )}
       <AvatarFallback className={fallbackClassName}>
         {getInitials(label) || "?"}
       </AvatarFallback>

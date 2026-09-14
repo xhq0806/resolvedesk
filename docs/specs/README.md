@@ -7,3 +7,4 @@
 |------|------|---------|---------|
 | AI Agent 支持型客服协同系统 | [ai-agent-support-copilot.md](ai-agent-support-copilot.md) | 2026-09-14 | AgentService, CustomerSupportWidget, TicketService |
 | 会话与工单头像 | [conversation-avatars.md](conversation-avatars.md) | 2026-09-14 | UserAvatar, UserInformation, TicketTimeline, CustomerSupportWidget |
+| 本地头像上传 | [local-avatar-upload.md](local-avatar-upload.md) | 2026-09-14 | UserService, UserInformation, UserAvatar |
