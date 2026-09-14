@@ -173,3 +173,136 @@
 - **回滚条件**：发现跨租户数据、密钥泄漏、工具越权、历史工单不可访问或一期回归失败时关闭二期开关并回滚对应迁移版本。
 - **数据迁移**：创建默认 Workspace，将现有用户、工单、消息和审计回填到默认 Workspace；迁移需可重复执行并在无活跃 Owner/Admin 时失败。
 - **版本策略**：OpenAPI 破坏性变化先同步后端契约和生成客户端；旧无 Workspace 请求在兼容窗口内返回选择 Workspace 的稳定错误，不静默使用错误租户。
+
+---
+
+# Delta Spec
+
+> 基于: spec.md
+> 变更时间: 2026-09-14
+> 变更原因: 收敛知识库权限，并新增 Customer 前台在线咨询与转人工工单链路。
+
+## ADDED Requirements
+
+### Customer 在线咨询入口
+
+| 功能 | 验收标准 | 优先级 |
+|---|---|---|
+| Customer 悬浮咨询入口 | Customer 登录后在主界面右下角看到“在线咨询”悬浮按钮；点击后打开 AI 咨询面板；Agent/Admin 不显示该悬浮入口 | P0 |
+| AI 咨询面板 | 面板包含标题、关闭按钮、推荐问题、消息列表、输入框、发送按钮和“转人工”入口；加载、失败、空会话和发送中状态均可见 | P0 |
+| Customer Workspace 会话 | Customer 从咨询面板发起对话时，系统在当前 Workspace 创建或复用 Customer 自己的 AI conversation；消息与回答均只归属于当前 Workspace | P0 |
+
+#### 场景：Customer 打开在线咨询
+
+- **Given** 登录用户在当前 Workspace 的成员角色为 `CUSTOMER`
+- **When** 用户点击右下角“在线咨询”悬浮按钮
+- **Then** 页面打开 AI 咨询面板，并显示推荐问题和输入框，不跳转离开当前页面
+
+#### 场景：非 Customer 不显示在线咨询
+
+- **Given** 登录用户在当前 Workspace 的成员角色为 `AGENT` 或 `ADMIN`
+- **When** 用户进入工作台、队列、设置或工单页面
+- **Then** 页面不渲染“在线咨询”悬浮按钮
+
+### AI Agent 基于知识库回答 Customer
+
+| 功能 | 验收标准 | 优先级 |
+|---|---|---|
+| Customer 间接使用知识库 | Customer 不能调用知识库文档列表、上传、删除、重试接口；AI Agent 可在服务端内部检索当前 Workspace 的 `READY` 文档并生成回答 | P0 |
+| 来源展示 | AI 回答可显示来源摘要、文档名和定位信息；Customer 不能通过来源进入知识库管理页或下载完整后台文档 | P0 |
+| 无依据回答 | 当前 Workspace 知识库无可靠依据时，AI 明确说明无法确认，并展示“转人工”入口 | P0 |
+
+#### 场景：AI 使用当前 Workspace 知识库回答
+
+- **Given** 当前 Workspace 存在 `READY` 知识文档，且 Customer 提问与文档内容相关
+- **When** Customer 在在线咨询面板发送问题
+- **Then** AI 返回结合知识库的回答，并且来源只来自当前 Workspace 的 `READY` 文档
+
+### 转人工与工单创建
+
+| 功能 | 验收标准 | 优先级 |
+|---|---|---|
+| Customer 请求转人工 | Customer 点击“转人工”或发送明确转人工意图后，系统基于当前 AI conversation 创建工单；工单标题、描述包含客户问题、AI 对话摘要和转人工原因 | P0 |
+| 自动分派可用 Agent | 系统查找当前 Workspace 内活跃且可接待的 Agent；存在候选人时将新工单分派给负载最低的 Agent，并把状态置为 `IN_PROGRESS` | P0 |
+| 无可用 Agent 进入队列 | 当前 Workspace 没有可接待 Agent 时，工单保持未分派 `OPEN`，进入 Agent 公共队列 | P0 |
+| 转人工状态回写 | AI conversation 标记为已转人工并关联 ticket；重复点击转人工不得创建重复工单 | P0 |
+
+#### 场景：有空闲客服时转人工
+
+- **Given** Customer 正在 AI 咨询面板对话，当前 Workspace 有至少一个活跃可接待 Agent
+- **When** Customer 请求转人工
+- **Then** 系统创建工单，将对话关联到工单，并分派给负载最低的可接待 Agent；Customer 看到已转接提示和工单编号
+
+#### 场景：无空闲客服时进入公共队列
+
+- **Given** Customer 正在 AI 咨询面板对话，当前 Workspace 没有可接待 Agent
+- **When** Customer 请求转人工
+- **Then** 系统创建未分派 `OPEN` 工单；Customer 看到已创建工单且客服会尽快处理的提示
+
+## MODIFIED Requirements
+
+### 知识库 RAG
+
+**变更内容**：移除 Agent 直接浏览和检索知识库的权限；知识库后台仅 Admin/Owner 管理，Customer 只能通过 AI 回答间接消费。
+
+**变更原因**：知识库是后台运营资产，不应作为 Agent/Customer 侧边栏入口；Customer 体验应集中在在线咨询。
+
+| 功能 | 验收标准（修改后） | 优先级 |
+|---|---|---|
+| 知识库管理 | 仅 Workspace `OWNER`/`ADMIN` 可上传、查看处理状态、删除文档和重试失败任务；`AGENT`/`CUSTOMER` 访问知识库页面或管理接口均被拒绝 ← (was: Owner/Admin 管理，Agent 可浏览和检索) | P0 |
+| 知识库导航 | 侧边栏仅对 Admin/Owner 显示“知识库”；Agent/Customer 完全看不到知识库导航项 ← (was: 知识库在基础菜单中对三角色可见) | P0 |
+| RAG 消费 | AI Agent 可在服务端内部检索当前 Workspace `READY` 文档；Customer 只能看到 AI 回答和授权来源摘要，不获得文档管理权限 ← (was: Customer 只能消费 AI 返回的授权来源) | P0 |
+
+#### 场景：Agent 和 Customer 不能进入知识库
+
+- **Given** 登录用户在当前 Workspace 的成员角色为 `AGENT` 或 `CUSTOMER`
+- **When** 用户查看侧边栏或直接访问 `/knowledge`
+- **Then** 侧边栏不显示“知识库”；直接访问路由不会展示文档列表、上传控件、删除或重试按钮
+
+### 实时 AI 对话
+
+**变更内容**：Customer 的主要 AI 对话入口从通用 AI 工作台/工单详情扩展为右下角“在线咨询”面板；该面板可在未创建工单前提供咨询。
+
+**变更原因**：Customer 的自然入口是前台咨询，而不是后台工作台。
+
+| 功能 | 验收标准（修改后） | 优先级 |
+|---|---|---|
+| Customer AI 对话入口 | Customer 可通过右下角“在线咨询”悬浮面板发起 Workspace 级 AI conversation；工单详情内的 AI 能力不得替代该入口 | P0 |
+| Agent/Admin AI 工作台 | Agent/Admin 可继续使用内部 AI 工作台能力，但不显示 Customer 悬浮咨询入口 | P1 |
+
+### 调用审计与人工接管
+
+**变更内容**：人工接管从“客服接管已有会话”补充为“Customer 转人工时创建工单并自动分派”。
+
+**变更原因**：Customer 咨询需要从 AI 会话自然流转到人工工单处理。
+
+| 功能 | 验收标准（修改后） | 优先级 |
+|---|---|---|
+| 转人工审计 | 每次转人工请求、工单创建、自动分派或进入队列均记录在会话/工单审计中；Customer 不看到内部备注和分派算法细节 | P0 |
+| Agent 人工处理 | 被分派 Agent 可查看工单、客户公开消息和 AI 对话摘要，可发送公开回复、添加内部备注、修改状态/优先级/分类；仍不能管理知识库、Provider、用户或其他 Agent 工单 | P0 |
+
+## REMOVED Requirements
+
+### Agent 直接浏览知识库
+
+**删除原因**：Agent 不应拥有知识库后台入口。Agent 处理客户问题时可以看到与工单相关的 AI 对话摘要和公开来源摘要，但不能浏览或管理知识库文档列表。
+
+## Tasks 同步
+
+基于以上变更，tasks.md 需同步更新：
+
+| 操作 | 任务 | 说明 |
+|---|---|---|
+| 新增 | 【权限收敛】(全栈) Admin-only 知识库导航和路由 | 对应 MODIFIED 知识库 RAG |
+| 新增 | 【在线咨询】(前端) Customer 悬浮入口和咨询面板 | 对应 ADDED Customer 在线咨询入口 |
+| 新增 | 【咨询会话】(后端) Customer Workspace AI conversation 契约 | 对应 ADDED AI Agent 基于知识库回答 Customer |
+| 新增 | 【转人工】(后端) 对话转工单与自动分派 | 对应 ADDED 转人工与工单创建 |
+| 新增 | 【人工处理】(全栈) Agent 处理转人工工单和上下文展示 | 对应 MODIFIED 调用审计与人工接管 |
+| 新增 | 【回归验收】(全栈) 权限、RAG、转人工和角色导航测试 | 覆盖全部 Delta |
+
+## Impact
+
+- 前端导航：`/knowledge` 只对 Admin/Owner 可见可用；Customer 新增全局浮动咨询入口。
+- 后端权限：知识库管理接口保持并补强 manager-only；Customer AI 对话接口允许服务端内部 RAG，但不暴露文档管理接口。
+- 工单领域：新增 AI conversation 转工单和自动分派行为，需沿用现有 Ticket 状态机、审计和 Agent 数据范围。
+- 测试：新增三角色导航、直接访问知识库、Customer 在线咨询、RAG 来源、转人工创建/分派/去重和无人队列场景。

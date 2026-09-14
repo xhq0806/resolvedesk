@@ -1,6 +1,13 @@
-import { BookOpen, Home, Inbox, ListTodo, MessageSquare, Settings, Users } from "lucide-react"
+import {
+  BookOpen,
+  Home,
+  Inbox,
+  ListTodo,
+  MessageSquare,
+  Settings,
+  Users,
+} from "lucide-react"
 
-import type { UserRole } from "@/client"
 import { SidebarAppearance } from "@/components/Common/Appearance"
 import { Logo } from "@/components/Common/Logo"
 import { WorkspaceSwitcher } from "@/components/Workspace/WorkspaceSwitcher"
@@ -11,24 +18,41 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar"
 import useAuth from "@/hooks/useAuth"
-import { getUserRole } from "@/lib/routeGuards"
+import type { WorkspaceSummary } from "@/lib/workspaceQueries"
+import { useCurrentWorkspace } from "@/lib/workspaceQueries"
 import { type Item, Main } from "./Main"
 import { User } from "./User"
 
-const baseItems: Item[] = [
+const commonItems: Item[] = [
   { icon: Home, title: "工作台", path: "/" },
-  { icon: MessageSquare, title: "AI 工作台", path: "/ai" },
-  { icon: BookOpen, title: "知识库", path: "/knowledge" },
   { icon: Settings, title: "设置", path: "/settings" },
 ]
-const itemsByRole: Record<UserRole, Item[]> = {
+
+const staffItems: Item[] = [
+  { icon: MessageSquare, title: "AI 工作台", path: "/ai" },
+]
+
+const itemsByWorkspaceRole: Record<WorkspaceSummary["role"], Item[]> = {
   CUSTOMER: [
-    ...baseItems,
+    ...commonItems,
     { icon: Inbox, title: "我的工单", path: "/tickets" },
   ],
-  AGENT: [...baseItems, { icon: ListTodo, title: "客服队列", path: "/queue" }],
+  AGENT: [
+    ...commonItems,
+    ...staffItems,
+    { icon: ListTodo, title: "客服队列", path: "/queue" },
+  ],
   ADMIN: [
-    ...baseItems,
+    ...commonItems,
+    ...staffItems,
+    { icon: BookOpen, title: "知识库", path: "/knowledge" },
+    { icon: Inbox, title: "全部工单", path: "/admin/tickets" },
+    { icon: Users, title: "用户管理", path: "/admin" },
+  ],
+  OWNER: [
+    ...commonItems,
+    ...staffItems,
+    { icon: BookOpen, title: "知识库", path: "/knowledge" },
     { icon: Inbox, title: "全部工单", path: "/admin/tickets" },
     { icon: Users, title: "用户管理", path: "/admin" },
   ],
@@ -36,8 +60,9 @@ const itemsByRole: Record<UserRole, Item[]> = {
 
 export function AppSidebar() {
   const { user: currentUser } = useAuth()
+  const { role } = useCurrentWorkspace()
 
-  const items = itemsByRole[getUserRole(currentUser)] ?? baseItems
+  const items = role ? itemsByWorkspaceRole[role] : commonItems
 
   return (
     <Sidebar collapsible="icon">

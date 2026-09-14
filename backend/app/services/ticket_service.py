@@ -18,6 +18,7 @@ from app.core.errors import (
 from app.core.workspace import WorkspaceContext
 from app.models.enums import (
     TicketAuditAction,
+    TicketCategory,
     TicketMessageType,
     TicketPriority,
     TicketStatus,
@@ -93,6 +94,71 @@ class TicketService:
                 assignee_id=None,
             )
             self.ticket_repository.add(ticket)
+            return ticket
+
+        ticket = self._write(operation, refresh=True)
+        return self._build_detail(actor, ticket, context=context)
+
+    def create_from_ai_handoff(
+        self,
+        actor: User,
+        *,
+        title: str,
+        description: str,
+        assignee: User | None,
+        conversation_id: uuid.UUID,
+        context: WorkspaceContext,
+    ) -> TicketDetailPublic:
+        """由客户在线咨询转人工创建工单，并在可用时自动分派。by AI.Coding"""
+        if context.role is not WorkspaceRole.CUSTOMER:
+            raise ForbiddenError(ErrorCode.ROLE_FORBIDDEN)
+
+        def operation() -> Ticket:
+            now = get_datetime_utc()
+            ticket = Ticket(
+                title=title[:200],
+                description=description[:10_000],
+                category=TicketCategory.OTHER,
+                requester_id=actor.id,
+                workspace_id=context.workspace_id,
+                status=TicketStatus.OPEN,
+                priority=TicketPriority.MEDIUM,
+                assignee_id=None,
+                updated_at=now,
+            )
+            self.ticket_repository.add(ticket)
+            self.session.flush()
+            self.ticket_repository.add_audit(
+                TicketAuditLog(
+                    ticket_id=ticket.id,
+                    workspace_id=context.workspace_id,
+                    actor_id=actor.id,
+                    action=TicketAuditAction.AI_HANDOFF_CREATED,
+                    old_value=None,
+                    new_value={
+                        "conversation_id": str(conversation_id),
+                        "status": ticket.status.value,
+                    },
+                )
+            )
+            if assignee is not None:
+                if not self._is_assignable_agent(assignee, context=context):
+                    raise ConflictError(ErrorCode.INVALID_ASSIGNEE)
+                old_status = ticket.status
+                ticket.assignee_id = assignee.id
+                ticket.status = TicketStatus.IN_PROGRESS
+                ticket.updated_at = now
+                self.ticket_repository.add(ticket)
+                self.ticket_repository.add_audit(
+                    self._assignment_audit(
+                        ticket=ticket,
+                        actor=actor,
+                        action=TicketAuditAction.AUTO_ASSIGNED,
+                        old_assignee_id=None,
+                        old_status=old_status,
+                        workspace_id=context.workspace_id,
+                    )
+                )
             return ticket
 
         ticket = self._write(operation, refresh=True)

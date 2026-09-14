@@ -132,3 +132,27 @@ class AgentEventPublic(BaseModel):
 
     event: str
     data: dict[str, object]
+
+
+class HandoffTicketRequest(StrictInput):
+    """客户请求转人工时附加的原因文本。by AI.Coding"""
+
+    reason: str | None = Field(default=None, max_length=1000)
+
+    @field_validator("reason", mode="before")
+    @classmethod
+    def strip_reason(cls, value: object) -> object:
+        """去除转人工原因首尾空白，空字符串视为未填写。by AI.Coding"""
+        if isinstance(value, str):
+            return value.strip() or None
+        return value
+
+
+class HandoffTicketPublic(BaseModel):
+    """在线咨询转人工后的工单结果。by AI.Coding"""
+
+    conversation: ConversationPublic
+    ticket_id: uuid.UUID
+    ticket_number: str
+    assigned_agent_id: uuid.UUID | None
+    assigned: bool

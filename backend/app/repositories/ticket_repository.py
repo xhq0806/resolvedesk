@@ -25,6 +25,8 @@ from app.models.workspace import WorkspaceRole
 from app.schemas.ticket import TicketFilters
 
 _CUSTOMER_SAFE_AUDIT_ACTIONS = (
+    TicketAuditAction.AI_HANDOFF_CREATED,
+    TicketAuditAction.AUTO_ASSIGNED,
     TicketAuditAction.STATUS_CHANGED,
     TicketAuditAction.PRIORITY_CHANGED,
     TicketAuditAction.CATEGORY_CHANGED,

@@ -43,16 +43,41 @@ export const getCurrentWorkspaceId = () =>
     ? ""
     : localStorage.getItem(workspaceStorageKey) ?? ""
 
+export const isWorkspaceManagerRole = (
+  role: WorkspaceSummary["role"] | null | undefined,
+) => role === "OWNER" || role === "ADMIN"
+
+export const getCurrentWorkspace = (
+  workspaces: WorkspaceSummary[] | undefined,
+) => {
+  const activeWorkspaces =
+    workspaces?.filter((workspace) => workspace.status === "ACTIVE") ?? []
+  const currentId = getCurrentWorkspaceId()
+  return (
+    activeWorkspaces.find((workspace) => workspace.id === currentId) ??
+    activeWorkspaces[0]
+  )
+}
+
+export const useCurrentWorkspace = () => {
+  const query = useWorkspaceList()
+  const workspace = getCurrentWorkspace(query.data)
+  return {
+    ...query,
+    workspace,
+    role: workspace?.role,
+    isManager: isWorkspaceManagerRole(workspace?.role),
+  }
+}
+
 // 进入受保护页面前校正失效的租户 ID，避免数据库恢复或租户删除后全站请求继续携带旧值。by AI.Coding
 export const ensureCurrentWorkspace = async (): Promise<string> => {
   const workspaces = await listWorkspaces()
   const activeWorkspaces = workspaces.filter(
     (workspace) => workspace.status === "ACTIVE",
   )
+  const selected = getCurrentWorkspace(activeWorkspaces)
   const currentId = getCurrentWorkspaceId()
-  const selected =
-    activeWorkspaces.find((workspace) => workspace.id === currentId) ??
-    activeWorkspaces[0]
 
   if (selected && selected.id !== currentId) {
     localStorage.setItem(workspaceStorageKey, selected.id)

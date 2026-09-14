@@ -186,6 +186,14 @@ export type Conversation = {
   handed_off: boolean
 }
 
+export type HandoffTicketResult = {
+  conversation: Conversation
+  ticket_id: string
+  ticket_number: string
+  assigned_agent_id: string | null
+  assigned: boolean
+}
+
 export const createConversation = (workspaceId: string, ticketId?: string) =>
   requestJson<Conversation>(
     workspaceId,
@@ -205,6 +213,23 @@ export const conversationAction = (
     workspaceId,
     `/api/v1/workspaces/${workspaceId}/conversations/${conversationId}/${action}`,
     { method: "POST" },
+  )
+
+export const getOrCreateCustomerConversation = (workspaceId: string) =>
+  requestJson<Conversation>(
+    workspaceId,
+    `/api/v1/workspaces/${workspaceId}/customer/conversation`,
+  )
+
+export const handoffConversationToTicket = (
+  workspaceId: string,
+  conversationId: string,
+  reason?: string,
+) =>
+  requestJson<HandoffTicketResult>(
+    workspaceId,
+    `/api/v1/workspaces/${workspaceId}/conversations/${conversationId}/handoff-ticket`,
+    { method: "POST", body: JSON.stringify({ reason }) },
   )
 
 export const retryKnowledgeDocument = (
@@ -235,6 +260,47 @@ export const streamConversation = async function* (
 ): AsyncGenerator<{ event: string; data: Record<string, unknown> }> {
   const response = await fetch(
     `${apiUrl()}/api/v1/workspaces/${workspaceId}/conversations/${conversationId}/messages/stream`,
+    {
+      method: "POST",
+      headers: headersFor(workspaceId, true),
+      body: JSON.stringify({
+        content,
+        client_message_id: crypto.randomUUID(),
+      }),
+    },
+  )
+  if (!response.ok || !response.body) {
+    throw new Error(`聊天请求失败 (${response.status})`)
+  }
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ""
+  try {
+    while (true) {
+      const { value, done } = await reader.read()
+      buffer += decoder.decode(value ?? new Uint8Array(), { stream: !done })
+      const frames = buffer.split("\n\n")
+      buffer = frames.pop() ?? ""
+      for (const frame of frames) {
+        const event = frame.match(/^event: (.+)$/m)?.[1]
+        const data = frame.match(/^data: (.+)$/m)?.[1]
+        if (event && data) {
+          yield { event, data: JSON.parse(data) as Record<string, unknown> }
+        }
+      }
+      if (done) break
+    }
+  } finally {
+    reader.releaseLock()
+  }
+}
+
+export const streamCustomerConversation = async function* (
+  workspaceId: string,
+  content: string,
+): AsyncGenerator<{ event: string; data: Record<string, unknown> }> {
+  const response = await fetch(
+    `${apiUrl()}/api/v1/workspaces/${workspaceId}/customer/conversation/messages/stream`,
     {
       method: "POST",
       headers: headersFor(workspaceId, true),

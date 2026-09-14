@@ -7,7 +7,11 @@ import {
   isAuthenticationError,
   queryClient,
 } from "./queryClient"
-import { ensureCurrentWorkspace } from "./workspaceQueries"
+import {
+  ensureCurrentWorkspace,
+  isWorkspaceManagerRole,
+  listWorkspaces,
+} from "./workspaceQueries"
 
 type RequireRolesOptions = {
   allowed: readonly UserRole[]
@@ -75,5 +79,35 @@ export function requireRoles({ allowed, redirectTo }: RequireRolesOptions) {
 
     // 先校正当前租户，再渲染工作台/工单页面，避免子查询使用已失效的旧 Workspace UUID。by AI.Coding
     await ensureCurrentWorkspace()
+  }
+}
+
+// 知识库等管理页面必须按 Workspace 角色判断，避免全局角色误放行。by AI.Coding
+export function requireWorkspaceManager() {
+  return async () => {
+    if (localStorage.getItem("access_token") === null) {
+      throw redirect({ to: "/login" })
+    }
+
+    try {
+      await queryClient.fetchQuery({
+        ...currentUserQueryOptions(),
+        staleTime: 0,
+      })
+      const workspaceId = await ensureCurrentWorkspace()
+      const workspaces = await listWorkspaces()
+      const workspace = workspaces.find(
+        (item) => item.id === workspaceId && item.status === "ACTIVE",
+      )
+      if (!isWorkspaceManagerRole(workspace?.role)) {
+        throw redirect({ to: "/", search: { access: "denied" } })
+      }
+    } catch (error) {
+      if (isAuthenticationError(error)) {
+        clearAuthSession()
+        throw redirect({ to: "/login" })
+      }
+      throw error
+    }
   }
 }

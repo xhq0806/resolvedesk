@@ -18,6 +18,8 @@ from app.models.ai import AiAgent, AiToolPermission
 from app.schemas.ai import (
     ConversationCreate,
     ConversationPublic,
+    HandoffTicketPublic,
+    HandoffTicketRequest,
     MessageCreate,
     ProviderConfigPatch,
     ProviderConfigPublic,
@@ -31,6 +33,7 @@ from app.services.tool_executor import ALLOWED_TOOLS
 
 router = APIRouter(prefix="/workspaces/{workspace_id}/ai", tags=["ai"])
 conversation_router = APIRouter(prefix="/workspaces/{workspace_id}/conversations", tags=["ai"])
+customer_router = APIRouter(prefix="/workspaces/{workspace_id}/customer", tags=["ai"])
 
 
 def _ensure_same_workspace(
@@ -187,6 +190,35 @@ def handoff_conversation(
     )
 
 
+@conversation_router.post(
+    "/{conversation_id}/handoff-ticket",
+    response_model=HandoffTicketPublic,
+)
+def handoff_conversation_to_ticket(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+    conversation_id: uuid.UUID,
+    payload: HandoffTicketRequest,
+) -> HandoffTicketPublic:
+    """客户在线咨询转人工，创建工单并尝试自动分派客服。by AI.Coding"""
+    _ensure_same_workspace(workspace_id, context)
+    result = AgentService(session).handoff_to_ticket(
+        context,
+        current_user,
+        conversation_id,
+        reason=payload.reason,
+    )
+    return HandoffTicketPublic(
+        conversation=ConversationPublic.model_validate(result.conversation),
+        ticket_id=result.ticket.id,
+        ticket_number=result.ticket.ticket_number,
+        assigned_agent_id=result.assigned_agent_id,
+        assigned=result.assigned_agent_id is not None,
+    )
+
+
 @conversation_router.post("/{conversation_id}/resume", response_model=ConversationPublic)
 def resume_conversation(
     session: SessionDep,
@@ -256,6 +288,83 @@ async def stream_conversation_message(
                 )
         except asyncio.CancelledError:
             service.cancel_run(context, conversation_id)
+            raise
+
+    return StreamingResponse(events(), media_type="text/event-stream")
+
+
+@customer_router.get("/conversation", response_model=ConversationPublic)
+def get_customer_conversation(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+) -> ConversationPublic:
+    """返回或创建当前客户的在线咨询会话。by AI.Coding"""
+    _ensure_same_workspace(workspace_id, context)
+    conversation = AgentService(session).get_or_create_customer_conversation(
+        context, current_user
+    )
+    return ConversationPublic.model_validate(conversation)
+
+
+@customer_router.post("/conversation", response_model=ConversationPublic)
+def create_customer_conversation(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+) -> ConversationPublic:
+    """显式创建或复用客户在线咨询会话。by AI.Coding"""
+    _ensure_same_workspace(workspace_id, context)
+    conversation = AgentService(session).get_or_create_customer_conversation(
+        context, current_user
+    )
+    return ConversationPublic.model_validate(conversation)
+
+
+@customer_router.post("/conversation/messages/stream")
+async def stream_customer_conversation_message(
+    request: Request,
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+    payload: MessageCreate,
+) -> StreamingResponse:
+    """客户在线咨询专用 SSE，AI 内部结合知识库回答。by AI.Coding"""
+    _ensure_same_workspace(workspace_id, context)
+    chat_provider = ProviderService(session).build_chat_provider(context)
+    embedding_provider = ProviderService(session).build_embedding_provider(context)
+    request_id = get_request_id() or str(uuid.uuid4())
+
+    async def events() -> AsyncIterator[str]:
+        """把客户咨询事件编码为标准 SSE 文本帧。by AI.Coding"""
+        service = AgentService(session)
+        try:
+            async for event in service.stream_customer_message(
+                context,
+                current_user,
+                payload,
+                chat_provider,
+                embedding_provider,
+                request_id=request_id,
+            ):
+                if await request.is_disconnected():
+                    conversation = service.get_or_create_customer_conversation(
+                        context, current_user
+                    )
+                    service.cancel_run(context, conversation.id)
+                    break
+                yield (
+                    f"event: {event['event']}\n"
+                    f"data: {json.dumps(event['data'], ensure_ascii=False)}\n\n"
+                )
+        except asyncio.CancelledError:
+            conversation = service.get_or_create_customer_conversation(
+                context, current_user
+            )
+            service.cancel_run(context, conversation.id)
             raise
 
     return StreamingResponse(events(), media_type="text/event-stream")

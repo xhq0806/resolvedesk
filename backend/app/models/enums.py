@@ -51,6 +51,8 @@ class TicketMessageType(StrEnum):
 class TicketAuditAction(StrEnum):
     """工单审计动作枚举。by AI.Coding"""
 
+    AI_HANDOFF_CREATED = "AI_HANDOFF_CREATED"
+    AUTO_ASSIGNED = "AUTO_ASSIGNED"
     TAKEN = "TAKEN"
     ASSIGNED = "ASSIGNED"
     REASSIGNED = "REASSIGNED"

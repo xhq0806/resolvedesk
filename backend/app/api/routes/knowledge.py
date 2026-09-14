@@ -8,6 +8,7 @@ from fastapi import APIRouter, File, UploadFile, status
 
 from app.api.deps import CurrentUser, SessionDep, WorkspaceContextDep
 from app.core.errors import ErrorCode, NotFoundError
+from app.core.workspace import WorkspacePolicy
 from app.repositories.knowledge_repository import KnowledgeRepository
 from app.schemas.knowledge import (
     DocumentIngestionJobPublic,
@@ -79,6 +80,7 @@ async def search_knowledge(
     """检索当前 Workspace READY 文档并返回可定位来源预览。by AI.Coding"""
     del current_user
     _ensure_same_workspace(workspace_id, context)
+    WorkspacePolicy.require_manager(context)
     provider = ProviderService(session).build_embedding_provider(context)
     rows = await KnowledgeRetrievalService(
         KnowledgeRepository(session),

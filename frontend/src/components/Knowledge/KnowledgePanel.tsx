@@ -13,18 +13,18 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import useCustomToast from "@/hooks/useCustomToast"
+import { useCurrentWorkspace } from "@/lib/workspaceQueries"
 
 export function KnowledgePanel() {
-  const [workspaceId, setWorkspaceId] = useState(
-    () => localStorage.getItem("resolvedesk.workspace_id") ?? "",
-  )
   const [file, setFile] = useState<File | null>(null)
   const queryClient = useQueryClient()
   const { showErrorToast, showSuccessToast } = useCustomToast()
+  const { workspace, isManager } = useCurrentWorkspace()
+  const workspaceId = workspace?.id ?? ""
   const documentsQuery = useQuery({
     queryKey: ["knowledge-documents", workspaceId],
     queryFn: () => listKnowledgeDocuments(workspaceId),
-    enabled: workspaceId.length > 0,
+    enabled: isManager && workspaceId.length > 0,
   })
   const uploadMutation = useMutation({
     mutationFn: () => {
@@ -59,16 +59,9 @@ export function KnowledgePanel() {
         </p>
       </CardHeader>
       <CardContent className="space-y-4">
-        <input
-          className="w-full rounded-md border bg-background p-2 text-sm"
-          value={workspaceId}
-          onChange={(event) => {
-            const value = event.target.value.trim()
-            setWorkspaceId(value)
-            localStorage.setItem("resolvedesk.workspace_id", value)
-          }}
-          placeholder="Workspace UUID"
-        />
+        <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+          当前 Workspace：{workspace?.name ?? "未选择"}
+        </div>
         <div className="flex flex-wrap items-center gap-2">
           <input
             type="file"

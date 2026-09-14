@@ -2,7 +2,7 @@
 
 > 来源: design.md
 > 生成时间: 2026-09-11
-> 当前阶段: 后端与前端纵向实现
+> 当前阶段: Delta review 已通过，待 archive 确认
 
 ## 实施任务
 
@@ -67,3 +67,38 @@
 
 > 进度: 14/14 已完成
 > 当前实现进展：后端已完成 Workspace/成员上下文、Ticket 多租户隔离、Provider 加密与 OpenAI-compatible Chat/Embedding、知识文档上传/解析/切块/Embedding 摄取、pgvector 迁移、Workspace 隔离检索、AI 会话/SSE Run 生命周期、人工接管/取消/恢复、工具白名单和服务端工单动作重验、附件安全校验/隔离存储/授权下载删除；前端已加入 Workspace 切换与缓存清理、Provider/工具权限、知识库上传状态和 AI SSE 工作台。迁移、模型、Provider/知识/Agent/附件及核心回归共 130 个测试通过，后端 ruff/mypy/compileall、OpenAPI 路由检查和前端 TypeScript/Vite 构建通过；全量测试仍有 13 个一期账号接口的英文/中文文案基线断言不一致，未纳入本期功能缺陷。
+
+## Delta 任务清单（2026-09-14）
+
+> 来源: spec.md Delta Spec + design.md Delta Design
+> 目标: Admin-only 知识库、Customer 在线咨询、AI RAG 回答、转人工创建/分派工单。
+
+- [x] 【权限收敛】(全栈) Admin-only 知识库导航和路由
+  - 目标: Customer/Agent 完全看不到知识库入口，直接访问 `/knowledge` 也不能看到文档列表或管理动作。
+  - 涉及文件: `frontend/src/components/Sidebar/AppSidebar.tsx`, `frontend/src/routes/_layout/knowledge.tsx`, `frontend/src/components/Knowledge/KnowledgePanel.tsx`, `backend/app/services/knowledge_service.py`, `backend/tests/`, `frontend/tests/`
+  - 预期结果: Admin/Owner 可管理知识库；Agent/Customer 无侧栏入口且后端接口继续拒绝非 manager。
+- [x] 【在线咨询】(前端) Customer 悬浮入口和咨询面板 `← depends: 【权限收敛】`
+  - 目标: Customer 右下角显示“在线咨询”悬浮按钮，点击打开聊天面板，支持推荐问题、输入、来源摘要、失败状态和转人工入口。
+  - 涉及文件: `frontend/src/components/AI/CustomerSupportWidget.tsx`, `frontend/src/components/AI/CustomerConversationPanel.tsx`, `frontend/src/routes/_layout.tsx`, `frontend/src/lib/aiApi.ts`
+  - 预期结果: 仅 Customer 可见悬浮入口；桌面和移动端布局不遮挡关键操作。
+- [x] 【咨询会话】(后端) Customer conversation 与 RAG 流 `← depends: 【在线咨询】`
+  - 目标: 提供 Customer 专用 Workspace AI conversation 获取/创建和消息流接口，复用现有 SSE run 与服务端内部 RAG。
+  - 涉及文件: `backend/app/api/routes/ai.py`, `backend/app/services/agent_service.py`, `backend/app/schemas/ai.py`, `backend/tests/`
+  - 预期结果: Customer 可通过在线咨询获得结合知识库的回答；Agent/Admin 不能调用 Customer 专用接口。
+- [x] 【转人工】(后端) Conversation 转工单和自动分派 `← depends: 【咨询会话】`
+  - 目标: 实现幂等 handoff-ticket 接口，把 AI 会话摘要转为工单；有可用 Agent 时自动分派，否则进入未分派队列。
+  - 涉及文件: `backend/app/api/routes/ai.py`, `backend/app/services/agent_service.py`, `backend/app/services/ticket_service.py`, `backend/app/services/assignment_service.py`, `backend/app/repositories/ticket_repository.py`, `backend/tests/`
+  - 预期结果: 重复转人工不产生重复工单；分派只选择当前 Workspace 活跃 Agent。
+- [x] 【人工处理】(全栈) Agent 查看转人工上下文 `← depends: 【转人工】`
+  - 目标: Agent 在工单详情可看到 AI 会话摘要和客户转人工上下文，并继续使用现有回复、备注、状态和属性操作。
+  - 涉及文件: `backend/app/api/routes/tickets.py`, `backend/app/services/ticket_service.py`, `frontend/src/components/Tickets/`, `frontend/src/lib/aiApi.ts`
+  - 预期结果: Agent 具备处理转人工工单所需上下文，但仍不能管理知识库、Provider、用户或其他 Agent 工单。
+- [x] 【回归验收】(全栈) 权限、咨询和转人工测试 `← depends: 【人工处理】`
+  - 目标: 覆盖三角色导航、直接路由、Customer 咨询、RAG 来源、转人工分派/队列/幂等和核心回归。
+  - 涉及文件: `backend/tests/`, `frontend/tests/`, `changes/active/ai-agent-support-copilot/debug-log-*.md`
+  - 预期结果: 后端测试、前端构建、关键 Playwright 场景和 OpenAPI 契约通过。
+
+## Delta 完成状态
+
+> 进度: 6/6 已完成
+> 当前实现进展：完成 Admin/Owner-only 知识库导航、路由守卫和后端 search 权限收敛；新增 Customer 在线咨询浮窗、Customer 专用 conversation/SSE、RAG 来源摘要、转人工创建工单和自动分派；转人工上下文写入工单描述供 Agent 处理。验证已通过后端 mypy、相关服务测试和前端 TypeScript/Vite 构建；review 未发现阻塞问题，archive 需等待提交或确认无需提交以及清理策略。

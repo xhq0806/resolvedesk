@@ -314,3 +314,214 @@ AgentEvent =
 - 数据库：新增 pgvector 扩展、约 14 张新增表/扩展字段、迁移回填和向量索引。
 - 部署：Compose 增加 pgvector 数据库镜像、knowledge worker 和本地存储卷；AI provider 只通过服务端环境/数据库加密配置访问。
 - 外部依赖：新增 OpenAI-compatible Chat/Embedding HTTP 调用；不在本地运行模型，不增加独立向量数据库服务。
+
+---
+
+# Delta Design
+
+> 基于: design.md
+> 变更时间: 2026-09-14
+> 变更依据: spec.md Delta Spec - Admin-only 知识库、Customer 在线咨询、转人工工单。
+
+## Why
+
+当前实现已经具备 Workspace、RAG、AI 会话、知识库管理和人工接管基础，但产品入口仍偏后台：知识库作为基础侧栏项对三角色可见，Customer 的 AI 入口也不像真实客服前台。新的设计把知识库后台收敛到 Admin/Owner，把 Customer 体验改成右下角“在线咨询”浮窗，并让转人工成为创建和分派工单的正式业务链路。
+
+### 设计目标 / 非目标
+
+| 类型 | 说明 |
+|---|---|
+| ✅ 目标 | 让知识库导航、路由和接口均只允许 Admin/Owner 管理 |
+| ✅ 目标 | 为 Customer 增加全局悬浮在线咨询入口和独立聊天面板 |
+| ✅ 目标 | 让 Customer 咨询可通过 AI Agent 内部 RAG 回答，且不暴露知识库管理能力 |
+| ✅ 目标 | 将转人工实现为幂等的 conversation -> ticket 创建、自动分派和审计流程 |
+| ❌ 非目标 | 不做客服排班、在线状态心跳、技能组路由、SLA 或多轮人工即时 IM |
+| ❌ 非目标 | 不开放 Agent 浏览知识库后台，不让 Customer 直接查看完整知识文档 |
+
+## What
+
+### 技术方案
+
+#### 架构决策
+
+| 模块 | 职责 | 依赖 |
+|---|---|---|
+| `roleNavigation` | 根据当前 Workspace 成员角色生成侧栏项和受保护路由 | auth、workspaceQueries |
+| `CustomerSupportWidget` | Customer 全局悬浮按钮、咨询面板、推荐问题、输入和转人工入口 | aiApi、workspaceQueries、queryClient |
+| `customer_conversation` API | 创建/读取 Customer 自己的 Workspace 级 AI conversation，复用现有 run/SSE 事件 | AgentService、WorkspaceContext |
+| `handoff_to_ticket` service | 将 conversation 幂等转换为 ticket，生成摘要、关联 ticket、写审计 | AgentService、TicketService、UserRepository |
+| `AgentAssignmentPolicy` | 按当前 Workspace 选择可接待 Agent，第一版用活跃 Agent 的未关闭负责工单数排序 | TicketRepository、WorkspaceMember |
+| `agent_ticket_context` UI | Agent 工单详情展示转人工来源、AI 会话摘要和公开来源摘要 | TicketDetailPage、AI message API |
+
+模块关系：
+
+```text
+Customer UI
+  -> CustomerSupportWidget
+  -> conversation stream API
+  -> AgentOrchestrator -> KnowledgeRetriever (internal only)
+  -> handoff API -> TicketService.create_from_conversation
+                 -> AgentAssignmentPolicy
+                 -> TicketAuditLog
+
+Sidebar/Route guard
+  -> current workspace role
+  -> Admin/Owner: knowledge route visible
+  -> Agent/Customer: knowledge route hidden + direct route denied
+```
+
+#### 权限与导航设计
+
+- `baseItems` 不再包含“知识库”。
+- Admin/Owner 菜单增加“知识库”；Agent 和 Customer 菜单不渲染该项。
+- `/knowledge` 路由增加 Workspace manager guard；非 manager 直接访问时显示无权/重定向，不挂载 `KnowledgePanel`，避免先发文档列表请求。
+- 后端知识库 list/upload/retry/delete 继续调用 `WorkspacePolicy.require_manager(context)`；如果存在 search 管理接口，也不得对 Customer/Agent 暴露为文档浏览能力。
+- Product 文案统一：界面显示“管理员”或“Admin”，内部仍兼容 `OWNER` 作为管理权限。
+
+#### Customer 在线咨询流程
+
+1. `_layout` 读取当前用户和 Workspace 成员角色；仅 Customer 渲染 `CustomerSupportWidget`。
+2. 悬浮按钮使用竖向胶囊布局，文案为“在线咨询”，点击后打开右侧/右下浮层。
+3. 面板首次打开时请求或创建当前 Customer 的 open conversation；如果本地没有 Workspace，先触发 `ensureCurrentWorkspace()`。
+4. 用户发送消息时复用现有 SSE run：显示 `message.delta`、`source.found`、`run.failed` 等事件。
+5. 推荐问题由前端静态配置或后端 Workspace 配置返回；第一版使用前端静态配置，避免新增配置表。
+6. 来源只展示文档名、定位和短预览，不跳转知识库管理页。
+7. 无依据、失败或用户主动点击时显示“转人工”动作。
+
+#### 转人工与自动分派流程
+
+1. `POST /workspaces/{workspace_id}/conversations/{conversation_id}/handoff-ticket` 接收 Customer 请求。
+2. 服务端校验 conversation 属于当前 Customer、当前 Workspace，且尚未关联 handoff ticket。
+3. 服务端基于最近用户消息、AI 回复、来源摘要生成工单标题和描述；标题最长 200 字，描述最长 10,000 字，超长内容裁剪并保留“完整会话见 AI conversation”引用。
+4. `TicketService.create_from_ai_handoff(ctx, actor, conversation)` 创建 Customer 工单。
+5. `AgentAssignmentPolicy.pick_agent(ctx)` 选择候选 Agent：当前 Workspace ACTIVE 成员、全局用户 active、成员角色 `AGENT`，按未关闭负责工单数升序，再按最早加入时间/用户 id 稳定排序。
+6. 若选中 Agent，工单负责人设为该 Agent，状态为 `IN_PROGRESS`，写入分派审计；否则保持 `OPEN` 未分派。
+7. conversation 标记 `handed_off=true` 并保存 `ticket_id`；重复请求返回同一个 ticket，不创建重复工单。
+8. Customer 面板显示工单编号和当前状态；Agent 队列或我的工单中可看到该工单。
+
+### 数据模型变更
+
+| 操作 | 表/实体 | 字段 | 类型 | 约束 | 说明 |
+|---|---|---|---|---|---|
+| 修改 | `ai_conversation` | `ticket_id` | UUID nullable | 已存在；转人工后写入 | 关联创建出的工单 |
+| 修改 | `ai_conversation` | `handed_off` | bool | 已存在；默认 false | 幂等阻止重复创建工单 |
+| 新增/修改 | `ticket_audit_log` | `action` 枚举 | string/enum | 增加 AI_HANDOFF_CREATED、AUTO_ASSIGNED | 记录转人工与自动分派 |
+| 无新增 | `ticket` | — | — | 复用现有字段 | 转人工创建普通 Customer 工单 |
+
+本次优先复用现有 `ai_conversation.ticket_id/handed_off` 和 ticket 状态机，不新增在线客服 IM 表。后续如要做真正人工实时聊天，再单独扩展会话参与者和在线状态。
+
+### 接口定义
+
+#### HTTP API
+
+| 接口 | 方法 | 路径/签名 | 入参 | 出参 | 说明 |
+|---|---|---|---|---|---|
+| Customer 当前咨询会话 | GET/POST | `/workspaces/{workspace_id}/customer/conversation` | Workspace header | `ConversationPublic` | 仅 Customer；获取或创建未转人工的 Workspace 级会话 |
+| Customer 消息流 | POST | `/workspaces/{workspace_id}/customer/conversation/messages/stream` | `MessageCreate(content,client_message_id)`, `Idempotency-Key` | `text/event-stream<AgentEvent>` | 仅 Customer；服务端内部 RAG |
+| Customer 转人工 | POST | `/workspaces/{workspace_id}/conversations/{conversation_id}/handoff-ticket` | `HandoffTicketRequest(reason?)` | `HandoffTicketResult(ticket, assigned_agent?)` | 幂等创建/返回工单 |
+| 工单 AI 上下文 | GET | `/workspaces/{workspace_id}/tickets/{ticket_id}/ai-context` | Workspace header | `TicketAiContextPublic` | Agent/Admin 或工单 Customer 可读裁剪后的对话摘要 |
+
+#### 关键内部签名
+
+```text
+NavigationPolicy.items_for(role: WorkspaceRole, user_role: UserRole) -> list[NavigationItem]
+
+AgentService.get_or_create_customer_conversation(ctx: WorkspaceContext, actor: User) -> AiConversation
+AgentService.stream_customer_message(ctx: WorkspaceContext, actor: User, payload: MessageCreate, idempotency_key: str) -> AsyncIterator[AgentEvent]
+AgentService.handoff_to_ticket(ctx: WorkspaceContext, actor: User, conversation_id: UUID, reason: str | None) -> HandoffTicketResult
+
+TicketService.create_from_ai_handoff(ctx: WorkspaceContext, actor: User, conversation: AiConversation, summary: HandoffSummary) -> Ticket
+AgentAssignmentPolicy.pick_agent(ctx: WorkspaceContext) -> User | None
+AgentAssignmentPolicy.count_open_assigned(ctx: WorkspaceContext, agent_id: UUID) -> int
+```
+
+### 错误处理策略
+
+| 错误类型 | 处理方式 | HTTP状态码/异常类 |
+|---|---|---|
+| Agent/Customer 访问知识库管理路由 | 前端不展示入口；后端返回 manager forbidden，不返回文档数据 | 403 `WORKSPACE_ROLE_FORBIDDEN` |
+| 非 Customer 调用 Customer 咨询接口 | 拒绝请求，不创建 conversation | 403 `WORKSPACE_ROLE_FORBIDDEN` |
+| 转人工重复请求 | 返回已创建 ticket 和当前分派状态 | 200 `HandoffTicketResult` |
+| conversation 不属于当前用户或 Workspace | 伪装为资源不存在 | 404 `WORKSPACE_RESOURCE_NOT_FOUND` |
+| 创建工单失败 | conversation 不标记 handed_off；用户可重试 | 409/500 稳定错误码 |
+| 自动分派无候选 Agent | 不视为失败；创建未分派 `OPEN` 工单 | 201 `HandoffTicketResult.assigned_agent=null` |
+
+### 关键决策与理由
+
+| 决策 | 可选方案 | 选择 | 理由 |
+|---|---|---|---|
+| 知识库可见性 | A: Agent 可只读 / B: 仅 Admin/Owner 管理 | B | 用户已明确要求 Agent/Customer 侧栏完全不可见；知识库作为后台资产更安全 |
+| Customer 入口 | A: 复用 `/ai` 工作台 / B: 全局悬浮咨询面板 | B | 更符合客户前台咨询习惯，不要求客户理解后台 AI 工作台 |
+| 推荐问题来源 | A: 新增后端配置 / B: 前端静态默认 | B（本期） | 降低实现范围；后续可扩展 Workspace 配置 |
+| 转人工承载 | A: 新建实时人工会话表 / B: 创建普通工单 | B | 复用现有工单状态机、权限、队列和审计，符合“转人工后创建工单”要求 |
+| 分派策略 | A: 在线状态/排班 / B: 活跃 Agent 负载最低 | B | 当前系统没有在线状态和排班；负载最低可测试、确定性强 |
+| 重复转人工 | A: 每次点击新建工单 / B: conversation 幂等关联一个 ticket | B | 避免重复工单和客服重复处理 |
+
+### 风险与权衡
+
+| 风险 | 概率 | 影响 | 缓解措施 |
+|---|---|---|---|
+| 前端隐藏知识库但直接 URL 仍能访问 | 中 | 高 | 路由 guard 和后端 manager 校验双重覆盖，增加 E2E 直接访问测试 |
+| Customer 通过 AI 来源推断内部文档结构 | 中 | 中 | 来源只给短预览和定位，不暴露下载/管理链接 |
+| 自动分派把工单给停用或非成员 Agent | 低 | 高 | 分派查询同时校验 WorkspaceMember ACTIVE、User.is_active 和 role=AGENT |
+| 转人工重复点击创建多个工单 | 中 | 中 | conversation `handed_off/ticket_id` 幂等约束和事务内重查 |
+| Customer 浮窗与页面布局重叠 | 中 | 低 | 使用固定 z-index、移动端底部抽屉和 Playwright 视口截图检查 |
+
+### 变更文件清单
+
+| 文件路径 | 操作 | 变更说明 |
+|---|---|---|
+| `frontend/src/components/Sidebar/AppSidebar.tsx` | 修改 | 知识库从 baseItems 移到 Admin/Owner 专属导航 |
+| `frontend/src/routes/_layout/knowledge.tsx` | 修改 | 增加 manager route guard |
+| `frontend/src/components/Knowledge/KnowledgePanel.tsx` | 修改 | 移除手输 Workspace UUID，依赖当前 Workspace 和权限 |
+| `frontend/src/components/AI/CustomerSupportWidget.tsx` | 新增 | Customer 悬浮在线咨询入口和面板 |
+| `frontend/src/components/AI/CustomerConversationPanel.tsx` | 新增 | 推荐问题、消息流、来源、转人工 UI |
+| `frontend/src/lib/aiApi.ts` | 修改 | 增加 Customer conversation 和 handoff-ticket 请求 |
+| `frontend/src/routes/_layout.tsx` | 修改 | 注入 CustomerSupportWidget |
+| `backend/app/api/routes/ai.py` | 修改 | 增加 Customer conversation 和 handoff-ticket API |
+| `backend/app/services/agent_service.py` | 修改 | 增加 Customer conversation 和转人工编排 |
+| `backend/app/services/ticket_service.py` | 修改 | 增加从 AI handoff 创建工单的方法 |
+| `backend/app/services/assignment_service.py` | 新增 | Agent 自动分派策略 |
+| `backend/app/repositories/ticket_repository.py` | 修改 | 增加 Agent 未关闭负责工单计数查询 |
+| `backend/app/schemas/ai.py` | 修改 | 增加 handoff 请求/响应、ticket AI context schema |
+| `backend/tests/` | 新增/修改 | 权限、转人工、分派和幂等测试 |
+| `frontend/tests/` | 新增/修改 | Customer 浮窗、知识库隐藏、转人工 E2E |
+
+## How
+
+### 任务拆分
+
+| 任务名称 | 详细描述 | 关联设计章节 | 计划工作量(人天) |
+|---|---|---|---:|
+| 【权限收敛】(全栈) Admin-only 知识库导航和路由 | 1. 调整侧边栏角色菜单<br>2. `/knowledge` 增加 manager guard<br>3. 补充后端/前端直接访问拒绝测试 | 权限与导航设计 | 1 |
+| 【在线咨询】(前端) Customer 悬浮入口和咨询面板 | 1. 新增悬浮按钮和聊天面板<br>2. 实现推荐问题、输入、来源和失败状态<br>3. 移动端/桌面布局验收 | Customer 在线咨询流程 | 1.5 |
+| 【咨询会话】(后端) Customer conversation 与 RAG 流 | 1. 增加 Customer 会话获取/创建接口<br>2. 复用 SSE run 和内部 RAG<br>3. 禁止非 Customer 调用 | 接口定义、Customer 在线咨询流程 | 1 |
+| 【转人工】(后端) Conversation 转工单和自动分派 | 1. 增加 handoff-ticket 接口<br>2. 生成工单摘要并幂等关联 conversation<br>3. 实现负载最低 Agent 分派策略 | 转人工与自动分派流程 | 2 |
+| 【人工处理】(全栈) Agent 查看转人工上下文 | 1. 工单详情展示 AI 会话摘要<br>2. Agent 继续使用现有公开回复/内部备注/状态能力<br>3. Customer 显示工单编号和处理状态 | Agent 人工处理、接口定义 | 1 |
+| 【回归验收】(全栈) 权限、咨询和转人工测试 | 1. 三角色导航和直达路由测试<br>2. Customer RAG 咨询和来源裁剪测试<br>3. 有/无可用 Agent 转人工和重复点击测试 | 风险与权衡 | 1.5 |
+| **合计** |  |  | **8** |
+
+### 任务依赖
+
+```text
+【权限收敛】
+【在线咨询】 -> 【咨询会话】 -> 【转人工】 -> 【人工处理】 -> 【回归验收】
+【权限收敛】 ----------------------------------------------^
+```
+
+## Verify
+
+设计自检：
+
+- [x] Delta Spec 的 Admin-only 知识库、Customer 在线咨询、AI RAG、转人工和 Agent 处理均有技术方案。
+- [x] 接口定义到路径、入参和出参级，内部方法到签名级，未写实现代码。
+- [x] 未新增排班、复杂团队、SLA 或人工即时 IM。
+- [x] 分派策略、幂等策略、来源裁剪和路由权限均有明确测试点。
+- [x] 任务拆分覆盖前端、后端和回归验收，单项不超过 2 人天。
+
+## Impact
+
+- 前端：侧边栏和路由权限变化；Customer 新增全局浮窗；知识库页面仅管理者可见。
+- 后端：AI conversation 增加 Customer 专用入口和 handoff-ticket；Ticket service 增加从会话创建工单与自动分派路径。
+- 数据库：优先复用现有 conversation 和 ticket 字段；只需补充审计枚举/动作，不新增核心表。
+- 测试：新增权限收敛、Customer 在线咨询、RAG 来源、转人工分派和幂等测试。

@@ -21,6 +21,7 @@ api_router.include_router(utils.router)
 api_router.include_router(workspaces.router)
 api_router.include_router(ai.router)
 api_router.include_router(ai.conversation_router)
+api_router.include_router(ai.customer_router)
 api_router.include_router(knowledge.router)
 api_router.include_router(attachments.router)
 

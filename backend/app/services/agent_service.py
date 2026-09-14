@@ -5,13 +5,14 @@ from __future__ import annotations
 import asyncio
 import uuid
 from collections.abc import AsyncIterator
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Any
 
 from sqlalchemy.exc import IntegrityError
 from sqlmodel import Session, col, select
 
-from app.core.errors import ConflictError, ErrorCode, NotFoundError
+from app.core.errors import ConflictError, ErrorCode, ForbiddenError, NotFoundError
 from app.core.workspace import WorkspaceContext, WorkspacePolicy
 from app.models.ai import (
     AiConversation,
@@ -27,9 +28,28 @@ from app.models.ai import (
 )
 from app.models.ticket import Ticket
 from app.models.user import User
+from app.models.workspace import WorkspaceRole
 from app.providers.chat import ChatMessage, ChatProvider
+from app.providers.embedding import EmbeddingProvider
 from app.repositories.ai_repository import AiRepository
+from app.repositories.knowledge_repository import KnowledgeRepository
 from app.schemas.ai import ConversationCreate, MessageCreate
+from app.schemas.ticket import TicketDetailPublic
+from app.services.assignment_service import AgentAssignmentPolicy
+from app.services.knowledge_retrieval import (
+    KnowledgeRetrievalService,
+    RetrievedChunk,
+)
+from app.services.ticket_service import TicketService
+
+
+@dataclass(frozen=True)
+class HandoffTicketResult:
+    """在线咨询转人工的内部返回结构。by AI.Coding"""
+
+    conversation: AiConversation
+    ticket: TicketDetailPublic
+    assigned_agent_id: uuid.UUID | None
 
 
 class AgentService:
@@ -70,6 +90,30 @@ class AgentService:
         self.session.commit()
         self.session.refresh(conversation)
         return conversation
+
+    def get_or_create_customer_conversation(
+        self,
+        context: WorkspaceContext,
+        actor: User,
+    ) -> AiConversation:
+        """为客户浮窗复用一个未转人工的活跃 Workspace 会话。by AI.Coding"""
+        if context.role is not WorkspaceRole.CUSTOMER:
+            raise ForbiddenError(ErrorCode.WORKSPACE_ROLE_FORBIDDEN)
+        conversation = self.session.exec(
+            select(AiConversation)
+            .where(
+                col(AiConversation.workspace_id) == context.workspace_id,
+                col(AiConversation.created_by_id) == actor.id,
+                col(AiConversation.mode) == ConversationMode.WORKSPACE,
+                col(AiConversation.ticket_id).is_(None),
+                col(AiConversation.status) == ConversationStatus.ACTIVE,
+                col(AiConversation.handed_off).is_(False),
+            )
+            .order_by(col(AiConversation.updated_at).desc())
+        ).first()
+        if conversation is not None:
+            return conversation
+        return self.create_conversation(context, actor, ConversationCreate())
 
     def get_conversation(
         self,
@@ -127,6 +171,8 @@ class AgentService:
         provider: ChatProvider,
         *,
         request_id: str,
+        system_context: str | None = None,
+        sources: list[RetrievedChunk] | None = None,
     ) -> AsyncIterator[dict[str, Any]]:
         """持久化用户消息后流式生成 AI 回复并发出稳定事件。by AI.Coding"""
         WorkspacePolicy.require_member(context.member)
@@ -167,13 +213,28 @@ class AgentService:
         )
         yield self._event(AiRunEventType.RUN_STARTED, run, {"run_id": str(run.id)})
 
+        sequence = 1
+        for source in sources or []:
+            payload_source = {
+                "chunk_id": source.chunk_id,
+                "document_id": source.document_id,
+                "display_name": source.display_name,
+                "locator": source.locator,
+                "preview": source.content[:500],
+                "distance": source.distance,
+            }
+            self._record_event(run, sequence, AiRunEventType.SOURCE_FOUND, payload_source)
+            sequence += 1
+            yield self._event(AiRunEventType.SOURCE_FOUND, run, payload_source)
+
         messages = [
             ChatMessage(role=message.role.value.lower(), content=message.content)
             for message in self.repository.list_messages(context, conversation.id)
             if message.status is AiMessageStatus.CONFIRMED
         ]
+        if system_context:
+            messages.insert(0, ChatMessage(role="system", content=system_context))
         deltas: list[str] = []
-        sequence = 1
         try:
             async for chunk in provider.stream(messages):
                 delta = self._extract_delta(chunk)
@@ -249,6 +310,87 @@ class AgentService:
                 {"run_id": str(run.id), "error_code": "PROVIDER_UNAVAILABLE"},
             )
 
+    async def stream_customer_message(
+        self,
+        context: WorkspaceContext,
+        actor: User,
+        payload: MessageCreate,
+        chat_provider: ChatProvider,
+        embedding_provider: EmbeddingProvider,
+        *,
+        request_id: str,
+    ) -> AsyncIterator[dict[str, Any]]:
+        """客户在线咨询专用流式回复，先内部检索知识库再回答。by AI.Coding"""
+        conversation = self.get_or_create_customer_conversation(context, actor)
+        sources = await KnowledgeRetrievalService(
+            KnowledgeRepository(self.session),
+            embedding_provider,
+        ).search(context, payload.content)
+        system_context = self._customer_system_context(sources)
+        async for event in self.stream_message(
+            context,
+            actor,
+            conversation.id,
+            payload,
+            chat_provider,
+            request_id=request_id,
+            system_context=system_context,
+            sources=sources,
+        ):
+            yield event
+
+    def handoff_to_ticket(
+        self,
+        context: WorkspaceContext,
+        actor: User,
+        conversation_id: uuid.UUID,
+        *,
+        reason: str | None = None,
+    ) -> HandoffTicketResult:
+        """客户会话转人工，创建工单并按空闲 Agent 自动分派。by AI.Coding"""
+        if context.role is not WorkspaceRole.CUSTOMER:
+            raise ForbiddenError(ErrorCode.WORKSPACE_ROLE_FORBIDDEN)
+        conversation = self.get_conversation(context, conversation_id)
+        if conversation.created_by_id != actor.id:
+            raise ForbiddenError(ErrorCode.WORKSPACE_ROLE_FORBIDDEN)
+        if conversation.ticket_id is not None:
+            ticket = TicketService(self.session).get_ticket(
+                actor, conversation.ticket_id, context=context
+            )
+            return HandoffTicketResult(
+                conversation=conversation,
+                ticket=ticket,
+                assigned_agent_id=ticket.assignee.id if ticket.assignee else None,
+            )
+
+        messages = self.repository.list_messages(context, conversation.id)
+        assignee = AgentAssignmentPolicy(self.session).pick_agent(context)
+        ticket = TicketService(self.session).create_from_ai_handoff(
+            actor,
+            title=self._handoff_title(messages),
+            description=self._handoff_description(
+                messages,
+                reason=reason,
+                conversation_id=conversation.id,
+            ),
+            assignee=assignee,
+            conversation_id=conversation.id,
+            context=context,
+        )
+        conversation.ticket_id = ticket.id
+        conversation.handed_off = True
+        conversation.status = ConversationStatus.HANDED_OFF
+        conversation.updated_at = datetime.now(UTC)
+        self._cancel_running_run(context, conversation.id)
+        self.session.add(conversation)
+        self.session.commit()
+        self.session.refresh(conversation)
+        return HandoffTicketResult(
+            conversation=conversation,
+            ticket=ticket,
+            assigned_agent_id=ticket.assignee.id if ticket.assignee else None,
+        )
+
     def _duplicate_client_message(
         self,
         context: WorkspaceContext,
@@ -282,6 +424,56 @@ class AgentService:
         run.finished_at = datetime.now(UTC)
         self.session.add(run)
         self.session.commit()
+
+    @staticmethod
+    def _customer_system_context(sources: list[RetrievedChunk]) -> str:
+        """把知识库来源压缩为客户咨询 Prompt，不暴露管理能力。by AI.Coding"""
+        if not sources:
+            return (
+                "你是 ResolveDesk 在线咨询 AI Agent。当前没有检索到可引用的知识库内容。"
+                "请先给出谨慎、简短的回应，并在信息不足时建议客户转人工。"
+            )
+        source_blocks = []
+        for index, source in enumerate(sources, start=1):
+            source_blocks.append(
+                f"[来源{index}] {source.display_name}\n{source.content[:1200]}"
+            )
+        return (
+            "你是 ResolveDesk 在线咨询 AI Agent。必须优先依据以下知识库来源回答客户，"
+            "不要声称客户可以访问或管理知识库；如果知识库不足以回答，请说明信息不足并建议转人工。\n\n"
+            + "\n\n".join(source_blocks)
+        )
+
+    @staticmethod
+    def _handoff_title(messages: list[AiMessage]) -> str:
+        """从最近一条客户消息生成工单标题。by AI.Coding"""
+        for message in reversed(messages):
+            if message.role is AiMessageRole.USER and message.content.strip():
+                return message.content.strip().splitlines()[0][:80]
+        return "在线咨询转人工"
+
+    @staticmethod
+    def _handoff_description(
+        messages: list[AiMessage],
+        *,
+        reason: str | None,
+        conversation_id: uuid.UUID,
+    ) -> str:
+        """把会话上下文整理成客服可读的工单描述。by AI.Coding"""
+        lines = [
+            "客户从在线咨询请求转人工。",
+            f"AI 会话 ID：{conversation_id}",
+        ]
+        if reason:
+            lines.append(f"转人工原因：{reason}")
+        lines.append("")
+        lines.append("最近会话：")
+        for message in messages[-12:]:
+            role = "客户" if message.role is AiMessageRole.USER else "AI"
+            if message.role not in {AiMessageRole.USER, AiMessageRole.ASSISTANT}:
+                continue
+            lines.append(f"{role}：{message.content.strip()[:1000]}")
+        return "\n".join(lines).strip()[:10_000]
 
     @staticmethod
     def _extract_delta(chunk: dict[str, Any]) -> str:
