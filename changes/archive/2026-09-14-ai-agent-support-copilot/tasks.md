@@ -2,7 +2,7 @@
 
 > 来源: design.md
 > 生成时间: 2026-09-11
-> 当前阶段: Delta review 已通过，待 archive 确认
+> 当前阶段: 已归档
 
 ## 实施任务
 
@@ -101,4 +101,4 @@
 ## Delta 完成状态
 
 > 进度: 6/6 已完成
-> 当前实现进展：完成 Admin/Owner-only 知识库导航、路由守卫和后端 search 权限收敛；新增 Customer 在线咨询浮窗、Customer 专用 conversation/SSE、RAG 来源摘要、转人工创建工单和自动分派；转人工上下文写入工单描述供 Agent 处理。验证已通过后端 mypy、相关服务测试和前端 TypeScript/Vite 构建；review 未发现阻塞问题，archive 需等待提交或确认无需提交以及清理策略。
+> 当前实现进展：完成 Admin/Owner-only 知识库导航、路由守卫和后端 search 权限收敛；新增 Customer 在线咨询浮窗、Customer 专用 conversation/SSE、RAG 来源摘要、转人工创建工单和自动分派；转人工上下文写入工单描述供 Agent 处理。验证已通过后端 mypy、相关服务测试和前端 TypeScript/Vite 构建；review 未发现阻塞问题，已按“归档保留”策略归档。

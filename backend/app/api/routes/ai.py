@@ -99,6 +99,9 @@ def list_tool_permissions(
     """返回当前 Workspace AI Agent 的白名单工具授权状态。by AI.Coding"""
     del current_user
     _ensure_same_workspace(workspace_id, context)
+    from app.core.workspace import WorkspacePolicy
+
+    WorkspacePolicy.require_manager(context)
     agent = session.exec(
         select(AiAgent).where(col(AiAgent.workspace_id) == context.workspace_id)
     ).first()

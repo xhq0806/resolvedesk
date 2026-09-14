@@ -1,6 +1,6 @@
 // Customer 在线咨询浮窗，提供 AI Agent 回答和转人工入口。by AI.Coding
 
-import { useMemo, useState } from "react"
+import { type KeyboardEvent, useCallback, useEffect, useMemo, useState } from "react"
 import { Bot, ChevronUp, MoreHorizontal, Send, X } from "lucide-react"
 
 import {
@@ -9,6 +9,7 @@ import {
   streamCustomerConversation,
   type Conversation,
 } from "@/lib/aiApi"
+import { openCustomerSupportEvent } from "@/lib/customerSupportEvents"
 import { useCurrentWorkspace } from "@/lib/workspaceQueries"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -46,9 +47,10 @@ export function CustomerSupportWidget() {
   const visible = role === "CUSTOMER" && Boolean(workspace?.id)
 
   const assistantDraftId = useMemo(() => crypto.randomUUID(), [messages.length])
-  if (!visible) return null
 
-  const openPanel = async () => {
+  const openPanel = useCallback(async () => {
+    // 侧边栏和悬浮按钮共用打开逻辑，避免产生两个在线咨询入口状态。by AI.Coding
+    if (!visible) return
     setOpen(true)
     if (conversation || !workspace?.id) return
     try {
@@ -56,7 +58,20 @@ export function CustomerSupportWidget() {
     } catch (error) {
       showErrorToast(error instanceof Error ? error.message : "在线咨询暂不可用")
     }
-  }
+  }, [conversation, showErrorToast, visible, workspace?.id])
+
+  useEffect(() => {
+    const handleOpenSupport = () => {
+      void openPanel()
+    }
+
+    window.addEventListener(openCustomerSupportEvent, handleOpenSupport)
+    return () => {
+      window.removeEventListener(openCustomerSupportEvent, handleOpenSupport)
+    }
+  }, [openPanel])
+
+  if (!visible) return null
 
   const sendMessage = async () => {
     const content = input.trim()
@@ -113,6 +128,15 @@ export function CustomerSupportWidget() {
     } finally {
       setRunning(false)
     }
+  }
+
+  const handleInputKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    // Enter 是聊天场景的主发送动作；Shift+Enter 保留给多行问题输入。by AI.Coding
+    if (event.key !== "Enter" || event.shiftKey || event.nativeEvent.isComposing) {
+      return
+    }
+    event.preventDefault()
+    void sendMessage()
   }
 
   const requestHandoff = async () => {
@@ -226,14 +250,16 @@ export function CustomerSupportWidget() {
                 className="min-h-20 resize-none"
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
+                onKeyDown={handleInputKeyDown}
                 placeholder="您可以使用“产品+问题”描述问题"
               />
               <Button
-                size="icon"
+                className="h-20 min-w-20 px-4"
                 onClick={sendMessage}
                 disabled={!input.trim() || running}
               >
                 <Send className="size-5" />
+                发送
               </Button>
             </div>
           </div>

@@ -62,6 +62,11 @@ const ticketCategoryValues = [
   "OTHER",
 ] as const
 
+const createTicketSearchSchema = z.preprocess(
+  (value) => (value === true || value === "true" || value === "1" ? true : undefined),
+  z.literal(true).optional(),
+)
+
 export const ticketSearchSchema = z.object({
   page: z.coerce.number().int().min(1).catch(1),
   pageSize: z.coerce.number().int().min(1).max(100).catch(20),
@@ -70,6 +75,7 @@ export const ticketSearchSchema = z.object({
   priority: z.enum(ticketPriorityValues).optional(),
   category: z.enum(ticketCategoryValues).optional(),
   assigneeId: z.string().trim().min(1).optional(),
+  create: createTicketSearchSchema,
 })
 
 export type TicketSearch = z.infer<typeof ticketSearchSchema>

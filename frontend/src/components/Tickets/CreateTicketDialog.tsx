@@ -75,10 +75,27 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-export function CreateTicketDialog() {
-  const [isOpen, setIsOpen] = useState(false)
+type CreateTicketDialogProps = {
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
+
+export function CreateTicketDialog({
+  open,
+  onOpenChange,
+}: CreateTicketDialogProps = {}) {
+  const [internalOpen, setInternalOpen] = useState(false)
   const queryClient = useQueryClient()
   const { showSuccessToast, showErrorToast } = useCustomToast()
+  const isOpen = open ?? internalOpen
+
+  const setIsOpen = (nextOpen: boolean) => {
+    // 允许侧边栏通过 URL 控制弹窗，同时保留页面内按钮的本地状态。by AI.Coding
+    onOpenChange?.(nextOpen)
+    if (open === undefined) {
+      setInternalOpen(nextOpen)
+    }
+  }
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -103,6 +120,7 @@ export function CreateTicketDialog() {
   })
 
   const onSubmit = (data: FormData) => {
+    // 提交工单仍走统一创建接口，避免侧边栏入口产生第二套写入流程。by AI.Coding
     mutation.mutate(data)
   }
 

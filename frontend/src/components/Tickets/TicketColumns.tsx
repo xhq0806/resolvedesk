@@ -147,6 +147,24 @@ export const createTicketColumns = (
     cell: ({ row }) => categoryLabels[row.original.category],
   },
   {
+    accessorKey: "requester",
+    header: "客户",
+    cell: ({ row }) => {
+      const requester = row.original.requester
+      // 客户信息入口依赖工单请求人字段，列表中直接呈现服务对象上下文。by AI.Coding
+      return (
+        <div className="max-w-40 truncate">
+          <p className="truncate text-sm">
+            {requester.full_name?.trim() || requester.email}
+          </p>
+          <p className="truncate text-xs text-muted-foreground">
+            {requester.email}
+          </p>
+        </div>
+      )
+    },
+  },
+  {
     accessorKey: "assignee",
     header: "负责人",
     cell: ({ row }) => {

@@ -74,6 +74,16 @@ function TicketsTable() {
 }
 
 function TicketsPage() {
+  const search = Route.useSearch()
+  const navigate = Route.useNavigate()
+
+  const handleCreateDialogOpenChange = (open: boolean) => {
+    // 侧边栏提交工单使用 create search 打开弹窗，关闭时清理 URL 状态。by AI.Coding
+    if (open || !search.create) return
+    const filters = ticketSearchToFilters(search)
+    void navigate({ search: ticketFiltersToSearch(filters) })
+  }
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -88,7 +98,10 @@ function TicketsPage() {
             在一个页面跟踪请求、进展和客服沟通。
           </p>
         </div>
-        <CreateTicketDialog />
+        <CreateTicketDialog
+          open={search.create ? true : undefined}
+          onOpenChange={handleCreateDialogOpenChange}
+        />
       </div>
       <TicketsTable />
     </div>

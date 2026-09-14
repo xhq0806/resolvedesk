@@ -1,13 +1,13 @@
 # ResolveDesk 系统行为规格
 
 > 更新时间：2026-09-14
-> 文档状态：二期 Delta 待实现规格
-> 当前需求：`changes/active/ai-agent-support-copilot/`
-> 规格依据：`changes/active/ai-agent-support-copilot/spec.md`
+> 文档状态：已归档系统行为规格
+> 当前归档：`changes/archive/2026-09-14-ai-agent-support-copilot/`
+> 规格依据：`changes/archive/2026-09-14-ai-agent-support-copilot/spec.md`
 
 ## 1. 文档目的
 
-本文档描述 ResolveDesk 当前目标系统行为，用于后续 coding、review、verify 和 archive。凡与 active change 文档冲突的内容，以 `changes/active/ai-agent-support-copilot/spec.md` 的最新 Delta Spec 为准。
+本文档描述 ResolveDesk 当前系统行为，用于后续需求分析、coding、review 和 verify。已归档需求的完整上下文保存在 `changes/archive/2026-09-14-ai-agent-support-copilot/`。
 
 状态标记：
 
@@ -29,8 +29,8 @@ ResolveDesk 是带 AI Agent 的 Workspace 级客服工单平台。客户优先�
 | 鉴权 | 已实现基线 | 邮箱密码登录，Bearer JWT 访问受保护接口 |
 | Workspace | 已实现基线 | 请求通过 `X-Workspace-ID` 绑定当前 Workspace，并校验成员关系 |
 | AI/RAG | 已实现基线 | 支持 Provider 配置、知识库入库、向量检索、AI 会话和 SSE run |
-| 在线咨询 | 本期目标 | Customer 通过悬浮入口使用 AI Agent，对话可转人工生成工单 |
-| 自动分派 | 本期目标 | 转人工工单优先分派给当前 Workspace 可用 Agent |
+| 在线咨询 | 已实现基线 | Customer 通过悬浮入口使用 AI Agent，对话可转人工生成工单 |
+| 自动分派 | 已实现基线 | 转人工工单优先分派给当前 Workspace 可用 Agent |
 
 ## 4. Workspace 与角色
 
@@ -315,24 +315,14 @@ Admin/Owner 登录后主要看到：
 - 人工客服实时 IM 替代工单；
 - AI 删除工单、管理成员、修改 Provider 或绕过工具授权。
 
-## 13. 开发与交付顺序
+## 13. 归档状态
 
-```text
-文档更新与确认
-    ↓
-权限收敛：Admin-only 知识库
-    ↓
-Customer 在线咨询前端入口
-    ↓
-Customer conversation 与 RAG 流
-    ↓
-转人工创建工单与自动分派
-    ↓
-Agent 人工处理上下文
-    ↓
-后端/前端/Playwright 回归
-    ↓
-review
-    ↓
-archive
-```
+本规格已完成二期 Delta 归档。归档内容包括：
+
+- Admin/Owner-only 知识库权限；
+- Customer 右下角“在线咨询”入口；
+- Customer 专用 AI conversation 与服务端内部 RAG；
+- 转人工创建工单、幂等关联 conversation 和自动分派；
+- Agent 查看转人工上下文并按既有工单权限处理。
+
+后续需求若修改以上行为，必须在新的 `changes/active/` 目录中通过 proposal、spec、design、coding、review、archive 流程更新本文件。
