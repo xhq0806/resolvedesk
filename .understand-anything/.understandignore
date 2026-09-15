@@ -1,0 +1,137 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Lines below are suggestions — uncomment to activate.
+# Use ! prefix to force-include something excluded by defaults.
+#
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+#
+# --- From .gitignore (uncomment to exclude) ---
+
+# .vscode/*
+# !.vscode/extensions.json
+# !.vscode/launch.json
+# .DS_Store
+# Thumbs.db
+# Desktop.ini
+# *.suo
+# *.user
+# *.userosscache
+# *.sln.docstates
+# *.sw?
+# *~
+# env/
+# ENV/
+# **/__pycache__/
+# *.py[cod]
+# *$py.class
+# *.egg-info/
+# .eggs/
+# .pytest_cache/
+# .mypy_cache/
+# .ruff_cache/
+# .pyre/
+# .pytype/
+# .tox/
+# .nox/
+# .hypothesis/
+# .coverage
+# .coverage.*
+# coverage.xml
+# coverage.json
+# htmlcov/
+# backend/coverage/
+# .pytest-report/
+# frontend/node_modules/
+# packages/*/node_modules/
+# frontend/dist/
+# packages/*/dist/
+# *.tsbuildinfo
+# .vite/
+# /test-results/
+# /playwright-report/
+# /blob-report/
+# frontend/test-results/
+# frontend/playwright-report/
+# frontend/blob-report/
+# frontend/all-blob-reports/
+# frontend/playwright/.cache/
+# frontend/playwright/.auth/
+# playwright/.cache/
+# playwright/.auth/
+# backend/app/frontend/
+# tmp/
+# temp/
+# *.tmp
+# *.temp
+# *.bak
+# *.orig
+# logs/
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# pnpm-debug.log*
+# lerna-debug.log*
+# *.pid
+# *.pid.lock
+# .env.local
+# .env.*
+# !.env.example
+# !.env.template
+# frontend/.env.local
+# frontend/.env.*
+# !frontend/.env.example
+# !frontend/.env.template
+# backend/.env
+# backend/.env.*
+# *.pem
+# *.key
+# *.p12
+# *.pfx
+# *.jks
+# *.keystore
+# *.crt
+# *.cer
+# credentials*.json
+# service-account*.json
+# secrets*.json
+# .zizmor.yml.local
+# *.sarif
+# draft-release-notes.md
+# !uv.lock
+# !bun.lock
+# !SYSTEM-SPEC.md
+# !changes/
+# !changes/**
+# !frontend/src/client/
+# !frontend/src/client/**
+
+# --- Detected directories (uncomment to exclude) ---
+
+# docs/
+# scripts/
+
+# --- Test file patterns (uncomment to exclude) ---
+
+# *.test.*
+# *.spec.*
+# *.snap
+
+# --- Local agent/configuration noise ---
+
+.agents/
+.claude/
+.idea/
+.vscode/
+
+# --- Tool caches ---
+
+.mypy_cache/
+.ruff_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/.pytest_cache/
+
+# --- Built/generated frontend output embedded in backend ---
+
+backend/app/frontend/assets/

@@ -1,0 +1,156 @@
+{
+  "nodes": [
+    {
+      "id": "document:changes/active/ai-customer-support-platform/acceptance.md",
+      "type": "document",
+      "name": "acceptance.md",
+      "filePath": "changes/active/ai-customer-support-platform/acceptance.md",
+      "summary": "记录 ResolveDesk 全栈一期的最终验收结论，汇总角色化 E2E、全栈业务闭环、安全回归和发布门禁的通过情况，是该需求完成状态的验收凭证。",
+      "tags": [
+        "验收报告",
+        "E2E",
+        "安全回归",
+        "发布门禁",
+        "全栈闭环"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 以验收章节和结果表为主，结构提取识别到 5 个章节；内容重点是测试结果和发布前质量门控。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "id": "document:changes/active/ai-customer-support-platform/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "changes/active/ai-customer-support-platform/design.md",
+      "summary": "给出 ResolveDesk 全栈一期的技术设计，覆盖后端分层、工单数据模型、API 契约、事务并发、前端路由缓存、测试策略、实施计划和风险控制。",
+      "tags": [
+        "技术设计",
+        "FastAPI",
+        "React",
+        "工单系统",
+        "RBAC",
+        "事务审计"
+      ],
+      "complexity": "complex",
+      "languageNotes": "这是长篇设计文档，章节覆盖后端、前端、迁移、测试与风险；结构提取识别到大量分层标题，适合作为实现阶段的技术蓝图。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 68
+      }
+    },
+    {
+      "id": "document:changes/active/ai-customer-support-platform/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "changes/active/ai-customer-support-platform/proposal.md",
+      "summary": "描述将全栈模板改造为单工作空间客服工单平台的立项意图、一期范围、非目标、技术方向和成功标准，为后续 spec 与 design 提供需求入口。",
+      "tags": [
+        "需求提案",
+        "项目范围",
+        "客服工单",
+        "三角色",
+        "一期边界"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档使用 Why/What/初步技术方向/成功标准组织需求，强调本期不引入多租户和 AI Copilot。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "document:changes/active/ai-customer-support-platform/spec.md",
+      "type": "document",
+      "name": "spec.md",
+      "filePath": "changes/active/ai-customer-support-platform/spec.md",
+      "summary": "定义 ResolveDesk 全栈一期的行为规格，详细列出三角色用户模型、工单权限、状态流转、筛选分页、审计、统计、失败处理、任务拆分和多次 delta 变更。",
+      "tags": [
+        "功能规格",
+        "验收标准",
+        "状态机",
+        "权限矩阵",
+        "Delta Spec",
+        "任务拆分"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该 Markdown 是产品与验收契约，包含表格、场景、状态图和 delta spec；结构提取可用于定位功能需求、边界和影响分析。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 51
+      }
+    },
+    {
+      "id": "document:changes/active/ai-customer-support-platform/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "changes/active/ai-customer-support-platform/tasks.md",
+      "summary": "追踪 AI 客服工单平台改造的执行任务清单，按工程基线、后端实施、前端实施、联调验收分组记录 31 项任务及最终验证摘要。",
+      "tags": [
+        "任务清单",
+        "实施跟踪",
+        "后端实施",
+        "前端实施",
+        "联调验收",
+        "质量门控"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档以勾选清单表达进度，任务项带有依赖说明和预期结果；当前显示 31/31 已完成。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:document:changes/active/ai-customer-support-platform/proposal.md-documents-document:changes/active/ai-customer-support-platform/spec.md",
+      "source": "document:changes/active/ai-customer-support-platform/proposal.md",
+      "target": "document:changes/active/ai-customer-support-platform/spec.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "proposal.md 提供需求动机、范围和成功标准，spec.md 在此基础上展开为可验收的功能规格。"
+    },
+    {
+      "id": "edge:document:changes/active/ai-customer-support-platform/spec.md-documents-document:changes/active/ai-customer-support-platform/design.md",
+      "source": "document:changes/active/ai-customer-support-platform/spec.md",
+      "target": "document:changes/active/ai-customer-support-platform/design.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "spec.md 定义业务行为和边界，design.md 将这些规格转化为后端、前端、数据库和测试设计。"
+    },
+    {
+      "id": "edge:document:changes/active/ai-customer-support-platform/design.md-documents-document:changes/active/ai-customer-support-platform/tasks.md",
+      "source": "document:changes/active/ai-customer-support-platform/design.md",
+      "target": "document:changes/active/ai-customer-support-platform/tasks.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "tasks.md 明确标注来源为 design.md，并把技术设计拆解为可执行的工程任务。"
+    },
+    {
+      "id": "edge:document:changes/active/ai-customer-support-platform/tasks.md-documents-document:changes/active/ai-customer-support-platform/acceptance.md",
+      "source": "document:changes/active/ai-customer-support-platform/tasks.md",
+      "target": "document:changes/active/ai-customer-support-platform/acceptance.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "acceptance.md 汇总 tasks.md 所追踪实施工作的最终 E2E、后端、前端、Docker 和迁移验收结果。"
+    }
+  ]
+}

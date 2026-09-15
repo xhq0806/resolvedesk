@@ -1,0 +1,451 @@
+{
+  "nodes": [
+    {
+      "id": "file:packages/react-email/emails/new_account.tsx",
+      "type": "file",
+      "name": "new_account.tsx",
+      "filePath": "packages/react-email/emails/new_account.tsx",
+      "summary": "定义新账号欢迎邮件模板，展示项目名、用户名、初始密码和工作台入口，并提醒用户首次登录后修改密码。",
+      "tags": [
+        "react-email",
+        "邮件模板",
+        "账号开通",
+        "tsx",
+        "用户通知"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 React Email 组件组合 HTML 邮件，props 默认值采用模板占位符，便于后端渲染时替换。"
+    },
+    {
+      "id": "file:packages/react-email/emails/reset_password.tsx",
+      "type": "file",
+      "name": "reset_password.tsx",
+      "filePath": "packages/react-email/emails/reset_password.tsx",
+      "summary": "定义找回密码邮件模板，向用户展示重置密码按钮、备用链接、有效期和非本人操作提示。",
+      "tags": [
+        "react-email",
+        "邮件模板",
+        "密码重置",
+        "tsx",
+        "安全通知"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过模板占位符注入项目名、用户名、重置链接和有效小时数，邮件文案保持中文用户语境。"
+    },
+    {
+      "id": "file:packages/react-email/emails/test_email.tsx",
+      "type": "file",
+      "name": "test_email.tsx",
+      "filePath": "packages/react-email/emails/test_email.tsx",
+      "summary": "定义邮件配置测试模板，用于验证指定收件地址能否正常接收 ResolveDesk 发出的测试邮件。",
+      "tags": [
+        "react-email",
+        "邮件模板",
+        "测试邮件",
+        "配置验证",
+        "tsx"
+      ],
+      "complexity": "simple",
+      "languageNotes": "组件结构很轻量，主要复用 Layout、Heading 和 Callout 呈现测试结果。"
+    },
+    {
+      "id": "file:packages/react-email/ui/Button.tsx",
+      "type": "file",
+      "name": "Button.tsx",
+      "filePath": "packages/react-email/ui/Button.tsx",
+      "summary": "提供邮件中的品牌样式链接按钮组件，将 React Email Button 封装为统一的工作台或重置入口 CTA。",
+      "tags": [
+        "react-email",
+        "ui-component",
+        "button",
+        "邮件样式",
+        "tsx"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 React.PropsWithChildren 和 href 属性描述按钮 props，样式通过 className 直接传给 React Email。"
+    },
+    {
+      "id": "file:packages/react-email/ui/Callout.tsx",
+      "type": "file",
+      "name": "Callout.tsx",
+      "filePath": "packages/react-email/ui/Callout.tsx",
+      "summary": "提供邮件内容中的提示区块和键值详情组件，用于突出账号、密码、收件地址等关键信息。",
+      "tags": [
+        "react-email",
+        "ui-component",
+        "callout",
+        "detail",
+        "邮件样式"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Callout 负责容器强调，Detail 负责 label/value 排版，二者组合服务于邮件中的结构化信息展示。"
+    },
+    {
+      "id": "file:packages/react-email/ui/Heading.tsx",
+      "type": "file",
+      "name": "Heading.tsx",
+      "filePath": "packages/react-email/ui/Heading.tsx",
+      "summary": "封装 React Email Heading 为统一的一号标题组件，集中控制邮件标题层级和视觉样式。",
+      "tags": [
+        "react-email",
+        "ui-component",
+        "heading",
+        "邮件样式",
+        "tsx"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过别名导入 BaseHeading 避免与本地 Heading 组件命名冲突。"
+    },
+    {
+      "id": "file:packages/react-email/ui/Layout.tsx",
+      "type": "file",
+      "name": "Layout.tsx",
+      "filePath": "packages/react-email/ui/Layout.tsx",
+      "summary": "定义中文邮件的通用布局，包含 Tailwind 主题、HTML head、preview、品牌页眉、正文区域和版权页脚。",
+      "tags": [
+        "react-email",
+        "layout",
+        "tailwind",
+        "邮件主题",
+        "tsx"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "把邮件主题色、字体、preview 和项目名页眉集中在一个 Layout 中，业务邮件只需传入正文 children。"
+    },
+    {
+      "id": "file:packages/react-email/ui/Link.tsx",
+      "type": "file",
+      "name": "Link.tsx",
+      "filePath": "packages/react-email/ui/Link.tsx",
+      "summary": "提供邮件正文中的品牌色文本链接组件，用于展示可复制的备用 URL。",
+      "tags": [
+        "react-email",
+        "ui-component",
+        "link",
+        "邮件样式",
+        "tsx"
+      ],
+      "complexity": "simple",
+      "languageNotes": "组件保持最小封装，仅约束 href 和 children，并使用 break-all 适配长链接。"
+    },
+    {
+      "id": "function:packages/react-email/emails/new_account.tsx:NewAccount",
+      "type": "function",
+      "name": "NewAccount",
+      "filePath": "packages/react-email/emails/new_account.tsx",
+      "lineRange": [
+        15,
+        50
+      ],
+      "summary": "渲染新账号欢迎邮件，接收项目名、用户名、初始密码和登录链接，并组合通用邮件 UI 组件输出完整邮件。",
+      "tags": [
+        "react-component",
+        "邮件模板",
+        "账号开通",
+        "tsx",
+        "default-export"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/emails/reset_password.tsx:ResetPassword",
+      "type": "function",
+      "name": "ResetPassword",
+      "filePath": "packages/react-email/emails/reset_password.tsx",
+      "lineRange": [
+        14,
+        45
+      ],
+      "summary": "渲染密码重置邮件，接收项目名、用户名、重置链接和有效期，并生成安全提示文案。",
+      "tags": [
+        "react-component",
+        "邮件模板",
+        "密码重置",
+        "tsx",
+        "default-export"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/emails/test_email.tsx:TestEmail",
+      "type": "function",
+      "name": "TestEmail",
+      "filePath": "packages/react-email/emails/test_email.tsx",
+      "lineRange": [
+        11,
+        34
+      ],
+      "summary": "渲染测试邮件，展示目标邮箱和投递配置正常的说明，用于验证邮件发送链路。",
+      "tags": [
+        "react-component",
+        "邮件模板",
+        "测试邮件",
+        "tsx"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/ui/Button.tsx:LinkButton",
+      "type": "function",
+      "name": "LinkButton",
+      "filePath": "packages/react-email/ui/Button.tsx",
+      "lineRange": [
+        5,
+        12
+      ],
+      "summary": "渲染带品牌背景的邮件链接按钮，把 href 和 children 传入 React Email Button。",
+      "tags": [
+        "react-component",
+        "button",
+        "cta",
+        "react-email",
+        "ui-component"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/ui/Callout.tsx:Callout",
+      "type": "function",
+      "name": "Callout",
+      "filePath": "packages/react-email/ui/Callout.tsx",
+      "lineRange": [
+        5,
+        9
+      ],
+      "summary": "渲染左侧品牌强调线的邮件提示区块，用于包裹需要突出的详情内容。",
+      "tags": [
+        "react-component",
+        "callout",
+        "react-email",
+        "ui-component",
+        "邮件样式"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/ui/Callout.tsx:Detail",
+      "type": "function",
+      "name": "Detail",
+      "filePath": "packages/react-email/ui/Callout.tsx",
+      "lineRange": [
+        13,
+        22
+      ],
+      "summary": "渲染一组详情 label 和 value，以小号标签和等宽加粗值展示结构化邮件信息。",
+      "tags": [
+        "react-component",
+        "detail",
+        "react-email",
+        "ui-component",
+        "邮件样式"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/ui/Heading.tsx:Heading",
+      "type": "function",
+      "name": "Heading",
+      "filePath": "packages/react-email/ui/Heading.tsx",
+      "lineRange": [
+        5,
+        12
+      ],
+      "summary": "渲染统一样式的邮件 h1 标题，封装 React Email 的 Heading 组件。",
+      "tags": [
+        "react-component",
+        "heading",
+        "react-email",
+        "ui-component",
+        "邮件样式"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:packages/react-email/ui/Layout.tsx:Layout",
+      "type": "function",
+      "name": "Layout",
+      "filePath": "packages/react-email/ui/Layout.tsx",
+      "lineRange": [
+        18,
+        85
+      ],
+      "summary": "渲染邮件外层布局和 Tailwind 主题，统一 head、preview、页眉、正文容器与页脚版权。",
+      "tags": [
+        "react-component",
+        "layout",
+        "tailwind",
+        "react-email",
+        "邮件主题"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:packages/react-email/ui/Link.tsx:Link",
+      "type": "function",
+      "name": "Link",
+      "filePath": "packages/react-email/ui/Link.tsx",
+      "lineRange": [
+        3,
+        7
+      ],
+      "summary": "渲染品牌色可换行文本链接，适合邮件中展示长 URL。",
+      "tags": [
+        "react-component",
+        "link",
+        "react-email",
+        "ui-component",
+        "邮件样式"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "file:packages/react-email/ui/Button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "file:packages/react-email/ui/Callout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "file:packages/react-email/ui/Heading.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "file:packages/react-email/ui/Layout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "file:packages/react-email/ui/Link.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/reset_password.tsx",
+      "target": "file:packages/react-email/ui/Button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/reset_password.tsx",
+      "target": "file:packages/react-email/ui/Heading.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/reset_password.tsx",
+      "target": "file:packages/react-email/ui/Layout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/reset_password.tsx",
+      "target": "file:packages/react-email/ui/Link.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/test_email.tsx",
+      "target": "file:packages/react-email/ui/Callout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/test_email.tsx",
+      "target": "file:packages/react-email/ui/Heading.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/test_email.tsx",
+      "target": "file:packages/react-email/ui/Layout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:packages/react-email/emails/new_account.tsx",
+      "target": "function:packages/react-email/emails/new_account.tsx:NewAccount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/emails/reset_password.tsx",
+      "target": "function:packages/react-email/emails/reset_password.tsx:ResetPassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/emails/test_email.tsx",
+      "target": "function:packages/react-email/emails/test_email.tsx:TestEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Button.tsx",
+      "target": "function:packages/react-email/ui/Button.tsx:LinkButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Callout.tsx",
+      "target": "function:packages/react-email/ui/Callout.tsx:Callout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Callout.tsx",
+      "target": "function:packages/react-email/ui/Callout.tsx:Detail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Heading.tsx",
+      "target": "function:packages/react-email/ui/Heading.tsx:Heading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Layout.tsx",
+      "target": "function:packages/react-email/ui/Layout.tsx:Layout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:packages/react-email/ui/Link.tsx",
+      "target": "function:packages/react-email/ui/Link.tsx:Link",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+[
+  {
+    "order": 1,
+    "title": "项目全景",
+    "description": "先从 README 建立 ResolveDesk 的产品语境：它不是单点功能演示，而是一套覆盖客户、客服和管理员的单工作空间支持平台。这里把角色流程、技术栈、启动方式和目录结构放在一起，能为后面的后端、前端、邮件和部署步骤提供地图。",
+    "nodeIds": [
+      "document:README.md"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "FastAPI 入口",
+    "description": "接着看后端如何启动：应用入口负责装配 Sentry、CORS、请求 ID、异常处理、API v1 路由和前端静态资源。API 聚合器再把登录、用户、工单、AI、知识库、附件和 workspace 路由统一挂载起来，形成后端对外的主边界。",
+    "nodeIds": [
+      "file:backend/app/main.py",
+      "file:backend/app/api/main.py",
+      "file:backend/app/api/routes/login.py",
+      "file:backend/app/api/routes/users.py",
+      "file:backend/app/api/routes/tickets.py"
+    ],
+    "languageLesson": "FastAPI 常见模式是用 APIRouter 分模块声明路由，再在应用入口集中 include_router；这样 OpenAPI、依赖注入和异常处理都能保持统一。"
+  },
+  {
+    "order": 3,
+    "title": "数据模型迁移",
+    "description": "理解 API 后，下一步是看它背后的领域数据。用户、工单、消息、审计日志和业务枚举构成支持流程的核心词汇，Alembic 迁移则把这些模型落到数据库结构里。",
+    "nodeIds": [
+      "file:backend/app/models/user.py",
+      "file:backend/app/models/ticket.py",
+      "file:backend/app/models/enums.py",
+      "file:backend/app/alembic/env.py",
+      "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py"
+    ],
+    "languageLesson": "SQLModel 把 Python 类型、Pydantic 校验和 SQLAlchemy 持久化连接起来；Alembic migration 则记录每次 schema 演进，保证环境可以按顺序重建。"
+  },
+  {
+    "order": 4,
+    "title": "工单业务流",
+    "description": "在模型之上，服务层承载真正的工单生命周期：创建、查询、认领、分配、回复、状态变更、属性更新和软删除。权限模块和状态机把“谁能做什么、下一步能到哪里”从路由中抽离出来，仓储层则封装数据库查询与统计。",
+    "nodeIds": [
+      "file:backend/app/services/ticket_service.py",
+      "file:backend/app/services/ticket_permissions.py",
+      "file:backend/app/services/ticket_state_machine.py",
+      "file:backend/app/repositories/ticket_repository.py",
+      "file:backend/app/repositories/user_repository.py"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "用户与工作区",
+    "description": "工单流程依赖稳定的身份和工作区边界，所以这里补上用户服务、安全工具和 workspace 上下文。用户服务处理三角色账号、头像和事务不变量；安全与 workspace 模块则把认证、授权和租户隔离变成后端各路由共享的基础能力。",
+    "nodeIds": [
+      "file:backend/app/services/user_service.py",
+      "file:backend/app/core/security.py",
+      "file:backend/app/core/workspace.py",
+      "file:backend/app/api/deps.py",
+      "file:backend/app/core/errors.py"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "前端入口路由",
+    "description": "后端主线清楚后，切到浏览器端的启动路径。前端入口初始化 API client、TanStack Query、RouterProvider、主题和全局提示；根路由、登录后布局和路由守卫共同决定不同角色进入哪些页面。",
+    "nodeIds": [
+      "file:frontend/src/main.tsx",
+      "file:frontend/src/routes/__root.tsx",
+      "file:frontend/src/routes/_layout.tsx",
+      "file:frontend/src/lib/routeGuards.ts",
+      "file:frontend/src/hooks/useAuth.ts"
+    ],
+    "languageLesson": "TanStack Router 的 beforeLoad/guard 思路适合表达页面级权限：路由加载前先确认登录态、角色和 workspace 权限，再决定继续渲染或重定向。"
+  },
+  {
+    "order": 7,
+    "title": "工单界面契约",
+    "description": "这一站把前端 UI 和后端 API 契约接起来。生成客户端与 OpenAPI schema 提供类型化请求入口，客户工单页、详情页和操作面板则把提交、查看、认领、分配、回复和状态变更呈现成可操作界面。",
+    "nodeIds": [
+      "file:frontend/src/client/index.ts",
+      "schema:frontend/openapi.json",
+      "file:frontend/src/routes/_layout/tickets.tsx",
+      "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "file:frontend/src/components/Tickets/TicketActionPanel.tsx"
+    ],
+    "languageLesson": "OpenAPI generated client 的价值在于把后端契约转成前端类型；接口字段变化会更早暴露在类型检查和构建阶段。"
+  },
+  {
+    "order": 8,
+    "title": "邮件模板",
+    "description": "ResolveDesk 的账号创建、找回密码和测试投递都依赖邮件触达，所以邮件模板是业务闭环的一部分。React Email 源模板定义品牌化内容和可维护组件，导出的后端 HTML 模板则供实际发送流程使用。",
+    "nodeIds": [
+      "file:packages/react-email/emails/new_account.tsx",
+      "file:packages/react-email/emails/reset_password.tsx",
+      "file:packages/react-email/ui/Layout.tsx",
+      "file:backend/app/email-templates/new_account.html",
+      "file:backend/app/email-templates/reset_password.html"
+    ],
+    "languageLesson": "React Email 用 React 组件生成邮件 HTML，但邮件客户端兼容性比普通网页更严格，因此通常会把布局、按钮和提示块封装成保守可复用组件。"
+  },
+  {
+    "order": 9,
+    "title": "测试质量网",
+    "description": "读完主要业务后，用测试反向确认系统的行为边界。后端测试覆盖用户、工单服务和错误处理契约，前端 Playwright 则从真实浏览器验证登录、角色导航和完整工单生命周期。",
+    "nodeIds": [
+      "file:backend/tests/services/test_ticket_service.py",
+      "file:backend/tests/services/test_user_service.py",
+      "file:backend/tests/core/test_error_handling.py",
+      "file:frontend/tests/ticket-workflow.spec.ts",
+      "file:frontend/tests/role-navigation.spec.ts"
+    ]
+  },
+  {
+    "order": 10,
+    "title": "部署与规格",
+    "description": "最后把运行环境、CI/CD 和产品规格收束到一起。Compose 文件说明本地与生产服务如何编排，CI 工作流守住后端测试、浏览器回归和容器可启动性；SYSTEM-SPEC 则记录当前系统行为，帮助后来者判断代码是否仍符合产品承诺。",
+    "nodeIds": [
+      "service:compose.yml",
+      "service:compose.override.yml",
+      "pipeline:.github/workflows/test-backend.yml",
+      "pipeline:.github/workflows/playwright.yml",
+      "document:SYSTEM-SPEC.md"
+    ],
+    "languageLesson": "Docker Compose 用服务、网络、卷和 healthcheck 描述多容器运行环境；GitHub Actions 则用 trigger、jobs、steps 把测试和部署门禁自动化。"
+  }
+]

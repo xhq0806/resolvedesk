@@ -1,0 +1,789 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/models/user.py",
+      "type": "file",
+      "name": "user.py",
+      "filePath": "backend/app/models/user.py",
+      "summary": "定义用户模型及角色元数据，包含认证状态、头像、workspace 成员关系和时间字段。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/models/user.py:get_datetime_utc",
+      "type": "function",
+      "name": "get_datetime_utc",
+      "filePath": "backend/app/models/user.py",
+      "lineRange": [
+        15,
+        17
+      ],
+      "summary": "提供 get_datetime_utc 模型辅助函数，用于默认值生成或枚举值转换。",
+      "tags": [
+        "function",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/models/user.py:get_enum_values",
+      "type": "function",
+      "name": "get_enum_values",
+      "filePath": "backend/app/models/user.py",
+      "lineRange": [
+        20,
+        29
+      ],
+      "summary": "提供 get_enum_values 模型辅助函数，用于默认值生成或枚举值转换。",
+      "tags": [
+        "function",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/user.py:User",
+      "type": "class",
+      "name": "User",
+      "filePath": "backend/app/models/user.py",
+      "lineRange": [
+        32,
+        64
+      ],
+      "summary": "User 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：is_superuser。"
+    },
+    {
+      "id": "file:backend/app/models/workspace.py",
+      "type": "file",
+      "name": "workspace.py",
+      "filePath": "backend/app/models/workspace.py",
+      "summary": "定义 workspace、成员和邀请模型，表达租户状态、成员角色和邀请生命周期。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:WorkspaceStatus",
+      "type": "class",
+      "name": "WorkspaceStatus",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        15,
+        19
+      ],
+      "summary": "WorkspaceStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:WorkspaceRole",
+      "type": "class",
+      "name": "WorkspaceRole",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        22,
+        28
+      ],
+      "summary": "WorkspaceRole 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:MembershipStatus",
+      "type": "class",
+      "name": "MembershipStatus",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        31,
+        35
+      ],
+      "summary": "MembershipStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:Workspace",
+      "type": "class",
+      "name": "Workspace",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        38,
+        59
+      ],
+      "summary": "Workspace 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "workspace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:WorkspaceMember",
+      "type": "class",
+      "name": "WorkspaceMember",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        62,
+        91
+      ],
+      "summary": "WorkspaceMember 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "workspace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/workspace.py:WorkspaceInvitation",
+      "type": "class",
+      "name": "WorkspaceInvitation",
+      "filePath": "backend/app/models/workspace.py",
+      "lineRange": [
+        94,
+        126
+      ],
+      "summary": "WorkspaceInvitation 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "workspace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/providers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/providers/__init__.py",
+      "summary": "作为 provider 包入口聚合导出 chat 与 embedding provider 的统一接口和实现。",
+      "tags": [
+        "provider",
+        "integration",
+        "async-client",
+        "ai"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Python 包入口通过聚合导入维持模块发现和对外导出边界。"
+    },
+    {
+      "id": "file:backend/app/providers/chat.py",
+      "type": "file",
+      "name": "chat.py",
+      "filePath": "backend/app/providers/chat.py",
+      "summary": "定义聊天 provider 抽象及 OpenAI compatible、Volcengine Ark Responses 两套异步实现，负责请求构造、响应解析和流式输出。",
+      "tags": [
+        "provider",
+        "integration",
+        "async-client",
+        "ai"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/providers/chat.py:ChatMessage",
+      "type": "class",
+      "name": "ChatMessage",
+      "filePath": "backend/app/providers/chat.py",
+      "lineRange": [
+        14,
+        34
+      ],
+      "summary": "ChatMessage 定义聊天 provider 的数据结构、抽象接口或具体异步调用实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：to_payload。"
+    },
+    {
+      "id": "class:backend/app/providers/chat.py:ChatCompletionResult",
+      "type": "class",
+      "name": "ChatCompletionResult",
+      "filePath": "backend/app/providers/chat.py",
+      "lineRange": [
+        38,
+        44
+      ],
+      "summary": "ChatCompletionResult 定义聊天 provider 的数据结构、抽象接口或具体异步调用实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/providers/chat.py:ChatProvider",
+      "type": "class",
+      "name": "ChatProvider",
+      "filePath": "backend/app/providers/chat.py",
+      "lineRange": [
+        47,
+        68
+      ],
+      "summary": "ChatProvider 定义聊天 provider 的数据结构、抽象接口或具体异步调用实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：complete、stream。"
+    },
+    {
+      "id": "class:backend/app/providers/chat.py:OpenAICompatibleChatProvider",
+      "type": "class",
+      "name": "OpenAICompatibleChatProvider",
+      "filePath": "backend/app/providers/chat.py",
+      "lineRange": [
+        72,
+        182
+      ],
+      "summary": "OpenAICompatibleChatProvider 定义聊天 provider 的数据结构、抽象接口或具体异步调用实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含方法：_payload、_client、complete、stream。"
+    },
+    {
+      "id": "class:backend/app/providers/chat.py:VolcengineArkResponsesChatProvider",
+      "type": "class",
+      "name": "VolcengineArkResponsesChatProvider",
+      "filePath": "backend/app/providers/chat.py",
+      "lineRange": [
+        186,
+        321
+      ],
+      "summary": "VolcengineArkResponsesChatProvider 定义聊天 provider 的数据结构、抽象接口或具体异步调用实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含方法：_input、_payload、_client、complete、stream、_extract_response_text 等。"
+    },
+    {
+      "id": "file:backend/app/providers/embedding.py",
+      "type": "file",
+      "name": "embedding.py",
+      "filePath": "backend/app/providers/embedding.py",
+      "summary": "定义 embedding provider 抽象及 OpenAI compatible、Volcengine Ark 两套实现，负责向量请求和维度校验。",
+      "tags": [
+        "provider",
+        "integration",
+        "async-client",
+        "ai"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/providers/embedding.py:EmbeddingProvider",
+      "type": "class",
+      "name": "EmbeddingProvider",
+      "filePath": "backend/app/providers/embedding.py",
+      "lineRange": [
+        12,
+        17
+      ],
+      "summary": "EmbeddingProvider 定义 embedding provider 的抽象接口或具体向量服务适配实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：embed。"
+    },
+    {
+      "id": "class:backend/app/providers/embedding.py:OpenAICompatibleEmbeddingProvider",
+      "type": "class",
+      "name": "OpenAICompatibleEmbeddingProvider",
+      "filePath": "backend/app/providers/embedding.py",
+      "lineRange": [
+        21,
+        60
+      ],
+      "summary": "OpenAICompatibleEmbeddingProvider 定义 embedding provider 的抽象接口或具体向量服务适配实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：embed。"
+    },
+    {
+      "id": "class:backend/app/providers/embedding.py:VolcengineArkEmbeddingProvider",
+      "type": "class",
+      "name": "VolcengineArkEmbeddingProvider",
+      "filePath": "backend/app/providers/embedding.py",
+      "lineRange": [
+        64,
+        114
+      ],
+      "summary": "VolcengineArkEmbeddingProvider 定义 embedding provider 的抽象接口或具体向量服务适配实现。",
+      "tags": [
+        "class",
+        "provider",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：embed、_embed_one、_validate_vector。"
+    },
+    {
+      "id": "file:backend/app/repositories/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/repositories/__init__.py",
+      "summary": "聚合 repository 包的主要仓储类，提供包级导入入口。",
+      "tags": [
+        "repository",
+        "database",
+        "query",
+        "persistence"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Python 包入口通过聚合导入维持模块发现和对外导出边界。"
+    },
+    {
+      "id": "file:backend/app/repositories/ai_repository.py",
+      "type": "file",
+      "name": "ai_repository.py",
+      "filePath": "backend/app/repositories/ai_repository.py",
+      "summary": "封装 AI 会话、消息、运行事件、provider 配置和工具权限的数据库读写查询。",
+      "tags": [
+        "repository",
+        "database",
+        "query",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/repositories/ai_repository.py:AiRepository",
+      "type": "class",
+      "name": "AiRepository",
+      "filePath": "backend/app/repositories/ai_repository.py",
+      "lineRange": [
+        13,
+        71
+      ],
+      "summary": "AiRepository 封装数据库查询和持久化操作，让服务层通过明确方法访问领域数据。",
+      "tags": [
+        "class",
+        "repository",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：__init__、get_conversation、get_running_run、list_messages、list_events。"
+    },
+    {
+      "id": "file:backend/app/repositories/knowledge_repository.py",
+      "type": "file",
+      "name": "knowledge_repository.py",
+      "filePath": "backend/app/repositories/knowledge_repository.py",
+      "summary": "封装知识文档、分块和摄取任务的查询与状态更新逻辑。",
+      "tags": [
+        "repository",
+        "database",
+        "query",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/repositories/knowledge_repository.py:KnowledgeRepository",
+      "type": "class",
+      "name": "KnowledgeRepository",
+      "filePath": "backend/app/repositories/knowledge_repository.py",
+      "lineRange": [
+        19,
+        70
+      ],
+      "summary": "KnowledgeRepository 封装数据库查询和持久化操作，让服务层通过明确方法访问领域数据。",
+      "tags": [
+        "class",
+        "repository",
+        "knowledge"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：__init__、search_ready_chunks、get_document。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "function:backend/app/models/user.py:get_datetime_utc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "function:backend/app/models/user.py:get_datetime_utc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "function:backend/app/models/user.py:get_enum_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "function:backend/app/models/user.py:get_enum_values",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "class:backend/app/models/user.py:User",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/user.py",
+      "target": "class:backend/app/models/user.py:User",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:MembershipStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:MembershipStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:Workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:Workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceInvitation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/workspace.py",
+      "target": "class:backend/app/models/workspace.py:WorkspaceInvitation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/__init__.py",
+      "target": "file:backend/app/providers/chat.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/providers/__init__.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatMessage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatCompletionResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatCompletionResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:ChatProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:OpenAICompatibleChatProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:OpenAICompatibleChatProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:VolcengineArkResponsesChatProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/chat.py",
+      "target": "class:backend/app/providers/chat.py:VolcengineArkResponsesChatProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:EmbeddingProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:EmbeddingProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:OpenAICompatibleEmbeddingProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:OpenAICompatibleEmbeddingProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:VolcengineArkEmbeddingProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/providers/embedding.py",
+      "target": "class:backend/app/providers/embedding.py:VolcengineArkEmbeddingProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/repositories/__init__.py",
+      "target": "file:backend/app/repositories/ticket_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/__init__.py",
+      "target": "file:backend/app/repositories/user_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ai_repository.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ai_repository.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ai_repository.py",
+      "target": "class:backend/app/repositories/ai_repository.py:AiRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/ai_repository.py",
+      "target": "class:backend/app/repositories/ai_repository.py:AiRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/repositories/knowledge_repository.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/knowledge_repository.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/knowledge_repository.py",
+      "target": "class:backend/app/repositories/knowledge_repository.py:KnowledgeRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/knowledge_repository.py",
+      "target": "class:backend/app/repositories/knowledge_repository.py:KnowledgeRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,711 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "file",
+      "name": "workspaceQueries.ts",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "summary": "管理工作区列表查询、当前工作区本地存储、角色判断和切换逻辑，是多工作区上下文的前端入口。",
+      "tags": [
+        "query-options",
+        "workspace",
+        "state",
+        "role-check"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:listWorkspaces",
+      "type": "function",
+      "name": "listWorkspaces",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        21,
+        32
+      ],
+      "summary": "从工作区 API 读取当前账号可见的工作区列表。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:useWorkspaceList",
+      "type": "function",
+      "name": "useWorkspaceList",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        34,
+        39
+      ],
+      "summary": "处理 useWorkspaceList 工作区状态或查询逻辑，支撑多工作区前端上下文。",
+      "tags": [
+        "hook",
+        "query",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspaceId",
+      "type": "function",
+      "name": "getCurrentWorkspaceId",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        41,
+        44
+      ],
+      "summary": "处理 getCurrentWorkspaceId 工作区状态或查询逻辑，支撑多工作区前端上下文。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:isWorkspaceManagerRole",
+      "type": "function",
+      "name": "isWorkspaceManagerRole",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        46,
+        48
+      ],
+      "summary": "处理 isWorkspaceManagerRole 工作区状态或查询逻辑，支撑多工作区前端上下文。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspace",
+      "type": "function",
+      "name": "getCurrentWorkspace",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        50,
+        60
+      ],
+      "summary": "处理 getCurrentWorkspace 工作区状态或查询逻辑，支撑多工作区前端上下文。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:useCurrentWorkspace",
+      "type": "function",
+      "name": "useCurrentWorkspace",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        62,
+        71
+      ],
+      "summary": "基于工作区列表和本地选择状态返回当前工作区。",
+      "tags": [
+        "hook",
+        "query",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:ensureCurrentWorkspace",
+      "type": "function",
+      "name": "ensureCurrentWorkspace",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        74,
+        86
+      ],
+      "summary": "确保存在当前工作区，否则刷新工作区数据并选择可用项。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/workspaceQueries.ts:switchWorkspace",
+      "type": "function",
+      "name": "switchWorkspace",
+      "filePath": "frontend/src/lib/workspaceQueries.ts",
+      "lineRange": [
+        88,
+        92
+      ],
+      "summary": "更新当前工作区本地存储并清空查询缓存以切换上下文。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/routeTree.gen.ts",
+      "type": "file",
+      "name": "routeTree.gen.ts",
+      "filePath": "frontend/src/routeTree.gen.ts",
+      "summary": "TanStack Router 自动生成的路由树，把各个文件路由连接为应用可使用的静态 routeTree。",
+      "tags": [
+        "generated",
+        "routing",
+        "tanstack-router",
+        "route-tree"
+      ],
+      "complexity": "complex",
+      "languageNotes": "这是 TanStack Router 生成文件，主要由路由导入、update 配置和 routeTree 组装组成。"
+    },
+    {
+      "id": "file:frontend/src/routes/__root.tsx",
+      "type": "file",
+      "name": "__root.tsx",
+      "filePath": "frontend/src/routes/__root.tsx",
+      "summary": "定义应用根路由，挂载全局错误页和 404 组件，为下级路由提供统一外壳。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout.tsx",
+      "type": "file",
+      "name": "_layout.tsx",
+      "filePath": "frontend/src/routes/_layout.tsx",
+      "summary": "定义登录后的主布局路由，组合侧边栏、页脚、内容 outlet 和客户支持浮层。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout.tsx:Layout",
+      "type": "function",
+      "name": "Layout",
+      "filePath": "frontend/src/routes/_layout.tsx",
+      "lineRange": [
+        21,
+        39
+      ],
+      "summary": "渲染或辅助 Layout 路由页面，连接 TanStack Router 与页面组件。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/admin.tsx",
+      "type": "file",
+      "name": "admin.tsx",
+      "filePath": "frontend/src/routes/_layout/admin.tsx",
+      "summary": "定义管理员区域的父级布局路由，并通过角色守卫限制只有管理员进入。",
+      "tags": [
+        "route",
+        "admin",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "frontend/src/routes/_layout/admin/index.tsx",
+      "summary": "实现管理员用户管理页面，加载用户列表、筛选器、添加用户入口和待处理状态。",
+      "tags": [
+        "route",
+        "admin",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/admin/index.tsx:UsersTableContent",
+      "type": "function",
+      "name": "UsersTableContent",
+      "filePath": "frontend/src/routes/_layout/admin/index.tsx",
+      "lineRange": [
+        29,
+        69
+      ],
+      "summary": "渲染管理员用户表格主体，绑定筛选条件、分页和新增用户操作。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/admin/index.tsx:AdminUsers",
+      "type": "function",
+      "name": "AdminUsers",
+      "filePath": "frontend/src/routes/_layout/admin/index.tsx",
+      "lineRange": [
+        79,
+        94
+      ],
+      "summary": "组合管理员用户页的外层布局、标题和 suspense 边界。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/admin/tickets.tsx",
+      "type": "file",
+      "name": "tickets.tsx",
+      "filePath": "frontend/src/routes/_layout/admin/tickets.tsx",
+      "summary": "定义管理员工单区域的父级路由，并复用管理员角色守卫保护其子页面。",
+      "tags": [
+        "route",
+        "admin",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "type": "file",
+      "name": "$ticketId.tsx",
+      "filePath": "frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "summary": "定义管理员工单详情路由，读取动态工单 ID 并把管理员视角传给详情页组件。",
+      "tags": [
+        "route",
+        "admin",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "file:frontend/src/lib/queryClient.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:listWorkspaces",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:listWorkspaces",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:useWorkspaceList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:useWorkspaceList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspaceId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspaceId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:isWorkspaceManagerRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:isWorkspaceManagerRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:getCurrentWorkspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:useCurrentWorkspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:useCurrentWorkspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:ensureCurrentWorkspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:ensureCurrentWorkspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:switchWorkspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/workspaceQueries.ts",
+      "target": "function:frontend/src/lib/workspaceQueries.ts:switchWorkspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/__root.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/admin.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/admin/tickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/ai.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/index.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/knowledge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/queue.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/settings.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/tickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/login.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/recover-password.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/reset-password.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routeTree.gen.ts",
+      "target": "file:frontend/src/routes/signup.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/__root.tsx",
+      "target": "file:frontend/src/components/Common/ErrorComponent.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/__root.tsx",
+      "target": "file:frontend/src/components/Common/NotFound.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "file:frontend/src/components/Common/Footer.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout.tsx",
+      "target": "function:frontend/src/routes/_layout.tsx:Layout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/components/Admin/AddUser.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/components/Admin/columns.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/components/Common/DataTable.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/components/Pending/PendingUsers.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "file:frontend/src/lib/userQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "function:frontend/src/routes/_layout/admin/index.tsx:UsersTableContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/index.tsx",
+      "target": "function:frontend/src/routes/_layout/admin/index.tsx:AdminUsers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

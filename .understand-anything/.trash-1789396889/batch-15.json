@@ -1,0 +1,456 @@
+{
+  "nodes": [
+    {
+      "id": "config:.dockerignore",
+      "type": "config",
+      "name": ".dockerignore",
+      "filePath": ".dockerignore",
+      "summary": "定义 Docker 构建上下文需要忽略的目录和文件，减少镜像构建输入并避免把本地缓存、依赖或临时产物带入镜像。",
+      "tags": [
+        "Docker",
+        "构建上下文",
+        "忽略规则",
+        "基础设施配置"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是 Docker 相关的根目录配置文件，更多承担构建卫生职责，不包含可执行逻辑。",
+      "metrics": {}
+    },
+    {
+      "id": "config:.env",
+      "type": "config",
+      "name": ".env",
+      "filePath": ".env",
+      "summary": "保存 ResolveDesk 本地开发默认环境变量，包括项目名、JWT secret、初始管理员账号、SMTP 设置和 PostgreSQL 连接信息。",
+      "tags": [
+        "环境变量",
+        "本地开发",
+        "PostgreSQL",
+        "SMTP",
+        "鉴权配置"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件含占位密钥和默认密码，适合开发环境；部署环境应改用平台 secret 或服务器环境变量。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 11
+      }
+    },
+    {
+      "id": "config:.pre-commit-config.yaml",
+      "type": "config",
+      "name": ".pre-commit-config.yaml",
+      "filePath": ".pre-commit-config.yaml",
+      "summary": "配置提交前质量检查流程，串联通用文件检查、typos、前端 lint、Ruff、mypy、ty、OpenAPI 客户端生成、发布日期补全和 GitHub workflow 扫描。",
+      "tags": [
+        "pre-commit",
+        "prek",
+        "代码质量",
+        "Ruff",
+        "mypy",
+        "CI 安全"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "本文件把前端、后端、文档和 workflow 检查集中在提交入口，是项目质量门禁的根配置。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "document:CONTRIBUTING.md",
+      "type": "document",
+      "name": "CONTRIBUTING.md",
+      "filePath": "CONTRIBUTING.md",
+      "summary": "说明参与 ResolveDesk 开发前应阅读的系统规格、开发与测试流程、Pull Request 要求，以及自动化工具和 AI 协作边界。",
+      "tags": [
+        "贡献指南",
+        "开发流程",
+        "Pull Request",
+        "协作规范"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档面向贡献者，强调先理解规格和现有行为，再进行小步提交与测试。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "介绍 ResolveDesk 的产品定位、角色流程、技术栈、快速启动、测试命令、项目结构和相关文档入口，是理解项目的主入口。",
+      "tags": [
+        "项目概览",
+        "快速开始",
+        "技术栈",
+        "工单系统",
+        "文档入口"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "README 已用中文描述客服支持平台的核心边界，并把后端 FastAPI、前端 React/Vite 和 Docker Compose 串成一条上手路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "id": "document:SYSTEM-SPEC.md",
+      "type": "document",
+      "name": "SYSTEM-SPEC.md",
+      "filePath": "SYSTEM-SPEC.md",
+      "summary": "归档 ResolveDesk 当前系统行为规格，覆盖 Workspace、角色权限、AI/RAG、在线咨询、转人工、工单、头像、导航和验收基线。",
+      "tags": [
+        "系统规格",
+        "行为基线",
+        "Workspace",
+        "AI Agent",
+        "验收标准"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件是需求分析、coding、review 和 verify 的权威行为基线，内容比 README 更接近产品和测试契约。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 30
+      }
+    },
+    {
+      "id": "service:compose.deploy.yml",
+      "type": "service",
+      "name": "compose.deploy.yml",
+      "filePath": "compose.deploy.yml",
+      "summary": "定义生产部署时的 Docker Compose 覆盖配置，为 Traefik 开启 HTTPS、Let’s Encrypt 证书、自动重启，并给 Adminer 和 backend 配置 HTTPS 路由。",
+      "tags": [
+        "Docker Compose",
+        "生产部署",
+        "Traefik",
+        "HTTPS",
+        "Let’s Encrypt"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这是部署专用 compose overlay，需要与 compose.yml 一起使用，重点是公网入口、TLS 和稳定运行策略。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "id": "service:compose.override.yml",
+      "type": "service",
+      "name": "compose.override.yml",
+      "filePath": "compose.override.yml",
+      "summary": "定义本地开发用 Docker Compose 覆盖配置，暴露端口、启用 Traefik dashboard、启动 FastAPI dev、配置 Mailpit 和 Playwright 容器。",
+      "tags": [
+        "Docker Compose",
+        "本地开发",
+        "Mailpit",
+        "Playwright",
+        "热更新"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Docker Compose 会自动叠加该文件；它把主 compose 的服务改造成适合本机调试和端到端测试的形态。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "service:compose.yml",
+      "type": "service",
+      "name": "compose.yml",
+      "filePath": "compose.yml",
+      "summary": "定义 ResolveDesk 的基础 Docker Compose 服务，包括 Traefik proxy、PostgreSQL/pgvector、Adminer 和 backend，并配置健康检查、环境变量和路由标签。",
+      "tags": [
+        "Docker Compose",
+        "服务编排",
+        "Traefik",
+        "PostgreSQL",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这是 Compose 服务拓扑的基础文件，本地和部署 overlay 都在它之上追加或覆盖行为。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "id": "document:deployment-docker-compose.md",
+      "type": "document",
+      "name": "deployment-docker-compose.md",
+      "filePath": "deployment-docker-compose.md",
+      "summary": "说明如何用 Docker Compose 自托管部署 ResolveDesk，包括准备服务器、配置环境变量和 secret、执行部署、设置 GitHub Actions 与 self-hosted runner。",
+      "tags": [
+        "部署指南",
+        "Docker Compose",
+        "自托管",
+        "GitHub Actions",
+        "生产运维"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文档面向服务器部署场景，和 compose.deploy.yml 配合说明 HTTPS、secret、runner 与运行命令。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    },
+    {
+      "id": "document:deployment.md",
+      "type": "document",
+      "name": "deployment.md",
+      "filePath": "deployment.md",
+      "summary": "说明如何把 ResolveDesk 部署到 FastAPI Cloud，包括应用目录、PostgreSQL 集成、环境变量、secret、持续部署工作流和 Docker Compose 备选路径。",
+      "tags": [
+        "部署指南",
+        "FastAPI Cloud",
+        "持续部署",
+        "环境变量",
+        "GitHub Actions"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文档是云部署入口，同时把自托管 Docker Compose 部署作为补充路径链接出去。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "id": "document:development.md",
+      "type": "document",
+      "name": "development.md",
+      "filePath": "development.md",
+      "summary": "说明 ResolveDesk 本地开发方式，包括启动数据库和 Mailpit、运行后端与前端、由 API 托管前端、Compose 全栈运行、环境变量和 pre-commit 检查。",
+      "tags": [
+        "开发指南",
+        "本地开发",
+        "Docker Compose",
+        "Mailpit",
+        "pre-commit"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "开发指南把直接运行和 Compose 运行两条路径都讲清楚，并解释各 compose 文件与 .env 的职责。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "id": "config:package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "package.json",
+      "summary": "定义根级 JavaScript workspace 和脚本入口，将 frontend 与 packages/* 纳入 workspace，并提供 dev、lint、test、email 等 Bun 脚本代理。",
+      "tags": [
+        "package.json",
+        "Bun",
+        "workspace",
+        "frontend",
+        "脚本入口"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件主要是前端 monorepo 的根入口，不直接声明依赖，而是把命令转发到子 workspace。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "id": "config:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "pyproject.toml",
+      "summary": "定义根级 Python/uv workspace 配置和开发依赖组，包含 prek、typer、zizmor、smokeshow，并配置 typos 的排除与忽略规则。",
+      "tags": [
+        "pyproject",
+        "uv workspace",
+        "Python 工具链",
+        "typos",
+        "开发依赖"
+      ],
+      "complexity": "simple",
+      "languageNotes": "根 pyproject 负责工作区和工具配置，实际后端包位于 backend workspace member。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "id": "document:release-notes.md",
+      "type": "document",
+      "name": "release-notes.md",
+      "filePath": "release-notes.md",
+      "summary": "维护 ResolveDesk 的发布历史，按版本记录产品、工程、修复、重构、升级、文档和内部变更，并包含最新 0.13.0 变更。",
+      "tags": [
+        "发布说明",
+        "版本历史",
+        "变更日志",
+        "产品迭代",
+        "工程记录"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文档很长，既是用户可读的 release notes，也是理解项目演进和历史决策的重要线索。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 69
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:document:README.md-documents-document:SYSTEM-SPEC.md",
+      "source": "document:README.md",
+      "target": "document:SYSTEM-SPEC.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "README 将系统规格列为进一步理解当前行为边界的核心文档。"
+    },
+    {
+      "id": "edge:document:README.md-documents-document:development.md",
+      "source": "document:README.md",
+      "target": "document:development.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "README 的快速开始和相关文档指向本地开发指南。"
+    },
+    {
+      "id": "edge:document:README.md-documents-document:deployment.md",
+      "source": "document:README.md",
+      "target": "document:deployment.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "README 将云部署流程交给 deployment.md 展开。"
+    },
+    {
+      "id": "edge:document:README.md-documents-document:deployment-docker-compose.md",
+      "source": "document:README.md",
+      "target": "document:deployment-docker-compose.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "README 将自托管 Docker Compose 部署链接到专门指南。"
+    },
+    {
+      "id": "edge:document:CONTRIBUTING.md-documents-document:SYSTEM-SPEC.md",
+      "source": "document:CONTRIBUTING.md",
+      "target": "document:SYSTEM-SPEC.md",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "贡献指南要求修改代码前先理解系统行为规格。"
+    },
+    {
+      "id": "edge:document:development.md-configures-service:compose.yml",
+      "source": "document:development.md",
+      "target": "service:compose.yml",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "开发指南解释主 Compose 文件如何承载全栈服务。"
+    },
+    {
+      "id": "edge:document:development.md-configures-service:compose.override.yml",
+      "source": "document:development.md",
+      "target": "service:compose.override.yml",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "开发指南说明本地开发 overlay 如何覆盖主 Compose 配置。"
+    },
+    {
+      "id": "edge:document:deployment-docker-compose.md-documents-service:compose.deploy.yml",
+      "source": "document:deployment-docker-compose.md",
+      "target": "service:compose.deploy.yml",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "Docker Compose 部署指南对应生产部署 overlay 的使用方式。"
+    },
+    {
+      "id": "edge:service:compose.deploy.yml-configures-service:compose.yml",
+      "source": "service:compose.deploy.yml",
+      "target": "service:compose.yml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "部署 overlay 覆盖主 Compose 服务，为生产环境追加 TLS、重启和 HTTPS 路由。"
+    },
+    {
+      "id": "edge:service:compose.override.yml-configures-service:compose.yml",
+      "source": "service:compose.override.yml",
+      "target": "service:compose.yml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "本地 overlay 覆盖主 Compose 服务，暴露开发端口并添加调试与测试服务。"
+    },
+    {
+      "id": "edge:config:.env-configures-service:compose.yml",
+      "source": "config:.env",
+      "target": "service:compose.yml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": ".env 为 Compose 服务提供项目名、数据库密码、SMTP 和后端运行所需的变量插值。"
+    },
+    {
+      "id": "edge:config:.pre-commit-config.yaml-configures-config:package.json",
+      "source": "config:.pre-commit-config.yaml",
+      "target": "config:package.json",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "pre-commit 配置通过 npm run lint 调用根 package.json 中的前端 lint 脚本。"
+    },
+    {
+      "id": "edge:config:.pre-commit-config.yaml-configures-config:pyproject.toml",
+      "source": "config:.pre-commit-config.yaml",
+      "target": "config:pyproject.toml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "pre-commit 配置依赖 uv 运行 Ruff、mypy、ty、zizmor 等 Python 工具链配置。"
+    },
+    {
+      "id": "edge:document:release-notes.md-related-document:SYSTEM-SPEC.md",
+      "source": "document:release-notes.md",
+      "target": "document:SYSTEM-SPEC.md",
+      "type": "related",
+      "weight": 0.5,
+      "description": "发布说明记录的近期功能演进与系统行为规格中的当前基线相互印证。"
+    }
+  ]
+}

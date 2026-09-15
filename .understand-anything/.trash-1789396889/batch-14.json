@@ -1,0 +1,133 @@
+{
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/create-draft-release.yml",
+      "type": "pipeline",
+      "name": "create-draft-release.yml",
+      "filePath": ".github/workflows/create-draft-release.yml",
+      "summary": "在带有 release 标签的 PR 合并后创建 GitHub draft release，先用脚本提取版本和发布说明，再调用 gh CLI 生成草稿发布。它把发布准备流程的结果转成可人工确认的 Release 对象。",
+      "tags": ["ci-cd", "release", "github-actions", "automation"],
+      "complexity": "moderate",
+      "languageNotes": "GitHub Actions workflow 固定 action SHA，并用 `set -euo pipefail` 约束 release 脚本执行。"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy-docker-compose.yml",
+      "type": "pipeline",
+      "name": "deploy-docker-compose.yml",
+      "filePath": ".github/workflows/deploy-docker-compose.yml",
+      "summary": "手动触发的 self-hosted Docker Compose 部署流水线，注入生产环境变量与 secrets 后构建镜像、准备数据库并启动应用。它覆盖基于 compose.deploy.yml 的服务器部署路径。",
+      "tags": ["ci-cd", "deployment", "docker-compose", "self-hosted"],
+      "complexity": "simple",
+      "languageNotes": "workflow 通过 concurrency 固定部署组，避免同一 Docker Compose 环境被并发发布互相覆盖。"
+    },
+    {
+      "id": "pipeline:.github/workflows/deploy.yml",
+      "type": "pipeline",
+      "name": "deploy.yml",
+      "filePath": ".github/workflows/deploy.yml",
+      "summary": "master 分支推送或手动触发时执行云端部署，先构建 frontend，再在 backend 中准备数据库并调用 FastAPI Cloud 部署。它是项目面向 FastAPI Cloud 的主发布流水线。",
+      "tags": ["ci-cd", "deployment", "fastapi-cloud", "frontend-build"],
+      "complexity": "simple",
+      "languageNotes": "同一 workflow 串联 Bun frontend 构建与 uv/FastAPI backend 部署，靠环境变量覆盖生产 API URL。"
+    },
+    {
+      "id": "pipeline:.github/workflows/detect-conflicts.yml",
+      "type": "pipeline",
+      "name": "detect-conflicts.yml",
+      "filePath": ".github/workflows/detect-conflicts.yml",
+      "summary": "在 push 或 PR 同步时检测合并冲突，并为有冲突的 PR 打标签和留言。它帮助维护者在代码评审前快速识别无法合并的分支。",
+      "tags": ["ci-cd", "pull-request", "conflict-detection", "automation"],
+      "complexity": "simple",
+      "languageNotes": "该 workflow 使用 pull_request_target，但仅执行固定 action 并通过空顶层 permissions 降低默认权限面。"
+    },
+    {
+      "id": "pipeline:.github/workflows/guard-dependencies.yml",
+      "type": "pipeline",
+      "name": "guard-dependencies.yml",
+      "filePath": ".github/workflows/guard-dependencies.yml",
+      "summary": "当 PR 修改 pyproject.toml 或 uv.lock 时校验作者身份，只允许组织成员、OWNER 或 dependabot 变更依赖文件。未授权的依赖变更会被评论说明并自动关闭。",
+      "tags": ["ci-cd", "security", "dependency-guard", "pull-request"],
+      "complexity": "simple",
+      "languageNotes": "核心逻辑写在 actions/github-script 中，直接读取 PR metadata 而不 checkout 外部贡献者代码。"
+    },
+    {
+      "id": "pipeline:.github/workflows/playwright.yml",
+      "type": "pipeline",
+      "name": "playwright.yml",
+      "filePath": ".github/workflows/playwright.yml",
+      "summary": "端到端测试流水线先用 paths-filter 判断相关文件是否变化，再按 4 个 shard 运行 Playwright，并合并上传 HTML 报告。它覆盖 frontend/backend/compose 变更后的浏览器级回归验证。",
+      "tags": ["ci-cd", "e2e-test", "playwright", "docker-compose"],
+      "complexity": "moderate",
+      "languageNotes": "workflow 使用 matrix shard 并保留 trace，另有 alls-green 聚合 job 支持分支保护状态。"
+    },
+    {
+      "id": "pipeline:.github/workflows/pre-commit.yml",
+      "type": "pipeline",
+      "name": "pre-commit.yml",
+      "filePath": ".github/workflows/pre-commit.yml",
+      "summary": "PR 上运行 prek/pre-commit 检查，并在同仓库 PR 可推送时自动提交格式化或修复结果；fork PR 则交给 pre-commit-ci lite 处理。它把代码风格、静态检查和自动修复接入评审入口。",
+      "tags": ["ci-cd", "pre-commit", "code-quality", "pull-request"],
+      "complexity": "moderate",
+      "languageNotes": "workflow 根据 CAN_PUSH 分支选择不同 checkout 和修复提交路径，最后用聚合 job 兼容分支保护。"
+    },
+    {
+      "id": "pipeline:.github/workflows/prepare-release.yml",
+      "type": "pipeline",
+      "name": "prepare-release.yml",
+      "filePath": ".github/workflows/prepare-release.yml",
+      "summary": "手动输入版本 bump 和可选日期后运行发布准备脚本，更新 release-notes.md 并通过 bot token 创建带 release 标签的发布 PR。它是正式发布前的版本号与发布说明生成入口。",
+      "tags": ["ci-cd", "release", "versioning", "pull-request"],
+      "complexity": "moderate",
+      "languageNotes": "workflow_dispatch inputs 明确限制 bump 类型，并通过脚本生成 release branch 和 PR。"
+    },
+    {
+      "id": "pipeline:.github/workflows/smokeshow.yml",
+      "type": "pipeline",
+      "name": "smokeshow.yml",
+      "filePath": ".github/workflows/smokeshow.yml",
+      "summary": "Test Backend workflow 完成后下载 coverage-html artifact，并用 smokeshow 上传覆盖率页面、写回 GitHub status。它把后端测试覆盖率结果发布成可浏览的 CI 反馈。",
+      "tags": ["ci-cd", "coverage", "artifact", "github-status"],
+      "complexity": "simple",
+      "languageNotes": "workflow_run 触发器让覆盖率发布与后端测试解耦，同时通过 coverage threshold 维护质量门槛。"
+    },
+    {
+      "id": "pipeline:.github/workflows/test-backend.yml",
+      "type": "pipeline",
+      "name": "test-backend.yml",
+      "filePath": ".github/workflows/test-backend.yml",
+      "summary": "在 master 推送和 PR 上启动数据库与 mailpit，执行 backend 迁移、测试和 coverage report，并上传 htmlcov artifact。它是后端单元/集成测试与覆盖率检查的主要 CI 流水线。",
+      "tags": ["ci-cd", "backend-test", "coverage", "docker-compose"],
+      "complexity": "simple",
+      "languageNotes": "测试过程用 Docker Compose 管理依赖服务，并以 `coverage --fail-under=90` 强制覆盖率下限。"
+    },
+    {
+      "id": "pipeline:.github/workflows/test-docker-compose.yml",
+      "type": "pipeline",
+      "name": "test-docker-compose.yml",
+      "filePath": ".github/workflows/test-docker-compose.yml",
+      "summary": "在 master 推送和 PR 上构建 Docker Compose 栈，运行 backend prestart 后启动 backend/adminer，并用 curl 验证 backend health-check 和 frontend 根页面。它验证容器编排配置能启动出可访问的应用。",
+      "tags": ["ci-cd", "docker-compose", "smoke-test", "health-check"],
+      "complexity": "simple",
+      "languageNotes": "workflow 用 `docker compose up -d --wait` 等待服务就绪，再做 HTTP 级 smoke test。"
+    },
+    {
+      "id": "pipeline:.github/workflows/zizmor.yml",
+      "type": "pipeline",
+      "name": "zizmor.yml",
+      "filePath": ".github/workflows/zizmor.yml",
+      "summary": "在 push、PR 或手动触发时运行 zizmor 扫描 GitHub Actions 安全问题，并根据仓库 owner 决定上传 SARIF 或输出 annotations。它为 CI 配置本身提供安全静态分析。",
+      "tags": ["ci-cd", "security", "github-actions", "sarif"],
+      "complexity": "simple",
+      "languageNotes": "workflow 只授予上传 SARIF 所需的 security-events 权限，并根据仓库归属切换 advanced-security 行为。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "pipeline:.github/workflows/test-backend.yml",
+      "target": "pipeline:.github/workflows/smokeshow.yml",
+      "type": "triggers",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

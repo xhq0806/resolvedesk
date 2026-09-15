@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/.dockerignore",
+      "type": "file",
+      "name": ".dockerignore",
+      "filePath": "backend/.dockerignore",
+      "summary": "定义后端 Docker 构建时应排除的 Python 缓存、测试覆盖率和本地虚拟环境文件，避免无关产物进入构建上下文。",
+      "tags": [
+        "docker",
+        "构建上下文",
+        "忽略规则",
+        "python",
+        "infra"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是 Docker ignore 配置文件，按行列出匹配模式；没有函数或类结构，重点在于影响 Dockerfile 的 COPY 上下文。"
+    },
+    {
+      "id": "file:backend/Dockerfile",
+      "type": "file",
+      "name": "Dockerfile",
+      "filePath": "backend/Dockerfile",
+      "summary": "定义后端镜像的多阶段构建流程：先用 Bun 构建 frontend，再基于 Python 3.14 和 uv 安装后端依赖、复制应用代码，并以 FastAPI workers 启动服务。",
+      "tags": [
+        "docker",
+        "fastapi",
+        "uv",
+        "bun",
+        "multi-stage-build"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Dockerfile 使用两个 FROM 阶段、BuildKit cache/bind mount、跨阶段 COPY 和环境变量配置，将前端静态产物与后端运行时打包到同一镜像。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/.dockerignore",
+      "target": "file:backend/Dockerfile",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

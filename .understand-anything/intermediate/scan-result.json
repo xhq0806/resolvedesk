@@ -1,0 +1,4020 @@
+{
+  "name": "ResolveDesk",
+  "description": "ResolveDesk 是一个单工作空间客服支持平台，覆盖客户提交工单、客服接手处理、管理员分派审计和关闭工单的完整人工支持流程。本项目超过 100 个源文件，完整分析可能耗时。",
+  "languages": [
+    "config",
+    "css",
+    "dockerfile",
+    "html",
+    "json",
+    "mako",
+    "markdown",
+    "msgpack",
+    "python",
+    "shell",
+    "tag",
+    "toml",
+    "typescript",
+    "unknown",
+    "yaml"
+  ],
+  "frameworks": [
+    "FastAPI",
+    "SQLModel",
+    "PostgreSQL",
+    "Alembic",
+    "Pydantic",
+    "React",
+    "TypeScript",
+    "Vite",
+    "TanStack Router",
+    "TanStack Query",
+    "TanStack Table",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Docker Compose",
+    "Pytest",
+    "Playwright",
+    "GitHub Actions",
+    "Bun",
+    "uv"
+  ],
+  "files": [
+    {
+      "path": ".dockerignore",
+      "language": "unknown",
+      "sizeLines": 10,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".env",
+      "language": "config",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".fastapicloudignore",
+      "language": "unknown",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "language": "yaml",
+      "sizeLines": 77,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/latest-changes.yml",
+      "language": "yaml",
+      "sizeLines": 12,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/pr-push.yml",
+      "language": "yaml",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/pr-submit.yml",
+      "language": "yaml",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".github/workflows/create-draft-release.yml",
+      "language": "yaml",
+      "sizeLines": 54,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/deploy-docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 39,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/deploy.yml",
+      "language": "yaml",
+      "sizeLines": 52,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/detect-conflicts.yml",
+      "language": "yaml",
+      "sizeLines": 22,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/guard-dependencies.yml",
+      "language": "yaml",
+      "sizeLines": 52,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/playwright.yml",
+      "language": "yaml",
+      "sizeLines": 140,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/pre-commit.yml",
+      "language": "yaml",
+      "sizeLines": 116,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/prepare-release.yml",
+      "language": "yaml",
+      "sizeLines": 84,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/smokeshow.yml",
+      "language": "yaml",
+      "sizeLines": 49,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/test-backend.yml",
+      "language": "yaml",
+      "sizeLines": 47,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/test-docker-compose.yml",
+      "language": "yaml",
+      "sizeLines": 29,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".github/workflows/zizmor.yml",
+      "language": "yaml",
+      "sizeLines": 30,
+      "fileCategory": "infra"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "language": "yaml",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".python-version",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/config.json",
+      "language": "json",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/intermediate/batches.json",
+      "language": "json",
+      "sizeLines": 25803,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/intermediate/scan-result.json",
+      "language": "json",
+      "sizeLines": 5269,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-import-map-input.json",
+      "language": "json",
+      "sizeLines": 3214,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-import-map-output.json",
+      "language": "json",
+      "sizeLines": 2019,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".understand-anything/tmp/ua-scan-files.json",
+      "language": "json",
+      "sizeLines": 3247,
+      "fileCategory": "config"
+    },
+    {
+      "path": ".uv-cache-provider/CACHEDIR.TAG",
+      "language": "tag",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-cache-provider/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "language": "msgpack",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-cache-provider/sdists-v9/.git",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-cache/CACHEDIR.TAG",
+      "language": "tag",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "language": "msgpack",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-cache/sdists-v9/.git",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-verify-cache/CACHEDIR.TAG",
+      "language": "tag",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-verify-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "language": "msgpack",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".uv-verify-cache/sdists-v9/.git",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/.dockerignore",
+      "language": "unknown",
+      "sizeLines": 8,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "backend/alembic.ini",
+      "language": "config",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/env.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/README",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/script.py.mako",
+      "language": "mako",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/.keep",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "language": "python",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "language": "python",
+      "sizeLines": 244,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "language": "python",
+      "sizeLines": 97,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "language": "python",
+      "sizeLines": 152,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "language": "python",
+      "sizeLines": 90,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "language": "python",
+      "sizeLines": 200,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "language": "python",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "language": "python",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "language": "python",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/deps.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/main.py",
+      "language": "python",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/ai.py",
+      "language": "python",
+      "sizeLines": 373,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/attachments.py",
+      "language": "python",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/knowledge.py",
+      "language": "python",
+      "sizeLines": 149,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/login.py",
+      "language": "python",
+      "sizeLines": 125,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/private.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/tickets.py",
+      "language": "python",
+      "sizeLines": 174,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/users.py",
+      "language": "python",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/utils.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/api/routes/workspaces.py",
+      "language": "python",
+      "sizeLines": 129,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/backend_pre_start.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/config.py",
+      "language": "python",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/db.py",
+      "language": "python",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/errors.py",
+      "language": "python",
+      "sizeLines": 285,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/provider_security.py",
+      "language": "python",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/request_context.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/secret_crypto.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/security.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/core/workspace.py",
+      "language": "python",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/crud.py",
+      "language": "python",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/email-templates/new_account.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "backend/app/email-templates/reset_password.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "backend/app/email-templates/test_email.html",
+      "language": "html",
+      "sizeLines": 0,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "backend/app/frontend/index.html",
+      "language": "html",
+      "sizeLines": 28,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "backend/app/initial_data.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/main.py",
+      "language": "python",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/__init__.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/ai.py",
+      "language": "python",
+      "sizeLines": 369,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/attachment.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/enums.py",
+      "language": "python",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/knowledge.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/ticket.py",
+      "language": "python",
+      "sizeLines": 245,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/user.py",
+      "language": "python",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/models/workspace.py",
+      "language": "python",
+      "sizeLines": 126,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/providers/__init__.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/providers/chat.py",
+      "language": "python",
+      "sizeLines": 321,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/providers/embedding.py",
+      "language": "python",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/__init__.py",
+      "language": "python",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/ai_repository.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/knowledge_repository.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/ticket_repository.py",
+      "language": "python",
+      "sizeLines": 333,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/user_repository.py",
+      "language": "python",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/repositories/workspace_repository.py",
+      "language": "python",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/__init__.py",
+      "language": "python",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/ai.py",
+      "language": "python",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/attachment.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/auth.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/common.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/knowledge.py",
+      "language": "python",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/ticket.py",
+      "language": "python",
+      "sizeLines": 200,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/tools.py",
+      "language": "python",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/user.py",
+      "language": "python",
+      "sizeLines": 112,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/schemas/workspace.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/__init__.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/agent_service.py",
+      "language": "python",
+      "sizeLines": 515,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/assignment_service.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/attachment_service.py",
+      "language": "python",
+      "sizeLines": 242,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/knowledge_retrieval.py",
+      "language": "python",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/knowledge_service.py",
+      "language": "python",
+      "sizeLines": 379,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/provider_service.py",
+      "language": "python",
+      "sizeLines": 358,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/statistics_service.py",
+      "language": "python",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/ticket_permissions.py",
+      "language": "python",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/ticket_service.py",
+      "language": "python",
+      "sizeLines": 755,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/ticket_state_machine.py",
+      "language": "python",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/tool_executor.py",
+      "language": "python",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/user_service.py",
+      "language": "python",
+      "sizeLines": 370,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/services/workspace_service.py",
+      "language": "python",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/tests_pre_start.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/utils.py",
+      "language": "python",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/workers/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/app/workers/knowledge_ingestion.py",
+      "language": "python",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/Dockerfile",
+      "language": "dockerfile",
+      "sizeLines": 65,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "backend/pyproject.toml",
+      "language": "toml",
+      "sizeLines": 87,
+      "fileCategory": "config"
+    },
+    {
+      "path": "backend/README.md",
+      "language": "markdown",
+      "sizeLines": 97,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "backend/scripts/format.sh",
+      "language": "shell",
+      "sizeLines": 5,
+      "fileCategory": "script"
+    },
+    {
+      "path": "backend/scripts/lint.sh",
+      "language": "shell",
+      "sizeLines": 9,
+      "fileCategory": "script"
+    },
+    {
+      "path": "backend/scripts/prestart.sh",
+      "language": "shell",
+      "sizeLines": 13,
+      "fileCategory": "script"
+    },
+    {
+      "path": "backend/scripts/test.sh",
+      "language": "shell",
+      "sizeLines": 8,
+      "fileCategory": "script"
+    },
+    {
+      "path": "backend/scripts/tests-start.sh",
+      "language": "shell",
+      "sizeLines": 7,
+      "fileCategory": "script"
+    },
+    {
+      "path": "backend/tests/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/test_items.py",
+      "language": "python",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/test_login.py",
+      "language": "python",
+      "sizeLines": 192,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/test_private.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/test_tickets.py",
+      "language": "python",
+      "sizeLines": 354,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/api/routes/test_users.py",
+      "language": "python",
+      "sizeLines": 509,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/conftest.py",
+      "language": "python",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/core/test_error_handling.py",
+      "language": "python",
+      "sizeLines": 356,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/crud/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/crud/test_user.py",
+      "language": "python",
+      "sizeLines": 131,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/migrations/conftest.py",
+      "language": "python",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "language": "python",
+      "sizeLines": 293,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/models/test_models_package.py",
+      "language": "python",
+      "sizeLines": 356,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/providers/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/providers/test_chat.py",
+      "language": "python",
+      "sizeLines": 176,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/providers/test_embedding.py",
+      "language": "python",
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/repositories/test_ticket_concurrency.py",
+      "language": "python",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/repositories/test_ticket_repository.py",
+      "language": "python",
+      "sizeLines": 484,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/repositories/test_user_repository.py",
+      "language": "python",
+      "sizeLines": 282,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/scripts/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/scripts/test_backend_pre_start.py",
+      "language": "python",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/scripts/test_test_pre_start.py",
+      "language": "python",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_agent_and_tooling.py",
+      "language": "python",
+      "sizeLines": 162,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_attachment_service.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_knowledge_service.py",
+      "language": "python",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_provider_service.py",
+      "language": "python",
+      "sizeLines": 194,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_statistics_service.py",
+      "language": "python",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_ticket_permissions.py",
+      "language": "python",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_ticket_service.py",
+      "language": "python",
+      "sizeLines": 834,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_ticket_state_machine.py",
+      "language": "python",
+      "sizeLines": 178,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "language": "python",
+      "sizeLines": 221,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/services/test_user_service.py",
+      "language": "python",
+      "sizeLines": 450,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/test_openapi.py",
+      "language": "python",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/utils/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/utils/user.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "backend/tests/utils/utils.py",
+      "language": "python",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "changes/active/ai-customer-support-platform/acceptance.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/ai-customer-support-platform/design.md",
+      "language": "markdown",
+      "sizeLines": 932,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/ai-customer-support-platform/proposal.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/ai-customer-support-platform/spec.md",
+      "language": "markdown",
+      "sizeLines": 445,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/ai-customer-support-platform/tasks.md",
+      "language": "markdown",
+      "sizeLines": 155,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-conversation-404.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-widget-send.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-settings-admin-tabs.md",
+      "language": "markdown",
+      "sizeLines": 29,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/fix-local-avatar-display/debug-log-2026-09-14-avatar-display-cache.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/active/role-sidebar-navigation/tasks.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-provider-no-feedback.md",
+      "language": "markdown",
+      "sizeLines": 38,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-rag-upload-422.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-workspace-routing-error.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/design.md",
+      "language": "markdown",
+      "sizeLines": 527,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/proposal.md",
+      "language": "markdown",
+      "sizeLines": 31,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/spec.md",
+      "language": "markdown",
+      "sizeLines": 308,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-ai-agent-support-copilot/tasks.md",
+      "language": "markdown",
+      "sizeLines": 104,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-conversation-avatars/design.md",
+      "language": "markdown",
+      "sizeLines": 62,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-conversation-avatars/proposal.md",
+      "language": "markdown",
+      "sizeLines": 21,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-conversation-avatars/spec.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-conversation-avatars/tasks.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-conversation-avatars/verification.md",
+      "language": "markdown",
+      "sizeLines": 22,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/design.md",
+      "language": "markdown",
+      "sizeLines": 50,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/proposal.md",
+      "language": "markdown",
+      "sizeLines": 21,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/review.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/tasks.md",
+      "language": "markdown",
+      "sizeLines": 5,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "changes/archive/2026-09-14-local-avatar-upload/verification.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "compose.deploy.yml",
+      "language": "yaml",
+      "sizeLines": 61,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose.override.yml",
+      "language": "yaml",
+      "sizeLines": 100,
+      "fileCategory": "config"
+    },
+    {
+      "path": "compose.yml",
+      "language": "yaml",
+      "sizeLines": 89,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "language": "markdown",
+      "sizeLines": 38,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deployment-docker-compose.md",
+      "language": "markdown",
+      "sizeLines": 129,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "deployment.md",
+      "language": "markdown",
+      "sizeLines": 91,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "development.md",
+      "language": "markdown",
+      "sizeLines": 138,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/specs/ai-agent-support-copilot.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/specs/conversation-avatars.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/specs/local-avatar-upload.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/specs/README.md",
+      "language": "markdown",
+      "sizeLines": 10,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "frontend/.dockerignore",
+      "language": "unknown",
+      "sizeLines": 2,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "frontend/.env",
+      "language": "config",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/.generated-client/client.gen.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/client/client.gen.ts",
+      "language": "typescript",
+      "sizeLines": 161,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/client/index.ts",
+      "language": "typescript",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/client/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/client/utils.gen.ts",
+      "language": "typescript",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/auth.gen.ts",
+      "language": "typescript",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/bodySerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/params.gen.ts",
+      "language": "typescript",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "language": "typescript",
+      "sizeLines": 242,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/core/utils.gen.ts",
+      "language": "typescript",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/index.ts",
+      "language": "typescript",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/sdk.gen.ts",
+      "language": "typescript",
+      "sizeLines": 449,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.generated-client/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 1419,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/15963765-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/39389b45-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/3b1da8a1-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 369,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/c5ee514d-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/cabe5a43-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/.tanstack/tmp/dcd16d42-b01a9313463fa8e2f0a16949779a77d4",
+      "language": "unknown",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/biome.json",
+      "language": "json",
+      "sizeLines": 61,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/components.json",
+      "language": "json",
+      "sizeLines": 22,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/Dockerfile.playwright",
+      "language": "dockerfile",
+      "sizeLines": 19,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "frontend/index.html",
+      "language": "html",
+      "sizeLines": 12,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "frontend/openapi-ts.config.ts",
+      "language": "typescript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/openapi.json",
+      "language": "json",
+      "sizeLines": 0,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/package.json",
+      "language": "json",
+      "sizeLines": 66,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/playwright-report/index.html",
+      "language": "html",
+      "sizeLines": 48,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "frontend/playwright.config.ts",
+      "language": "typescript",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/playwright/.auth/user.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/README.md",
+      "language": "markdown",
+      "sizeLines": 96,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "frontend/src/client/client.gen.ts",
+      "language": "typescript",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/client/client.gen.ts",
+      "language": "typescript",
+      "sizeLines": 161,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/client/index.ts",
+      "language": "typescript",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/client/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/client/utils.gen.ts",
+      "language": "typescript",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/auth.gen.ts",
+      "language": "typescript",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/bodySerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/params.gen.ts",
+      "language": "typescript",
+      "sizeLines": 169,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/pathSerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "language": "typescript",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/serverSentEvents.gen.ts",
+      "language": "typescript",
+      "sizeLines": 242,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/core/utils.gen.ts",
+      "language": "typescript",
+      "sizeLines": 140,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/index.ts",
+      "language": "typescript",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/sdk.gen.ts",
+      "language": "typescript",
+      "sizeLines": 449,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/client/types.gen.ts",
+      "language": "typescript",
+      "sizeLines": 1427,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Admin/AddUser.tsx",
+      "language": "typescript",
+      "sizeLines": 238,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Admin/columns.tsx",
+      "language": "typescript",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Admin/EditUser.tsx",
+      "language": "typescript",
+      "sizeLines": 269,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Admin/UserActionsMenu.tsx",
+      "language": "typescript",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Admin/UserFilters.tsx",
+      "language": "typescript",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/AI/AiWorkbench.tsx",
+      "language": "typescript",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "language": "typescript",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/AI/ProviderSettings.tsx",
+      "language": "typescript",
+      "sizeLines": 262,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/Appearance.tsx",
+      "language": "typescript",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/AuthLayout.tsx",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/DataTable.tsx",
+      "language": "typescript",
+      "sizeLines": 267,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/ErrorComponent.tsx",
+      "language": "typescript",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/Footer.tsx",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/Logo.tsx",
+      "language": "typescript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/NotFound.tsx",
+      "language": "typescript",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Common/UserAvatar.tsx",
+      "language": "typescript",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "language": "typescript",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Pending/PendingTickets.tsx",
+      "language": "typescript",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Pending/PendingUsers.tsx",
+      "language": "typescript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Sidebar/AppSidebar.tsx",
+      "language": "typescript",
+      "sizeLines": 145,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Sidebar/Main.tsx",
+      "language": "typescript",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Sidebar/User.tsx",
+      "language": "typescript",
+      "sizeLines": 107,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/theme-provider.tsx",
+      "language": "typescript",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "language": "typescript",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "language": "typescript",
+      "sizeLines": 216,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "language": "typescript",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "language": "typescript",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "language": "typescript",
+      "sizeLines": 165,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketColumns.tsx",
+      "language": "typescript",
+      "sizeLines": 219,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "language": "typescript",
+      "sizeLines": 286,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketFilters.tsx",
+      "language": "typescript",
+      "sizeLines": 236,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "language": "typescript",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "language": "typescript",
+      "sizeLines": 202,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Tickets/TicketTimeline.tsx",
+      "language": "typescript",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/alert.tsx",
+      "language": "typescript",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/avatar.tsx",
+      "language": "typescript",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/badge.tsx",
+      "language": "typescript",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/button-group.tsx",
+      "language": "typescript",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/button.tsx",
+      "language": "typescript",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/card.tsx",
+      "language": "typescript",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/checkbox.tsx",
+      "language": "typescript",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/dialog.tsx",
+      "language": "typescript",
+      "sizeLines": 141,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/dropdown-menu.tsx",
+      "language": "typescript",
+      "sizeLines": 257,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/form.tsx",
+      "language": "typescript",
+      "sizeLines": 165,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/input.tsx",
+      "language": "typescript",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/label.tsx",
+      "language": "typescript",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/loading-button.tsx",
+      "language": "typescript",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/pagination.tsx",
+      "language": "typescript",
+      "sizeLines": 127,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/password-input.tsx",
+      "language": "typescript",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/select.tsx",
+      "language": "typescript",
+      "sizeLines": 185,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/separator.tsx",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/sheet.tsx",
+      "language": "typescript",
+      "sizeLines": 139,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/sidebar.tsx",
+      "language": "typescript",
+      "sizeLines": 737,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/skeleton.tsx",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/sonner.tsx",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/table.tsx",
+      "language": "typescript",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/tabs.tsx",
+      "language": "typescript",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/textarea.tsx",
+      "language": "typescript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/ui/tooltip.tsx",
+      "language": "typescript",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/UserSettings/ChangePassword.tsx",
+      "language": "typescript",
+      "sizeLines": 155,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/UserSettings/UserInformation.tsx",
+      "language": "typescript",
+      "sizeLines": 292,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "language": "typescript",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/hooks/useAuth.ts",
+      "language": "typescript",
+      "sizeLines": 98,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/hooks/useCopyToClipboard.ts",
+      "language": "typescript",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/hooks/useCustomToast.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/hooks/useMobile.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/index.css",
+      "language": "css",
+      "sizeLines": 124,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "frontend/src/lib/aiApi.ts",
+      "language": "typescript",
+      "sizeLines": 337,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/customerSupportEvents.ts",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/queryClient.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/routeGuards.ts",
+      "language": "typescript",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/ticketQueries.ts",
+      "language": "typescript",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/userAvatarApi.ts",
+      "language": "typescript",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/userQueries.ts",
+      "language": "typescript",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/utils.ts",
+      "language": "typescript",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/lib/workspaceQueries.ts",
+      "language": "typescript",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/main.tsx",
+      "language": "typescript",
+      "sizeLines": 43,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/__root.tsx",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout.tsx",
+      "language": "typescript",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/admin.tsx",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/admin/index.tsx",
+      "language": "typescript",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/admin/tickets.tsx",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "language": "typescript",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/ai.tsx",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/index.tsx",
+      "language": "typescript",
+      "sizeLines": 172,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/knowledge.tsx",
+      "language": "typescript",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/queue.tsx",
+      "language": "typescript",
+      "sizeLines": 328,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/settings.tsx",
+      "language": "typescript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/tickets.tsx",
+      "language": "typescript",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/login.tsx",
+      "language": "typescript",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/recover-password.tsx",
+      "language": "typescript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/reset-password.tsx",
+      "language": "typescript",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routes/signup.tsx",
+      "language": "typescript",
+      "sizeLines": 181,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/routeTree.gen.ts",
+      "language": "typescript",
+      "sizeLines": 460,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/utils.ts",
+      "language": "typescript",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/src/vite-env.d.ts",
+      "language": "typescript",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/test-results/.last-run.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/tests/admin.spec.ts",
+      "language": "typescript",
+      "sizeLines": 130,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/auth-regression.spec.ts",
+      "language": "typescript",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/auth.setup.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/config.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/login.spec.ts",
+      "language": "typescript",
+      "sizeLines": 111,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/reset-password.spec.ts",
+      "language": "typescript",
+      "sizeLines": 119,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/role-navigation.spec.ts",
+      "language": "typescript",
+      "sizeLines": 75,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/sign-up.spec.ts",
+      "language": "typescript",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/ticket-workflow.spec.ts",
+      "language": "typescript",
+      "sizeLines": 292,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/tickets-admin.spec.ts",
+      "language": "typescript",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/tickets-agent.spec.ts",
+      "language": "typescript",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/tickets-customer.spec.ts",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/user-settings.spec.ts",
+      "language": "typescript",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/utils/mailpit.ts",
+      "language": "typescript",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/utils/privateApi.ts",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/utils/random.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/utils/roleContexts.ts",
+      "language": "typescript",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/utils/user.ts",
+      "language": "typescript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tests/workspace-routing-regression.spec.ts",
+      "language": "typescript",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "frontend/tsconfig.build.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "language": "json",
+      "sizeLines": 31,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/tsconfig.node.json",
+      "language": "json",
+      "sizeLines": 10,
+      "fileCategory": "config"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "language": "typescript",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/react-email/biome.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/react-email/emails/new_account.tsx",
+      "language": "typescript",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/emails/reset_password.tsx",
+      "language": "typescript",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/emails/test_email.tsx",
+      "language": "typescript",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/package.json",
+      "language": "json",
+      "sizeLines": 23,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/react-email/tsconfig.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "packages/react-email/ui/Button.tsx",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/ui/Callout.tsx",
+      "language": "typescript",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/ui/Heading.tsx",
+      "language": "typescript",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/ui/Layout.tsx",
+      "language": "typescript",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "packages/react-email/ui/Link.tsx",
+      "language": "typescript",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 36,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 134,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "release-notes.md",
+      "language": "markdown",
+      "sizeLines": 999,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "scripts/add_latest_release_date.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/generate-client.sh",
+      "language": "shell",
+      "sizeLines": 11,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/prepare_release.py",
+      "language": "python",
+      "sizeLines": 175,
+      "fileCategory": "code"
+    },
+    {
+      "path": "scripts/test-local.sh",
+      "language": "shell",
+      "sizeLines": 16,
+      "fileCategory": "script"
+    },
+    {
+      "path": "scripts/test.sh",
+      "language": "shell",
+      "sizeLines": 12,
+      "fileCategory": "script"
+    },
+    {
+      "path": "SYSTEM-SPEC.md",
+      "language": "markdown",
+      "sizeLines": 351,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 414,
+  "filteredByIgnore": 126,
+  "estimatedComplexity": "large",
+  "importMap": {
+    ".dockerignore": [],
+    ".env": [],
+    ".fastapicloudignore": [],
+    ".gitattributes": [],
+    ".github/dependabot.yml": [],
+    ".github/latest-changes.yml": [],
+    ".github/pr-push.yml": [],
+    ".github/pr-submit.yml": [],
+    ".github/workflows/create-draft-release.yml": [],
+    ".github/workflows/deploy-docker-compose.yml": [],
+    ".github/workflows/deploy.yml": [],
+    ".github/workflows/detect-conflicts.yml": [],
+    ".github/workflows/guard-dependencies.yml": [],
+    ".github/workflows/playwright.yml": [],
+    ".github/workflows/pre-commit.yml": [],
+    ".github/workflows/prepare-release.yml": [],
+    ".github/workflows/smokeshow.yml": [],
+    ".github/workflows/test-backend.yml": [],
+    ".github/workflows/test-docker-compose.yml": [],
+    ".github/workflows/zizmor.yml": [],
+    ".pre-commit-config.yaml": [],
+    ".python-version": [],
+    ".understand-anything/.understandignore": [],
+    ".understand-anything/config.json": [],
+    ".understand-anything/intermediate/batches.json": [],
+    ".understand-anything/intermediate/scan-result.json": [],
+    ".understand-anything/tmp/ua-import-map-input.json": [],
+    ".understand-anything/tmp/ua-import-map-output.json": [],
+    ".understand-anything/tmp/ua-scan-files.json": [],
+    ".uv-cache-provider/CACHEDIR.TAG": [],
+    ".uv-cache-provider/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack": [],
+    ".uv-cache-provider/sdists-v9/.git": [],
+    ".uv-cache/CACHEDIR.TAG": [],
+    ".uv-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack": [],
+    ".uv-cache/sdists-v9/.git": [],
+    ".uv-verify-cache/CACHEDIR.TAG": [],
+    ".uv-verify-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack": [],
+    ".uv-verify-cache/sdists-v9/.git": [],
+    "backend/.dockerignore": [],
+    "backend/alembic.ini": [],
+    "backend/app/__init__.py": [],
+    "backend/app/alembic/env.py": [
+      "backend/app/core/config.py",
+      "backend/app/models/__init__.py"
+    ],
+    "backend/app/alembic/README": [],
+    "backend/app/alembic/script.py.mako": [],
+    "backend/app/alembic/versions/.keep": [],
+    "backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py": [],
+    "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py": [],
+    "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py": [],
+    "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py": [],
+    "backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py": [],
+    "backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py": [],
+    "backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py": [],
+    "backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py": [],
+    "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py": [],
+    "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py": [],
+    "backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py": [],
+    "backend/app/alembic/versions/e2412789c190_initialize_models.py": [],
+    "backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py": [],
+    "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py": [],
+    "backend/app/api/__init__.py": [],
+    "backend/app/api/deps.py": [
+      "backend/app/core/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/core/db.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/security.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/auth.py"
+    ],
+    "backend/app/api/main.py": [
+      "backend/app/api/routes/__init__.py",
+      "backend/app/api/routes/ai.py",
+      "backend/app/api/routes/attachments.py",
+      "backend/app/api/routes/knowledge.py",
+      "backend/app/api/routes/login.py",
+      "backend/app/api/routes/private.py",
+      "backend/app/api/routes/tickets.py",
+      "backend/app/api/routes/users.py",
+      "backend/app/api/routes/utils.py",
+      "backend/app/api/routes/workspaces.py",
+      "backend/app/core/config.py"
+    ],
+    "backend/app/api/routes/__init__.py": [],
+    "backend/app/api/routes/ai.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/request_context.py",
+      "backend/app/models/ai.py",
+      "backend/app/schemas/ai.py",
+      "backend/app/schemas/tools.py",
+      "backend/app/services/agent_service.py",
+      "backend/app/services/provider_service.py",
+      "backend/app/services/tool_executor.py"
+    ],
+    "backend/app/api/routes/attachments.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/errors.py",
+      "backend/app/schemas/attachment.py",
+      "backend/app/services/attachment_service.py"
+    ],
+    "backend/app/api/routes/knowledge.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/repositories/knowledge_repository.py",
+      "backend/app/schemas/knowledge.py",
+      "backend/app/services/knowledge_retrieval.py",
+      "backend/app/services/knowledge_service.py",
+      "backend/app/services/provider_service.py"
+    ],
+    "backend/app/api/routes/login.py": [
+      "backend/app/__init__.py",
+      "backend/app/api/deps.py",
+      "backend/app/core/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/core/security.py",
+      "backend/app/crud.py",
+      "backend/app/schemas/auth.py",
+      "backend/app/schemas/common.py",
+      "backend/app/schemas/user.py",
+      "backend/app/utils.py"
+    ],
+    "backend/app/api/routes/private.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/security.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/api/routes/tickets.py": [
+      "backend/app/api/deps.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/statistics_service.py",
+      "backend/app/services/ticket_service.py"
+    ],
+    "backend/app/api/routes/users.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/security.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/auth.py",
+      "backend/app/schemas/common.py",
+      "backend/app/schemas/user.py",
+      "backend/app/services/user_service.py",
+      "backend/app/utils.py"
+    ],
+    "backend/app/api/routes/utils.py": [
+      "backend/app/api/deps.py",
+      "backend/app/schemas/common.py",
+      "backend/app/utils.py"
+    ],
+    "backend/app/api/routes/workspaces.py": [
+      "backend/app/api/deps.py",
+      "backend/app/core/errors.py",
+      "backend/app/models/workspace.py",
+      "backend/app/repositories/workspace_repository.py",
+      "backend/app/schemas/workspace.py",
+      "backend/app/services/workspace_service.py"
+    ],
+    "backend/app/backend_pre_start.py": [
+      "backend/app/core/db.py"
+    ],
+    "backend/app/core/__init__.py": [],
+    "backend/app/core/config.py": [],
+    "backend/app/core/db.py": [
+      "backend/app/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/crud.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/core/errors.py": [
+      "backend/app/core/request_context.py",
+      "backend/app/schemas/common.py"
+    ],
+    "backend/app/core/provider_security.py": [],
+    "backend/app/core/request_context.py": [],
+    "backend/app/core/secret_crypto.py": [
+      "backend/app/core/config.py"
+    ],
+    "backend/app/core/security.py": [
+      "backend/app/core/config.py"
+    ],
+    "backend/app/core/workspace.py": [
+      "backend/app/core/errors.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/crud.py": [
+      "backend/app/core/security.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/email-templates/new_account.html": [],
+    "backend/app/email-templates/reset_password.html": [],
+    "backend/app/email-templates/test_email.html": [],
+    "backend/app/frontend/index.html": [],
+    "backend/app/initial_data.py": [
+      "backend/app/core/db.py"
+    ],
+    "backend/app/main.py": [
+      "backend/app/api/main.py",
+      "backend/app/core/config.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/request_context.py"
+    ],
+    "backend/app/models/__init__.py": [
+      "backend/app/models/ai.py",
+      "backend/app/models/attachment.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/models/ai.py": [
+      "backend/app/models/user.py"
+    ],
+    "backend/app/models/attachment.py": [
+      "backend/app/models/user.py"
+    ],
+    "backend/app/models/enums.py": [],
+    "backend/app/models/knowledge.py": [
+      "backend/app/models/user.py"
+    ],
+    "backend/app/models/ticket.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py"
+    ],
+    "backend/app/models/user.py": [
+      "backend/app/models/enums.py"
+    ],
+    "backend/app/models/workspace.py": [
+      "backend/app/models/user.py"
+    ],
+    "backend/app/providers/__init__.py": [
+      "backend/app/providers/chat.py",
+      "backend/app/providers/embedding.py"
+    ],
+    "backend/app/providers/chat.py": [],
+    "backend/app/providers/embedding.py": [],
+    "backend/app/repositories/__init__.py": [
+      "backend/app/repositories/ticket_repository.py",
+      "backend/app/repositories/user_repository.py"
+    ],
+    "backend/app/repositories/ai_repository.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py"
+    ],
+    "backend/app/repositories/knowledge_repository.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/knowledge.py"
+    ],
+    "backend/app/repositories/ticket_repository.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/ticket.py"
+    ],
+    "backend/app/repositories/user_repository.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/repositories/workspace_repository.py": [
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/schemas/__init__.py": [
+      "backend/app/schemas/ai.py",
+      "backend/app/schemas/attachment.py",
+      "backend/app/schemas/auth.py",
+      "backend/app/schemas/common.py",
+      "backend/app/schemas/knowledge.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/schemas/tools.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/schemas/ai.py": [
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/schemas/attachment.py": [],
+    "backend/app/schemas/auth.py": [],
+    "backend/app/schemas/common.py": [],
+    "backend/app/schemas/knowledge.py": [
+      "backend/app/models/knowledge.py"
+    ],
+    "backend/app/schemas/ticket.py": [
+      "backend/app/models/enums.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/schemas/tools.py": [
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/schemas/user.py": [
+      "backend/app/models/enums.py"
+    ],
+    "backend/app/schemas/workspace.py": [
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/services/__init__.py": [
+      "backend/app/services/agent_service.py",
+      "backend/app/services/attachment_service.py",
+      "backend/app/services/knowledge_retrieval.py",
+      "backend/app/services/knowledge_service.py",
+      "backend/app/services/provider_service.py",
+      "backend/app/services/statistics_service.py",
+      "backend/app/services/ticket_service.py",
+      "backend/app/services/user_service.py"
+    ],
+    "backend/app/services/agent_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/providers/chat.py",
+      "backend/app/providers/embedding.py",
+      "backend/app/repositories/ai_repository.py",
+      "backend/app/repositories/knowledge_repository.py",
+      "backend/app/schemas/ai.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/assignment_service.py",
+      "backend/app/services/knowledge_retrieval.py",
+      "backend/app/services/ticket_service.py"
+    ],
+    "backend/app/services/assignment_service.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/services/attachment_service.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/attachment.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py"
+    ],
+    "backend/app/services/knowledge_retrieval.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/providers/embedding.py",
+      "backend/app/repositories/knowledge_repository.py"
+    ],
+    "backend/app/services/knowledge_service.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/models/user.py",
+      "backend/app/providers/embedding.py"
+    ],
+    "backend/app/services/provider_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/provider_security.py",
+      "backend/app/core/secret_crypto.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/user.py",
+      "backend/app/providers/chat.py",
+      "backend/app/providers/embedding.py",
+      "backend/app/schemas/ai.py"
+    ],
+    "backend/app/services/statistics_service.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/repositories/ticket_repository.py",
+      "backend/app/schemas/ticket.py"
+    ],
+    "backend/app/services/ticket_permissions.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py"
+    ],
+    "backend/app/services/ticket_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/repositories/ticket_repository.py",
+      "backend/app/repositories/user_repository.py",
+      "backend/app/repositories/workspace_repository.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/ticket_permissions.py",
+      "backend/app/services/ticket_state_machine.py"
+    ],
+    "backend/app/services/ticket_state_machine.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py"
+    ],
+    "backend/app/services/tool_executor.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/ticket_service.py"
+    ],
+    "backend/app/services/user_service.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/security.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/repositories/user_repository.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/app/services/workspace_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/repositories/workspace_repository.py",
+      "backend/app/schemas/workspace.py"
+    ],
+    "backend/app/tests_pre_start.py": [
+      "backend/app/core/db.py"
+    ],
+    "backend/app/utils.py": [
+      "backend/app/core/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/core/security.py"
+    ],
+    "backend/app/workers/__init__.py": [],
+    "backend/app/workers/knowledge_ingestion.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/models/workspace.py",
+      "backend/app/providers/embedding.py",
+      "backend/app/services/knowledge_service.py"
+    ],
+    "backend/Dockerfile": [],
+    "backend/pyproject.toml": [],
+    "backend/README.md": [],
+    "backend/scripts/format.sh": [],
+    "backend/scripts/lint.sh": [],
+    "backend/scripts/prestart.sh": [],
+    "backend/scripts/test.sh": [],
+    "backend/scripts/tests-start.sh": [],
+    "backend/tests/__init__.py": [],
+    "backend/tests/api/__init__.py": [],
+    "backend/tests/api/routes/__init__.py": [],
+    "backend/tests/api/routes/test_items.py": [
+      "backend/app/core/config.py",
+      "backend/app/main.py"
+    ],
+    "backend/tests/api/routes/test_login.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/security.py",
+      "backend/app/crud.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py",
+      "backend/app/utils.py",
+      "backend/tests/utils/user.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/api/routes/test_private.py": [
+      "backend/app/core/config.py",
+      "backend/app/models/user.py"
+    ],
+    "backend/tests/api/routes/test_tickets.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/db.py",
+      "backend/app/core/security.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/api/routes/test_users.py": [
+      "backend/app/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/core/security.py",
+      "backend/app/crud.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/user.py",
+      "backend/tests/utils/user.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/conftest.py": [
+      "backend/app/core/config.py",
+      "backend/app/core/db.py",
+      "backend/app/main.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/attachment.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/tests/utils/user.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/core/test_error_handling.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/request_context.py",
+      "backend/app/schemas/common.py"
+    ],
+    "backend/tests/crud/__init__.py": [],
+    "backend/tests/crud/test_user.py": [
+      "backend/app/__init__.py",
+      "backend/app/core/security.py",
+      "backend/app/crud.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/migrations/conftest.py": [],
+    "backend/tests/migrations/test_ticket_platform_migration.py": [],
+    "backend/tests/models/test_models_package.py": [
+      "backend/app/models/__init__.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/__init__.py",
+      "backend/app/schemas/auth.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/tests/providers/__init__.py": [],
+    "backend/tests/providers/test_chat.py": [
+      "backend/app/providers/chat.py"
+    ],
+    "backend/tests/providers/test_embedding.py": [
+      "backend/app/providers/embedding.py"
+    ],
+    "backend/tests/repositories/test_ticket_concurrency.py": [
+      "backend/app/core/db.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/repositories/ticket_repository.py"
+    ],
+    "backend/tests/repositories/test_ticket_repository.py": [
+      "backend/app/core/db.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/repositories/ticket_repository.py",
+      "backend/app/schemas/ticket.py"
+    ],
+    "backend/tests/repositories/test_user_repository.py": [
+      "backend/app/core/db.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/repositories/user_repository.py",
+      "backend/app/schemas/user.py"
+    ],
+    "backend/tests/scripts/__init__.py": [],
+    "backend/tests/scripts/test_backend_pre_start.py": [
+      "backend/app/backend_pre_start.py"
+    ],
+    "backend/tests/scripts/test_test_pre_start.py": [
+      "backend/app/tests_pre_start.py"
+    ],
+    "backend/tests/services/test_agent_and_tooling.py": [
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/ai.py",
+      "backend/app/services/agent_service.py",
+      "backend/app/services/tool_executor.py"
+    ],
+    "backend/tests/services/test_attachment_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/services/attachment_service.py"
+    ],
+    "backend/tests/services/test_knowledge_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/provider_security.py",
+      "backend/app/models/knowledge.py",
+      "backend/app/services/knowledge_retrieval.py",
+      "backend/app/services/knowledge_service.py"
+    ],
+    "backend/tests/services/test_provider_service.py": [
+      "backend/app/core/errors.py",
+      "backend/app/core/secret_crypto.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/ai.py",
+      "backend/app/models/workspace.py",
+      "backend/app/providers/chat.py",
+      "backend/app/providers/embedding.py",
+      "backend/app/schemas/ai.py",
+      "backend/app/services/provider_service.py"
+    ],
+    "backend/tests/services/test_statistics_service.py": [
+      "backend/app/core/db.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/statistics_service.py"
+    ],
+    "backend/tests/services/test_ticket_permissions.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/services/ticket_permissions.py"
+    ],
+    "backend/tests/services/test_ticket_service.py": [
+      "backend/app/core/db.py",
+      "backend/app/core/errors.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/ticket_service.py"
+    ],
+    "backend/tests/services/test_ticket_state_machine.py": [
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/services/ticket_state_machine.py"
+    ],
+    "backend/tests/services/test_ticket_workspace_isolation.py": [
+      "backend/app/core/db.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/workspace.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/ticket.py",
+      "backend/app/models/user.py",
+      "backend/app/models/workspace.py",
+      "backend/app/schemas/ticket.py",
+      "backend/app/services/statistics_service.py",
+      "backend/app/services/ticket_service.py"
+    ],
+    "backend/tests/services/test_user_service.py": [
+      "backend/app/core/db.py",
+      "backend/app/core/errors.py",
+      "backend/app/core/security.py",
+      "backend/app/models/enums.py",
+      "backend/app/models/user.py",
+      "backend/app/repositories/user_repository.py",
+      "backend/app/schemas/user.py",
+      "backend/app/services/user_service.py"
+    ],
+    "backend/tests/test_openapi.py": [
+      "backend/app/main.py"
+    ],
+    "backend/tests/utils/__init__.py": [],
+    "backend/tests/utils/user.py": [
+      "backend/app/__init__.py",
+      "backend/app/core/config.py",
+      "backend/app/crud.py",
+      "backend/app/models/user.py",
+      "backend/app/schemas/user.py",
+      "backend/tests/utils/utils.py"
+    ],
+    "backend/tests/utils/utils.py": [
+      "backend/app/core/config.py"
+    ],
+    "changes/active/ai-customer-support-platform/acceptance.md": [],
+    "changes/active/ai-customer-support-platform/design.md": [],
+    "changes/active/ai-customer-support-platform/proposal.md": [],
+    "changes/active/ai-customer-support-platform/spec.md": [],
+    "changes/active/ai-customer-support-platform/tasks.md": [],
+    "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-conversation-404.md": [],
+    "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-widget-send.md": [],
+    "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-settings-admin-tabs.md": [],
+    "changes/active/fix-local-avatar-display/debug-log-2026-09-14-avatar-display-cache.md": [],
+    "changes/active/role-sidebar-navigation/tasks.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-provider-no-feedback.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-rag-upload-422.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-workspace-routing-error.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/design.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/proposal.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/spec.md": [],
+    "changes/archive/2026-09-14-ai-agent-support-copilot/tasks.md": [],
+    "changes/archive/2026-09-14-conversation-avatars/design.md": [],
+    "changes/archive/2026-09-14-conversation-avatars/proposal.md": [],
+    "changes/archive/2026-09-14-conversation-avatars/spec.md": [],
+    "changes/archive/2026-09-14-conversation-avatars/tasks.md": [],
+    "changes/archive/2026-09-14-conversation-avatars/verification.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/design.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/proposal.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/review.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/spec.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/tasks.md": [],
+    "changes/archive/2026-09-14-local-avatar-upload/verification.md": [],
+    "compose.deploy.yml": [],
+    "compose.override.yml": [],
+    "compose.yml": [],
+    "CONTRIBUTING.md": [],
+    "deployment-docker-compose.md": [],
+    "deployment.md": [],
+    "development.md": [],
+    "docs/specs/ai-agent-support-copilot.md": [],
+    "docs/specs/conversation-avatars.md": [],
+    "docs/specs/local-avatar-upload.md": [],
+    "docs/specs/README.md": [],
+    "frontend/.dockerignore": [],
+    "frontend/.env": [],
+    "frontend/.generated-client/client.gen.ts": [
+      "frontend/.generated-client/client/index.ts",
+      "frontend/.generated-client/types.gen.ts"
+    ],
+    "frontend/.generated-client/client/client.gen.ts": [
+      "frontend/.generated-client/client/types.gen.ts",
+      "frontend/.generated-client/client/utils.gen.ts",
+      "frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "frontend/.generated-client/core/types.gen.ts",
+      "frontend/.generated-client/core/utils.gen.ts"
+    ],
+    "frontend/.generated-client/client/index.ts": [],
+    "frontend/.generated-client/client/types.gen.ts": [
+      "frontend/.generated-client/core/auth.gen.ts",
+      "frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "frontend/.generated-client/core/types.gen.ts"
+    ],
+    "frontend/.generated-client/client/utils.gen.ts": [
+      "frontend/.generated-client/client/types.gen.ts",
+      "frontend/.generated-client/core/auth.gen.ts",
+      "frontend/.generated-client/core/bodySerializer.gen.ts",
+      "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "frontend/.generated-client/core/utils.gen.ts"
+    ],
+    "frontend/.generated-client/core/auth.gen.ts": [],
+    "frontend/.generated-client/core/bodySerializer.gen.ts": [
+      "frontend/.generated-client/core/pathSerializer.gen.ts"
+    ],
+    "frontend/.generated-client/core/params.gen.ts": [],
+    "frontend/.generated-client/core/pathSerializer.gen.ts": [],
+    "frontend/.generated-client/core/queryKeySerializer.gen.ts": [],
+    "frontend/.generated-client/core/serverSentEvents.gen.ts": [
+      "frontend/.generated-client/core/types.gen.ts"
+    ],
+    "frontend/.generated-client/core/types.gen.ts": [
+      "frontend/.generated-client/core/auth.gen.ts",
+      "frontend/.generated-client/core/bodySerializer.gen.ts"
+    ],
+    "frontend/.generated-client/core/utils.gen.ts": [
+      "frontend/.generated-client/core/bodySerializer.gen.ts",
+      "frontend/.generated-client/core/pathSerializer.gen.ts"
+    ],
+    "frontend/.generated-client/index.ts": [],
+    "frontend/.generated-client/sdk.gen.ts": [
+      "frontend/.generated-client/client.gen.ts",
+      "frontend/.generated-client/client/index.ts",
+      "frontend/.generated-client/types.gen.ts"
+    ],
+    "frontend/.generated-client/types.gen.ts": [],
+    "frontend/.tanstack/tmp/15963765-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/.tanstack/tmp/39389b45-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/.tanstack/tmp/3b1da8a1-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/.tanstack/tmp/c5ee514d-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/.tanstack/tmp/cabe5a43-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/.tanstack/tmp/dcd16d42-b01a9313463fa8e2f0a16949779a77d4": [],
+    "frontend/biome.json": [],
+    "frontend/components.json": [],
+    "frontend/Dockerfile.playwright": [],
+    "frontend/index.html": [],
+    "frontend/openapi-ts.config.ts": [],
+    "frontend/openapi.json": [],
+    "frontend/package.json": [],
+    "frontend/playwright-report/index.html": [],
+    "frontend/playwright.config.ts": [],
+    "frontend/playwright/.auth/user.json": [],
+    "frontend/README.md": [],
+    "frontend/src/client/client.gen.ts": [
+      "frontend/src/client/client/index.ts",
+      "frontend/src/client/types.gen.ts"
+    ],
+    "frontend/src/client/client/client.gen.ts": [
+      "frontend/src/client/client/types.gen.ts",
+      "frontend/src/client/client/utils.gen.ts",
+      "frontend/src/client/core/serverSentEvents.gen.ts",
+      "frontend/src/client/core/types.gen.ts",
+      "frontend/src/client/core/utils.gen.ts"
+    ],
+    "frontend/src/client/client/index.ts": [],
+    "frontend/src/client/client/types.gen.ts": [
+      "frontend/src/client/core/auth.gen.ts",
+      "frontend/src/client/core/serverSentEvents.gen.ts",
+      "frontend/src/client/core/types.gen.ts"
+    ],
+    "frontend/src/client/client/utils.gen.ts": [
+      "frontend/src/client/client/types.gen.ts",
+      "frontend/src/client/core/auth.gen.ts",
+      "frontend/src/client/core/bodySerializer.gen.ts",
+      "frontend/src/client/core/pathSerializer.gen.ts",
+      "frontend/src/client/core/utils.gen.ts"
+    ],
+    "frontend/src/client/core/auth.gen.ts": [],
+    "frontend/src/client/core/bodySerializer.gen.ts": [
+      "frontend/src/client/core/pathSerializer.gen.ts"
+    ],
+    "frontend/src/client/core/params.gen.ts": [],
+    "frontend/src/client/core/pathSerializer.gen.ts": [],
+    "frontend/src/client/core/queryKeySerializer.gen.ts": [],
+    "frontend/src/client/core/serverSentEvents.gen.ts": [
+      "frontend/src/client/core/types.gen.ts"
+    ],
+    "frontend/src/client/core/types.gen.ts": [
+      "frontend/src/client/core/auth.gen.ts",
+      "frontend/src/client/core/bodySerializer.gen.ts"
+    ],
+    "frontend/src/client/core/utils.gen.ts": [
+      "frontend/src/client/core/bodySerializer.gen.ts",
+      "frontend/src/client/core/pathSerializer.gen.ts"
+    ],
+    "frontend/src/client/index.ts": [],
+    "frontend/src/client/sdk.gen.ts": [
+      "frontend/src/client/client.gen.ts",
+      "frontend/src/client/client/index.ts",
+      "frontend/src/client/types.gen.ts"
+    ],
+    "frontend/src/client/types.gen.ts": [],
+    "frontend/src/components/Admin/AddUser.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/checkbox.tsx",
+      "frontend/src/components/ui/dialog.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/userQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Admin/columns.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Admin/UserActionsMenu.tsx",
+      "frontend/src/components/ui/badge.tsx",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/Admin/EditUser.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/checkbox.tsx",
+      "frontend/src/components/ui/dialog.tsx",
+      "frontend/src/components/ui/dropdown-menu.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/userQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Admin/UserActionsMenu.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Admin/EditUser.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/dropdown-menu.tsx",
+      "frontend/src/hooks/useAuth.ts"
+    ],
+    "frontend/src/components/Admin/UserFilters.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/lib/userQueries.ts"
+    ],
+    "frontend/src/components/AI/AiWorkbench.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/textarea.tsx",
+      "frontend/src/lib/aiApi.ts"
+    ],
+    "frontend/src/components/AI/CustomerSupportWidget.tsx": [
+      "frontend/src/components/Common/UserAvatar.tsx",
+      "frontend/src/components/ui/badge.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/textarea.tsx",
+      "frontend/src/components/ui/tooltip.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/aiApi.ts",
+      "frontend/src/lib/customerSupportEvents.ts",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/components/AI/ProviderSettings.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/components/ui/checkbox.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/label.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/aiApi.ts"
+    ],
+    "frontend/src/components/Common/Appearance.tsx": [
+      "frontend/src/components/theme-provider.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/dropdown-menu.tsx",
+      "frontend/src/components/ui/sidebar.tsx"
+    ],
+    "frontend/src/components/Common/AuthLayout.tsx": [
+      "frontend/src/components/Common/Appearance.tsx",
+      "frontend/src/components/Common/Footer.tsx",
+      "frontend/src/components/Common/Logo.tsx"
+    ],
+    "frontend/src/components/Common/DataTable.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/components/ui/table.tsx"
+    ],
+    "frontend/src/components/Common/ErrorComponent.tsx": [
+      "frontend/src/components/ui/button.tsx"
+    ],
+    "frontend/src/components/Common/Footer.tsx": [],
+    "frontend/src/components/Common/Logo.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/Common/NotFound.tsx": [
+      "frontend/src/components/ui/button.tsx"
+    ],
+    "frontend/src/components/Common/UserAvatar.tsx": [
+      "frontend/src/components/ui/avatar.tsx",
+      "frontend/src/lib/userAvatarApi.ts",
+      "frontend/src/lib/utils.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Knowledge/KnowledgePanel.tsx": [
+      "frontend/src/components/ui/badge.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/aiApi.ts",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/components/Pending/PendingTickets.tsx": [
+      "frontend/src/components/ui/skeleton.tsx",
+      "frontend/src/components/ui/table.tsx"
+    ],
+    "frontend/src/components/Pending/PendingUsers.tsx": [
+      "frontend/src/components/ui/skeleton.tsx",
+      "frontend/src/components/ui/table.tsx"
+    ],
+    "frontend/src/components/Sidebar/AppSidebar.tsx": [
+      "frontend/src/components/Common/Appearance.tsx",
+      "frontend/src/components/Common/Logo.tsx",
+      "frontend/src/components/Sidebar/Main.tsx",
+      "frontend/src/components/Sidebar/User.tsx",
+      "frontend/src/components/ui/sidebar.tsx",
+      "frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/customerSupportEvents.ts",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/components/Sidebar/Main.tsx": [
+      "frontend/src/components/ui/sidebar.tsx"
+    ],
+    "frontend/src/components/Sidebar/User.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/UserAvatar.tsx",
+      "frontend/src/components/ui/dropdown-menu.tsx",
+      "frontend/src/components/ui/sidebar.tsx",
+      "frontend/src/hooks/useAuth.ts"
+    ],
+    "frontend/src/components/theme-provider.tsx": [],
+    "frontend/src/components/Tickets/AgentQueueColumns.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Tickets/TicketColumns.tsx",
+      "frontend/src/components/ui/button.tsx"
+    ],
+    "frontend/src/components/Tickets/CreateTicketDialog.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/dialog.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/components/ui/textarea.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/DeleteTicketDialog.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/checkbox.tsx",
+      "frontend/src/components/ui/dialog.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/TicketActionPanel.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/TicketAssignmentDialog.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/dialog.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/TicketColumns.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/UserAvatar.tsx",
+      "frontend/src/components/ui/badge.tsx"
+    ],
+    "frontend/src/components/Tickets/TicketDetailPage.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Pending/PendingTickets.tsx",
+      "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "frontend/src/components/Tickets/TicketTimeline.tsx",
+      "frontend/src/components/ui/badge.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/TicketFilters.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/lib/ticketQueries.ts"
+    ],
+    "frontend/src/components/Tickets/TicketReplyForm.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/tabs.tsx",
+      "frontend/src/components/ui/textarea.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Tickets/TicketStatistics.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/card.tsx"
+    ],
+    "frontend/src/components/Tickets/TicketTimeline.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/UserAvatar.tsx",
+      "frontend/src/components/ui/badge.tsx"
+    ],
+    "frontend/src/components/ui/alert.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/avatar.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/badge.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/button-group.tsx": [
+      "frontend/src/components/ui/separator.tsx",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/button.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/card.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/checkbox.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/dialog.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/dropdown-menu.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/form.tsx": [
+      "frontend/src/components/ui/label.tsx",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/input.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/label.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/loading-button.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/pagination.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/password-input.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/select.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/separator.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/sheet.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/sidebar.tsx": [
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/separator.tsx",
+      "frontend/src/components/ui/sheet.tsx",
+      "frontend/src/components/ui/skeleton.tsx",
+      "frontend/src/components/ui/tooltip.tsx",
+      "frontend/src/hooks/useMobile.ts",
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/skeleton.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/sonner.tsx": [],
+    "frontend/src/components/ui/table.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/tabs.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/textarea.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/ui/tooltip.tsx": [
+      "frontend/src/lib/utils.ts"
+    ],
+    "frontend/src/components/UserSettings/ChangePassword.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/password-input.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/UserSettings/UserInformation.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/UserAvatar.tsx",
+      "frontend/src/components/ui/button.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/userAvatarApi.ts",
+      "frontend/src/lib/utils.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/components/Workspace/WorkspaceSwitcher.tsx": [
+      "frontend/src/components/ui/select.tsx",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/hooks/useAuth.ts": [
+      "frontend/src/client/index.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/queryClient.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/hooks/useCopyToClipboard.ts": [],
+    "frontend/src/hooks/useCustomToast.ts": [],
+    "frontend/src/hooks/useMobile.ts": [],
+    "frontend/src/index.css": [],
+    "frontend/src/lib/aiApi.ts": [],
+    "frontend/src/lib/customerSupportEvents.ts": [],
+    "frontend/src/lib/queryClient.ts": [],
+    "frontend/src/lib/routeGuards.ts": [
+      "frontend/src/client/index.ts",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/queryClient.ts",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/lib/ticketQueries.ts": [
+      "frontend/src/client/index.ts"
+    ],
+    "frontend/src/lib/userAvatarApi.ts": [
+      "frontend/src/client/index.ts"
+    ],
+    "frontend/src/lib/userQueries.ts": [
+      "frontend/src/client/index.ts",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/ticketQueries.ts"
+    ],
+    "frontend/src/lib/utils.ts": [],
+    "frontend/src/lib/workspaceQueries.ts": [
+      "frontend/src/lib/queryClient.ts"
+    ],
+    "frontend/src/main.tsx": [
+      "frontend/src/client/client.gen.ts",
+      "frontend/src/components/theme-provider.tsx",
+      "frontend/src/components/ui/sonner.tsx",
+      "frontend/src/index.css",
+      "frontend/src/lib/queryClient.ts",
+      "frontend/src/routeTree.gen.ts"
+    ],
+    "frontend/src/routes/__root.tsx": [
+      "frontend/src/components/Common/ErrorComponent.tsx",
+      "frontend/src/components/Common/NotFound.tsx"
+    ],
+    "frontend/src/routes/_layout.tsx": [
+      "frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "frontend/src/components/Common/Footer.tsx",
+      "frontend/src/components/Sidebar/AppSidebar.tsx",
+      "frontend/src/components/ui/sidebar.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/admin.tsx": [
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/admin/index.tsx": [
+      "frontend/src/components/Admin/AddUser.tsx",
+      "frontend/src/components/Admin/columns.tsx",
+      "frontend/src/components/Admin/UserFilters.tsx",
+      "frontend/src/components/Common/DataTable.tsx",
+      "frontend/src/components/Pending/PendingUsers.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/userQueries.ts"
+    ],
+    "frontend/src/routes/_layout/admin/tickets.tsx": [
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/admin/tickets/$ticketId.tsx": [
+      "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/admin/tickets/index.tsx": [
+      "frontend/src/components/Common/DataTable.tsx",
+      "frontend/src/components/Pending/PendingTickets.tsx",
+      "frontend/src/components/Tickets/TicketColumns.tsx",
+      "frontend/src/components/Tickets/TicketFilters.tsx",
+      "frontend/src/lib/ticketQueries.ts"
+    ],
+    "frontend/src/routes/_layout/ai.tsx": [
+      "frontend/src/components/AI/AiWorkbench.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/index.tsx": [
+      "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "frontend/src/components/ui/card.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/lib/ticketQueries.ts"
+    ],
+    "frontend/src/routes/_layout/knowledge.tsx": [
+      "frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/queue.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/DataTable.tsx",
+      "frontend/src/components/Pending/PendingTickets.tsx",
+      "frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "frontend/src/components/Tickets/TicketFilters.tsx",
+      "frontend/src/components/ui/badge.tsx",
+      "frontend/src/components/ui/tabs.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/lib/ticketQueries.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/routes/_layout/queue/$ticketId.tsx": [
+      "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/_layout/settings.tsx": [
+      "frontend/src/components/AI/AiWorkbench.tsx",
+      "frontend/src/components/AI/ProviderSettings.tsx",
+      "frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "frontend/src/components/ui/tabs.tsx",
+      "frontend/src/components/UserSettings/ChangePassword.tsx",
+      "frontend/src/components/UserSettings/UserInformation.tsx",
+      "frontend/src/lib/workspaceQueries.ts"
+    ],
+    "frontend/src/routes/_layout/tickets.tsx": [
+      "frontend/src/components/Common/DataTable.tsx",
+      "frontend/src/components/Pending/PendingTickets.tsx",
+      "frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "frontend/src/components/Tickets/TicketColumns.tsx",
+      "frontend/src/components/Tickets/TicketFilters.tsx",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/lib/ticketQueries.ts"
+    ],
+    "frontend/src/routes/_layout/tickets/$ticketId.tsx": [
+      "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/login.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/AuthLayout.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/password-input.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routes/recover-password.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/AuthLayout.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/routes/reset-password.tsx": [
+      "frontend/src/client/index.ts",
+      "frontend/src/components/Common/AuthLayout.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/password-input.tsx",
+      "frontend/src/hooks/useCustomToast.ts",
+      "frontend/src/lib/routeGuards.ts",
+      "frontend/src/utils.ts"
+    ],
+    "frontend/src/routes/signup.tsx": [
+      "frontend/src/components/Common/AuthLayout.tsx",
+      "frontend/src/components/ui/form.tsx",
+      "frontend/src/components/ui/input.tsx",
+      "frontend/src/components/ui/loading-button.tsx",
+      "frontend/src/components/ui/password-input.tsx",
+      "frontend/src/hooks/useAuth.ts",
+      "frontend/src/lib/routeGuards.ts"
+    ],
+    "frontend/src/routeTree.gen.ts": [
+      "frontend/src/routes/__root.tsx",
+      "frontend/src/routes/_layout.tsx",
+      "frontend/src/routes/_layout/admin.tsx",
+      "frontend/src/routes/_layout/admin/index.tsx",
+      "frontend/src/routes/_layout/admin/tickets.tsx",
+      "frontend/src/routes/_layout/admin/tickets/$ticketId.tsx",
+      "frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "frontend/src/routes/_layout/ai.tsx",
+      "frontend/src/routes/_layout/index.tsx",
+      "frontend/src/routes/_layout/knowledge.tsx",
+      "frontend/src/routes/_layout/queue.tsx",
+      "frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "frontend/src/routes/_layout/settings.tsx",
+      "frontend/src/routes/_layout/tickets.tsx",
+      "frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "frontend/src/routes/login.tsx",
+      "frontend/src/routes/recover-password.tsx",
+      "frontend/src/routes/reset-password.tsx",
+      "frontend/src/routes/signup.tsx"
+    ],
+    "frontend/src/utils.ts": [],
+    "frontend/src/vite-env.d.ts": [],
+    "frontend/test-results/.last-run.json": [],
+    "frontend/tests/admin.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/privateApi.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/auth-regression.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/auth.setup.ts": [
+      "frontend/tests/config.ts"
+    ],
+    "frontend/tests/config.ts": [],
+    "frontend/tests/login.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/random.ts"
+    ],
+    "frontend/tests/reset-password.spec.ts": [
+      "frontend/tests/utils/mailpit.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/role-navigation.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/privateApi.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/sign-up.spec.ts": [
+      "frontend/tests/utils/random.ts"
+    ],
+    "frontend/tests/ticket-workflow.spec.ts": [
+      "frontend/tests/utils/roleContexts.ts"
+    ],
+    "frontend/tests/tickets-admin.spec.ts": [],
+    "frontend/tests/tickets-agent.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/tickets-customer.spec.ts": [
+      "frontend/tests/utils/privateApi.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/user-settings.spec.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/privateApi.ts",
+      "frontend/tests/utils/random.ts",
+      "frontend/tests/utils/user.ts"
+    ],
+    "frontend/tests/utils/mailpit.ts": [],
+    "frontend/tests/utils/privateApi.ts": [
+      "frontend/src/client/client.gen.ts",
+      "frontend/src/client/index.ts"
+    ],
+    "frontend/tests/utils/random.ts": [],
+    "frontend/tests/utils/roleContexts.ts": [
+      "frontend/tests/config.ts",
+      "frontend/tests/utils/random.ts"
+    ],
+    "frontend/tests/utils/user.ts": [],
+    "frontend/tests/workspace-routing-regression.spec.ts": [
+      "frontend/tests/config.ts"
+    ],
+    "frontend/tsconfig.build.json": [],
+    "frontend/tsconfig.json": [],
+    "frontend/tsconfig.node.json": [],
+    "frontend/vite.config.ts": [],
+    "package.json": [],
+    "packages/react-email/biome.json": [],
+    "packages/react-email/emails/new_account.tsx": [
+      "packages/react-email/ui/Button.tsx",
+      "packages/react-email/ui/Callout.tsx",
+      "packages/react-email/ui/Heading.tsx",
+      "packages/react-email/ui/Layout.tsx",
+      "packages/react-email/ui/Link.tsx"
+    ],
+    "packages/react-email/emails/reset_password.tsx": [
+      "packages/react-email/ui/Button.tsx",
+      "packages/react-email/ui/Heading.tsx",
+      "packages/react-email/ui/Layout.tsx",
+      "packages/react-email/ui/Link.tsx"
+    ],
+    "packages/react-email/emails/test_email.tsx": [
+      "packages/react-email/ui/Callout.tsx",
+      "packages/react-email/ui/Heading.tsx",
+      "packages/react-email/ui/Layout.tsx"
+    ],
+    "packages/react-email/package.json": [],
+    "packages/react-email/tsconfig.json": [],
+    "packages/react-email/ui/Button.tsx": [],
+    "packages/react-email/ui/Callout.tsx": [],
+    "packages/react-email/ui/Heading.tsx": [],
+    "packages/react-email/ui/Layout.tsx": [],
+    "packages/react-email/ui/Link.tsx": [],
+    "pyproject.toml": [],
+    "README.md": [],
+    "release-notes.md": [],
+    "scripts/add_latest_release_date.py": [],
+    "scripts/generate-client.sh": [],
+    "scripts/prepare_release.py": [],
+    "scripts/test-local.sh": [],
+    "scripts/test.sh": [],
+    "SYSTEM-SPEC.md": []
+  }
+}

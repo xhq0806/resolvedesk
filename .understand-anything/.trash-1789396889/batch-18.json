@@ -1,0 +1,88 @@
+{
+  "nodes": [
+    {
+      "id": "document:backend/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "backend/README.md",
+      "summary": "介绍 ResolveDesk 后端的职责、运行环境、本地开发、Docker Compose 全栈运行、测试、数据库迁移和邮件模板导出流程，是后端开发者理解 FastAPI 服务边界和日常命令的入口文档。",
+      "tags": [
+        "后端文档",
+        "FastAPI",
+        "本地开发",
+        "Docker Compose",
+        "数据库迁移",
+        "邮件模板"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该 Markdown 文档以操作指南为主，明确后端目录职责、uv 命令、Alembic 迁移方式和 React Email 模板生成来源；结构提取识别到 8 个章节。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "config:backend/alembic.ini",
+      "type": "config",
+      "name": "alembic.ini",
+      "filePath": "backend/alembic.ini",
+      "summary": "配置后端 Alembic 迁移工具，指定迁移脚本目录为 app/alembic，并设置 Alembic、SQLAlchemy 和根 logger 的日志级别与 console formatter。",
+      "tags": [
+        "Alembic",
+        "数据库迁移",
+        "SQLModel",
+        "日志配置",
+        "后端配置"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是标准 INI 配置文件，核心有效配置集中在 [alembic] 的 script_location 和 logging 段；大部分条目保留为 Alembic 默认注释说明。",
+      "metrics": {}
+    },
+    {
+      "id": "config:backend/pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "filePath": "backend/pyproject.toml",
+      "summary": "定义后端 Python 包、运行时依赖和开发工具配置，要求 Python 3.14，依赖 FastAPI、SQLModel、Alembic、Jinja2、邮件、认证、文档解析和 pgvector，并配置 mypy、Ruff、coverage、ty 与 FastAPI entrypoint。",
+      "tags": [
+        "pyproject",
+        "Python 依赖",
+        "FastAPI",
+        "uv",
+        "Ruff",
+        "mypy",
+        "测试覆盖率"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该 TOML 文件同时承担包元数据、依赖声明和工具链配置职责；FastAPI entrypoint 指向 app.main:app，静态检查配置保持严格 mypy 与 Ruff lint 规则。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:document:backend/README.md-documents-config:backend/alembic.ini",
+      "source": "document:backend/README.md",
+      "target": "config:backend/alembic.ini",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "后端 README 的数据库迁移章节说明如何通过 Alembic 创建和执行迁移，对应 backend/alembic.ini 中的迁移脚本目录配置。"
+    },
+    {
+      "id": "edge:document:backend/README.md-documents-config:backend/pyproject.toml",
+      "source": "document:backend/README.md",
+      "target": "config:backend/pyproject.toml",
+      "type": "documents",
+      "weight": 0.5,
+      "description": "后端 README 的环境要求、uv 命令、测试命令和 FastAPI 启动方式依赖 backend/pyproject.toml 中定义的 Python 版本、依赖和工具配置。"
+    }
+  ]
+}

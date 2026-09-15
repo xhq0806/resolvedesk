@@ -1,0 +1,1416 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/repositories/ticket_repository.py",
+      "type": "file",
+      "name": "ticket_repository.py",
+      "filePath": "backend/app/repositories/ticket_repository.py",
+      "summary": "封装工单列表、锁定领取、消息、审计和统计查询，是工单数据访问的核心仓储。",
+      "tags": [
+        "repository",
+        "database",
+        "query",
+        "persistence"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/repositories/ticket_repository.py:TicketStatisticsRow",
+      "type": "class",
+      "name": "TicketStatisticsRow",
+      "filePath": "backend/app/repositories/ticket_repository.py",
+      "lineRange": [
+        37,
+        44
+      ],
+      "summary": "TicketStatisticsRow 封装数据库查询和持久化操作，让服务层通过明确方法访问领域数据。",
+      "tags": [
+        "class",
+        "repository",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/repositories/ticket_repository.py:TicketRepository",
+      "type": "class",
+      "name": "TicketRepository",
+      "filePath": "backend/app/repositories/ticket_repository.py",
+      "lineRange": [
+        47,
+        333
+      ],
+      "summary": "TicketRepository 封装数据库查询和持久化操作，让服务层通过明确方法访问领域数据。",
+      "tags": [
+        "class",
+        "repository",
+        "ticket"
+      ],
+      "complexity": "complex",
+      "languageNotes": "包含方法：__init__、add、get_active_by_id、get_active_by_number、list_for_actor、claim_if_available 等。"
+    },
+    {
+      "id": "file:backend/app/repositories/workspace_repository.py",
+      "type": "file",
+      "name": "workspace_repository.py",
+      "filePath": "backend/app/repositories/workspace_repository.py",
+      "summary": "封装 workspace、成员和邀请的查询与持久化操作。",
+      "tags": [
+        "repository",
+        "database",
+        "query",
+        "persistence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/repositories/workspace_repository.py:WorkspaceRepository",
+      "type": "class",
+      "name": "WorkspaceRepository",
+      "filePath": "backend/app/repositories/workspace_repository.py",
+      "lineRange": [
+        13,
+        63
+      ],
+      "summary": "WorkspaceRepository 封装数据库查询和持久化操作，让服务层通过明确方法访问领域数据。",
+      "tags": [
+        "class",
+        "repository",
+        "workspace"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：__init__、list_for_user、get_member、get_user_by_email、get_invitation、list_members。"
+    },
+    {
+      "id": "file:backend/app/schemas/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/schemas/__init__.py",
+      "summary": "聚合导出 API 层使用的 Pydantic schema，形成后端响应和请求模型的包入口。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Python 包入口通过聚合导入维持模块发现和对外导出边界。"
+    },
+    {
+      "id": "file:backend/app/schemas/ai.py",
+      "type": "file",
+      "name": "ai.py",
+      "filePath": "backend/app/schemas/ai.py",
+      "summary": "定义 AI provider 配置、连接测试、会话、消息事件和交接工单请求响应的 API schema。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ProviderTestKind",
+      "type": "class",
+      "name": "ProviderTestKind",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        15,
+        19
+      ],
+      "summary": "ProviderTestKind Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ProviderConfigPatch",
+      "type": "class",
+      "name": "ProviderConfigPatch",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        22,
+        56
+      ],
+      "summary": "ProviderConfigPatch Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "provider"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：strip_text、ensure_key_operation_is_clear。"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ProviderConfigPublic",
+      "type": "class",
+      "name": "ProviderConfigPublic",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        59,
+        76
+      ],
+      "summary": "ProviderConfigPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ProviderTestRequest",
+      "type": "class",
+      "name": "ProviderTestRequest",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        79,
+        82
+      ],
+      "summary": "ProviderTestRequest Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ProviderTestResult",
+      "type": "class",
+      "name": "ProviderTestResult",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        85,
+        92
+      ],
+      "summary": "ProviderTestResult Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "provider"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ConversationCreate",
+      "type": "class",
+      "name": "ConversationCreate",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        95,
+        98
+      ],
+      "summary": "ConversationCreate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:ConversationPublic",
+      "type": "class",
+      "name": "ConversationPublic",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        101,
+        114
+      ],
+      "summary": "ConversationPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:MessageCreate",
+      "type": "class",
+      "name": "MessageCreate",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        117,
+        127
+      ],
+      "summary": "MessageCreate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：strip_message_text。"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:AgentEventPublic",
+      "type": "class",
+      "name": "AgentEventPublic",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        130,
+        134
+      ],
+      "summary": "AgentEventPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:HandoffTicketRequest",
+      "type": "class",
+      "name": "HandoffTicketRequest",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        137,
+        148
+      ],
+      "summary": "HandoffTicketRequest Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：strip_reason。"
+    },
+    {
+      "id": "class:backend/app/schemas/ai.py:HandoffTicketPublic",
+      "type": "class",
+      "name": "HandoffTicketPublic",
+      "filePath": "backend/app/schemas/ai.py",
+      "lineRange": [
+        151,
+        158
+      ],
+      "summary": "HandoffTicketPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/schemas/attachment.py",
+      "type": "file",
+      "name": "attachment.py",
+      "filePath": "backend/app/schemas/attachment.py",
+      "summary": "定义附件公开响应 schema，用于向前端返回附件元数据。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/attachment.py:AttachmentPublic",
+      "type": "class",
+      "name": "AttachmentPublic",
+      "filePath": "backend/app/schemas/attachment.py",
+      "lineRange": [
+        11,
+        25
+      ],
+      "summary": "AttachmentPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "attachment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/schemas/knowledge.py",
+      "type": "file",
+      "name": "knowledge.py",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "summary": "定义知识库文档、摄取任务、知识来源、搜索请求和检索片段的 API schema。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/schemas/knowledge.py:KnowledgeDocumentPublic",
+      "type": "class",
+      "name": "KnowledgeDocumentPublic",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "lineRange": [
+        14,
+        30
+      ],
+      "summary": "KnowledgeDocumentPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/knowledge.py:DocumentIngestionJobPublic",
+      "type": "class",
+      "name": "DocumentIngestionJobPublic",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "lineRange": [
+        33,
+        45
+      ],
+      "summary": "DocumentIngestionJobPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/knowledge.py:KnowledgeSourceKind",
+      "type": "class",
+      "name": "KnowledgeSourceKind",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "lineRange": [
+        48,
+        53
+      ],
+      "summary": "KnowledgeSourceKind Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/knowledge.py:KnowledgeSearchRequest",
+      "type": "class",
+      "name": "KnowledgeSearchRequest",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "lineRange": [
+        56,
+        60
+      ],
+      "summary": "KnowledgeSearchRequest Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/knowledge.py:RetrievedChunkPublic",
+      "type": "class",
+      "name": "RetrievedChunkPublic",
+      "filePath": "backend/app/schemas/knowledge.py",
+      "lineRange": [
+        63,
+        71
+      ],
+      "summary": "RetrievedChunkPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/schemas/ticket.py",
+      "type": "file",
+      "name": "ticket.py",
+      "filePath": "backend/app/schemas/ticket.py",
+      "summary": "定义工单筛选、创建、分派、回复、状态属性更新、统计和详情响应的 API schema。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketFilters",
+      "type": "class",
+      "name": "TicketFilters",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        22,
+        40
+      ],
+      "summary": "TicketFilters Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：normalize_query。"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketCreate",
+      "type": "class",
+      "name": "TicketCreate",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        43,
+        56
+      ],
+      "summary": "TicketCreate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：normalize_content。"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketAssign",
+      "type": "class",
+      "name": "TicketAssign",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        59,
+        62
+      ],
+      "summary": "TicketAssign Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:CustomerReplyCreate",
+      "type": "class",
+      "name": "CustomerReplyCreate",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        65,
+        76
+      ],
+      "summary": "CustomerReplyCreate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：normalize_content。"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketMessageCreate",
+      "type": "class",
+      "name": "TicketMessageCreate",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        79,
+        91
+      ],
+      "summary": "TicketMessageCreate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：normalize_content。"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketStatusUpdate",
+      "type": "class",
+      "name": "TicketStatusUpdate",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        94,
+        97
+      ],
+      "summary": "TicketStatusUpdate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketAttributesUpdate",
+      "type": "class",
+      "name": "TicketAttributesUpdate",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        100,
+        111
+      ],
+      "summary": "TicketAttributesUpdate Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：ensure_any_attribute。"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:DeleteTicketRequest",
+      "type": "class",
+      "name": "DeleteTicketRequest",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        114,
+        117
+      ],
+      "summary": "DeleteTicketRequest Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketStatisticsPublic",
+      "type": "class",
+      "name": "TicketStatisticsPublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        120,
+        128
+      ],
+      "summary": "TicketStatisticsPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:UserSummary",
+      "type": "class",
+      "name": "UserSummary",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        131,
+        141
+      ],
+      "summary": "UserSummary Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketPublic",
+      "type": "class",
+      "name": "TicketPublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        144,
+        159
+      ],
+      "summary": "TicketPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketMessagePublic",
+      "type": "class",
+      "name": "TicketMessagePublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        162,
+        171
+      ],
+      "summary": "TicketMessagePublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketAuditPublic",
+      "type": "class",
+      "name": "TicketAuditPublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        174,
+        184
+      ],
+      "summary": "TicketAuditPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketDetailPublic",
+      "type": "class",
+      "name": "TicketDetailPublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        187,
+        191
+      ],
+      "summary": "TicketDetailPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/ticket.py:TicketsPublic",
+      "type": "class",
+      "name": "TicketsPublic",
+      "filePath": "backend/app/schemas/ticket.py",
+      "lineRange": [
+        194,
+        200
+      ],
+      "summary": "TicketsPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/schemas/tools.py",
+      "type": "file",
+      "name": "tools.py",
+      "filePath": "backend/app/schemas/tools.py",
+      "summary": "定义 AI 工具权限更新和公开展示的 API schema。",
+      "tags": [
+        "schema",
+        "validation",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/tools.py:ToolPermissionPatch",
+      "type": "class",
+      "name": "ToolPermissionPatch",
+      "filePath": "backend/app/schemas/tools.py",
+      "lineRange": [
+        10,
+        14
+      ],
+      "summary": "ToolPermissionPatch Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/tools.py:ToolPermissionPublic",
+      "type": "class",
+      "name": "ToolPermissionPublic",
+      "filePath": "backend/app/schemas/tools.py",
+      "lineRange": [
+        17,
+        21
+      ],
+      "summary": "ToolPermissionPublic Pydantic schema 定义了 API 请求或响应数据契约，并约束字段形态。",
+      "tags": [
+        "class",
+        "schema",
+        "backend"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "class:backend/app/repositories/ticket_repository.py:TicketStatisticsRow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "class:backend/app/repositories/ticket_repository.py:TicketStatisticsRow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "class:backend/app/repositories/ticket_repository.py:TicketRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/ticket_repository.py",
+      "target": "class:backend/app/repositories/ticket_repository.py:TicketRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/repositories/workspace_repository.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/workspace_repository.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/workspace_repository.py",
+      "target": "class:backend/app/repositories/workspace_repository.py:WorkspaceRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/workspace_repository.py",
+      "target": "class:backend/app/repositories/workspace_repository.py:WorkspaceRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/attachment.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/auth.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/__init__.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestKind",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestKind",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderConfigPatch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderConfigPatch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderConfigPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderConfigPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestResult",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ProviderTestResult",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ConversationCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ConversationCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ConversationPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:ConversationPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:MessageCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:MessageCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:AgentEventPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:AgentEventPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:HandoffTicketRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:HandoffTicketRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:HandoffTicketPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ai.py",
+      "target": "class:backend/app/schemas/ai.py:HandoffTicketPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/attachment.py",
+      "target": "class:backend/app/schemas/attachment.py:AttachmentPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/attachment.py",
+      "target": "class:backend/app/schemas/attachment.py:AttachmentPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeDocumentPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeDocumentPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:DocumentIngestionJobPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:DocumentIngestionJobPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeSourceKind",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeSourceKind",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeSearchRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:KnowledgeSearchRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:RetrievedChunkPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/knowledge.py",
+      "target": "class:backend/app/schemas/knowledge.py:RetrievedChunkPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAssign",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAssign",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:CustomerReplyCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:CustomerReplyCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketMessageCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketMessageCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketStatusUpdate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketStatusUpdate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAttributesUpdate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAttributesUpdate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:DeleteTicketRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:DeleteTicketRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketStatisticsPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketStatisticsPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:UserSummary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:UserSummary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketMessagePublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketMessagePublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAuditPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketAuditPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketDetailPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketDetailPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketsPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/ticket.py",
+      "target": "class:backend/app/schemas/ticket.py:TicketsPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/tools.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/schemas/tools.py",
+      "target": "class:backend/app/schemas/tools.py:ToolPermissionPatch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/tools.py",
+      "target": "class:backend/app/schemas/tools.py:ToolPermissionPatch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/tools.py",
+      "target": "class:backend/app/schemas/tools.py:ToolPermissionPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/tools.py",
+      "target": "class:backend/app/schemas/tools.py:ToolPermissionPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

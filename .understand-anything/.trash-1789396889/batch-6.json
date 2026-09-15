@@ -1,0 +1,1443 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/client/client.gen.ts",
+      "type": "file",
+      "name": "client.gen.ts",
+      "filePath": "frontend/src/client/client.gen.ts",
+      "summary": "配置并导出 OpenAPI generated client 实例，集中设置基础 URL、凭据策略以及请求/响应类型，使前端 API 调用共用同一个客户端。",
+      "tags": [
+        "generated-client",
+        "api-client",
+        "configuration",
+        "openapi"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件由 OpenAPI 代码生成流程产出，业务修改通常应回到接口 schema 或生成配置。"
+    },
+    {
+      "id": "file:frontend/src/client/client/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "frontend/src/client/client/index.ts",
+      "summary": "作为 generated client 底层运行时的 barrel，重新导出认证、序列化、参数构建和客户端创建能力。",
+      "tags": [
+        "barrel",
+        "generated-client",
+        "api-runtime",
+        "exports"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/client/sdk.gen.ts",
+      "type": "file",
+      "name": "sdk.gen.ts",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "summary": "按后端 OpenAPI 合约生成服务类，封装登录、用户、工单、工具和私有接口的 typed request 方法。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi",
+        "typed-requests"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件由 OpenAPI 代码生成流程产出，业务修改通常应回到接口 schema 或生成配置。"
+    },
+    {
+      "id": "file:frontend/src/client/types.gen.ts",
+      "type": "file",
+      "name": "types.gen.ts",
+      "filePath": "frontend/src/client/types.gen.ts",
+      "summary": "保存 OpenAPI 生成的前端 TypeScript 类型与响应/错误形状，是页面、测试和 API helper 共享的契约来源。",
+      "tags": [
+        "type-definition",
+        "generated-client",
+        "api-contract",
+        "openapi"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件由 OpenAPI 代码生成流程产出，业务修改通常应回到接口 schema 或生成配置。"
+    },
+    {
+      "id": "file:frontend/src/components/theme-provider.tsx",
+      "type": "file",
+      "name": "theme-provider.tsx",
+      "filePath": "frontend/src/components/theme-provider.tsx",
+      "summary": "实现 React 主题上下文 Provider，负责持久化 light/dark/system 偏好并把 resolved theme 写到 document class。",
+      "tags": [
+        "component",
+        "theme",
+        "context",
+        "local-storage"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/ui/sonner.tsx",
+      "type": "file",
+      "name": "sonner.tsx",
+      "filePath": "frontend/src/components/ui/sonner.tsx",
+      "summary": "包装 sonner Toaster 组件，让 toast UI 自动跟随应用主题并保持统一的 classNames。",
+      "tags": [
+        "component",
+        "toast",
+        "theme",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/main.tsx",
+      "type": "file",
+      "name": "main.tsx",
+      "filePath": "frontend/src/main.tsx",
+      "summary": "前端应用入口，初始化 API client、TanStack Query、RouterProvider、主题 Provider 和全局 Toaster。",
+      "tags": [
+        "entry-point",
+        "router",
+        "query-client",
+        "theme"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/admin.spec.ts",
+      "type": "file",
+      "name": "admin.spec.ts",
+      "filePath": "frontend/tests/admin.spec.ts",
+      "summary": "覆盖管理员登录、用户页和工单页的关键导航与可见性，验证后台管理入口的基本可用性。",
+      "tags": [
+        "test",
+        "e2e",
+        "admin",
+        "navigation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/auth-regression.spec.ts",
+      "type": "file",
+      "name": "auth-regression.spec.ts",
+      "filePath": "frontend/tests/auth-regression.spec.ts",
+      "summary": "回归验证认证失败后不会错误保留会话，确保受保护页面仍会跳回登录。",
+      "tags": [
+        "test",
+        "e2e",
+        "auth",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/auth.setup.ts",
+      "type": "file",
+      "name": "auth.setup.ts",
+      "filePath": "frontend/tests/auth.setup.ts",
+      "summary": "Playwright 全局认证准备脚本，用配置中的超级用户登录并保存 storage state。",
+      "tags": [
+        "test",
+        "e2e",
+        "auth",
+        "setup"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/config.ts",
+      "type": "file",
+      "name": "config.ts",
+      "filePath": "frontend/tests/config.ts",
+      "summary": "集中读取 E2E 测试环境变量，暴露基础 URL、API URL 以及默认超级用户凭据。",
+      "tags": [
+        "test",
+        "configuration",
+        "environment",
+        "e2e"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/login.spec.ts",
+      "type": "file",
+      "name": "login.spec.ts",
+      "filePath": "frontend/tests/login.spec.ts",
+      "summary": "覆盖登录表单、校验、错误提示、成功跳转与会话退出，守住认证体验的主要回归面。",
+      "tags": [
+        "test",
+        "e2e",
+        "auth",
+        "login"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/reset-password.spec.ts",
+      "type": "file",
+      "name": "reset-password.spec.ts",
+      "filePath": "frontend/tests/reset-password.spec.ts",
+      "summary": "验证忘记密码和重置密码流程，结合 Mailpit helper 检索邮件链接并断言 token 失效行为。",
+      "tags": [
+        "test",
+        "e2e",
+        "auth",
+        "email"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/role-navigation.spec.ts",
+      "type": "file",
+      "name": "role-navigation.spec.ts",
+      "filePath": "frontend/tests/role-navigation.spec.ts",
+      "summary": "用不同角色账号验证侧边栏导航权限，确保 admin、agent、customer 看到的入口符合角色边界。",
+      "tags": [
+        "test",
+        "e2e",
+        "authorization",
+        "navigation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/sign-up.spec.ts",
+      "type": "file",
+      "name": "sign-up.spec.ts",
+      "filePath": "frontend/tests/sign-up.spec.ts",
+      "summary": "覆盖注册表单校验、密码确认、成功注册、重复邮箱和普通用户默认跳转。",
+      "tags": [
+        "test",
+        "e2e",
+        "auth",
+        "registration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/ticket-workflow.spec.ts",
+      "type": "file",
+      "name": "ticket-workflow.spec.ts",
+      "filePath": "frontend/tests/ticket-workflow.spec.ts",
+      "summary": "端到端验证工单生命周期，包括客户提交、客服认领、回复、内部备注、状态变更和权限限制。",
+      "tags": [
+        "test",
+        "e2e",
+        "ticket-workflow",
+        "authorization"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/tests/tickets-agent.spec.ts",
+      "type": "file",
+      "name": "tickets-agent.spec.ts",
+      "filePath": "frontend/tests/tickets-agent.spec.ts",
+      "summary": "验证客服角色可以访问工单工作台并看到新建工单入口。",
+      "tags": [
+        "test",
+        "e2e",
+        "agent",
+        "tickets"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/tickets-customer.spec.ts",
+      "type": "file",
+      "name": "tickets-customer.spec.ts",
+      "filePath": "frontend/tests/tickets-customer.spec.ts",
+      "summary": "验证客户角色的工单入口和工单创建 API helper，覆盖客户侧基础工作流。",
+      "tags": [
+        "test",
+        "e2e",
+        "customer",
+        "tickets"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/user-settings.spec.ts",
+      "type": "file",
+      "name": "user-settings.spec.ts",
+      "filePath": "frontend/tests/user-settings.spec.ts",
+      "summary": "覆盖个人设置中的资料、密码、头像上传和错误处理，确保账号设置页面行为稳定。",
+      "tags": [
+        "test",
+        "e2e",
+        "user-settings",
+        "avatar"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/tests/utils/mailpit.ts",
+      "type": "file",
+      "name": "mailpit.ts",
+      "filePath": "frontend/tests/utils/mailpit.ts",
+      "summary": "提供 Playwright 测试读取 Mailpit 邮件、轮询最后一封匹配邮件并提取邮件链接的 helper。",
+      "tags": [
+        "test-helper",
+        "email",
+        "mailpit",
+        "polling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/utils/privateApi.ts",
+      "type": "file",
+      "name": "privateApi.ts",
+      "filePath": "frontend/tests/utils/privateApi.ts",
+      "summary": "封装测试用私有用户创建 API，先通过登录接口换取 token，再调用 PrivateService 创建角色用户。",
+      "tags": [
+        "test-helper",
+        "api-client",
+        "auth",
+        "user-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/utils/random.ts",
+      "type": "file",
+      "name": "random.ts",
+      "filePath": "frontend/tests/utils/random.ts",
+      "summary": "提供 E2E 测试用随机邮箱、团队名、密码、标题与描述生成器，降低测试数据冲突。",
+      "tags": [
+        "test-helper",
+        "random-data",
+        "utility",
+        "fixtures"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/utils/roleContexts.ts",
+      "type": "file",
+      "name": "roleContexts.ts",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "summary": "构建多角色 Playwright BrowserContext，批量创建 admin/agent/customer 身份并注入 storage state。",
+      "tags": [
+        "test-helper",
+        "role-context",
+        "auth",
+        "playwright"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/tests/utils/user.ts",
+      "type": "file",
+      "name": "user.ts",
+      "filePath": "frontend/tests/utils/user.ts",
+      "summary": "封装注册、登录和退出的 UI 操作步骤，让认证相关 E2E 测试复用稳定流程。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "ui-flow",
+        "playwright"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/tests/workspace-routing-regression.spec.ts",
+      "type": "file",
+      "name": "workspace-routing-regression.spec.ts",
+      "filePath": "frontend/tests/workspace-routing-regression.spec.ts",
+      "summary": "回归验证访问 root 路径会进入登录页，防止工作区路由改动破坏匿名入口。",
+      "tags": [
+        "test",
+        "e2e",
+        "routing",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:frontend/src/client/sdk.gen.ts:LoginService",
+      "type": "class",
+      "name": "LoginService",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "lineRange": [
+        21,
+        97
+      ],
+      "summary": "封装登录、token 校验和密码找回/重置接口，是认证页面与测试调用后端 auth API 的类型化入口。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:frontend/src/client/sdk.gen.ts:UsersService",
+      "type": "class",
+      "name": "UsersService",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "lineRange": [
+        99,
+        230
+      ],
+      "summary": "封装用户列表、注册、个人资料和管理员更新接口，统一用户管理相关请求形状。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:frontend/src/client/sdk.gen.ts:TicketsService",
+      "type": "class",
+      "name": "TicketsService",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "lineRange": [
+        232,
+        403
+      ],
+      "summary": "封装工单统计、列表、创建、分配、回复和状态更新接口，是前端工单工作流的 generated service。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:frontend/src/client/sdk.gen.ts:UtilsService",
+      "type": "class",
+      "name": "UtilsService",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "lineRange": [
+        405,
+        430
+      ],
+      "summary": "封装测试邮件与健康检查等工具接口，供诊断和环境验证场景使用。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:frontend/src/client/sdk.gen.ts:PrivateService",
+      "type": "class",
+      "name": "PrivateService",
+      "filePath": "frontend/src/client/sdk.gen.ts",
+      "lineRange": [
+        432,
+        449
+      ],
+      "summary": "封装私有创建用户接口，主要服务测试或内部管理场景。",
+      "tags": [
+        "generated-client",
+        "api-service",
+        "openapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/theme-provider.tsx:ThemeProvider",
+      "type": "function",
+      "name": "ThemeProvider",
+      "filePath": "frontend/src/components/theme-provider.tsx",
+      "lineRange": [
+        31,
+        106
+      ],
+      "summary": "提供主题上下文并同步本地存储、系统色彩偏好和 DOM class，使应用主题在刷新和系统切换后保持一致。",
+      "tags": [
+        "component",
+        "theme",
+        "context"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/theme-provider.tsx:useTheme",
+      "type": "function",
+      "name": "useTheme",
+      "filePath": "frontend/src/components/theme-provider.tsx",
+      "lineRange": [
+        108,
+        115
+      ],
+      "summary": "读取主题上下文并在缺少 Provider 时抛出明确错误，保护主题 Hook 的使用边界。",
+      "tags": [
+        "hook",
+        "theme",
+        "context"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sonner.tsx:Toaster",
+      "type": "function",
+      "name": "Toaster",
+      "filePath": "frontend/src/components/ui/sonner.tsx",
+      "lineRange": [
+        13,
+        38
+      ],
+      "summary": "包装 sonner toast 渲染器，把当前主题和项目 classNames 注入通知组件。",
+      "tags": [
+        "component",
+        "toast",
+        "theme"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/tests/sign-up.spec.ts:fillForm",
+      "type": "function",
+      "name": "fillForm",
+      "filePath": "frontend/tests/sign-up.spec.ts",
+      "lineRange": [
+        7,
+        18
+      ],
+      "summary": "按注册页面字段填入姓名、邮箱、密码和确认密码，复用注册表单输入步骤。",
+      "tags": [
+        "test-helper",
+        "form",
+        "registration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/mailpit.ts:findEmail",
+      "type": "function",
+      "name": "findEmail",
+      "filePath": "frontend/tests/utils/mailpit.ts",
+      "lineRange": [
+        14,
+        31
+      ],
+      "summary": "调用 Mailpit search API 查找匹配邮件，并在没有结果时返回空值。",
+      "tags": [
+        "test-helper",
+        "email",
+        "mailpit"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/mailpit.ts:findLastEmail",
+      "type": "function",
+      "name": "findLastEmail",
+      "filePath": "frontend/tests/utils/mailpit.ts",
+      "lineRange": [
+        33,
+        55
+      ],
+      "summary": "轮询 Mailpit 直到找到最后一封匹配邮件或超时，支撑密码重置等异步邮件场景。",
+      "tags": [
+        "test-helper",
+        "email",
+        "polling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/tests/utils/mailpit.ts:emailUrl",
+      "type": "function",
+      "name": "emailUrl",
+      "filePath": "frontend/tests/utils/mailpit.ts",
+      "lineRange": [
+        57,
+        59
+      ],
+      "summary": "从邮件 HTML 内容中提取第一个链接，用于测试继续访问重置密码 URL。",
+      "tags": [
+        "test-helper",
+        "email",
+        "url-parsing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/privateApi.ts:createUser",
+      "type": "function",
+      "name": "createUser",
+      "filePath": "frontend/tests/utils/privateApi.ts",
+      "lineRange": [
+        10,
+        26
+      ],
+      "summary": "使用超级用户凭据获取访问令牌后调用私有 API 创建测试用户。",
+      "tags": [
+        "test-helper",
+        "api-client",
+        "user-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/random.ts:slugify",
+      "type": "function",
+      "name": "slugify",
+      "filePath": "frontend/tests/utils/random.ts",
+      "lineRange": [
+        9,
+        13
+      ],
+      "summary": "把任意文本规整为短横线 slug，辅助生成稳定可读的随机测试数据。",
+      "tags": [
+        "utility",
+        "random-data",
+        "string-formatting"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:logInThroughApi",
+      "type": "function",
+      "name": "logInThroughApi",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        36,
+        50
+      ],
+      "summary": "通过 API 登录指定用户并返回 Bearer token，避免多角色测试重复走 UI 登录。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "api-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:createRoleUser",
+      "type": "function",
+      "name": "createRoleUser",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        53,
+        79
+      ],
+      "summary": "用管理员 token 创建指定角色的测试用户，并生成角色相关邮箱与密码。",
+      "tags": [
+        "test-helper",
+        "role-context",
+        "user-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:openRoleSession",
+      "type": "function",
+      "name": "openRoleSession",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        82,
+        100
+      ],
+      "summary": "为角色身份创建 BrowserContext，注入 localStorage token 后打开应用页面。",
+      "tags": [
+        "test-helper",
+        "role-context",
+        "playwright"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:createRoleContexts",
+      "type": "function",
+      "name": "createRoleContexts",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        103,
+        131
+      ],
+      "summary": "批量创建 admin、agent、customer 测试身份并打开对应浏览器上下文。",
+      "tags": [
+        "test-helper",
+        "role-context",
+        "playwright"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:closeRoleContexts",
+      "type": "function",
+      "name": "closeRoleContexts",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        134,
+        141
+      ],
+      "summary": "关闭多角色测试产生的 BrowserContext，避免测试结束后资源泄漏。",
+      "tags": [
+        "test-helper",
+        "cleanup",
+        "playwright"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/roleContexts.ts:authHeaders",
+      "type": "function",
+      "name": "authHeaders",
+      "filePath": "frontend/tests/utils/roleContexts.ts",
+      "lineRange": [
+        143,
+        145
+      ],
+      "summary": "根据 token 生成 JSON API 请求头，供多角色 API helper 复用。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "headers"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/user.ts:signUpNewUser",
+      "type": "function",
+      "name": "signUpNewUser",
+      "filePath": "frontend/tests/utils/user.ts",
+      "lineRange": [
+        3,
+        18
+      ],
+      "summary": "按 UI 流程完成新用户注册并等待成功跳转。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "registration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/user.ts:logInUser",
+      "type": "function",
+      "name": "logInUser",
+      "filePath": "frontend/tests/utils/user.ts",
+      "lineRange": [
+        20,
+        29
+      ],
+      "summary": "按 UI 流程提交登录表单并等待进入仪表盘。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "login"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/tests/utils/user.ts:logOutUser",
+      "type": "function",
+      "name": "logOutUser",
+      "filePath": "frontend/tests/utils/user.ts",
+      "lineRange": [
+        31,
+        35
+      ],
+      "summary": "打开用户菜单并点击退出，复用会话清理动作。",
+      "tags": [
+        "test-helper",
+        "auth",
+        "logout"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:LoginService",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:LoginService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:UsersService",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:UsersService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:TicketsService",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:TicketsService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:UtilsService",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:UtilsService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:PrivateService",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "class:frontend/src/client/sdk.gen.ts:PrivateService",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/theme-provider.tsx",
+      "target": "function:frontend/src/components/theme-provider.tsx:ThemeProvider",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/theme-provider.tsx",
+      "target": "function:frontend/src/components/theme-provider.tsx:ThemeProvider",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/theme-provider.tsx",
+      "target": "function:frontend/src/components/theme-provider.tsx:useTheme",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/theme-provider.tsx",
+      "target": "function:frontend/src/components/theme-provider.tsx:useTheme",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/ui/sonner.tsx",
+      "target": "function:frontend/src/components/ui/sonner.tsx:Toaster",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/components/ui/sonner.tsx",
+      "target": "function:frontend/src/components/ui/sonner.tsx:Toaster",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/sign-up.spec.ts",
+      "target": "function:frontend/tests/sign-up.spec.ts:fillForm",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/mailpit.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:findEmail",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/mailpit.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:findLastEmail",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/mailpit.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:findLastEmail",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/mailpit.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:emailUrl",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/mailpit.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:emailUrl",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/privateApi.ts",
+      "target": "function:frontend/tests/utils/privateApi.ts:createUser",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/privateApi.ts",
+      "target": "function:frontend/tests/utils/privateApi.ts:createUser",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/random.ts",
+      "target": "function:frontend/tests/utils/random.ts:slugify",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/random.ts",
+      "target": "function:frontend/tests/utils/random.ts:slugify",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:logInThroughApi",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:logInThroughApi",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:createRoleUser",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:openRoleSession",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:createRoleContexts",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:createRoleContexts",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:closeRoleContexts",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:closeRoleContexts",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:authHeaders",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:authHeaders",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:signUpNewUser",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:signUpNewUser",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:logInUser",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:logInUser",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:logOutUser",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/user.ts",
+      "target": "function:frontend/tests/utils/user.ts:logOutUser",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/client.gen.ts",
+      "target": "file:frontend/src/client/client/index.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/client.gen.ts",
+      "target": "file:frontend/src/client/types.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "file:frontend/src/client/client.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "file:frontend/src/client/client/index.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/client/sdk.gen.ts",
+      "target": "file:frontend/src/client/types.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/client/client.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/components/theme-provider.tsx",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/components/ui/sonner.tsx",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/index.css",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/lib/queryClient.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "file:frontend/src/routeTree.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/admin.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/admin.spec.ts",
+      "target": "file:frontend/tests/utils/privateApi.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/admin.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/admin.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/auth-regression.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/auth-regression.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/auth.setup.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/login.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/login.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/reset-password.spec.ts",
+      "target": "file:frontend/tests/utils/mailpit.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/reset-password.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/reset-password.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/role-navigation.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/role-navigation.spec.ts",
+      "target": "file:frontend/tests/utils/privateApi.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/role-navigation.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/role-navigation.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/sign-up.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/ticket-workflow.spec.ts",
+      "target": "file:frontend/tests/utils/roleContexts.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-agent.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-agent.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-agent.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-customer.spec.ts",
+      "target": "file:frontend/tests/utils/privateApi.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-customer.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/tickets-customer.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/user-settings.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/user-settings.spec.ts",
+      "target": "file:frontend/tests/utils/privateApi.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/user-settings.spec.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/user-settings.spec.ts",
+      "target": "file:frontend/tests/utils/user.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/privateApi.ts",
+      "target": "file:frontend/src/client/client.gen.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/privateApi.ts",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/utils/roleContexts.ts",
+      "target": "file:frontend/tests/utils/random.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/workspace-routing-regression.spec.ts",
+      "target": "file:frontend/tests/config.ts",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "function:frontend/src/components/theme-provider.tsx:ThemeProvider",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/src/main.tsx",
+      "target": "function:frontend/src/components/ui/sonner.tsx:Toaster",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "class:frontend/src/client/sdk.gen.ts:LoginService",
+      "target": "file:frontend/src/client/client.gen.ts",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "class:frontend/src/client/sdk.gen.ts:UsersService",
+      "target": "file:frontend/src/client/types.gen.ts",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "class:frontend/src/client/sdk.gen.ts:TicketsService",
+      "target": "file:frontend/src/client/types.gen.ts",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/reset-password.spec.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:findLastEmail",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/reset-password.spec.ts",
+      "target": "function:frontend/tests/utils/mailpit.ts:emailUrl",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/role-navigation.spec.ts",
+      "target": "function:frontend/tests/utils/privateApi.ts:createUser",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/ticket-workflow.spec.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:createRoleContexts",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/ticket-workflow.spec.ts",
+      "target": "function:frontend/tests/utils/roleContexts.ts:closeRoleContexts",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/admin.spec.ts",
+      "target": "function:frontend/tests/utils/user.ts:logInUser",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/auth-regression.spec.ts",
+      "target": "function:frontend/tests/utils/user.ts:logInUser",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/tests/sign-up.spec.ts",
+      "target": "function:frontend/tests/utils/user.ts:signUpNewUser",
+      "type": "depends_on",
+      "weight": 0.6
+    }
+  ]
+}

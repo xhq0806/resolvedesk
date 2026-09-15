@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id": "config:.github/dependabot.yml",
+      "type": "config",
+      "name": "dependabot.yml",
+      "filePath": ".github/dependabot.yml",
+      "summary": "配置 Dependabot 的依赖更新策略，按月检查 GitHub Actions、Python uv、Bun、Docker 和 Docker Compose 生态，并用分组、冷却期、标签和提交前缀控制自动升级 PR 的节奏。",
+      "tags": [
+        "Dependabot",
+        "依赖更新",
+        "GitHub Actions",
+        "Docker",
+        "Bun",
+        "uv"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这是 GitHub Dependabot 的 YAML 配置，核心结构是 `version` 与多组 `updates`，每组按 package ecosystem、目录、schedule、labels 和 groups 描述自动升级规则。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "id": "config:.github/latest-changes.yml",
+      "type": "config",
+      "name": "latest-changes.yml",
+      "filePath": ".github/latest-changes.yml",
+      "summary": "定义 latest-changes 工具的自动标签规则，将文档变更和内部工程文件变更映射到 docs、internal 等标签，帮助发布说明或变更归类自动化。",
+      "tags": [
+        "latest-changes",
+        "自动标签",
+        "发布说明",
+        "变更归类",
+        "GitHub"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该 YAML 通过 glob 和 exclude 规则表达文件路径到标签的映射，配置很薄，但会影响 PR 变更在发布流程中的分类。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "config:.github/pr-push.yml",
+      "type": "config",
+      "name": "pr-push.yml",
+      "filePath": ".github/pr-push.yml",
+      "summary": "声明 tiangolo/pr-push 自动化可操作的 workflow 白名单，只允许它推动 pre-commit workflow 相关的自动修复提交。",
+      "tags": [
+        "pr-push",
+        "workflow 白名单",
+        "pre-commit",
+        "GitHub Actions",
+        "自动修复"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文件只有 `workflows` 列表，用最小配置把 PR push 权限限定到指定 GitHub Actions workflow。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "config:.github/pr-submit.yml",
+      "type": "config",
+      "name": "pr-submit.yml",
+      "filePath": ".github/pr-submit.yml",
+      "summary": "声明 tiangolo/pr-submit 自动化可提交的 workflow 白名单，将自动提交权限限制在 prepare-release 发布准备流程上。",
+      "tags": [
+        "pr-submit",
+        "workflow 白名单",
+        "prepare-release",
+        "发布准备",
+        "GitHub Actions"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文件以 `workflows` 数组列出允许目标，是 GitHub 自动化 action 的权限边界配置。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:config:.github/pr-push.yml-configures-pipeline:.github/workflows/pre-commit.yml",
+      "source": "config:.github/pr-push.yml",
+      "target": "pipeline:.github/workflows/pre-commit.yml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "pr-push.yml 将 tiangolo/pr-push 的可操作 workflow 限定为 pre-commit 流水线。"
+    },
+    {
+      "id": "edge:config:.github/pr-submit.yml-configures-pipeline:.github/workflows/prepare-release.yml",
+      "source": "config:.github/pr-submit.yml",
+      "target": "pipeline:.github/workflows/prepare-release.yml",
+      "type": "configures",
+      "weight": 0.6,
+      "description": "pr-submit.yml 将 tiangolo/pr-submit 的可提交 workflow 限定为 prepare-release 发布准备流水线。"
+    }
+  ]
+}

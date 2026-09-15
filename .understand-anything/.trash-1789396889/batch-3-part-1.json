@@ -1,0 +1,670 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "type": "file",
+      "name": "TicketStatistics.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "summary": "渲染工单统计概览，把后端统计数据整理成状态、优先级与分类卡片，供队列首页快速扫描整体负载。",
+      "tags": [
+        "component",
+        "tickets",
+        "dashboard",
+        "frontend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatistics",
+      "type": "function",
+      "name": "TicketStatistics",
+      "filePath": "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "lineRange": [
+        67,
+        96
+      ],
+      "summary": "根据工单统计数据渲染概览卡片，并在无数据时保持统计区块的稳定展示。",
+      "tags": [
+        "component",
+        "tickets",
+        "presentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketStatistics.tsx:getStatisticCards",
+      "type": "function",
+      "name": "getStatisticCards",
+      "filePath": "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "lineRange": [
+        99,
+        172
+      ],
+      "summary": "把原始统计对象转换为卡片配置列表，集中定义数量、标签、描述和视觉分组。",
+      "tags": [
+        "component",
+        "tickets",
+        "presentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatisticsHeading",
+      "type": "function",
+      "name": "TicketStatisticsHeading",
+      "filePath": "frontend/src/components/Tickets/TicketStatistics.tsx",
+      "lineRange": [
+        184,
+        202
+      ],
+      "summary": "根据当前角色渲染统计模块标题，为不同用户视角提供对应文案。",
+      "tags": [
+        "component",
+        "tickets",
+        "presentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "type": "file",
+      "name": "TicketTimeline.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketTimeline.tsx",
+      "summary": "展示工单消息和审计记录时间线，将用户发言、内部备注与状态变更统一呈现为可读的历史流。",
+      "tags": [
+        "component",
+        "tickets",
+        "dashboard",
+        "frontend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketTimeline.tsx:TicketTimeline",
+      "type": "function",
+      "name": "TicketTimeline",
+      "filePath": "frontend/src/components/Tickets/TicketTimeline.tsx",
+      "lineRange": [
+        49,
+        150
+      ],
+      "summary": "合并消息与审计记录并按时间排序，渲染完整的工单活动时间线。",
+      "tags": [
+        "component",
+        "tickets",
+        "presentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "type": "file",
+      "name": "ChangePassword.tsx",
+      "filePath": "frontend/src/components/UserSettings/ChangePassword.tsx",
+      "summary": "提供当前用户修改密码的表单流程，包含 zod 校验、提交态和错误提示处理。",
+      "tags": [
+        "component",
+        "user-settings",
+        "form",
+        "frontend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/UserSettings/ChangePassword.tsx:ChangePassword",
+      "type": "function",
+      "name": "ChangePassword",
+      "filePath": "frontend/src/components/UserSettings/ChangePassword.tsx",
+      "lineRange": [
+        45,
+        153
+      ],
+      "summary": "管理修改密码表单、客户端校验和 API 提交，并在成功后重置表单状态。",
+      "tags": [
+        "component",
+        "form",
+        "user-settings"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "type": "file",
+      "name": "UserInformation.tsx",
+      "filePath": "frontend/src/components/UserSettings/UserInformation.tsx",
+      "summary": "承载个人资料编辑和头像上传入口，协调用户信息表单、认证状态刷新与头像接口调用。",
+      "tags": [
+        "component",
+        "user-settings",
+        "form",
+        "frontend"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:frontend/src/components/UserSettings/UserInformation.tsx:UserInformation",
+      "type": "function",
+      "name": "UserInformation",
+      "filePath": "frontend/src/components/UserSettings/UserInformation.tsx",
+      "lineRange": [
+        33,
+        290
+      ],
+      "summary": "管理用户资料表单和头像上传/删除流程，成功后刷新认证用户缓存。",
+      "tags": [
+        "component",
+        "form",
+        "user-settings"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "type": "file",
+      "name": "WorkspaceSwitcher.tsx",
+      "filePath": "frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "summary": "提供工作空间选择控件，把当前工作空间和可切换工作空间列表封装成简洁的下拉交互。",
+      "tags": [
+        "component",
+        "workspace",
+        "select",
+        "frontend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Workspace/WorkspaceSwitcher.tsx:WorkspaceSwitcher",
+      "type": "function",
+      "name": "WorkspaceSwitcher",
+      "filePath": "frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "lineRange": [
+        8,
+        44
+      ],
+      "summary": "渲染工作空间下拉框，并在选择变化时切换当前工作空间。",
+      "tags": [
+        "component",
+        "workspace",
+        "select"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/alert.tsx",
+      "type": "file",
+      "name": "alert.tsx",
+      "filePath": "frontend/src/components/ui/alert.tsx",
+      "summary": "定义 alert UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/alert.tsx:Alert",
+      "type": "function",
+      "name": "Alert",
+      "filePath": "frontend/src/components/ui/alert.tsx",
+      "lineRange": [
+        22,
+        35
+      ],
+      "summary": "实现 Alert React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/alert.tsx:AlertTitle",
+      "type": "function",
+      "name": "AlertTitle",
+      "filePath": "frontend/src/components/ui/alert.tsx",
+      "lineRange": [
+        37,
+        48
+      ],
+      "summary": "实现 AlertTitle React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/alert.tsx:AlertDescription",
+      "type": "function",
+      "name": "AlertDescription",
+      "filePath": "frontend/src/components/ui/alert.tsx",
+      "lineRange": [
+        50,
+        64
+      ],
+      "summary": "实现 AlertDescription React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/avatar.tsx",
+      "type": "file",
+      "name": "avatar.tsx",
+      "filePath": "frontend/src/components/ui/avatar.tsx",
+      "summary": "定义 avatar UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/avatar.tsx:Avatar",
+      "type": "function",
+      "name": "Avatar",
+      "filePath": "frontend/src/components/ui/avatar.tsx",
+      "lineRange": [
+        6,
+        20
+      ],
+      "summary": "实现 Avatar React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/avatar.tsx:AvatarImage",
+      "type": "function",
+      "name": "AvatarImage",
+      "filePath": "frontend/src/components/ui/avatar.tsx",
+      "lineRange": [
+        22,
+        33
+      ],
+      "summary": "实现 AvatarImage React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/avatar.tsx:AvatarFallback",
+      "type": "function",
+      "name": "AvatarFallback",
+      "filePath": "frontend/src/components/ui/avatar.tsx",
+      "lineRange": [
+        35,
+        49
+      ],
+      "summary": "实现 AvatarFallback React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketStatistics.tsx:getStatisticCards",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatisticsHeading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketStatistics.tsx:TicketStatisticsHeading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketTimeline.tsx:TicketTimeline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketTimeline.tsx:TicketTimeline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "function:frontend/src/components/UserSettings/ChangePassword.tsx:ChangePassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "function:frontend/src/components/UserSettings/UserInformation.tsx:UserInformation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "target": "function:frontend/src/components/Workspace/WorkspaceSwitcher.tsx:WorkspaceSwitcher",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "target": "function:frontend/src/components/Workspace/WorkspaceSwitcher.tsx:WorkspaceSwitcher",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:Alert",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:Alert",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:AlertTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:AlertTitle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:AlertDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "function:frontend/src/components/ui/alert.tsx:AlertDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:Avatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:Avatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:AvatarImage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:AvatarImage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:AvatarFallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "function:frontend/src/components/ui/avatar.tsx:AvatarFallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/components/ui/password-input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/lib/userAvatarApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/alert.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/avatar.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

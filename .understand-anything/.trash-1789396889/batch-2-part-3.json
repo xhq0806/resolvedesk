@@ -1,0 +1,1170 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/components/Sidebar/User.tsx",
+      "type": "file",
+      "name": "User.tsx",
+      "filePath": "frontend/src/components/Sidebar/User.tsx",
+      "summary": "渲染侧边栏用户区域，展示账号摘要并提供设置、管理和登出入口。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar",
+        "role-based-ui"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Sidebar/User.tsx:UserInfo",
+      "type": "function",
+      "name": "UserInfo",
+      "filePath": "frontend/src/components/Sidebar/User.tsx",
+      "lineRange": [
+        28,
+        43
+      ],
+      "summary": "在用户菜单触发器中展示头像、姓名和邮箱摘要。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Sidebar/User.tsx:User",
+      "type": "function",
+      "name": "User",
+      "filePath": "frontend/src/components/Sidebar/User.tsx",
+      "lineRange": [
+        45,
+        107
+      ],
+      "summary": "渲染侧边栏用户菜单，提供个人设置、用户管理、工单管理和登出操作。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "type": "file",
+      "name": "AgentQueueColumns.tsx",
+      "filePath": "frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "summary": "定义坐席待处理队列表格列，提供工单查看和认领操作。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/AgentQueueColumns.tsx:createAgentQueueColumns",
+      "type": "function",
+      "name": "createAgentQueueColumns",
+      "filePath": "frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "lineRange": [
+        14,
+        47
+      ],
+      "summary": "生成坐席队列表格列，把认领按钮状态与工单详情路由绑定到列定义中。",
+      "tags": [
+        "factory",
+        "data-table",
+        "ticketing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "type": "file",
+      "name": "CreateTicketDialog.tsx",
+      "filePath": "frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "summary": "实现创建工单弹窗，包含标题、描述、优先级和类别表单，并在创建成功后刷新工单列表。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/CreateTicketDialog.tsx:CreateTicketDialog",
+      "type": "function",
+      "name": "CreateTicketDialog",
+      "filePath": "frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "lineRange": [
+        83,
+        216
+      ],
+      "summary": "管理创建工单表单、提交请求、成功关闭弹窗和查询失效。",
+      "tags": [
+        "component",
+        "dialog",
+        "mutation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "type": "file",
+      "name": "DeleteTicketDialog.tsx",
+      "filePath": "frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "summary": "实现删除工单确认弹窗，通过强确认复选框降低误删风险并刷新相关工单查询。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/DeleteTicketDialog.tsx:DeleteTicketDialog",
+      "type": "function",
+      "name": "DeleteTicketDialog",
+      "filePath": "frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "lineRange": [
+        24,
+        106
+      ],
+      "summary": "管理删除工单确认状态、删除请求和完成后的回调通知。",
+      "tags": [
+        "component",
+        "dialog",
+        "mutation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "type": "file",
+      "name": "TicketActionPanel.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "summary": "提供工单详情页的状态、分配、属性和删除操作面板，按角色和当前工单状态限制可选动作。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:getAllowedStatusTargets",
+      "type": "function",
+      "name": "getAllowedStatusTargets",
+      "filePath": "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "lineRange": [
+        61,
+        76
+      ],
+      "summary": "根据当前角色、处理人和工单状态计算允许流转到的目标状态。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:TicketActionPanel",
+      "type": "function",
+      "name": "TicketActionPanel",
+      "filePath": "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "lineRange": [
+        79,
+        197
+      ],
+      "summary": "整合工单状态更新、属性更新、分配弹窗和删除弹窗等管理动作。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:ActionSelect",
+      "type": "function",
+      "name": "ActionSelect",
+      "filePath": "frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "lineRange": [
+        199,
+        235
+      ],
+      "summary": "渲染带标签的工单属性选择控件，并把选择变化传给外层 mutation。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "type": "file",
+      "name": "TicketAssignmentDialog.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "summary": "实现工单分配弹窗，加载可用坐席并支持分配或取消分配。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketAssignmentDialog.tsx:TicketAssignmentDialog",
+      "type": "function",
+      "name": "TicketAssignmentDialog",
+      "filePath": "frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "lineRange": [
+        34,
+        165
+      ],
+      "summary": "加载活跃坐席并执行工单分配或取消分配，同时刷新工单查询。",
+      "tags": [
+        "component",
+        "dialog",
+        "mutation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "type": "file",
+      "name": "TicketColumns.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketColumns.tsx",
+      "summary": "定义工单列表表格列，统一展示编号、标题、状态、优先级、类别、相关人员和创建时间。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketColumns.tsx:createTicketColumns",
+      "type": "function",
+      "name": "createTicketColumns",
+      "filePath": "frontend/src/components/Tickets/TicketColumns.tsx",
+      "lineRange": [
+        65,
+        217
+      ],
+      "summary": "生成工单列表列定义，统一格式化状态、优先级、人员和时间展示。",
+      "tags": [
+        "factory",
+        "data-table",
+        "ticketing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "type": "file",
+      "name": "TicketDetailPage.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "summary": "实现工单详情页主体，负责拉取详情、认领工单、展示时间线、回复表单和管理操作区。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:isClaimConflict",
+      "type": "function",
+      "name": "isClaimConflict",
+      "filePath": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "lineRange": [
+        70,
+        80
+      ],
+      "summary": "识别认领工单时的 409 冲突响应，用于给出更明确的并发提示。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:TicketDetailPage",
+      "type": "function",
+      "name": "TicketDetailPage",
+      "filePath": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "lineRange": [
+        83,
+        271
+      ],
+      "summary": "组织工单详情读取、认领、时间线、回复表单与操作面板的页面级状态。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:DetailField",
+      "type": "function",
+      "name": "DetailField",
+      "filePath": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "lineRange": [
+        273,
+        282
+      ],
+      "summary": "以统一标签和值布局展示工单详情中的元信息字段。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:PendingTicketDetail",
+      "type": "function",
+      "name": "PendingTicketDetail",
+      "filePath": "frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "lineRange": [
+        284,
+        286
+      ],
+      "summary": "导出工单详情页的加载占位组件。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "type": "file",
+      "name": "TicketFilters.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketFilters.tsx",
+      "summary": "提供工单列表筛选器，将关键词、状态、优先级、类别、处理人和分页大小写入查询过滤条件。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketFilters.tsx:TicketFilters",
+      "type": "function",
+      "name": "TicketFilters",
+      "filePath": "frontend/src/components/Tickets/TicketFilters.tsx",
+      "lineRange": [
+        67,
+        236
+      ],
+      "summary": "渲染工单筛选条，并把各类筛选项变更标准化后回传。",
+      "tags": [
+        "component",
+        "filtering",
+        "query-state"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "type": "file",
+      "name": "TicketReplyForm.tsx",
+      "filePath": "frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "summary": "实现工单回复表单，按角色支持公开回复或内部备注，并在提交后刷新详情与列表查询。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow",
+        "data-table"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Tickets/TicketReplyForm.tsx:TicketReplyForm",
+      "type": "function",
+      "name": "TicketReplyForm",
+      "filePath": "frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "lineRange": [
+        39,
+        150
+      ],
+      "summary": "管理工单回复/内部备注表单校验、提交和相关查询刷新。",
+      "tags": [
+        "component",
+        "ticketing",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "function:frontend/src/components/Sidebar/User.tsx:UserInfo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "function:frontend/src/components/Sidebar/User.tsx:User",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "function:frontend/src/components/Sidebar/User.tsx:User",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "function:frontend/src/components/Tickets/AgentQueueColumns.tsx:createAgentQueueColumns",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "function:frontend/src/components/Tickets/AgentQueueColumns.tsx:createAgentQueueColumns",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/CreateTicketDialog.tsx:CreateTicketDialog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/CreateTicketDialog.tsx:CreateTicketDialog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/DeleteTicketDialog.tsx:DeleteTicketDialog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/DeleteTicketDialog.tsx:DeleteTicketDialog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:getAllowedStatusTargets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:TicketActionPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:TicketActionPanel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketActionPanel.tsx:ActionSelect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketAssignmentDialog.tsx:TicketAssignmentDialog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketAssignmentDialog.tsx:TicketAssignmentDialog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketColumns.tsx:createTicketColumns",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketColumns.tsx:createTicketColumns",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:isClaimConflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:TicketDetailPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:TicketDetailPage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:DetailField",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:PendingTicketDetail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketDetailPage.tsx:PendingTicketDetail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketFilters.tsx:TicketFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketFilters.tsx:TicketFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketReplyForm.tsx:TicketReplyForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "function:frontend/src/components/Tickets/TicketReplyForm.tsx:TicketReplyForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/textarea.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/checkbox.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketTimeline.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/components/ui/tabs.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/components/ui/textarea.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/User.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/Tickets/DeleteTicketDialog.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketAssignmentDialog.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketActionPanel.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketReplyForm.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

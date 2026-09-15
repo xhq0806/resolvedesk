@@ -1,0 +1,1235 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/tests/core/test_error_handling.py",
+      "type": "file",
+      "name": "test_error_handling.py",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "summary": "验证统一错误处理、request id 传播、敏感信息清洗和 Sentry 事件脱敏的稳定契约。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "complex",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "class:backend/tests/core/test_error_handling.py:SecretPayload",
+      "type": "class",
+      "name": "SecretPayload",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        35,
+        38
+      ],
+      "summary": "测试用的敏感数据模型，用来验证错误处理不会泄露输入。",
+      "tags": [
+        "test-fixture",
+        "pytest",
+        "domain-helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:create_test_app",
+      "type": "function",
+      "name": "create_test_app",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        41,
+        93
+      ],
+      "summary": "实现 create test app 的业务逻辑，属于 test_error_handling.py 的对外或测试支撑能力。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_error_codes_match_design_statuses",
+      "type": "function",
+      "name": "test_error_codes_match_design_statuses",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        96,
+        127
+      ],
+      "summary": "测试 error codes match design statuses 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_specialized_errors_reject_wrong_status_category",
+      "type": "function",
+      "name": "test_specialized_errors_reject_wrong_status_category",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        130,
+        139
+      ],
+      "summary": "测试 specialized errors reject wrong status category 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_error_response_has_exact_public_fields",
+      "type": "function",
+      "name": "test_error_response_has_exact_public_fields",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        142,
+        144
+      ],
+      "summary": "测试 error response has exact public fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_request_id_is_generated_and_propagated",
+      "type": "function",
+      "name": "test_request_id_is_generated_and_propagated",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        147,
+        155
+      ],
+      "summary": "测试 request id is generated and propagated 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_valid_client_request_id_is_preserved",
+      "type": "function",
+      "name": "test_valid_client_request_id_is_preserved",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        162,
+        168
+      ],
+      "summary": "测试 valid client request id is preserved 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_invalid_client_request_id_is_replaced",
+      "type": "function",
+      "name": "test_invalid_client_request_id_is_replaced",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        175,
+        182
+      ],
+      "summary": "测试 invalid client request id is replaced 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_legacy_http_exception_keeps_default_body",
+      "type": "function",
+      "name": "test_legacy_http_exception_keeps_default_body",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        185,
+        192
+      ],
+      "summary": "测试 legacy http exception keeps default body 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_domain_errors_have_stable_contract",
+      "type": "function",
+      "name": "test_domain_errors_have_stable_contract",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        204,
+        217
+      ],
+      "summary": "测试 domain errors have stable contract 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_validation_error_hides_sensitive_input",
+      "type": "function",
+      "name": "test_validation_error_hides_sensitive_input",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        220,
+        242
+      ],
+      "summary": "测试 validation error hides sensitive input 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_internal_error_hides_exception_and_logs_only_safe_fields",
+      "type": "function",
+      "name": "test_internal_error_hides_exception_and_logs_only_safe_fields",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        245,
+        286
+      ],
+      "summary": "测试 internal error hides exception and logs only safe fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_context_ids_do_not_leak_between_requests",
+      "type": "function",
+      "name": "test_context_ids_do_not_leak_between_requests",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        289,
+        301
+      ],
+      "summary": "测试 context ids do not leak between requests 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/core/test_error_handling.py:test_sentry_event_sanitizer_removes_sensitive_data",
+      "type": "function",
+      "name": "test_sentry_event_sanitizer_removes_sensitive_data",
+      "filePath": "backend/tests/core/test_error_handling.py",
+      "lineRange": [
+        304,
+        356
+      ],
+      "summary": "测试 sentry event sanitizer removes sensitive data 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/models/test_models_package.py",
+      "type": "file",
+      "name": "test_models_package.py",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "summary": "覆盖领域枚举、用户/工单模型元数据、schema 输入约束和模型包导出边界。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "complex",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_domain_enum_values_match_design",
+      "type": "function",
+      "name": "test_domain_enum_values_match_design",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        30,
+        66
+      ],
+      "summary": "测试 domain enum values match design 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_external_input_schemas_forbid_unknown_fields",
+      "type": "function",
+      "name": "test_external_input_schemas_forbid_unknown_fields",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        83,
+        88
+      ],
+      "summary": "测试 external input schemas forbid unknown fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_public_registration_rejects_privilege_fields",
+      "type": "function",
+      "name": "test_public_registration_rejects_privilege_fields",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        91,
+        101
+      ],
+      "summary": "测试 public registration rejects privilege fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_current_user_schema_contract_remains_compatible",
+      "type": "function",
+      "name": "test_current_user_schema_contract_remains_compatible",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        104,
+        115
+      ],
+      "summary": "测试 current user schema contract remains compatible 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_models_package_registers_migrated_domain_tables",
+      "type": "function",
+      "name": "test_models_package_registers_migrated_domain_tables",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        118,
+        144
+      ],
+      "summary": "测试 models package registers migrated domain tables 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_user_role_metadata_and_compatibility_match_migration",
+      "type": "function",
+      "name": "test_user_role_metadata_and_compatibility_match_migration",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        147,
+        176
+      ],
+      "summary": "测试 user role metadata and compatibility match migration 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_ticket_instances_have_expected_defaults",
+      "type": "function",
+      "name": "test_ticket_instances_have_expected_defaults",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        179,
+        209
+      ],
+      "summary": "测试 ticket instances have expected defaults 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_ticket_domain_column_metadata_matches_design",
+      "type": "function",
+      "name": "test_ticket_domain_column_metadata_matches_design",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        212,
+        251
+      ],
+      "summary": "测试 ticket domain column metadata matches design 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_ticket_domain_foreign_keys_are_restrictive",
+      "type": "function",
+      "name": "test_ticket_domain_foreign_keys_are_restrictive",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        254,
+        272
+      ],
+      "summary": "测试 ticket domain foreign keys are restrictive 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_ticket_domain_relationships_are_unambiguous",
+      "type": "function",
+      "name": "test_ticket_domain_relationships_are_unambiguous",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        275,
+        302
+      ],
+      "summary": "测试 ticket domain relationships are unambiguous 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_ticket_domain_named_indexes_match_design",
+      "type": "function",
+      "name": "test_ticket_domain_named_indexes_match_design",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        305,
+        344
+      ],
+      "summary": "测试 ticket domain named indexes match design 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/models/test_models_package.py:test_package_exports_keep_models_and_schemas_separate",
+      "type": "function",
+      "name": "test_package_exports_keep_models_and_schemas_separate",
+      "filePath": "backend/tests/models/test_models_package.py",
+      "lineRange": [
+        347,
+        356
+      ],
+      "summary": "测试 package exports keep models and schemas separate 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/providers/test_chat.py",
+      "type": "file",
+      "name": "test_chat.py",
+      "filePath": "backend/tests/providers/test_chat.py",
+      "summary": "验证 chat provider 的请求组装、普通响应解析、流式 SSE 解析和火山 Ark Responses 适配逻辑。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/providers/test_chat.py:test_chat_provider_posts_messages_and_parses_tool_calls",
+      "type": "function",
+      "name": "test_chat_provider_posts_messages_and_parses_tool_calls",
+      "filePath": "backend/tests/providers/test_chat.py",
+      "lineRange": [
+        17,
+        71
+      ],
+      "summary": "测试 chat provider posts messages and parses tool calls 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/providers/test_chat.py:test_chat_provider_streams_sse_chunks",
+      "type": "function",
+      "name": "test_chat_provider_streams_sse_chunks",
+      "filePath": "backend/tests/providers/test_chat.py",
+      "lineRange": [
+        74,
+        105
+      ],
+      "summary": "测试 chat provider streams sse chunks 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_posts_template_payload",
+      "type": "function",
+      "name": "test_volcengine_ark_responses_provider_posts_template_payload",
+      "filePath": "backend/tests/providers/test_chat.py",
+      "lineRange": [
+        108,
+        142
+      ],
+      "summary": "测试 volcengine ark responses provider posts template payload 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_normalizes_stream_deltas",
+      "type": "function",
+      "name": "test_volcengine_ark_responses_provider_normalizes_stream_deltas",
+      "filePath": "backend/tests/providers/test_chat.py",
+      "lineRange": [
+        145,
+        176
+      ],
+      "summary": "测试 volcengine ark responses provider normalizes stream deltas 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/providers/test_embedding.py",
+      "type": "file",
+      "name": "test_embedding.py",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "summary": "验证 embedding provider 的输入校验、维度约束、兼容接口请求和火山 Ark 多模态 payload。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_returns_empty_for_empty_input",
+      "type": "function",
+      "name": "test_embedding_provider_returns_empty_for_empty_input",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "lineRange": [
+        17,
+        34
+      ],
+      "summary": "测试 embedding provider returns empty for empty input 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_posts_compatible_payload",
+      "type": "function",
+      "name": "test_embedding_provider_posts_compatible_payload",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "lineRange": [
+        37,
+        60
+      ],
+      "summary": "测试 embedding provider posts compatible payload 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_dimension_mismatch",
+      "type": "function",
+      "name": "test_embedding_provider_rejects_dimension_mismatch",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "lineRange": [
+        63,
+        77
+      ],
+      "summary": "测试 embedding provider rejects dimension mismatch 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_boolean_values",
+      "type": "function",
+      "name": "test_embedding_provider_rejects_boolean_values",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "lineRange": [
+        80,
+        95
+      ],
+      "summary": "测试 embedding provider rejects boolean values 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/providers/test_embedding.py:test_volcengine_ark_embedding_provider_posts_multimodal_text_payload",
+      "type": "function",
+      "name": "test_volcengine_ark_embedding_provider_posts_multimodal_text_payload",
+      "filePath": "backend/tests/providers/test_embedding.py",
+      "lineRange": [
+        98,
+        127
+      ],
+      "summary": "测试 volcengine ark embedding provider posts multimodal text payload 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "file:backend/app/core/request_context.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "class:backend/tests/core/test_error_handling.py:SecretPayload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "class:backend/tests/core/test_error_handling.py:SecretPayload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:create_test_app",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:create_test_app",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_error_codes_match_design_statuses",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_error_codes_match_design_statuses",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_specialized_errors_reject_wrong_status_category",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_specialized_errors_reject_wrong_status_category",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_error_response_has_exact_public_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_error_response_has_exact_public_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_request_id_is_generated_and_propagated",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_request_id_is_generated_and_propagated",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_valid_client_request_id_is_preserved",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_valid_client_request_id_is_preserved",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_invalid_client_request_id_is_replaced",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_invalid_client_request_id_is_replaced",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_legacy_http_exception_keeps_default_body",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_legacy_http_exception_keeps_default_body",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_domain_errors_have_stable_contract",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_domain_errors_have_stable_contract",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_validation_error_hides_sensitive_input",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_validation_error_hides_sensitive_input",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_internal_error_hides_exception_and_logs_only_safe_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_internal_error_hides_exception_and_logs_only_safe_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_context_ids_do_not_leak_between_requests",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_context_ids_do_not_leak_between_requests",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_sentry_event_sanitizer_removes_sensitive_data",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/core/test_error_handling.py",
+      "target": "function:backend/tests/core/test_error_handling.py:test_sentry_event_sanitizer_removes_sensitive_data",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/models/__init__.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/schemas/__init__.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/schemas/auth.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_domain_enum_values_match_design",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_domain_enum_values_match_design",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_external_input_schemas_forbid_unknown_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_external_input_schemas_forbid_unknown_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_public_registration_rejects_privilege_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_public_registration_rejects_privilege_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_current_user_schema_contract_remains_compatible",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_current_user_schema_contract_remains_compatible",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_models_package_registers_migrated_domain_tables",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_models_package_registers_migrated_domain_tables",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_user_role_metadata_and_compatibility_match_migration",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_user_role_metadata_and_compatibility_match_migration",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_instances_have_expected_defaults",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_instances_have_expected_defaults",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_column_metadata_matches_design",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_column_metadata_matches_design",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_foreign_keys_are_restrictive",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_foreign_keys_are_restrictive",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_relationships_are_unambiguous",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_relationships_are_unambiguous",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_named_indexes_match_design",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_ticket_domain_named_indexes_match_design",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_package_exports_keep_models_and_schemas_separate",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/models/test_models_package.py",
+      "target": "function:backend/tests/models/test_models_package.py:test_package_exports_keep_models_and_schemas_separate",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "file:backend/app/providers/chat.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_chat_provider_posts_messages_and_parses_tool_calls",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_chat_provider_posts_messages_and_parses_tool_calls",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_chat_provider_streams_sse_chunks",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_chat_provider_streams_sse_chunks",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_posts_template_payload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_posts_template_payload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_normalizes_stream_deltas",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_chat.py",
+      "target": "function:backend/tests/providers/test_chat.py:test_volcengine_ark_responses_provider_normalizes_stream_deltas",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_returns_empty_for_empty_input",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_returns_empty_for_empty_input",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_posts_compatible_payload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_posts_compatible_payload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_dimension_mismatch",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_dimension_mismatch",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_boolean_values",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_embedding_provider_rejects_boolean_values",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_volcengine_ark_embedding_provider_posts_multimodal_text_payload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/providers/test_embedding.py",
+      "target": "function:backend/tests/providers/test_embedding.py:test_volcengine_ark_embedding_provider_posts_multimodal_text_payload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

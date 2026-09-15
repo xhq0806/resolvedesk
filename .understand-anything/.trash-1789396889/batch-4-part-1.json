@@ -1,0 +1,578 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/schemas/workspace.py",
+      "type": "file",
+      "name": "workspace.py",
+      "filePath": "backend/app/schemas/workspace.py",
+      "summary": "定义工作区、成员和邀请相关的 Pydantic 输出/输入模型，是工作区 API 与服务层之间的数据契约。",
+      "tags": [
+        "schema",
+        "workspace",
+        "api-contract",
+        "pydantic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:WorkspaceCreate",
+      "type": "class",
+      "name": "WorkspaceCreate",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        13,
+        19
+      ],
+      "summary": "描述创建工作区所需的输入字段和校验规则。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:WorkspaceSummary",
+      "type": "class",
+      "name": "WorkspaceSummary",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        22,
+        31
+      ],
+      "summary": "表示工作区列表中返回的摘要信息。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:WorkspaceDetail",
+      "type": "class",
+      "name": "WorkspaceDetail",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        34,
+        38
+      ],
+      "summary": "表示单个工作区详情响应中的完整工作区信息。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:MemberPublic",
+      "type": "class",
+      "name": "MemberPublic",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        41,
+        51
+      ],
+      "summary": "表示工作区成员在 API 响应中的公开字段。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:InvitationCreate",
+      "type": "class",
+      "name": "InvitationCreate",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        54,
+        60
+      ],
+      "summary": "描述创建成员邀请所需的邮箱与角色输入。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:InvitationPublic",
+      "type": "class",
+      "name": "InvitationPublic",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        63,
+        71
+      ],
+      "summary": "表示工作区邀请记录在 API 响应中的公开字段。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/workspace.py:MemberRoleUpdate",
+      "type": "class",
+      "name": "MemberRoleUpdate",
+      "filePath": "backend/app/schemas/workspace.py",
+      "lineRange": [
+        74,
+        79
+      ],
+      "summary": "描述更新工作区成员角色所需的输入。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/services/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/services/__init__.py",
+      "summary": "聚合导出后端服务层的主要 service class，方便 API 路由和 worker 通过统一入口引用业务能力。",
+      "tags": [
+        "barrel",
+        "service-layer",
+        "exports",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "file:backend/app/services/agent_service.py",
+      "type": "file",
+      "name": "agent_service.py",
+      "filePath": "backend/app/services/agent_service.py",
+      "summary": "编排 AI 会话、消息流、运行事件和转人工工单流程，把 provider、知识检索、工单服务和仓库操作串联起来。",
+      "tags": [
+        "service",
+        "ai-agent",
+        "handoff",
+        "streaming"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/agent_service.py:HandoffTicketResult",
+      "type": "class",
+      "name": "HandoffTicketResult",
+      "filePath": "backend/app/services/agent_service.py",
+      "lineRange": [
+        47,
+        52
+      ],
+      "summary": "封装 AI 会话转工单后的工单和会话结果。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/agent_service.py:AgentService",
+      "type": "class",
+      "name": "AgentService",
+      "filePath": "backend/app/services/agent_service.py",
+      "lineRange": [
+        55,
+        515
+      ],
+      "summary": "编排 AI 会话、运行事件、知识检索和转人工工单的应用服务。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:backend/app/services/assignment_service.py",
+      "type": "file",
+      "name": "assignment_service.py",
+      "filePath": "backend/app/services/assignment_service.py",
+      "summary": "封装 AI agent 自动分配策略，根据工作区成员角色和活跃状态挑选可接单的客服。",
+      "tags": [
+        "service",
+        "backend",
+        "business-logic",
+        "python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/assignment_service.py:AgentAssignmentPolicy",
+      "type": "class",
+      "name": "AgentAssignmentPolicy",
+      "filePath": "backend/app/services/assignment_service.py",
+      "lineRange": [
+        15,
+        46
+      ],
+      "summary": "根据工作区成员状态挑选可分配客服的策略对象。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceCreate",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceCreate",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceSummary",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceSummary",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceDetail",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:WorkspaceDetail",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:MemberPublic",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:MemberPublic",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:InvitationCreate",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:InvitationCreate",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:InvitationPublic",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:InvitationPublic",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:MemberRoleUpdate",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/schemas/workspace.py",
+      "target": "class:backend/app/schemas/workspace.py:MemberRoleUpdate",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/agent_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/attachment_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/knowledge_retrieval.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/knowledge_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/provider_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/statistics_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/__init__.py",
+      "target": "file:backend/app/services/user_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/providers/chat.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/repositories/ai_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/repositories/knowledge_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/services/assignment_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/services/knowledge_retrieval.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "class:backend/app/services/agent_service.py:HandoffTicketResult",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "class:backend/app/services/agent_service.py:HandoffTicketResult",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "class:backend/app/services/agent_service.py:AgentService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/agent_service.py",
+      "target": "class:backend/app/services/agent_service.py:AgentService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "class:backend/app/services/assignment_service.py:AgentAssignmentPolicy",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/assignment_service.py",
+      "target": "class:backend/app/services/assignment_service.py:AgentAssignmentPolicy",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

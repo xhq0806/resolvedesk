@@ -1,0 +1,732 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "summary": "实现管理员工单列表页，组合筛选、表格列、分页 pending 状态和工单查询条件。",
+      "tags": [
+        "route",
+        "admin",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/admin/tickets/index.tsx:AdminTicketsContent",
+      "type": "function",
+      "name": "AdminTicketsContent",
+      "filePath": "frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "lineRange": [
+        36,
+        85
+      ],
+      "summary": "渲染管理员工单表格主体，绑定筛选条件、分页和查询数据。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/ai.tsx",
+      "type": "file",
+      "name": "ai.tsx",
+      "filePath": "frontend/src/routes/_layout/ai.tsx",
+      "summary": "定义 AI 工作台页面路由，并通过工作区管理者守卫限制访问。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/index.tsx",
+      "type": "file",
+      "name": "index.tsx",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "summary": "实现登录后首页仪表盘，展示工单统计和按角色变化的快捷入口。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/index.tsx:DashboardContent",
+      "type": "function",
+      "name": "DashboardContent",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "lineRange": [
+        35,
+        58
+      ],
+      "summary": "根据当前用户角色读取工单统计并渲染仪表盘主体内容。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/index.tsx:QuickLinks",
+      "type": "function",
+      "name": "QuickLinks",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "lineRange": [
+        61,
+        119
+      ],
+      "summary": "根据用户角色生成首页快捷入口列表，覆盖管理、客服和客户场景。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/index.tsx:QuickLinksCard",
+      "type": "function",
+      "name": "QuickLinksCard",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "lineRange": [
+        121,
+        139
+      ],
+      "summary": "渲染单个快捷入口卡片的链接、标题和说明。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/index.tsx:QuickLinkContent",
+      "type": "function",
+      "name": "QuickLinkContent",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "lineRange": [
+        141,
+        155
+      ],
+      "summary": "组合快捷入口卡片内部图标、文字和悬浮状态。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/index.tsx:DashboardSkeleton",
+      "type": "function",
+      "name": "DashboardSkeleton",
+      "filePath": "frontend/src/routes/_layout/index.tsx",
+      "lineRange": [
+        157,
+        172
+      ],
+      "summary": "提供仪表盘加载态骨架屏，保持统计卡片和快捷入口布局稳定。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/knowledge.tsx",
+      "type": "file",
+      "name": "knowledge.tsx",
+      "filePath": "frontend/src/routes/_layout/knowledge.tsx",
+      "summary": "定义知识库管理页面路由，并通过工作区管理者守卫保护知识面板。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/queue.tsx",
+      "type": "file",
+      "name": "queue.tsx",
+      "filePath": "frontend/src/routes/_layout/queue.tsx",
+      "summary": "实现客服队列页面，支持我的工单和未认领工单视图、筛选同步、领取冲突处理和表格展示。",
+      "tags": [
+        "route",
+        "agent-queue",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "complex",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/queue.tsx:getQueueFilters",
+      "type": "function",
+      "name": "getQueueFilters",
+      "filePath": "frontend/src/routes/_layout/queue.tsx",
+      "lineRange": [
+        85,
+        103
+      ],
+      "summary": "渲染或辅助 getQueueFilters 路由页面，连接 TanStack Router 与页面组件。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/queue.tsx:isClaimConflict",
+      "type": "function",
+      "name": "isClaimConflict",
+      "filePath": "frontend/src/routes/_layout/queue.tsx",
+      "lineRange": [
+        114,
+        124
+      ],
+      "summary": "识别领取工单时后端返回的冲突错误，用于提示并刷新队列。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/queue.tsx:AgentQueueContent",
+      "type": "function",
+      "name": "AgentQueueContent",
+      "filePath": "frontend/src/routes/_layout/queue.tsx",
+      "lineRange": [
+        181,
+        251
+      ],
+      "summary": "管理客服队列的筛选、领取工单 mutation、冲突处理和数据表状态。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/queue.tsx:QueueTable",
+      "type": "function",
+      "name": "QueueTable",
+      "filePath": "frontend/src/routes/_layout/queue.tsx",
+      "lineRange": [
+        253,
+        328
+      ],
+      "summary": "渲染客服队列表格，按当前视图切换列、空状态和筛选条件。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "type": "file",
+      "name": "$ticketId.tsx",
+      "filePath": "frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "summary": "定义客服队列中的工单详情路由，读取动态工单 ID 并以客服视角展示详情页。",
+      "tags": [
+        "route",
+        "agent-queue",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/settings.tsx",
+      "type": "file",
+      "name": "settings.tsx",
+      "filePath": "frontend/src/routes/_layout/settings.tsx",
+      "summary": "实现设置页，按 tab 组织个人资料、密码、AI 配置、知识库和工作区管理能力。",
+      "tags": [
+        "route",
+        "settings",
+        "workspace",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/settings.tsx:UserSettings",
+      "type": "function",
+      "name": "UserSettings",
+      "filePath": "frontend/src/routes/_layout/settings.tsx",
+      "lineRange": [
+        36,
+        65
+      ],
+      "summary": "渲染设置页 tab 容器，并按角色展示 AI、知识库和工作区管理面板。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/routes/_layout/tickets.tsx",
+      "type": "file",
+      "name": "tickets.tsx",
+      "filePath": "frontend/src/routes/_layout/tickets.tsx",
+      "summary": "实现客户工单列表页，提供筛选、创建工单入口、表格展示和 query 搜索状态同步。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/tickets.tsx:TicketsTableContent",
+      "type": "function",
+      "name": "TicketsTableContent",
+      "filePath": "frontend/src/routes/_layout/tickets.tsx",
+      "lineRange": [
+        37,
+        66
+      ],
+      "summary": "渲染客户工单表格主体，绑定筛选、分页和创建工单入口。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/routes/_layout/tickets.tsx:TicketsPage",
+      "type": "function",
+      "name": "TicketsPage",
+      "filePath": "frontend/src/routes/_layout/tickets.tsx",
+      "lineRange": [
+        76,
+        109
+      ],
+      "summary": "组合客户工单页布局、标题、创建对话框和 suspense 边界。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "file:frontend/src/components/Common/DataTable.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/admin/tickets/index.tsx",
+      "target": "function:frontend/src/routes/_layout/admin/tickets/index.tsx:AdminTicketsContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/ai.tsx",
+      "target": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/ai.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketStatistics.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "function:frontend/src/routes/_layout/index.tsx:DashboardContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "function:frontend/src/routes/_layout/index.tsx:QuickLinks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "function:frontend/src/routes/_layout/index.tsx:QuickLinksCard",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "function:frontend/src/routes/_layout/index.tsx:QuickLinkContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/index.tsx",
+      "target": "function:frontend/src/routes/_layout/index.tsx:DashboardSkeleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/knowledge.tsx",
+      "target": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/knowledge.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/Common/DataTable.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/Tickets/AgentQueueColumns.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/components/ui/tabs.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "function:frontend/src/routes/_layout/queue.tsx:getQueueFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "function:frontend/src/routes/_layout/queue.tsx:isClaimConflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "function:frontend/src/routes/_layout/queue.tsx:AgentQueueContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue.tsx",
+      "target": "function:frontend/src/routes/_layout/queue.tsx:QueueTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/queue/$ticketId.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/ui/tabs.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/UserSettings/ChangePassword.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/components/UserSettings/UserInformation.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/settings.tsx",
+      "target": "function:frontend/src/routes/_layout/settings.tsx:UserSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/components/Common/DataTable.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/components/Tickets/CreateTicketDialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketColumns.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketFilters.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "function:frontend/src/routes/_layout/tickets.tsx:TicketsTableContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets.tsx",
+      "target": "function:frontend/src/routes/_layout/tickets.tsx:TicketsPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    }
+  ]
+}

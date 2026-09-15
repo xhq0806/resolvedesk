@@ -1,0 +1,665 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/services/attachment_service.py",
+      "type": "file",
+      "name": "attachment_service.py",
+      "filePath": "backend/app/services/attachment_service.py",
+      "summary": "处理工单和 AI 会话附件的校验、存储、读取、列举与删除，并在访问前执行工作区权限检查。",
+      "tags": [
+        "service",
+        "attachments",
+        "storage",
+        "validation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/attachment_service.py:AttachmentUpload",
+      "type": "class",
+      "name": "AttachmentUpload",
+      "filePath": "backend/app/services/attachment_service.py",
+      "lineRange": [
+        32,
+        40
+      ],
+      "summary": "封装待上传附件的文件名、媒体类型、大小和读取回调。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/attachment_service.py:AttachmentService",
+      "type": "class",
+      "name": "AttachmentService",
+      "filePath": "backend/app/services/attachment_service.py",
+      "lineRange": [
+        74,
+        242
+      ],
+      "summary": "管理附件上传、授权访问、存储路径和删除流程。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/services/attachment_service.py:validate_attachment_bytes",
+      "type": "function",
+      "name": "validate_attachment_bytes",
+      "filePath": "backend/app/services/attachment_service.py",
+      "lineRange": [
+        43,
+        71
+      ],
+      "summary": "校验 attachment bytes 的输入约束，并在不满足业务规则时抛出稳定错误。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/services/knowledge_retrieval.py",
+      "type": "file",
+      "name": "knowledge_retrieval.py",
+      "filePath": "backend/app/services/knowledge_retrieval.py",
+      "summary": "提供知识库语义检索服务，负责生成 embedding、查询知识片段并裁剪返回给 AI 上下文的来源。",
+      "tags": [
+        "service",
+        "knowledge-base",
+        "embedding",
+        "ingestion"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/knowledge_retrieval.py:RetrievedChunk",
+      "type": "class",
+      "name": "RetrievedChunk",
+      "filePath": "backend/app/services/knowledge_retrieval.py",
+      "lineRange": [
+        16,
+        24
+      ],
+      "summary": "表示知识检索返回的单个片段及其来源文档信息。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/knowledge_retrieval.py:KnowledgeRetrievalService",
+      "type": "class",
+      "name": "KnowledgeRetrievalService",
+      "filePath": "backend/app/services/knowledge_retrieval.py",
+      "lineRange": [
+        55,
+        91
+      ],
+      "summary": "调用 embedding provider 并查询知识仓库以返回相关知识片段。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/services/knowledge_retrieval.py:trim_sources",
+      "type": "function",
+      "name": "trim_sources",
+      "filePath": "backend/app/services/knowledge_retrieval.py",
+      "lineRange": [
+        27,
+        52
+      ],
+      "summary": "去重并裁剪知识检索来源，控制传给 AI 上下文的引用数量。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/services/knowledge_service.py",
+      "type": "file",
+      "name": "knowledge_service.py",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "summary": "管理知识文档上传、解析、分块、embedding 入库、重试和删除，是知识摄取流程的核心服务。",
+      "tags": [
+        "service",
+        "knowledge-base",
+        "embedding",
+        "ingestion"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/knowledge_service.py:KnowledgeUpload",
+      "type": "class",
+      "name": "KnowledgeUpload",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        52,
+        60
+      ],
+      "summary": "封装待上传知识文档的元数据、大小和读取回调。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/knowledge_service.py:ParsedSegment",
+      "type": "class",
+      "name": "ParsedSegment",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        64,
+        68
+      ],
+      "summary": "表示文档解析后可进入分块流程的文本段落。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/knowledge_service.py:KnowledgeService",
+      "type": "class",
+      "name": "KnowledgeService",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        146,
+        379
+      ],
+      "summary": "管理知识文档生命周期以及解析、分块、向量化和摄取状态更新。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/services/knowledge_service.py:validate_upload_metadata",
+      "type": "function",
+      "name": "validate_upload_metadata",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        71,
+        91
+      ],
+      "summary": "校验 upload metadata 的输入约束，并在不满足业务规则时抛出稳定错误。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/services/knowledge_service.py:chunk_text",
+      "type": "function",
+      "name": "chunk_text",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        94,
+        116
+      ],
+      "summary": "将知识文档正文切分为带重叠窗口的片段，为后续 embedding 和检索做准备。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/services/knowledge_service.py:parse_document",
+      "type": "function",
+      "name": "parse_document",
+      "filePath": "backend/app/services/knowledge_service.py",
+      "lineRange": [
+        119,
+        143
+      ],
+      "summary": "根据文件类型解析知识文档内容，保留来源信息并输出可摄取文本片段。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/services/provider_service.py",
+      "type": "file",
+      "name": "provider_service.py",
+      "filePath": "backend/app/services/provider_service.py",
+      "summary": "管理 AI provider 配置的读取、加密写入、可用性校验和连通性测试，并按配置创建 chat/embedding adapter。",
+      "tags": [
+        "service",
+        "ai-provider",
+        "configuration",
+        "security"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/provider_service.py:ProviderService",
+      "type": "class",
+      "name": "ProviderService",
+      "filePath": "backend/app/services/provider_service.py",
+      "lineRange": [
+        49,
+        358
+      ],
+      "summary": "管理 AI provider 配置、安全校验、加密写入和 adapter 构建。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/models/attachment.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "class:backend/app/services/attachment_service.py:AttachmentUpload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "class:backend/app/services/attachment_service.py:AttachmentUpload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "class:backend/app/services/attachment_service.py:AttachmentService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "class:backend/app/services/attachment_service.py:AttachmentService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "function:backend/app/services/attachment_service.py:validate_attachment_bytes",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/attachment_service.py",
+      "target": "function:backend/app/services/attachment_service.py:validate_attachment_bytes",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "file:backend/app/repositories/knowledge_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "class:backend/app/services/knowledge_retrieval.py:RetrievedChunk",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "class:backend/app/services/knowledge_retrieval.py:RetrievedChunk",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "class:backend/app/services/knowledge_retrieval.py:KnowledgeRetrievalService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "class:backend/app/services/knowledge_retrieval.py:KnowledgeRetrievalService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "function:backend/app/services/knowledge_retrieval.py:trim_sources",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_retrieval.py",
+      "target": "function:backend/app/services/knowledge_retrieval.py:trim_sources",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:KnowledgeUpload",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:KnowledgeUpload",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:ParsedSegment",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:ParsedSegment",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:KnowledgeService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "class:backend/app/services/knowledge_service.py:KnowledgeService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:validate_upload_metadata",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:validate_upload_metadata",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:chunk_text",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:chunk_text",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:parse_document",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/knowledge_service.py",
+      "target": "function:backend/app/services/knowledge_service.py:parse_document",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/core/provider_security.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/core/secret_crypto.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/providers/chat.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "class:backend/app/services/provider_service.py:ProviderService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/provider_service.py",
+      "target": "class:backend/app/services/provider_service.py:ProviderService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

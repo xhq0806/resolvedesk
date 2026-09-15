@@ -1,0 +1,1027 @@
+{
+  "nodes": [
+    {
+      "id": "file:.fastapicloudignore",
+      "type": "file",
+      "name": ".fastapicloudignore",
+      "filePath": ".fastapicloudignore",
+      "summary": "定义 FastAPI Cloud 部署时忽略的文件规则，控制云端打包边界。",
+      "tags": [
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件偏项目元数据或占位用途，结构简单，主要服务部署、版本控制或分析工具。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.gitattributes",
+      "type": "file",
+      "name": ".gitattributes",
+      "filePath": ".gitattributes",
+      "summary": "定义 Git 属性规则，帮助仓库在跨平台协作时保持一致的文件处理行为。",
+      "tags": [
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件偏项目元数据或占位用途，结构简单，主要服务部署、版本控制或分析工具。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.python-version",
+      "type": "file",
+      "name": ".python-version",
+      "filePath": ".python-version",
+      "summary": "声明项目期望使用的 Python 版本，是本地环境和工具链对齐的轻量入口。",
+      "tags": [
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件偏项目元数据或占位用途，结构简单，主要服务部署、版本控制或分析工具。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "配置 understand-anything 分析时忽略的路径和文件模式，决定知识图谱扫描范围。",
+      "tags": [
+        "understand-anything",
+        "项目元数据"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件偏项目元数据或占位用途，结构简单，主要服务部署、版本控制或分析工具。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "config:.understand-anything/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".understand-anything/config.json",
+      "summary": "保存 understand-anything 的项目级配置，当前主要记录输出语言等分析偏好。",
+      "tags": [
+        "配置",
+        "understand-anything",
+        "JSON",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON 中间数据由 understand-anything 工具消费，字段结构比业务代码更接近分析流水线状态。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "config:.understand-anything/intermediate/batches.json",
+      "type": "config",
+      "name": "batches.json",
+      "filePath": ".understand-anything/intermediate/batches.json",
+      "summary": "保存 understand-anything 语义批次、预解析 imports 和跨批邻居信息，是分批生成知识图谱的中间输入。",
+      "tags": [
+        "配置",
+        "understand-anything",
+        "JSON",
+        "项目元数据"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON 中间数据由 understand-anything 工具消费，字段结构比业务代码更接近分析流水线状态。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "config:.understand-anything/intermediate/scan-result.json",
+      "type": "config",
+      "name": "scan-result.json",
+      "filePath": ".understand-anything/intermediate/scan-result.json",
+      "summary": "保存 ResolveDesk 的扫描结果，包括文件清单、语言分类、框架线索和导入图基础数据。",
+      "tags": [
+        "配置",
+        "understand-anything",
+        "JSON",
+        "项目元数据"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON 中间数据由 understand-anything 工具消费，字段结构比业务代码更接近分析流水线状态。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "id": "file:.uv-cache-provider/CACHEDIR.TAG",
+      "type": "file",
+      "name": "CACHEDIR.TAG",
+      "filePath": ".uv-cache-provider/CACHEDIR.TAG",
+      "summary": "标记对应目录为工具缓存目录，提示备份和索引工具可忽略其中内容。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-cache-provider/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "type": "file",
+      "name": "00acc352c1047351.msgpack",
+      "filePath": ".uv-cache-provider/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "summary": "保存 uv 解释器探测缓存的二进制数据，用于加速 Python 环境解析。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-cache-provider/sdists-v9/.git",
+      "type": "file",
+      "name": ".git",
+      "filePath": ".uv-cache-provider/sdists-v9/.git",
+      "summary": "记录 uv 源码分发缓存中的 Git 元信息占位，用于维护缓存目录结构。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-cache/CACHEDIR.TAG",
+      "type": "file",
+      "name": "CACHEDIR.TAG",
+      "filePath": ".uv-cache/CACHEDIR.TAG",
+      "summary": "标记对应目录为工具缓存目录，提示备份和索引工具可忽略其中内容。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "type": "file",
+      "name": "00acc352c1047351.msgpack",
+      "filePath": ".uv-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "summary": "保存 uv 解释器探测缓存的二进制数据，用于加速 Python 环境解析。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-cache/sdists-v9/.git",
+      "type": "file",
+      "name": ".git",
+      "filePath": ".uv-cache/sdists-v9/.git",
+      "summary": "记录 uv 源码分发缓存中的 Git 元信息占位，用于维护缓存目录结构。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-verify-cache/CACHEDIR.TAG",
+      "type": "file",
+      "name": "CACHEDIR.TAG",
+      "filePath": ".uv-verify-cache/CACHEDIR.TAG",
+      "summary": "标记对应目录为工具缓存目录，提示备份和索引工具可忽略其中内容。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-verify-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "type": "file",
+      "name": "00acc352c1047351.msgpack",
+      "filePath": ".uv-verify-cache/interpreter-v4/0e3f3d5581f14558/00acc352c1047351.msgpack",
+      "summary": "保存 uv 解释器探测缓存的二进制数据，用于加速 Python 环境解析。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:.uv-verify-cache/sdists-v9/.git",
+      "type": "file",
+      "name": ".git",
+      "filePath": ".uv-verify-cache/sdists-v9/.git",
+      "summary": "记录 uv 源码分发缓存中的 Git 元信息占位，用于维护缓存目录结构。",
+      "tags": [
+        "uv-cache",
+        "项目元数据"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些文件属于工具缓存，不参与业务运行逻辑，但会影响本地依赖解析和环境复现速度。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/alembic/README",
+      "type": "file",
+      "name": "README",
+      "filePath": "backend/app/alembic/README",
+      "summary": "说明 Alembic 迁移目录用途，是后端数据库迁移脚本的简短说明文件。",
+      "tags": [
+        "项目文件"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件偏项目元数据或占位用途，结构简单，主要服务部署、版本控制或分析工具。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/alembic/script.py.mako",
+      "type": "file",
+      "name": "script.py.mako",
+      "filePath": "backend/app/alembic/script.py.mako",
+      "summary": "提供 Alembic 生成迁移文件时使用的 Python 模板，统一 revision 元数据和 upgrade/downgrade 函数骨架。",
+      "tags": [
+        "Mako"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mako 模板混合 Python 代码和模板占位符，用于生成结构一致的迁移脚本。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/alembic/versions/.keep",
+      "type": "file",
+      "name": ".keep",
+      "filePath": "backend/app/alembic/versions/.keep",
+      "summary": "占位保留 Alembic versions 目录，确保空迁移目录也能进入版本控制。",
+      "tags": [
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "type": "file",
+      "name": "1a31ce608336_add_cascade_delete_relationships.py",
+      "filePath": "backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "summary": "调整工单关联的级联删除外键约束，确保删除相关用户或工单时数据库关系行为符合当前模型。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "lineRange": [
+        20,
+        27
+      ],
+      "summary": "执行 1a31ce608336_add_cascade_delete_relationships.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "lineRange": [
+        30,
+        37
+      ],
+      "summary": "回滚 1a31ce608336_add_cascade_delete_relationships.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "type": "file",
+      "name": "7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "summary": "将模板 Item 数据结构替换为客服工单平台模型，创建角色、工单状态、优先级、消息和审计相关枚举与表结构。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_create_enum_types",
+      "type": "function",
+      "name": "_create_enum_types",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "lineRange": [
+        75,
+        79
+      ],
+      "summary": "按依赖顺序创建迁移所需的 PostgreSQL enum 类型。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_drop_enum_types",
+      "type": "function",
+      "name": "_drop_enum_types",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "lineRange": [
+        82,
+        86
+      ],
+      "summary": "按安全顺序删除迁移创建的 PostgreSQL enum 类型。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_backfill_and_validate_roles",
+      "type": "function",
+      "name": "_backfill_and_validate_roles",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "lineRange": [
+        89,
+        125
+      ],
+      "summary": "为既有用户补齐角色并校验管理员账号数据，避免迁移后权限数据不一致。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "lineRange": [
+        128,
+        270
+      ],
+      "summary": "执行 7d8f3a1c2b4e_replace_items_with_ticket_platform.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "lineRange": [
+        273,
+        316
+      ],
+      "summary": "回滚 7d8f3a1c2b4e_replace_items_with_ticket_platform.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "type": "file",
+      "name": "9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "filePath": "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "summary": "补充字符串列长度约束，统一用户与工单相关字段的 VARCHAR 最大长度。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "lineRange": [
+        20,
+        43
+      ],
+      "summary": "执行 9c0a54914c78_add_max_length_for_string_varchar_.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "lineRange": [
+        46,
+        69
+      ],
+      "summary": "回滚 9c0a54914c78_add_max_length_for_string_varchar_.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "type": "file",
+      "name": "a2c4e6f8b0d1_add_workspace_foundation.py",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "summary": "建立 Workspace 基础数据结构，创建 workspace、membership、invitation 等表并为既有业务表补充 workspace 关联。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_enum_types",
+      "type": "function",
+      "name": "_create_enum_types",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        35,
+        44
+      ],
+      "summary": "按依赖顺序创建迁移所需的 PostgreSQL enum 类型。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_drop_enum_types",
+      "type": "function",
+      "name": "_drop_enum_types",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        47,
+        56
+      ],
+      "summary": "按安全顺序删除迁移创建的 PostgreSQL enum 类型。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_workspace_tables",
+      "type": "function",
+      "name": "_create_workspace_tables",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        59,
+        127
+      ],
+      "summary": "创建 workspace 基础表、成员关系表、邀请表及相关索引约束。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_add_workspace_columns",
+      "type": "function",
+      "name": "_add_workspace_columns",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        130,
+        137
+      ],
+      "summary": "向既有业务表添加 workspace_id 等列，使历史数据进入多 Workspace 模型。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_backfill_default_workspace",
+      "type": "function",
+      "name": "_backfill_default_workspace",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        140,
+        211
+      ],
+      "summary": "为既有用户和业务数据创建默认 Workspace 并回填关联关系。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        214,
+        219
+      ],
+      "summary": "执行 a2c4e6f8b0d1_add_workspace_foundation.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "lineRange": [
+        222,
+        244
+      ],
+      "summary": "回滚 a2c4e6f8b0d1_add_workspace_foundation.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "type": "file",
+      "name": "a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "filePath": "backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "summary": "为 AI 转人工生成的工单审计动作补充枚举值，支持记录自动创建和 AI handoff 流程。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "lineRange": [
+        19,
+        24
+      ],
+      "summary": "执行 a91d2f4c6b8e_add_ai_handoff_ticket_audits.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "lineRange": [
+        27,
+        28
+      ],
+      "summary": "回滚 a91d2f4c6b8e_add_ai_handoff_ticket_audits.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "type": "file",
+      "name": "b1c2d3e4f5a6_add_user_avatar_url.py",
+      "filePath": "backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "summary": "为用户表添加 avatar_url 字段，使个人头像上传后的公开访问地址可以持久化。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "lineRange": [
+        21,
+        26
+      ],
+      "summary": "执行 b1c2d3e4f5a6_add_user_avatar_url.py 对应迁移的正向变更，创建或调整数据库 schema。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "lineRange": [
+        29,
+        31
+      ],
+      "summary": "回滚 b1c2d3e4f5a6_add_user_avatar_url.py 对应迁移的 schema 变更，恢复上一版数据库结构。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "target": "function:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py",
+      "target": "function:backend/app/alembic/versions/1a31ce608336_add_cascade_delete_relationships.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_create_enum_types",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_drop_enum_types",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_backfill_and_validate_roles",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:upgrade",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_create_enum_types",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:upgrade",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_backfill_and_validate_roles",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:downgrade",
+      "target": "function:backend/app/alembic/versions/7d8f3a1c2b4e_replace_items_with_ticket_platform.py:_drop_enum_types",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "target": "function:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+      "target": "function:backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_enum_types",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_drop_enum_types",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_workspace_tables",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_add_workspace_columns",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_backfill_default_workspace",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_enum_types",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_create_workspace_tables",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_add_workspace_columns",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:upgrade",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_backfill_default_workspace",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:downgrade",
+      "target": "function:backend/app/alembic/versions/a2c4e6f8b0d1_add_workspace_foundation.py:_drop_enum_types",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "target": "function:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py",
+      "target": "function:backend/app/alembic/versions/a91d2f4c6b8e_add_ai_handoff_ticket_audits.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "target": "function:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py",
+      "target": "function:backend/app/alembic/versions/b1c2d3e4f5a6_add_user_avatar_url.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    }
+  ]
+}

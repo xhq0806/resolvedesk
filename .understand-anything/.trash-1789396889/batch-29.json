@@ -1,0 +1,72 @@
+{
+  "nodes": [
+    {
+      "id": "file:scripts/generate-client.sh",
+      "type": "file",
+      "name": "generate-client.sh",
+      "filePath": "scripts/generate-client.sh",
+      "summary": "生成前端 API client 的维护脚本：进入 backend，以 development 环境导出 FastAPI OpenAPI JSON，移动到 frontend 后运行 client 生成和 lint 校验。",
+      "tags": [
+        "脚本",
+        "OpenAPI",
+        "FastAPI",
+        "frontend client",
+        "lint"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Shell 脚本通过 `set -e` 和 `set -x` 让生成流程失败即停并打印命令轨迹，适合本地或 CI 中排查 client 生成问题。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:scripts/test-local.sh",
+      "type": "file",
+      "name": "test-local.sh",
+      "filePath": "scripts/test-local.sh",
+      "summary": "面向本地测试的 Docker Compose 脚本：清理旧容器和卷，在 Linux 下移除 Python `__pycache__`，随后构建服务、执行 backend prestart、启动栈并运行后端测试。",
+      "tags": [
+        "脚本",
+        "本地测试",
+        "Docker Compose",
+        "backend",
+        "prestart"
+      ],
+      "complexity": "simple",
+      "languageNotes": "脚本使用 bash 条件判断区分 Linux 清理步骤，并把命令行参数透传给 `scripts/tests-start.sh`，便于本地选择性运行测试。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:scripts/test.sh",
+      "type": "file",
+      "name": "test.sh",
+      "filePath": "scripts/test.sh",
+      "summary": "标准测试入口脚本：构建 Docker Compose 服务、清理旧栈、执行 backend prestart、启动容器、运行后端测试，最后再次关闭并清理容器卷。",
+      "tags": [
+        "脚本",
+        "测试入口",
+        "Docker Compose",
+        "backend",
+        "清理"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Shell 脚本使用 POSIX `sh`，通过 `set -e` 和 `set -x` 保证测试流程可追踪且失败时立即退出。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ],
+  "edges": [],
+  "filesSkipped": []
+}

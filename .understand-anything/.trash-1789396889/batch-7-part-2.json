@@ -1,0 +1,872 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/core/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/core/__init__.py",
+      "summary": "core 包标记文件，承载应用核心配置、安全和基础设施模块的命名空间。文件当前没有运行时代码。",
+      "tags": [
+        "包入口",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空的 __init__.py 用于声明 Python 包边界。"
+    },
+    {
+      "id": "file:backend/app/core/config.py",
+      "type": "file",
+      "name": "config.py",
+      "filePath": "backend/app/core/config.py",
+      "summary": "应用配置模型，使用 Pydantic Settings 从环境变量加载 API、数据库、邮件、Sentry、知识库、附件和头像存储配置。它还规范 PostgreSQL driver 并阻止生产环境沿用默认密钥。",
+      "tags": [
+        "configuration",
+        "settings",
+        "security",
+        "pydantic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/core/db.py",
+      "type": "file",
+      "name": "db.py",
+      "filePath": "backend/app/core/db.py",
+      "summary": "数据库引擎与初始化逻辑，创建 SQLModel engine，并在空库中保证首个 Admin、默认 Workspace、成员关系和 AI 配置存在。初始化由 Alembic 管表结构，这里只负责业务种子数据。",
+      "tags": [
+        "数据库",
+        "初始化",
+        "workspace",
+        "seed-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/core/security.py",
+      "type": "file",
+      "name": "security.py",
+      "filePath": "backend/app/core/security.py",
+      "summary": "认证安全工具，集中定义 JWT token 创建和 Argon2/Bcrypt 密码哈希验证。verify_password 支持旧 bcrypt 哈希自动升级。",
+      "tags": [
+        "security",
+        "jwt",
+        "密码哈希",
+        "认证"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/crud.py",
+      "type": "file",
+      "name": "crud.py",
+      "filePath": "backend/app/crud.py",
+      "summary": "旧版用户 CRUD 兼容层，负责用户创建、更新、邮箱查询和密码认证。它把历史 is_superuser 输入映射到新的单一 role 模型，并保留常量时间认证防护。",
+      "tags": [
+        "crud",
+        "用户",
+        "认证",
+        "兼容层"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/initial_data.py",
+      "type": "file",
+      "name": "initial_data.py",
+      "filePath": "backend/app/initial_data.py",
+      "summary": "初始化数据命令入口，打开数据库 Session 并调用 init_db。它适合部署后或启动阶段执行一次业务种子数据初始化。",
+      "tags": [
+        "初始化",
+        "entry-point",
+        "数据库",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/main.py",
+      "type": "file",
+      "name": "main.py",
+      "filePath": "backend/app/main.py",
+      "summary": "FastAPI 应用入口，配置 Sentry、CORS、请求 ID middleware、异常处理器、API v1 路由和前端静态目录。custom_generate_unique_id 用路由 tag 与名称生成稳定 OpenAPI operationId。",
+      "tags": [
+        "entry-point",
+        "fastapi",
+        "middleware",
+        "配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/repositories/user_repository.py",
+      "type": "file",
+      "name": "user_repository.py",
+      "filePath": "backend/app/repositories/user_repository.py",
+      "summary": "用户仓储封装 SQLModel 查询，提供按 ID/邮箱读取、筛选分页、活跃 Agent 列表、活跃 Admin 行锁和新增用户入 Session。它把事务提交留给上层服务。",
+      "tags": [
+        "repository",
+        "用户",
+        "查询",
+        "行锁"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/schemas/auth.py",
+      "type": "file",
+      "name": "auth.py",
+      "filePath": "backend/app/schemas/auth.py",
+      "summary": "认证相关 Pydantic/SQLModel schema，定义 token 响应、JWT payload、重置密码和修改密码输入契约。StrictInput 禁止外部请求携带未声明字段。",
+      "tags": [
+        "schema",
+        "认证",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/core/config.py:Settings",
+      "type": "class",
+      "name": "Settings",
+      "filePath": "backend/app/core/config.py",
+      "lineRange": [
+        16,
+        98
+      ],
+      "summary": "Pydantic Settings 配置类，集中声明环境变量、派生字段和生产安全校验。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/db.py:init_db",
+      "type": "function",
+      "name": "init_db",
+      "filePath": "backend/app/core/db.py",
+      "lineRange": [
+        21,
+        72
+      ],
+      "summary": "初始化业务种子数据，确保首个 Admin、默认 Workspace、成员关系和 AI 配置存在。",
+      "tags": [
+        "数据库",
+        "初始化",
+        "seed-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/security.py:create_access_token",
+      "type": "function",
+      "name": "create_access_token",
+      "filePath": "backend/app/core/security.py",
+      "lineRange": [
+        22,
+        26
+      ],
+      "summary": "构造带过期时间的 JWT access token。",
+      "tags": [
+        "security",
+        "认证",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/security.py:verify_password",
+      "type": "function",
+      "name": "verify_password",
+      "filePath": "backend/app/core/security.py",
+      "lineRange": [
+        29,
+        32
+      ],
+      "summary": "验证明文密码与已有哈希，并返回可能升级后的新哈希。",
+      "tags": [
+        "security",
+        "认证",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/security.py:get_password_hash",
+      "type": "function",
+      "name": "get_password_hash",
+      "filePath": "backend/app/core/security.py",
+      "lineRange": [
+        35,
+        36
+      ],
+      "summary": "用当前密码哈希策略生成安全密码摘要。",
+      "tags": [
+        "security",
+        "认证",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/crud.py:create_user",
+      "type": "function",
+      "name": "create_user",
+      "filePath": "backend/app/crud.py",
+      "lineRange": [
+        11,
+        25
+      ],
+      "summary": "创建用户并处理密码哈希、角色或通知流程，具体语义随所在模块区分。",
+      "tags": [
+        "crud",
+        "用户",
+        "数据库"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/crud.py:update_user",
+      "type": "function",
+      "name": "update_user",
+      "filePath": "backend/app/crud.py",
+      "lineRange": [
+        28,
+        44
+      ],
+      "summary": "由 Admin 更新其他用户角色、启停状态和资料字段。",
+      "tags": [
+        "crud",
+        "用户",
+        "数据库"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/crud.py:get_user_by_email",
+      "type": "function",
+      "name": "get_user_by_email",
+      "filePath": "backend/app/crud.py",
+      "lineRange": [
+        47,
+        50
+      ],
+      "summary": "按邮箱查询用户记录。",
+      "tags": [
+        "crud",
+        "用户",
+        "数据库"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/crud.py:authenticate",
+      "type": "function",
+      "name": "authenticate",
+      "filePath": "backend/app/crud.py",
+      "lineRange": [
+        58,
+        74
+      ],
+      "summary": "按邮箱和密码认证用户，包含不存在用户的时序攻击防护和旧哈希升级。",
+      "tags": [
+        "crud",
+        "用户",
+        "数据库"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/initial_data.py:init",
+      "type": "function",
+      "name": "init",
+      "filePath": "backend/app/initial_data.py",
+      "lineRange": [
+        11,
+        13
+      ],
+      "summary": "执行初始化或连接检查逻辑，具体动作由所在启动脚本决定。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/initial_data.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "backend/app/initial_data.py",
+      "lineRange": [
+        16,
+        19
+      ],
+      "summary": "脚本入口函数，记录执行阶段并调用初始化流程。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/main.py:custom_generate_unique_id",
+      "type": "function",
+      "name": "custom_generate_unique_id",
+      "filePath": "backend/app/main.py",
+      "lineRange": [
+        16,
+        17
+      ],
+      "summary": "使用路由 tag 与函数名生成稳定的 OpenAPI operationId。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/repositories/user_repository.py:UserRepository",
+      "type": "class",
+      "name": "UserRepository",
+      "filePath": "backend/app/repositories/user_repository.py",
+      "lineRange": [
+        16,
+        109
+      ],
+      "summary": "用户查询仓储类，封装分页筛选、角色列表、行锁读取和 Session 级新增操作。",
+      "tags": [
+        "repository",
+        "数据库",
+        "用户"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/schemas/auth.py:StrictInput",
+      "type": "class",
+      "name": "StrictInput",
+      "filePath": "backend/app/schemas/auth.py",
+      "lineRange": [
+        6,
+        9
+      ],
+      "summary": "认证 schema 的基础配置类，禁止请求体携带额外字段。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/auth.py:Token",
+      "type": "class",
+      "name": "Token",
+      "filePath": "backend/app/schemas/auth.py",
+      "lineRange": [
+        12,
+        16
+      ],
+      "summary": "登录成功返回的 access token 与 token type 响应模型。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/auth.py:TokenPayload",
+      "type": "class",
+      "name": "TokenPayload",
+      "filePath": "backend/app/schemas/auth.py",
+      "lineRange": [
+        19,
+        22
+      ],
+      "summary": "JWT payload schema，保存 token subject 用户标识。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/auth.py:NewPassword",
+      "type": "class",
+      "name": "NewPassword",
+      "filePath": "backend/app/schemas/auth.py",
+      "lineRange": [
+        25,
+        29
+      ],
+      "summary": "重置密码请求 schema，包含重置 token 和新密码。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/auth.py:UpdatePassword",
+      "type": "class",
+      "name": "UpdatePassword",
+      "filePath": "backend/app/schemas/auth.py",
+      "lineRange": [
+        32,
+        36
+      ],
+      "summary": "当前用户修改密码 schema，包含旧密码和新密码。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/core/config.py",
+      "target": "class:backend/app/core/config.py:Settings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/config.py",
+      "target": "class:backend/app/core/config.py:Settings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "function:backend/app/core/db.py:init_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "function:backend/app/core/db.py:init_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:create_access_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:create_access_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:verify_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:verify_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:get_password_hash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "function:backend/app/core/security.py:get_password_hash",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:create_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:create_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:update_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:update_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:get_user_by_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:get_user_by_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:authenticate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "function:backend/app/crud.py:authenticate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/initial_data.py",
+      "target": "function:backend/app/initial_data.py:init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/initial_data.py",
+      "target": "function:backend/app/initial_data.py:init",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/initial_data.py",
+      "target": "function:backend/app/initial_data.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/initial_data.py",
+      "target": "function:backend/app/initial_data.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:custom_generate_unique_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "function:backend/app/main.py:custom_generate_unique_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/repositories/user_repository.py",
+      "target": "class:backend/app/repositories/user_repository.py:UserRepository",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/repositories/user_repository.py",
+      "target": "class:backend/app/repositories/user_repository.py:UserRepository",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:StrictInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:StrictInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:Token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:Token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:TokenPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:TokenPayload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:NewPassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:NewPassword",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:UpdatePassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/auth.py",
+      "target": "class:backend/app/schemas/auth.py:UpdatePassword",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/db.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/security.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/crud.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/initial_data.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/api/main.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/main.py",
+      "target": "file:backend/app/core/request_context.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/user_repository.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/user_repository.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/repositories/user_repository.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:backend/app/crud.py:create_user",
+      "target": "function:backend/app/core/security.py:get_password_hash",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/crud.py:update_user",
+      "target": "function:backend/app/core/security.py:get_password_hash",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/crud.py:authenticate",
+      "target": "function:backend/app/crud.py:get_user_by_email",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/crud.py:authenticate",
+      "target": "function:backend/app/core/security.py:verify_password",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/initial_data.py:init",
+      "target": "function:backend/app/core/db.py:init_db",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,1497 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "type": "file",
+      "name": "b7f2d9c1e4a3_add_ai_provider_config.py",
+      "filePath": "backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "summary": "新增 Workspace 级 AI Provider 配置表，保存聊天与 embedding provider、base URL、模型、密钥密文和启用状态，并为既有 Workspace 回填默认配置。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "lineRange": [
+        22,
+        92
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "lineRange": [
+        95,
+        97
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "type": "file",
+      "name": "c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "filePath": "backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "summary": "为知识库摄取能力创建 pgvector 扩展、文档表、切块向量表和摄取任务表，并维护文档状态与任务状态枚举。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "lineRange": [
+        39,
+        130
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "lineRange": [
+        133,
+        152
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "type": "file",
+      "name": "d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "filePath": "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "summary": "把早期 user/item 主键从整数迁移为 UUID，并同步重建 item.owner_id 外键关系；downgrade 提供反向整数 ID 恢复路径。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "lineRange": [
+        21,
+        55
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "lineRange": [
+        57,
+        90
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "type": "file",
+      "name": "d9f5a2b8c3e1_add_ai_conversations.py",
+      "filePath": "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "summary": "新增 AI 会话持久化结构，覆盖 conversation、message、run 和 run event 表，以及会话模式、消息角色、运行状态、事件类型等 PostgreSQL 枚举。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:_enum",
+      "type": "function",
+      "name": "_enum",
+      "filePath": "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "lineRange": [
+        20,
+        22
+      ],
+      "summary": "封装 PostgreSQL ENUM 构造逻辑，统一 create_type=False 的可重复迁移写法。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "lineRange": [
+        50,
+        172
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "lineRange": [
+        175,
+        200
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "type": "file",
+      "name": "e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "filePath": "backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "summary": "为 AI 工具调用权限建立持久化表，按 Workspace 和工具名保存授权状态、配置和更新时间。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "lineRange": [
+        20,
+        45
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "lineRange": [
+        48,
+        51
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "type": "file",
+      "name": "e2412789c190_initialize_models.py",
+      "filePath": "backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "summary": "初始化早期应用模型表结构，是用户与 item 模型进入 Alembic 管理的基础迁移。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/e2412789c190_initialize_models.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "lineRange": [
+        19,
+        46
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/e2412789c190_initialize_models.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "lineRange": [
+        49,
+        54
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "type": "file",
+      "name": "f2b7c4d9e6a1_add_attachments.py",
+      "filePath": "backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "summary": "新增附件表及相关约束，用于把上传文件和工单、消息、Workspace、上传用户关联起来。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "lineRange": [
+        20,
+        59
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "lineRange": [
+        62,
+        67
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "type": "file",
+      "name": "fe56fa70289e_add_created_at_to_user_and_item.py",
+      "filePath": "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "summary": "为 user 和 item 表补充 created_at 时间字段，使早期模型具备创建时间记录。",
+      "tags": [
+        "数据库迁移",
+        "Alembic",
+        "Python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Alembic migration 以 upgrade/downgrade 为核心入口，直接描述数据库 schema 的前进和回滚路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py:upgrade",
+      "type": "function",
+      "name": "upgrade",
+      "filePath": "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "lineRange": [
+        20,
+        24
+      ],
+      "summary": "执行该 Alembic revision 的正向 schema 变更，创建、调整或回填相关数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py:downgrade",
+      "type": "function",
+      "name": "downgrade",
+      "filePath": "backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "lineRange": [
+        27,
+        31
+      ],
+      "summary": "回滚该 Alembic revision 引入的 schema 变更，按依赖顺序删除或恢复数据库对象。",
+      "tags": [
+        "函数",
+        "数据库迁移",
+        "Alembic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/api/__init__.py",
+      "summary": "标记 backend/app/api 为 Python package，承载后端 API 路由模块的包入口。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/frontend/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "backend/app/frontend/index.html",
+      "summary": "后端内置前端页面入口，提供静态 HTML shell，并加载前端构建产物所需的基础结构。",
+      "tags": [
+        "HTML",
+        "静态前端",
+        "后端内置页面"
+      ],
+      "complexity": "simple",
+      "languageNotes": "HTML 文件提供浏览器入口结构，真正交互逻辑通常由加载的前端资源接管。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/app/workers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/workers/__init__.py",
+      "summary": "标记 backend/app/workers 为 Python package，为后台 worker 模块预留包入口。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/__init__.py",
+      "summary": "标记 backend/tests 为 Python 测试包，方便 pytest 和相对导入识别测试层级。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/api/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/api/__init__.py",
+      "summary": "标记 backend/tests/api 为 API 测试包，用于组织路由级测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/api/routes/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/api/routes/__init__.py",
+      "summary": "标记 backend/tests/api/routes 为路由测试包，用于承载具体 API route 测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/crud/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/crud/__init__.py",
+      "summary": "标记 backend/tests/crud 为 CRUD 测试包，用于组织数据访问层测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/migrations/conftest.py",
+      "type": "file",
+      "name": "conftest.py",
+      "filePath": "backend/tests/migrations/conftest.py",
+      "summary": "为迁移测试提供隔离 PostgreSQL 数据库 fixture，从维护库动态创建临时库，测试结束后带前缀校验并强制删除。",
+      "tags": [
+        "迁移测试",
+        "pytest",
+        "PostgreSQL",
+        "Alembic"
+      ],
+      "complexity": "simple",
+      "languageNotes": "pytest 迁移测试通过真实 PostgreSQL 临时库验证 schema 演进，比单元级 mock 更能暴露迁移顺序和回滚问题。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/tests/migrations/conftest.py:_maintenance_url",
+      "type": "function",
+      "name": "_maintenance_url",
+      "filePath": "backend/tests/migrations/conftest.py",
+      "lineRange": [
+        17,
+        27
+      ],
+      "summary": "解析迁移测试维护库连接串，优先使用显式环境变量，否则从应用 DATABASE_URL 派生 postgres 库。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/migrations/conftest.py:_database_url",
+      "type": "function",
+      "name": "_database_url",
+      "filePath": "backend/tests/migrations/conftest.py",
+      "lineRange": [
+        30,
+        35
+      ],
+      "summary": "基于维护库连接串和临时库名称生成测试数据库连接串。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/migrations/conftest.py:migration_database_url",
+      "type": "function",
+      "name": "migration_database_url",
+      "filePath": "backend/tests/migrations/conftest.py",
+      "lineRange": [
+        39,
+        67
+      ],
+      "summary": "pytest fixture：为单个迁移测试创建独立数据库并在结束后安全清理。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "type": "file",
+      "name": "test_ticket_platform_migration.py",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "summary": "验证工单平台迁移链路：旧用户角色回填、Item 退出、Ticket/Workspace/AI/附件表创建、缺少活跃管理员时失败，以及空库升级降级往返。",
+      "tags": [
+        "迁移测试",
+        "pytest",
+        "PostgreSQL",
+        "Alembic"
+      ],
+      "complexity": "complex",
+      "languageNotes": "pytest 迁移测试通过真实 PostgreSQL 临时库验证 schema 演进，比单元级 mock 更能暴露迁移顺序和回滚问题。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "function",
+      "name": "run_alembic",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "lineRange": [
+        19,
+        37
+      ],
+      "summary": "在独立进程中运行 Alembic 命令，并在失败时输出 stderr 以便诊断迁移问题。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/migrations/test_ticket_platform_migration.py:insert_legacy_user",
+      "type": "function",
+      "name": "insert_legacy_user",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "lineRange": [
+        40,
+        60
+      ],
+      "summary": "向旧迁移 head 写入历史用户数据，为角色回填和失败场景测试准备输入。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "type": "function",
+      "name": "test_upgrade_backfills_roles_and_replaces_items",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "lineRange": [
+        63,
+        201
+      ],
+      "summary": "验证合法旧库升级到 head 后完成角色回填、表结构替换、索引创建和 vector 扩展启用。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_rejects_existing_database_without_active_admin",
+      "type": "function",
+      "name": "test_upgrade_rejects_existing_database_without_active_admin",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "lineRange": [
+        208,
+        252
+      ],
+      "summary": "验证既有数据库没有活跃管理员时升级失败，并保留旧版 user/item 结构。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "type": "function",
+      "name": "test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "filePath": "backend/tests/migrations/test_ticket_platform_migration.py",
+      "lineRange": [
+        255,
+        293
+      ],
+      "summary": "验证空库可以升级到 head、降级回旧 head，并再次升级，确认迁移链路无残留对象。",
+      "tags": [
+        "函数",
+        "迁移测试",
+        "pytest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/providers/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/providers/__init__.py",
+      "summary": "标记 backend/tests/providers 为 provider 测试包，用于组织外部或 AI provider 相关测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/scripts/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/scripts/__init__.py",
+      "summary": "标记 backend/tests/scripts 为脚本测试包，用于组织命令行和维护脚本测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "file:backend/tests/utils/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/tests/utils/__init__.py",
+      "summary": "标记 backend/tests/utils 为工具测试包，用于组织后端 utility 测试。",
+      "tags": [
+        "Python package",
+        "初始化模块"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空或近空的 __init__.py 主要表达 Python 包边界，本身没有业务逻辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "document:changes/active/fix-local-avatar-display/debug-log-2026-09-14-avatar-display-cache.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-avatar-display-cache.md",
+      "filePath": "changes/active/fix-local-avatar-display/debug-log-2026-09-14-avatar-display-cache.md",
+      "summary": "记录本地头像显示缓存问题的排查日志，沉淀 2026-09-14 的现象、定位过程和修复线索。",
+      "tags": [
+        "变更记录",
+        "Markdown",
+        "项目文档"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 文档记录 active change 的上下文和任务状态，更多服务协作与追踪而非运行时行为。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "id": "document:changes/active/role-sidebar-navigation/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "changes/active/role-sidebar-navigation/tasks.md",
+      "summary": "记录角色侧边栏导航变更的任务清单，用于跟踪该 active change 的实现步骤。",
+      "tags": [
+        "变更记录",
+        "Markdown",
+        "项目文档"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 文档记录 active change 的上下文和任务状态，更多服务协作与追踪而非运行时行为。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "file:frontend/.generated-client/core/params.gen.ts",
+      "type": "file",
+      "name": "params.gen.ts",
+      "filePath": "frontend/.generated-client/core/params.gen.ts",
+      "summary": "OpenAPI 生成的 client 参数构建器，将调用参数按 body、headers、path、query 槽位映射，并清理空参数槽。",
+      "tags": [
+        "generated client",
+        "OpenAPI",
+        "TypeScript"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件由 @hey-api/openapi-ts 生成，命名和结构服务于类型安全的 API client，不建议手工编辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:frontend/.generated-client/core/params.gen.ts:buildKeyMap",
+      "type": "function",
+      "name": "buildKeyMap",
+      "filePath": "frontend/.generated-client/core/params.gen.ts",
+      "lineRange": [
+        65,
+        88
+      ],
+      "summary": "递归构建字段名到请求槽位的映射，支持嵌套 args 和传输层别名。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/params.gen.ts:stripEmptySlots",
+      "type": "function",
+      "name": "stripEmptySlots",
+      "filePath": "frontend/.generated-client/core/params.gen.ts",
+      "lineRange": [
+        97,
+        103
+      ],
+      "summary": "删除 body、headers、path、query 中仍为空对象的槽位，减少请求参数噪声。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/params.gen.ts:buildClientParams",
+      "type": "function",
+      "name": "buildClientParams",
+      "filePath": "frontend/.generated-client/core/params.gen.ts",
+      "lineRange": [
+        105,
+        169
+      ],
+      "summary": "把调用参数按字段配置分发到 body、headers、path、query，并处理额外前缀和允许的额外字段。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "type": "file",
+      "name": "queryKeySerializer.gen.ts",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "summary": "OpenAPI 生成的 query key 序列化工具，把 Date、bigint、URLSearchParams、数组和 plain object 归一化为稳定 JSON 值。",
+      "tags": [
+        "generated client",
+        "OpenAPI",
+        "TypeScript"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件由 @hey-api/openapi-ts 生成，命名和结构服务于类型安全的 API client，不建议手工编辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "id": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:queryKeyJsonReplacer",
+      "type": "function",
+      "name": "queryKeyJsonReplacer",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        17,
+        28
+      ],
+      "summary": "JSON.stringify replacer：过滤不可序列化值，并把 bigint、Date 转成稳定字符串。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "function",
+      "name": "stringifyToJsonValue",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        33,
+        43
+      ],
+      "summary": "安全执行 stringify/parse 往返，把任意输入转换为 JSON-friendly 值，失败时返回 undefined。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "function",
+      "name": "isPlainObject",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        48,
+        54
+      ],
+      "summary": "判断值是否为普通对象或 null prototype 对象，避免序列化非 plain object。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "function",
+      "name": "serializeSearchParams",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        59,
+        78
+      ],
+      "summary": "把 URLSearchParams 排序并合并同名 key，生成稳定 query key 对象。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "type": "function",
+      "name": "serializeQueryKeyValue",
+      "filePath": "frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        83,
+        117
+      ],
+      "summary": "将 query key 输入规范化为 null、原始值、数组、URLSearchParams 或 plain object 的 JSON 表达。",
+      "tags": [
+        "函数",
+        "generated client",
+        "TypeScript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "frontend/.generated-client/index.ts",
+      "summary": "OpenAPI generated client 的 barrel 入口，集中重新导出 client、core、SDK、类型和 schema 等生成产物。",
+      "tags": [
+        "generated client",
+        "OpenAPI",
+        "TypeScript"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件由 @hey-api/openapi-ts 生成，命名和结构服务于类型安全的 API client，不建议手工编辑。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 173,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ],
+  "edges": [
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "target": "function:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "target": "function:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "target": "function:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "target": "function:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "target": "function:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+      "target": "function:backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "target": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:_enum",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "target": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "target": "function:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "target": "function:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "target": "function:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "target": "function:backend/app/alembic/versions/e2412789c190_initialize_models.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/e2412789c190_initialize_models.py",
+      "target": "function:backend/app/alembic/versions/e2412789c190_initialize_models.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "target": "function:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "target": "function:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "target": "function:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py:upgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py",
+      "target": "function:backend/app/alembic/versions/fe56fa70289e_add_created_at_to_user_and_item.py:downgrade",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/conftest.py",
+      "target": "function:backend/tests/migrations/conftest.py:_maintenance_url",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/conftest.py",
+      "target": "function:backend/tests/migrations/conftest.py:_database_url",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/conftest.py",
+      "target": "function:backend/tests/migrations/conftest.py:migration_database_url",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:insert_legacy_user",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_rejects_existing_database_without_active_admin",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/params.gen.ts",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:buildKeyMap",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/params.gen.ts",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:stripEmptySlots",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/params.gen.ts",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:buildClientParams",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:queryKeyJsonReplacer",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "type": "contains",
+      "weight": 1
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/conftest.py:migration_database_url",
+      "target": "function:backend/tests/migrations/conftest.py:_maintenance_url",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/conftest.py:migration_database_url",
+      "target": "function:backend/tests/migrations/conftest.py:_database_url",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:insert_legacy_user",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:insert_legacy_user",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_backfills_roles_and_replaces_items",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_rejects_existing_database_without_active_admin",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_rejects_existing_database_without_active_admin",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:insert_legacy_user",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_upgrade_rejects_existing_database_without_active_admin",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:backend/tests/migrations/test_ticket_platform_migration.py:test_empty_database_can_bootstrap_and_downgrade_round_trip",
+      "target": "function:backend/tests/migrations/test_ticket_platform_migration.py:run_alembic",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/params.gen.ts:buildKeyMap",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:buildKeyMap",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/params.gen.ts:buildClientParams",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:buildKeyMap",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/params.gen.ts:buildClientParams",
+      "target": "function:frontend/.generated-client/core/params.gen.ts:stripEmptySlots",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/.generated-client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "calls",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "document:changes/active/fix-local-avatar-display/debug-log-2026-09-14-avatar-display-cache.md",
+      "target": "document:changes/active/role-sidebar-navigation/tasks.md",
+      "type": "related",
+      "weight": 0.5
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/index.ts",
+      "target": "file:frontend/.generated-client/core/params.gen.ts",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:frontend/.generated-client/index.ts",
+      "target": "file:frontend/.generated-client/core/queryKeySerializer.gen.ts",
+      "type": "exports",
+      "weight": 0.8
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "target": "file:backend/app/alembic/versions/b7f2d9c1e4a3_add_ai_provider_config.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "target": "file:backend/app/alembic/versions/c8e4f1a7d2b9_add_knowledge_ingestion.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "target": "file:backend/app/alembic/versions/d9f5a2b8c3e1_add_ai_conversations.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/app/alembic/versions/f2b7c4d9e6a1_add_attachments.py",
+      "target": "file:backend/app/alembic/versions/e1a6b3c9d4f2_add_ai_tool_permissions.py",
+      "type": "depends_on",
+      "weight": 0.6
+    },
+    {
+      "direction": "forward",
+      "source": "file:backend/tests/migrations/test_ticket_platform_migration.py",
+      "target": "file:backend/tests/migrations/conftest.py",
+      "type": "depends_on",
+      "weight": 0.6
+    }
+  ],
+  "filesSkipped": []
+}

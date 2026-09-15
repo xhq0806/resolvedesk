@@ -1,0 +1,491 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/services/tool_executor.py",
+      "type": "file",
+      "name": "tool_executor.py",
+      "filePath": "backend/app/services/tool_executor.py",
+      "summary": "提供 AI tool 调用执行器，目前将受控工具请求映射到工单服务能力并返回结构化结果。",
+      "tags": [
+        "service",
+        "backend",
+        "business-logic",
+        "python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/tool_executor.py:ToolResult",
+      "type": "class",
+      "name": "ToolResult",
+      "filePath": "backend/app/services/tool_executor.py",
+      "lineRange": [
+        32,
+        38
+      ],
+      "summary": "表示 AI tool 执行后的结构化返回值。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/tool_executor.py:ToolExecutor",
+      "type": "class",
+      "name": "ToolExecutor",
+      "filePath": "backend/app/services/tool_executor.py",
+      "lineRange": [
+        41,
+        146
+      ],
+      "summary": "在权限检查后执行允许的 AI 工具调用，目前主要桥接到工单服务。",
+      "tags": [
+        "data-model",
+        "schema",
+        "api-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/services/workspace_service.py",
+      "type": "file",
+      "name": "workspace_service.py",
+      "filePath": "backend/app/services/workspace_service.py",
+      "summary": "实现工作区列表、创建、邀请成员、更新角色和移除成员等多租户管理操作。",
+      "tags": [
+        "service",
+        "workspace",
+        "multi-tenant",
+        "membership"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/workspace_service.py:WorkspaceService",
+      "type": "class",
+      "name": "WorkspaceService",
+      "filePath": "backend/app/services/workspace_service.py",
+      "lineRange": [
+        32,
+        134
+      ],
+      "summary": "封装工作区与成员管理的业务操作。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/workers/knowledge_ingestion.py",
+      "type": "file",
+      "name": "knowledge_ingestion.py",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "summary": "实现知识摄取 worker 的任务认领、超时恢复和处理流程，将待摄取文档交给 KnowledgeService 执行。",
+      "tags": [
+        "worker",
+        "knowledge-ingestion",
+        "background-job",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/workers/knowledge_ingestion.py:claim_next_job",
+      "type": "function",
+      "name": "claim_next_job",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "lineRange": [
+        24,
+        59
+      ],
+      "summary": "在数据库事务中认领下一条待处理或可重试的知识摄取任务。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/workers/knowledge_ingestion.py:recover_expired_jobs",
+      "type": "function",
+      "name": "recover_expired_jobs",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "lineRange": [
+        62,
+        78
+      ],
+      "summary": "将超时未完成的知识摄取任务恢复为可重试状态。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/workers/knowledge_ingestion.py:process_claimed_job",
+      "type": "function",
+      "name": "process_claimed_job",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "lineRange": [
+        81,
+        99
+      ],
+      "summary": "为已认领的知识摄取任务组装上下文并调用 KnowledgeService 执行摄取。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/workers/knowledge_ingestion.py:_workspace_for_document",
+      "type": "function",
+      "name": "_workspace_for_document",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "lineRange": [
+        102,
+        107
+      ],
+      "summary": "实现 workspace for document 的内部辅助逻辑，支撑同文件中的核心服务流程。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/workers/knowledge_ingestion.py:_owner_member_for_workspace",
+      "type": "function",
+      "name": "_owner_member_for_workspace",
+      "filePath": "backend/app/workers/knowledge_ingestion.py",
+      "lineRange": [
+        110,
+        124
+      ],
+      "summary": "实现 owner member for workspace 的内部辅助逻辑，支撑同文件中的核心服务流程。",
+      "tags": [
+        "knowledge-base",
+        "ingestion",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/api/routes/test_private.py",
+      "type": "file",
+      "name": "test_private.py",
+      "filePath": "backend/tests/api/routes/test_private.py",
+      "summary": "覆盖私有用户创建接口，验证超级用户 token 能通过内部 API 创建用户。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "simple",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_private.py:test_create_user",
+      "type": "function",
+      "name": "test_create_user",
+      "filePath": "backend/tests/api/routes/test_private.py",
+      "lineRange": [
+        8,
+        26
+      ],
+      "summary": "测试 create user 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "class:backend/app/services/tool_executor.py:ToolResult",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "class:backend/app/services/tool_executor.py:ToolResult",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "class:backend/app/services/tool_executor.py:ToolExecutor",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/tool_executor.py",
+      "target": "class:backend/app/services/tool_executor.py:ToolExecutor",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/repositories/workspace_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "file:backend/app/schemas/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "class:backend/app/services/workspace_service.py:WorkspaceService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/workspace_service.py",
+      "target": "class:backend/app/services/workspace_service.py:WorkspaceService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "file:backend/app/services/knowledge_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:claim_next_job",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:claim_next_job",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:recover_expired_jobs",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:recover_expired_jobs",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:process_claimed_job",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:process_claimed_job",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:_workspace_for_document",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:_workspace_for_document",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:_owner_member_for_workspace",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/workers/knowledge_ingestion.py",
+      "target": "function:backend/app/workers/knowledge_ingestion.py:_owner_member_for_workspace",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_private.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_private.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_private.py",
+      "target": "function:backend/tests/api/routes/test_private.py:test_create_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_private.py",
+      "target": "function:backend/tests/api/routes/test_private.py:test_create_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

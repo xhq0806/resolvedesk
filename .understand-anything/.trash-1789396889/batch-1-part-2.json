@@ -1,0 +1,1412 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/core/secret_crypto.py",
+      "type": "file",
+      "name": "secret_crypto.py",
+      "filePath": "backend/app/core/secret_crypto.py",
+      "summary": "封装基于 Fernet 的密钥加解密能力，并从应用配置构造可复用的 SecretCipher。",
+      "tags": [
+        "core",
+        "error-handling",
+        "middleware",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/secret_crypto.py:secret_cipher_from_settings",
+      "type": "function",
+      "name": "secret_cipher_from_settings",
+      "filePath": "backend/app/core/secret_crypto.py",
+      "lineRange": [
+        35,
+        37
+      ],
+      "summary": "从应用配置构造 SecretCipher，供 provider 密钥等敏感配置加解密复用。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/secret_crypto.py:SecretCipher",
+      "type": "class",
+      "name": "SecretCipher",
+      "filePath": "backend/app/core/secret_crypto.py",
+      "lineRange": [
+        13,
+        32
+      ],
+      "summary": "SecretCipher 封装敏感字符串的加密和解密操作。",
+      "tags": [
+        "class",
+        "core",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：__init__、encrypt、decrypt。"
+    },
+    {
+      "id": "file:backend/app/core/workspace.py",
+      "type": "file",
+      "name": "workspace.py",
+      "filePath": "backend/app/core/workspace.py",
+      "summary": "定义 workspace 上下文和权限策略，负责从用户成员关系构造当前 workspace 访问边界。",
+      "tags": [
+        "core",
+        "error-handling",
+        "middleware",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/workspace.py:build_workspace_context",
+      "type": "function",
+      "name": "build_workspace_context",
+      "filePath": "backend/app/core/workspace.py",
+      "lineRange": [
+        66,
+        74
+      ],
+      "summary": "实现 build_workspace_context workspace 权限辅助逻辑，用于构造访问上下文或校验 owner 权限。",
+      "tags": [
+        "function",
+        "core",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/workspace.py:ensure_workspace_owner",
+      "type": "function",
+      "name": "ensure_workspace_owner",
+      "filePath": "backend/app/core/workspace.py",
+      "lineRange": [
+        77,
+        80
+      ],
+      "summary": "实现 ensure_workspace_owner workspace 权限辅助逻辑，用于构造访问上下文或校验 owner 权限。",
+      "tags": [
+        "function",
+        "core",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/workspace.py:WorkspaceContext",
+      "type": "class",
+      "name": "WorkspaceContext",
+      "filePath": "backend/app/core/workspace.py",
+      "lineRange": [
+        19,
+        33
+      ],
+      "summary": "WorkspaceContext 表达当前 workspace 访问上下文或权限策略。",
+      "tags": [
+        "class",
+        "core",
+        "workspace"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：workspace_id、role。"
+    },
+    {
+      "id": "class:backend/app/core/workspace.py:WorkspacePolicy",
+      "type": "class",
+      "name": "WorkspacePolicy",
+      "filePath": "backend/app/core/workspace.py",
+      "lineRange": [
+        36,
+        63
+      ],
+      "summary": "WorkspacePolicy 表达当前 workspace 访问上下文或权限策略。",
+      "tags": [
+        "class",
+        "core",
+        "workspace"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：require_active_workspace、require_member、require_manager、require_owner。"
+    },
+    {
+      "id": "file:backend/app/models/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/models/__init__.py",
+      "summary": "聚合导入所有 SQLModel 领域模型，确保 Alembic 和 SQLModel 元数据能发现完整表结构。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Python 包入口通过聚合导入维持模块发现和对外导出边界。"
+    },
+    {
+      "id": "file:backend/app/models/ai.py",
+      "type": "file",
+      "name": "ai.py",
+      "filePath": "backend/app/models/ai.py",
+      "summary": "定义 AI agent、provider 配置、会话、消息、运行事件和工具权限相关的持久化模型。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/models/ai.py:enum_values",
+      "type": "function",
+      "name": "enum_values",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        26,
+        30
+      ],
+      "summary": "提供 enum_values 模型辅助函数，用于默认值生成或枚举值转换。",
+      "tags": [
+        "function",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiAgentStatus",
+      "type": "class",
+      "name": "AiAgentStatus",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        33,
+        37
+      ],
+      "summary": "AiAgentStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiAgent",
+      "type": "class",
+      "name": "AiAgent",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        40,
+        69
+      ],
+      "summary": "AiAgent 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiProviderConfig",
+      "type": "class",
+      "name": "AiProviderConfig",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        72,
+        108
+      ],
+      "summary": "AiProviderConfig 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "provider"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:ConversationMode",
+      "type": "class",
+      "name": "ConversationMode",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        111,
+        115
+      ],
+      "summary": "ConversationMode 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:ConversationStatus",
+      "type": "class",
+      "name": "ConversationStatus",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        118,
+        123
+      ],
+      "summary": "ConversationStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiMessageRole",
+      "type": "class",
+      "name": "AiMessageRole",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        126,
+        132
+      ],
+      "summary": "AiMessageRole 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiMessageStatus",
+      "type": "class",
+      "name": "AiMessageStatus",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        135,
+        141
+      ],
+      "summary": "AiMessageStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiRunStatus",
+      "type": "class",
+      "name": "AiRunStatus",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        144,
+        150
+      ],
+      "summary": "AiRunStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiRunEventType",
+      "type": "class",
+      "name": "AiRunEventType",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        153,
+        164
+      ],
+      "summary": "AiRunEventType 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiConversation",
+      "type": "class",
+      "name": "AiConversation",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        167,
+        214
+      ],
+      "summary": "AiConversation 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiMessage",
+      "type": "class",
+      "name": "AiMessage",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        217,
+        265
+      ],
+      "summary": "AiMessage 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiRun",
+      "type": "class",
+      "name": "AiRun",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        268,
+        312
+      ],
+      "summary": "AiRun 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiRunEvent",
+      "type": "class",
+      "name": "AiRunEvent",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        315,
+        346
+      ],
+      "summary": "AiRunEvent 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ai.py:AiToolPermission",
+      "type": "class",
+      "name": "AiToolPermission",
+      "filePath": "backend/app/models/ai.py",
+      "lineRange": [
+        349,
+        369
+      ],
+      "summary": "AiToolPermission 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/models/attachment.py",
+      "type": "file",
+      "name": "attachment.py",
+      "filePath": "backend/app/models/attachment.py",
+      "summary": "定义附件持久化模型，记录文件元数据、存储路径、上传人和所属工单关系。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/attachment.py:Attachment",
+      "type": "class",
+      "name": "Attachment",
+      "filePath": "backend/app/models/attachment.py",
+      "lineRange": [
+        14,
+        46
+      ],
+      "summary": "Attachment 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "attachment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/models/enums.py",
+      "type": "file",
+      "name": "enums.py",
+      "filePath": "backend/app/models/enums.py",
+      "summary": "集中定义用户角色、工单状态、优先级、分类、消息类型和审计动作等业务枚举。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:UserRole",
+      "type": "class",
+      "name": "UserRole",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        6,
+        11
+      ],
+      "summary": "UserRole 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:TicketStatus",
+      "type": "class",
+      "name": "TicketStatus",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        14,
+        21
+      ],
+      "summary": "TicketStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:TicketPriority",
+      "type": "class",
+      "name": "TicketPriority",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        24,
+        30
+      ],
+      "summary": "TicketPriority 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:TicketCategory",
+      "type": "class",
+      "name": "TicketCategory",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        33,
+        41
+      ],
+      "summary": "TicketCategory 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:TicketMessageType",
+      "type": "class",
+      "name": "TicketMessageType",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        44,
+        48
+      ],
+      "summary": "TicketMessageType 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/enums.py:TicketAuditAction",
+      "type": "class",
+      "name": "TicketAuditAction",
+      "filePath": "backend/app/models/enums.py",
+      "lineRange": [
+        51,
+        63
+      ],
+      "summary": "TicketAuditAction 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/models/knowledge.py",
+      "type": "file",
+      "name": "knowledge.py",
+      "filePath": "backend/app/models/knowledge.py",
+      "summary": "定义知识库文档、知识分块和摄取任务模型，支撑文档上传后的索引与检索流程。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/knowledge.py:KnowledgeDocumentStatus",
+      "type": "class",
+      "name": "KnowledgeDocumentStatus",
+      "filePath": "backend/app/models/knowledge.py",
+      "lineRange": [
+        16,
+        22
+      ],
+      "summary": "KnowledgeDocumentStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/knowledge.py:IngestionJobStatus",
+      "type": "class",
+      "name": "IngestionJobStatus",
+      "filePath": "backend/app/models/knowledge.py",
+      "lineRange": [
+        25,
+        32
+      ],
+      "summary": "IngestionJobStatus 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "enum",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/knowledge.py:KnowledgeDocument",
+      "type": "class",
+      "name": "KnowledgeDocument",
+      "filePath": "backend/app/models/knowledge.py",
+      "lineRange": [
+        35,
+        73
+      ],
+      "summary": "KnowledgeDocument 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/knowledge.py:KnowledgeChunk",
+      "type": "class",
+      "name": "KnowledgeChunk",
+      "filePath": "backend/app/models/knowledge.py",
+      "lineRange": [
+        76,
+        101
+      ],
+      "summary": "KnowledgeChunk 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/knowledge.py:DocumentIngestionJob",
+      "type": "class",
+      "name": "DocumentIngestionJob",
+      "filePath": "backend/app/models/knowledge.py",
+      "lineRange": [
+        104,
+        138
+      ],
+      "summary": "DocumentIngestionJob 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/models/ticket.py",
+      "type": "file",
+      "name": "ticket.py",
+      "filePath": "backend/app/models/ticket.py",
+      "summary": "定义工单、工单消息和审计日志模型，以及工单编号和枚举值辅助函数。",
+      "tags": [
+        "data-model",
+        "sqlmodel",
+        "database",
+        "domain"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/models/ticket.py:get_ticket_number",
+      "type": "function",
+      "name": "get_ticket_number",
+      "filePath": "backend/app/models/ticket.py",
+      "lineRange": [
+        22,
+        24
+      ],
+      "summary": "提供 get_ticket_number 模型辅助函数，用于默认值生成或枚举值转换。",
+      "tags": [
+        "function",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/models/ticket.py:get_enum_values",
+      "type": "function",
+      "name": "get_enum_values",
+      "filePath": "backend/app/models/ticket.py",
+      "lineRange": [
+        27,
+        36
+      ],
+      "summary": "提供 get_enum_values 模型辅助函数，用于默认值生成或枚举值转换。",
+      "tags": [
+        "function",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/models/ticket.py:Ticket",
+      "type": "class",
+      "name": "Ticket",
+      "filePath": "backend/app/models/ticket.py",
+      "lineRange": [
+        39,
+        154
+      ],
+      "summary": "Ticket 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/models/ticket.py:TicketMessage",
+      "type": "class",
+      "name": "TicketMessage",
+      "filePath": "backend/app/models/ticket.py",
+      "lineRange": [
+        157,
+        197
+      ],
+      "summary": "TicketMessage 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/models/ticket.py:TicketAuditLog",
+      "type": "class",
+      "name": "TicketAuditLog",
+      "filePath": "backend/app/models/ticket.py",
+      "lineRange": [
+        200,
+        245
+      ],
+      "summary": "TicketAuditLog 持久化模型定义了相关领域数据的字段、关系和数据库约束。",
+      "tags": [
+        "class",
+        "data-model",
+        "ticket"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/core/secret_crypto.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/secret_crypto.py",
+      "target": "function:backend/app/core/secret_crypto.py:secret_cipher_from_settings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/secret_crypto.py",
+      "target": "function:backend/app/core/secret_crypto.py:secret_cipher_from_settings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/secret_crypto.py",
+      "target": "class:backend/app/core/secret_crypto.py:SecretCipher",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/secret_crypto.py",
+      "target": "class:backend/app/core/secret_crypto.py:SecretCipher",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "function:backend/app/core/workspace.py:build_workspace_context",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "function:backend/app/core/workspace.py:build_workspace_context",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "function:backend/app/core/workspace.py:ensure_workspace_owner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "function:backend/app/core/workspace.py:ensure_workspace_owner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "class:backend/app/core/workspace.py:WorkspaceContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "class:backend/app/core/workspace.py:WorkspaceContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "class:backend/app/core/workspace.py:WorkspacePolicy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/workspace.py",
+      "target": "class:backend/app/core/workspace.py:WorkspacePolicy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/attachment.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/__init__.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "function:backend/app/models/ai.py:enum_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "function:backend/app/models/ai.py:enum_values",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiAgentStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiAgentStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiAgent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiAgent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiProviderConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiProviderConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:ConversationMode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:ConversationMode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:ConversationStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:ConversationStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessageRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessageRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessageStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessageStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunEventType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunEventType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiConversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiConversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiMessage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRun",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRun",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiRunEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiToolPermission",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ai.py",
+      "target": "class:backend/app/models/ai.py:AiToolPermission",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/attachment.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/attachment.py",
+      "target": "class:backend/app/models/attachment.py:Attachment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/attachment.py",
+      "target": "class:backend/app/models/attachment.py:Attachment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:UserRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:UserRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketPriority",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketPriority",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketCategory",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketCategory",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketMessageType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketMessageType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketAuditAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/enums.py",
+      "target": "class:backend/app/models/enums.py:TicketAuditAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeDocumentStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeDocumentStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:IngestionJobStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:IngestionJobStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeDocument",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeDocument",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeChunk",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:KnowledgeChunk",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:DocumentIngestionJob",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/knowledge.py",
+      "target": "class:backend/app/models/knowledge.py:DocumentIngestionJob",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "function:backend/app/models/ticket.py:get_ticket_number",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "function:backend/app/models/ticket.py:get_ticket_number",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "function:backend/app/models/ticket.py:get_enum_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "function:backend/app/models/ticket.py:get_enum_values",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:Ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:Ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:TicketMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:TicketMessage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:TicketAuditLog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/models/ticket.py",
+      "target": "class:backend/app/models/ticket.py:TicketAuditLog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

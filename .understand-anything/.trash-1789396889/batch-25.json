@@ -1,0 +1,184 @@
+{
+  "nodes": [
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/design.md",
+      "summary": "记录本地头像上传的技术设计，说明后端存储配置、UserService 方法、图片校验规则、头像 API，以及前端上传、删除和展示兼容方案。",
+      "tags": [
+        "需求归档",
+        "技术设计",
+        "头像上传",
+        "后端 API",
+        "前端 UI"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 以背景、目标、技术方案、风险和任务拆分组织，适合作为实现本地头像上传能力的设计依据。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/proposal.md",
+      "summary": "提出将头像从手填外链 URL 改为资料页本地上传的产品变更，明确适用角色、系统生成 avatar_url、清除头像能力和不做裁剪/CDN 等边界。",
+      "tags": [
+        "需求提案",
+        "产品目标",
+        "头像上传",
+        "范围界定"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档用目标、非目标和验收描述需求边界，语言偏产品定义而非实现细节。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/review.md",
+      "type": "document",
+      "name": "review.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/review.md",
+      "summary": "归档本地头像上传的实现审查结论，覆盖后端接口、配置、UserService、测试、前端头像组件、生成类型和系统文档，并给出 PASS 结果。",
+      "tags": [
+        "实现审查",
+        "质量检查",
+        "权限边界",
+        "安全校验",
+        "回归风险"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 按结论、审查范围、检查结果和备注展开，重点确认 spec 对齐、权限、安全校验和展示兼容。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "type": "document",
+      "name": "spec.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "summary": "定义本地头像上传的功能规格，包含资料页上传、后端安全校验、本地存储读取、清除头像、展示兼容，以及上传、非法头像、清除头像三个场景。",
+      "tags": [
+        "功能规格",
+        "验收标准",
+        "头像上传",
+        "安全校验",
+        "用户资料"
+      ],
+      "complexity": "simple",
+      "languageNotes": "规格采用需求表和 Given/When/Then 场景描述，清楚约束公开读取头像、上传清除需登录和旧外链入口关闭。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/tasks.md",
+      "summary": "列出本地头像上传需求的完成状态，确认后端头像存储与接口、前端上传删除 UI、文档验证归档三项任务均已完成。",
+      "tags": [
+        "任务清单",
+        "完成状态",
+        "需求归档",
+        "头像上传"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是短 Markdown checklist，用已勾选任务呈现归档需求的实施闭环。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-local-avatar-upload/verification.md",
+      "type": "document",
+      "name": "verification.md",
+      "filePath": "changes/archive/2026-09-14-local-avatar-upload/verification.md",
+      "summary": "记录本地头像上传的验证结果，包括前端 build、mypy、pytest、Docker 后端构建、git diff 检查，以及真实接口上传、公开读取、拒绝旧 avatar_url 和删除头像验证。",
+      "tags": [
+        "验证记录",
+        "接口验证",
+        "测试命令",
+        "头像上传",
+        "回归检查"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档区分自动化检查和真实接口验证，并补充数据库初始化与 pytest 运行目录这类操作注意事项。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/proposal.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/design.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/design.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/tasks.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/review.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/spec.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/verification.md",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:changes/archive/2026-09-14-local-avatar-upload/tasks.md",
+      "target": "document:changes/archive/2026-09-14-local-avatar-upload/verification.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

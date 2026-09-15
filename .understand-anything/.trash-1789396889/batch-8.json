@@ -1,0 +1,5277 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/schemas/common.py",
+      "type": "file",
+      "name": "common.py",
+      "filePath": "backend/app/schemas/common.py",
+      "summary": "通用 API 响应 Schema。",
+      "tags": [
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/common.py:ErrorResponse",
+      "type": "class",
+      "name": "ErrorResponse",
+      "filePath": "backend/app/schemas/common.py",
+      "lineRange": [
+        6,
+        11
+      ],
+      "summary": "稳定且不暴露内部细节的错误响应。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/common.py:Message",
+      "type": "class",
+      "name": "Message",
+      "filePath": "backend/app/schemas/common.py",
+      "lineRange": [
+        14,
+        17
+      ],
+      "summary": "通用消息响应。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/schemas/user.py",
+      "type": "file",
+      "name": "user.py",
+      "filePath": "backend/app/schemas/user.py",
+      "summary": "用户请求与响应 API Schema。",
+      "tags": [
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:StrictInput",
+      "type": "class",
+      "name": "StrictInput",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        13,
+        16
+      ],
+      "summary": "拒绝未声明字段的外部输入基类。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserFilters",
+      "type": "class",
+      "name": "UserFilters",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        19,
+        35
+      ],
+      "summary": "管理员用户列表筛选与分页参数。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserCreate",
+      "type": "class",
+      "name": "UserCreate",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        38,
+        45
+      ],
+      "summary": "管理员创建用户请求，保持当前模板字段兼容。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserCreateAdmin",
+      "type": "class",
+      "name": "UserCreateAdmin",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        48,
+        55
+      ],
+      "summary": "管理员按单角色模型创建用户的请求。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserRegister",
+      "type": "class",
+      "name": "UserRegister",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "公开注册请求，不接受角色和启用状态字段。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserUpdate",
+      "type": "class",
+      "name": "UserUpdate",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        66,
+        73
+      ],
+      "summary": "管理员更新用户请求，保持现有接口名称和字段。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserUpdateAdmin",
+      "type": "class",
+      "name": "UserUpdateAdmin",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        76,
+        83
+      ],
+      "summary": "管理员按单角色模型更新用户的请求。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserUpdateMe",
+      "type": "class",
+      "name": "UserUpdateMe",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        86,
+        90
+      ],
+      "summary": "当前用户更新个人资料请求，不接受头像外链字段。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UserPublic",
+      "type": "class",
+      "name": "UserPublic",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        93,
+        105
+      ],
+      "summary": "用户公开响应，不包含密码字段。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/schemas/user.py:UsersPublic",
+      "type": "class",
+      "name": "UsersPublic",
+      "filePath": "backend/app/schemas/user.py",
+      "lineRange": [
+        108,
+        112
+      ],
+      "summary": "用户分页响应。",
+      "tags": [
+        "类",
+        "后端",
+        "schema",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/services/user_service.py",
+      "type": "file",
+      "name": "user_service.py",
+      "filePath": "backend/app/services/user_service.py",
+      "summary": "用户角色管理、事务与并发不变量服务。",
+      "tags": [
+        "后端",
+        "service",
+        "用户"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/app/services/user_service.py:AvatarUpload",
+      "type": "class",
+      "name": "AvatarUpload",
+      "filePath": "backend/app/services/user_service.py",
+      "lineRange": [
+        46,
+        54
+      ],
+      "summary": "头像上传对象所需的最小异步读取接口。",
+      "tags": [
+        "类",
+        "后端",
+        "service",
+        "用户"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/services/user_service.py:UserService",
+      "type": "class",
+      "name": "UserService",
+      "filePath": "backend/app/services/user_service.py",
+      "lineRange": [
+        87,
+        370
+      ],
+      "summary": "封装三角色用户管理及其数据库事务边界。",
+      "tags": [
+        "类",
+        "后端",
+        "service",
+        "用户"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/services/user_service.py:validate_avatar_bytes",
+      "type": "function",
+      "name": "validate_avatar_bytes",
+      "filePath": "backend/app/services/user_service.py",
+      "lineRange": [
+        57,
+        84
+      ],
+      "summary": "校验头像扩展名、MIME、大小和图片文件签名。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "头像"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/tests_pre_start.py",
+      "type": "file",
+      "name": "tests_pre_start.py",
+      "filePath": "backend/app/tests_pre_start.py",
+      "summary": "tests_pre_start.py 承载后端 test 相关逻辑。",
+      "tags": [
+        "后端",
+        "启动检查"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/tests_pre_start.py:init",
+      "type": "function",
+      "name": "init",
+      "filePath": "backend/app/tests_pre_start.py",
+      "lineRange": [
+        22,
+        29
+      ],
+      "summary": "init 封装 tests_pre_start.py 中的一段可复用后端逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "启动检查"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/tests_pre_start.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "backend/app/tests_pre_start.py",
+      "lineRange": [
+        32,
+        35
+      ],
+      "summary": "main 封装 tests_pre_start.py 中的一段可复用后端逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "启动检查"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/utils.py",
+      "type": "file",
+      "name": "utils.py",
+      "filePath": "backend/app/utils.py",
+      "summary": "提供邮件模板渲染、SMTP 发送以及密码重置 token 生成和校验等后端工具函数。",
+      "tags": [
+        "后端",
+        "工具"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/utils.py:EmailData",
+      "type": "class",
+      "name": "EmailData",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        20,
+        22
+      ],
+      "summary": "EmailData 是 utils.py 中的结构化类型，承载字段约束、协议或测试夹具定义。",
+      "tags": [
+        "类",
+        "后端",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:render_email_template",
+      "type": "function",
+      "name": "render_email_template",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        25,
+        30
+      ],
+      "summary": "render_email_template 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:send_email",
+      "type": "function",
+      "name": "send_email",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        33,
+        56
+      ],
+      "summary": "send_email 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:generate_test_email",
+      "type": "function",
+      "name": "generate_test_email",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        59,
+        66
+      ],
+      "summary": "generate_test_email 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:generate_reset_password_email",
+      "type": "function",
+      "name": "generate_reset_password_email",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        69,
+        83
+      ],
+      "summary": "generate_reset_password_email 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:generate_new_account_email",
+      "type": "function",
+      "name": "generate_new_account_email",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        86,
+        101
+      ],
+      "summary": "generate_new_account_email 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:generate_password_reset_token",
+      "type": "function",
+      "name": "generate_password_reset_token",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        104,
+        114
+      ],
+      "summary": "generate_password_reset_token 处理密码重置 token 的生成或校验逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/utils.py:verify_password_reset_token",
+      "type": "function",
+      "name": "verify_password_reset_token",
+      "filePath": "backend/app/utils.py",
+      "lineRange": [
+        117,
+        124
+      ],
+      "summary": "verify_password_reset_token 处理密码重置 token 的生成或校验逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "工具",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/api/routes/test_items.py",
+      "type": "file",
+      "name": "test_items.py",
+      "filePath": "backend/tests/api/routes/test_items.py",
+      "summary": "验证模板 Items API 已随数据表一起退出。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "API"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_items.py:test_items_route_is_retired",
+      "type": "function",
+      "name": "test_items_route_is_retired",
+      "filePath": "backend/tests/api/routes/test_items.py",
+      "lineRange": [
+        9,
+        14
+      ],
+      "summary": "旧 Items 路径应返回 404，避免访问已删除的数据表。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_items.py:test_items_are_absent_from_openapi",
+      "type": "function",
+      "name": "test_items_are_absent_from_openapi",
+      "filePath": "backend/tests/api/routes/test_items.py",
+      "lineRange": [
+        17,
+        22
+      ],
+      "summary": "OpenAPI 契约不得继续发布已退出的 Items 接口。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/api/routes/test_login.py",
+      "type": "file",
+      "name": "test_login.py",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_get_access_token",
+      "type": "function",
+      "name": "test_get_access_token",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        17,
+        26
+      ],
+      "summary": "test_get_access_token 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_get_access_token_incorrect_password",
+      "type": "function",
+      "name": "test_get_access_token_incorrect_password",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        29,
+        35
+      ],
+      "summary": "test_get_access_token_incorrect_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_use_access_token",
+      "type": "function",
+      "name": "test_use_access_token",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        38,
+        47
+      ],
+      "summary": "test_use_access_token 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_recovery_password",
+      "type": "function",
+      "name": "test_recovery_password",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        50,
+        65
+      ],
+      "summary": "test_recovery_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_recovery_password_user_not_exits",
+      "type": "function",
+      "name": "test_recovery_password_user_not_exits",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        68,
+        80
+      ],
+      "summary": "test_recovery_password_user_not_exits 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_reset_password",
+      "type": "function",
+      "name": "test_reset_password",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        83,
+        111
+      ],
+      "summary": "test_reset_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_reset_password_invalid_token",
+      "type": "function",
+      "name": "test_reset_password_invalid_token",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        114,
+        127
+      ],
+      "summary": "test_reset_password_invalid_token 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_login_with_bcrypt_password_upgrades_to_argon2",
+      "type": "function",
+      "name": "test_login_with_bcrypt_password_upgrades_to_argon2",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        130,
+        163
+      ],
+      "summary": "Test that logging in with a bcrypt password hash upgrades it to argon2.。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_login.py:test_login_with_argon2_password_keeps_hash",
+      "type": "function",
+      "name": "test_login_with_argon2_password_keeps_hash",
+      "filePath": "backend/tests/api/routes/test_login.py",
+      "lineRange": [
+        166,
+        192
+      ],
+      "summary": "Test that logging in with an argon2 password hash does not update it.。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "认证",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/api/routes/test_tickets.py",
+      "type": "file",
+      "name": "test_tickets.py",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "summary": "Ticket HTTP API 契约测试。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:backend/tests/api/routes/test_tickets.py:TrackedGraph",
+      "type": "class",
+      "name": "TrackedGraph",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        28,
+        33
+      ],
+      "summary": "记录路由测试创建的临时数据。",
+      "tags": [
+        "类",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:tracked_graph",
+      "type": "function",
+      "name": "tracked_graph",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        37,
+        60
+      ],
+      "summary": "按外键依赖顺序清理路由测试数据。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:create_user",
+      "type": "function",
+      "name": "create_user",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        63,
+        81
+      ],
+      "summary": "创建可登录的测试用户。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:auth_headers",
+      "type": "function",
+      "name": "auth_headers",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        84,
+        123
+      ],
+      "summary": "用登录接口换取访问令牌。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:create_ticket",
+      "type": "function",
+      "name": "create_ticket",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        126,
+        149
+      ],
+      "summary": "直接落库一个工单，作为 HTTP 契约测试的数据底座。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:test_ticket_collection_and_detail_contract",
+      "type": "function",
+      "name": "test_ticket_collection_and_detail_contract",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        152,
+        202
+      ],
+      "summary": "工单创建、列表、详情和统计路由应可直接命中。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "type": "function",
+      "name": "test_ticket_actions_enforce_permissions_and_errors",
+      "filePath": "backend/tests/api/routes/test_tickets.py",
+      "lineRange": [
+        205,
+        354
+      ],
+      "summary": "接手、分派、回复、状态与删除的路由契约应映射到领域错误。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "工单",
+        "测试用例"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/api/routes/test_users.py",
+      "type": "file",
+      "name": "test_users.py",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "API"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_users_superuser_me",
+      "type": "function",
+      "name": "test_get_users_superuser_me",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        17,
+        25
+      ],
+      "summary": "test_get_users_superuser_me 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_users_normal_user_me",
+      "type": "function",
+      "name": "test_get_users_normal_user_me",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        28,
+        36
+      ],
+      "summary": "test_get_users_normal_user_me 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_create_user_new_email",
+      "type": "function",
+      "name": "test_create_user_new_email",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        39,
+        76
+      ],
+      "summary": "test_create_user_new_email 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_as_superuser",
+      "type": "function",
+      "name": "test_get_existing_user_as_superuser",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        79,
+        95
+      ],
+      "summary": "test_get_existing_user_as_superuser 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_as_superuser",
+      "type": "function",
+      "name": "test_get_non_existing_user_as_superuser",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        98,
+        106
+      ],
+      "summary": "test_get_non_existing_user_as_superuser 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_current_user",
+      "type": "function",
+      "name": "test_get_existing_user_current_user",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        109,
+        133
+      ],
+      "summary": "test_get_existing_user_current_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_permissions_error",
+      "type": "function",
+      "name": "test_get_existing_user_permissions_error",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        136,
+        148
+      ],
+      "summary": "test_get_existing_user_permissions_error 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_permissions_error",
+      "type": "function",
+      "name": "test_get_non_existing_user_permissions_error",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        151,
+        162
+      ],
+      "summary": "test_get_non_existing_user_permissions_error 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_create_user_existing_username",
+      "type": "function",
+      "name": "test_create_user_existing_username",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        165,
+        181
+      ],
+      "summary": "test_create_user_existing_username 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_create_user_by_normal_user",
+      "type": "function",
+      "name": "test_create_user_by_normal_user",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        184,
+        195
+      ],
+      "summary": "test_create_user_by_normal_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_retrieve_users",
+      "type": "function",
+      "name": "test_retrieve_users",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        198,
+        218
+      ],
+      "summary": "test_retrieve_users 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_retrieve_users_supports_role_status_query_and_pagination",
+      "type": "function",
+      "name": "test_retrieve_users_supports_role_status_query_and_pagination",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        221,
+        256
+      ],
+      "summary": "用户列表必须支持角色、启停和分页过滤。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_user_me",
+      "type": "function",
+      "name": "test_update_user_me",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        259,
+        279
+      ],
+      "summary": "test_update_user_me 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_password_me",
+      "type": "function",
+      "name": "test_update_password_me",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        282,
+        322
+      ],
+      "summary": "test_update_password_me 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_password_me_incorrect_password",
+      "type": "function",
+      "name": "test_update_password_me_incorrect_password",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        325,
+        337
+      ],
+      "summary": "test_update_password_me_incorrect_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_user_me_email_exists",
+      "type": "function",
+      "name": "test_update_user_me_email_exists",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        340,
+        355
+      ],
+      "summary": "test_update_user_me_email_exists 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_password_me_same_password_error",
+      "type": "function",
+      "name": "test_update_password_me_same_password_error",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        358,
+        374
+      ],
+      "summary": "test_update_password_me_same_password_error 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_register_user",
+      "type": "function",
+      "name": "test_register_user",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        377,
+        397
+      ],
+      "summary": "test_register_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_register_user_already_exists_error",
+      "type": "function",
+      "name": "test_register_user_already_exists_error",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        400,
+        416
+      ],
+      "summary": "test_register_user_already_exists_error 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_user",
+      "type": "function",
+      "name": "test_update_user",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        419,
+        442
+      ],
+      "summary": "test_update_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_user_not_exists",
+      "type": "function",
+      "name": "test_update_user_not_exists",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        445,
+        455
+      ],
+      "summary": "test_update_user_not_exists 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_user_email_exists",
+      "type": "function",
+      "name": "test_update_user_email_exists",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        458,
+        478
+      ],
+      "summary": "test_update_user_email_exists 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_update_last_active_admin_returns_stable_error",
+      "type": "function",
+      "name": "test_update_last_active_admin_returns_stable_error",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        481,
+        497
+      ],
+      "summary": "最后一个活跃 Admin 触发稳定的结构化 409 错误。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/api/routes/test_users.py:test_user_delete_endpoints_are_removed",
+      "type": "function",
+      "name": "test_user_delete_endpoints_are_removed",
+      "filePath": "backend/tests/api/routes/test_users.py",
+      "lineRange": [
+        500,
+        509
+      ],
+      "summary": "用户管理仅支持角色和启停，不再暴露物理删除端点。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "API",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/conftest.py",
+      "type": "file",
+      "name": "conftest.py",
+      "filePath": "backend/tests/conftest.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:_default_workspace",
+      "type": "function",
+      "name": "_default_workspace",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        33,
+        36
+      ],
+      "summary": "读取测试库中的默认 Workspace。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "内部实现",
+        "Workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "type": "function",
+      "name": "_ensure_default_workspace_member",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        39,
+        60
+      ],
+      "summary": "确保测试登录用户具备默认 Workspace 成员身份。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "内部实现",
+        "Workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:_with_workspace_header",
+      "type": "function",
+      "name": "_with_workspace_header",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "为需要租户上下文的 API 测试补充 Workspace 请求头。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "内部实现",
+        "Workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:db",
+      "type": "function",
+      "name": "db",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        69,
+        97
+      ],
+      "summary": "提供应用数据库会话并按 RESTRICT 外键顺序清理数据。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:client",
+      "type": "function",
+      "name": "client",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        101,
+        103
+      ],
+      "summary": "client 封装 conftest.py 中的一段可复用后端逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:superuser_token_headers",
+      "type": "function",
+      "name": "superuser_token_headers",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        107,
+        110
+      ],
+      "summary": "superuser_token_headers 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/conftest.py:normal_user_token_headers",
+      "type": "function",
+      "name": "normal_user_token_headers",
+      "filePath": "backend/tests/conftest.py",
+      "lineRange": [
+        114,
+        120
+      ],
+      "summary": "normal_user_token_headers 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/crud/test_user.py",
+      "type": "file",
+      "name": "test_user.py",
+      "filePath": "backend/tests/crud/test_user.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_create_user",
+      "type": "function",
+      "name": "test_create_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        12,
+        18
+      ],
+      "summary": "test_create_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_authenticate_user",
+      "type": "function",
+      "name": "test_authenticate_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        21,
+        28
+      ],
+      "summary": "test_authenticate_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_not_authenticate_user",
+      "type": "function",
+      "name": "test_not_authenticate_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        31,
+        35
+      ],
+      "summary": "test_not_authenticate_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active",
+      "type": "function",
+      "name": "test_check_if_user_is_active",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        38,
+        43
+      ],
+      "summary": "test_check_if_user_is_active 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active_inactive",
+      "type": "function",
+      "name": "test_check_if_user_is_active_inactive",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        46,
+        51
+      ],
+      "summary": "test_check_if_user_is_active_inactive 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser",
+      "type": "function",
+      "name": "test_check_if_user_is_superuser",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        54,
+        59
+      ],
+      "summary": "test_check_if_user_is_superuser 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser_normal_user",
+      "type": "function",
+      "name": "test_check_if_user_is_superuser_normal_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        62,
+        67
+      ],
+      "summary": "test_check_if_user_is_superuser_normal_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_get_user",
+      "type": "function",
+      "name": "test_get_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        70,
+        78
+      ],
+      "summary": "test_get_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_update_user",
+      "type": "function",
+      "name": "test_update_user",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        81,
+        94
+      ],
+      "summary": "test_update_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/crud/test_user.py:test_authenticate_user_with_bcrypt_upgrades_to_argon2",
+      "type": "function",
+      "name": "test_authenticate_user_with_bcrypt_upgrades_to_argon2",
+      "filePath": "backend/tests/crud/test_user.py",
+      "lineRange": [
+        97,
+        131
+      ],
+      "summary": "Test that a user with bcrypt password hash gets upgraded to argon2 on login.。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "CRUD",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/repositories/test_user_repository.py",
+      "type": "file",
+      "name": "test_user_repository.py",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "summary": "用户仓储筛选、分页和 PostgreSQL 行锁测试。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "repository"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        22,
+        40
+      ],
+      "summary": "make_user 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:persisted_users",
+      "type": "function",
+      "name": "persisted_users",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        44,
+        52
+      ],
+      "summary": "持久化测试用户，并在单例结束后按主键清理。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        55,
+        60
+      ],
+      "summary": "提交测试数据并登记清理范围。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_user_filters_normalize_query_and_validate_pagination",
+      "type": "function",
+      "name": "test_user_filters_normalize_query_and_validate_pagination",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        63,
+        74
+      ],
+      "summary": "test_user_filters_normalize_query_and_validate_pagination 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_getters_and_add_use_the_callers_session",
+      "type": "function",
+      "name": "test_getters_and_add_use_the_callers_session",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        77,
+        92
+      ],
+      "summary": "test_getters_and_add_use_the_callers_session 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_list_users_combines_filters_count_and_stable_pagination",
+      "type": "function",
+      "name": "test_list_users_combines_filters_count_and_stable_pagination",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        95,
+        143
+      ],
+      "summary": "test_list_users_combines_filters_count_and_stable_pagination 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "type": "function",
+      "name": "test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        146,
+        171
+      ],
+      "summary": "test_list_users_matches_email_and_full_name_with_literal_like_characters 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_list_active_agents_returns_only_active_agents_in_id_order",
+      "type": "function",
+      "name": "test_list_active_agents_returns_only_active_agents_in_id_order",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        174,
+        206
+      ],
+      "summary": "test_list_active_agents_returns_only_active_agents_in_id_order 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "type": "function",
+      "name": "test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        209,
+        234
+      ],
+      "summary": "test_lock_active_admins_returns_only_active_admins_in_id_order 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_lock_queries_refresh_an_existing_identity_map_user",
+      "type": "function",
+      "name": "test_lock_queries_refresh_an_existing_identity_map_user",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        237,
+        259
+      ],
+      "summary": "test_lock_queries_refresh_an_existing_identity_map_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_user_repository.py:test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "type": "function",
+      "name": "test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "filePath": "backend/tests/repositories/test_user_repository.py",
+      "lineRange": [
+        262,
+        282
+      ],
+      "summary": "test_active_admin_lock_blocks_an_independent_session_until_transaction_ends 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "repository",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/scripts/test_backend_pre_start.py",
+      "type": "file",
+      "name": "test_backend_pre_start.py",
+      "filePath": "backend/tests/scripts/test_backend_pre_start.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "启动检查"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/scripts/test_backend_pre_start.py:test_init_successful_connection",
+      "type": "function",
+      "name": "test_init_successful_connection",
+      "filePath": "backend/tests/scripts/test_backend_pre_start.py",
+      "lineRange": [
+        8,
+        33
+      ],
+      "summary": "test_init_successful_connection 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "启动检查",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/scripts/test_test_pre_start.py",
+      "type": "file",
+      "name": "test_test_pre_start.py",
+      "filePath": "backend/tests/scripts/test_test_pre_start.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "启动检查"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/scripts/test_test_pre_start.py:test_init_successful_connection",
+      "type": "function",
+      "name": "test_init_successful_connection",
+      "filePath": "backend/tests/scripts/test_test_pre_start.py",
+      "lineRange": [
+        8,
+        33
+      ],
+      "summary": "test_init_successful_connection 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "启动检查",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/services/test_user_service.py",
+      "type": "file",
+      "name": "test_user_service.py",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "summary": "三角色用户服务、事务与最后 Admin 并发测试。",
+      "tags": [
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        37,
+        51
+      ],
+      "summary": "构造具有唯一邮箱的服务测试用户。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:tracked_user_ids",
+      "type": "function",
+      "name": "tracked_user_ids",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        55,
+        63
+      ],
+      "summary": "登记并清理服务测试创建的用户。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        66,
+        72
+      ],
+      "summary": "持久化用户并登记清理主键。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_accepts_real_png_header",
+      "type": "function",
+      "name": "test_validate_avatar_bytes_accepts_real_png_header",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        75,
+        82
+      ],
+      "summary": "头像校验应接受扩展名、MIME 和图片签名一致的 PNG。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例",
+        "头像"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_rejects_unsafe_or_fake_images",
+      "type": "function",
+      "name": "test_validate_avatar_bytes_rejects_unsafe_or_fake_images",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        95,
+        104
+      ],
+      "summary": "头像校验应拒绝路径穿越、非法类型、MIME 伪造和伪图片内容。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例",
+        "头像"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_register_customer_forces_active_customer_and_hashes_password",
+      "type": "function",
+      "name": "test_register_customer_forces_active_customer_and_hashes_password",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        107,
+        125
+      ],
+      "summary": "test_register_customer_forces_active_customer_and_hashes_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_register_customer_rejects_existing_email_and_rolls_back",
+      "type": "function",
+      "name": "test_register_customer_rejects_existing_email_and_rolls_back",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        128,
+        139
+      ],
+      "summary": "test_register_customer_rejects_existing_email_and_rolls_back 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_concurrent_registration_maps_unique_violation_to_email_conflict",
+      "type": "function",
+      "name": "test_concurrent_registration_maps_unique_violation_to_email_conflict",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        142,
+        184
+      ],
+      "summary": "test_concurrent_registration_maps_unique_violation_to_email_conflict 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_admin_can_create_all_roles",
+      "type": "function",
+      "name": "test_admin_can_create_all_roles",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        187,
+        205
+      ],
+      "summary": "test_admin_can_create_all_roles 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_non_admin_cannot_manage_users",
+      "type": "function",
+      "name": "test_non_admin_cannot_manage_users",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        209,
+        229
+      ],
+      "summary": "test_non_admin_cannot_manage_users 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_list_users_maps_repository_results_with_roles",
+      "type": "function",
+      "name": "test_list_users_maps_repository_results_with_roles",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        232,
+        250
+      ],
+      "summary": "test_list_users_maps_repository_results_with_roles 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_update_me_changes_only_profile_fields",
+      "type": "function",
+      "name": "test_update_me_changes_only_profile_fields",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        254,
+        278
+      ],
+      "summary": "test_update_me_changes_only_profile_fields 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_admin_updates_role_status_profile_and_password",
+      "type": "function",
+      "name": "test_admin_updates_role_status_profile_and_password",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        281,
+        307
+      ],
+      "summary": "test_admin_updates_role_status_profile_and_password 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_admin_update_rejects_missing_user",
+      "type": "function",
+      "name": "test_admin_update_rejects_missing_user",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        310,
+        319
+      ],
+      "summary": "test_admin_update_rejects_missing_user 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:isolate_active_admins",
+      "type": "function",
+      "name": "isolate_active_admins",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        322,
+        344
+      ],
+      "summary": "暂时停用环境 Admin，只保留给定测试 Admin。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:restore_active_admins",
+      "type": "function",
+      "name": "restore_active_admins",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        347,
+        353
+      ],
+      "summary": "恢复测试前的活跃 Admin。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "type": "function",
+      "name": "test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        356,
+        379
+      ],
+      "summary": "test_last_active_admin_cannot_be_deactivated_or_demoted 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "type": "function",
+      "name": "test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "filePath": "backend/tests/services/test_user_service.py",
+      "lineRange": [
+        382,
+        450
+      ],
+      "summary": "test_concurrent_admin_deactivation_preserves_one_active_admin 验证对应后端接口、仓储或服务在典型和边界场景下的行为。",
+      "tags": [
+        "函数",
+        "后端",
+        "service",
+        "用户",
+        "pytest",
+        "测试",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/test_openapi.py",
+      "type": "file",
+      "name": "test_openapi.py",
+      "filePath": "backend/tests/test_openapi.py",
+      "summary": "OpenAPI 契约稳定性测试。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "OpenAPI"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/test_openapi.py:test_openapi_exposes_ticket_and_user_tags_without_items",
+      "type": "function",
+      "name": "test_openapi_exposes_ticket_and_user_tags_without_items",
+      "filePath": "backend/tests/test_openapi.py",
+      "lineRange": [
+        10,
+        22
+      ],
+      "summary": "生成的 OpenAPI 应包含 Ticket/User，且不再暴露 Items。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "OpenAPI",
+        "测试用例"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/utils/user.py",
+      "type": "file",
+      "name": "user.py",
+      "filePath": "backend/tests/utils/user.py",
+      "summary": "覆盖后端用户、认证、工单、仓储或启动脚本行为的 pytest 测试模块。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/user.py:user_authentication_headers",
+      "type": "function",
+      "name": "user_authentication_headers",
+      "filePath": "backend/tests/utils/user.py",
+      "lineRange": [
+        11,
+        20
+      ],
+      "summary": "user_authentication_headers 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/user.py:create_random_user",
+      "type": "function",
+      "name": "create_random_user",
+      "filePath": "backend/tests/utils/user.py",
+      "lineRange": [
+        23,
+        28
+      ],
+      "summary": "create_random_user 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/user.py:authentication_token_from_email",
+      "type": "function",
+      "name": "authentication_token_from_email",
+      "filePath": "backend/tests/utils/user.py",
+      "lineRange": [
+        31,
+        50
+      ],
+      "summary": "Return a valid token for the user with given email.，If the user doesn't exist it is created first.。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具",
+        "邮件",
+        "token"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/utils/utils.py",
+      "type": "file",
+      "name": "utils.py",
+      "filePath": "backend/tests/utils/utils.py",
+      "summary": "提供邮件模板渲染、SMTP 发送以及密码重置 token 生成和校验等后端工具函数。",
+      "tags": [
+        "后端",
+        "pytest",
+        "测试",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/utils.py:random_lower_string",
+      "type": "function",
+      "name": "random_lower_string",
+      "filePath": "backend/tests/utils/utils.py",
+      "lineRange": [
+        9,
+        10
+      ],
+      "summary": "random_lower_string 封装 utils.py 中的一段可复用后端逻辑。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/utils.py:random_email",
+      "type": "function",
+      "name": "random_email",
+      "filePath": "backend/tests/utils/utils.py",
+      "lineRange": [
+        13,
+        14
+      ],
+      "summary": "random_email 生成或发送邮件内容，封装模板、主题和收件人参数。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具",
+        "邮件"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/utils/utils.py:get_superuser_token_headers",
+      "type": "function",
+      "name": "get_superuser_token_headers",
+      "filePath": "backend/tests/utils/utils.py",
+      "lineRange": [
+        17,
+        26
+      ],
+      "summary": "get_superuser_token_headers 构造、查询或校验用户相关数据，支撑认证与用户管理流程。",
+      "tags": [
+        "函数",
+        "后端",
+        "pytest",
+        "测试",
+        "工具",
+        "token"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/schemas/common.py",
+      "target": "class:backend/app/schemas/common.py:ErrorResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/common.py",
+      "target": "class:backend/app/schemas/common.py:Message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/common.py",
+      "target": "class:backend/app/schemas/common.py:ErrorResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/common.py",
+      "target": "class:backend/app/schemas/common.py:Message",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:StrictInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserCreateAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserRegister",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdateAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdateMe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UsersPublic",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:StrictInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserCreateAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserRegister",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdateAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserUpdateMe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UserPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "class:backend/app/schemas/user.py:UsersPublic",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "class:backend/app/services/user_service.py:AvatarUpload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "class:backend/app/services/user_service.py:UserService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "function:backend/app/services/user_service.py:validate_avatar_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "class:backend/app/services/user_service.py:AvatarUpload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "function:backend/app/services/user_service.py:validate_avatar_bytes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "class:backend/app/services/user_service.py:UserService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/tests_pre_start.py",
+      "target": "function:backend/app/tests_pre_start.py:init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/tests_pre_start.py",
+      "target": "function:backend/app/tests_pre_start.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/tests_pre_start.py",
+      "target": "function:backend/app/tests_pre_start.py:init",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/tests_pre_start.py",
+      "target": "function:backend/app/tests_pre_start.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/tests_pre_start.py:main",
+      "target": "function:backend/app/tests_pre_start.py:init",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "class:backend/app/utils.py:EmailData",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:render_email_template",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:send_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_test_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_reset_password_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_new_account_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_password_reset_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:verify_password_reset_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "class:backend/app/utils.py:EmailData",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:render_email_template",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:send_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_test_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_reset_password_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_new_account_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:generate_password_reset_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "function:backend/app/utils.py:verify_password_reset_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_test_email",
+      "target": "function:backend/app/utils.py:render_email_template",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_test_email",
+      "target": "class:backend/app/utils.py:EmailData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_reset_password_email",
+      "target": "function:backend/app/utils.py:render_email_template",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_reset_password_email",
+      "target": "class:backend/app/utils.py:EmailData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_new_account_email",
+      "target": "function:backend/app/utils.py:render_email_template",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/utils.py:generate_new_account_email",
+      "target": "class:backend/app/utils.py:EmailData",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "function:backend/tests/api/routes/test_items.py:test_items_route_is_retired",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "function:backend/tests/api/routes/test_items.py:test_items_are_absent_from_openapi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "function:backend/tests/api/routes/test_items.py:test_items_route_is_retired",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "function:backend/tests/api/routes/test_items.py:test_items_are_absent_from_openapi",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_get_access_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_get_access_token_incorrect_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_use_access_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_recovery_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_recovery_password_user_not_exits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_reset_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_reset_password_invalid_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_login_with_bcrypt_password_upgrades_to_argon2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_login_with_argon2_password_keeps_hash",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_get_access_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_get_access_token_incorrect_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_use_access_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_recovery_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_recovery_password_user_not_exits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_reset_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_reset_password_invalid_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_login_with_bcrypt_password_upgrades_to_argon2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "function:backend/tests/api/routes/test_login.py:test_login_with_argon2_password_keeps_hash",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "class:backend/tests/api/routes/test_tickets.py:TrackedGraph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:tracked_graph",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:auth_headers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:test_ticket_collection_and_detail_contract",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "class:backend/tests/api/routes/test_tickets.py:TrackedGraph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:tracked_graph",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:auth_headers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:test_ticket_collection_and_detail_contract",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/api/routes/test_tickets.py:tracked_graph",
+      "target": "class:backend/tests/api/routes/test_tickets.py:TrackedGraph",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "target": "function:backend/tests/api/routes/test_tickets.py:auth_headers",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/api/routes/test_tickets.py:test_ticket_actions_enforce_permissions_and_errors",
+      "target": "function:backend/tests/api/routes/test_tickets.py:create_ticket",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_users_superuser_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_users_normal_user_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_new_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_as_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_as_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_current_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_permissions_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_permissions_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_existing_username",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_by_normal_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_retrieve_users",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_retrieve_users_supports_role_status_query_and_pagination",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me_incorrect_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_me_email_exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me_same_password_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_register_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_register_user_already_exists_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_not_exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_email_exists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_last_active_admin_returns_stable_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_user_delete_endpoints_are_removed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_users_superuser_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_users_normal_user_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_new_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_as_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_as_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_current_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_existing_user_permissions_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_get_non_existing_user_permissions_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_existing_username",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_create_user_by_normal_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_retrieve_users",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_retrieve_users_supports_role_status_query_and_pagination",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me_incorrect_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_me_email_exists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_password_me_same_password_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_register_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_register_user_already_exists_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_not_exists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_user_email_exists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_update_last_active_admin_returns_stable_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "function:backend/tests/api/routes/test_users.py:test_user_delete_endpoints_are_removed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_default_workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_with_workspace_header",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:client",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:superuser_token_headers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:normal_user_token_headers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_default_workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:_with_workspace_header",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:client",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:superuser_token_headers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "function:backend/tests/conftest.py:normal_user_token_headers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "target": "function:backend/tests/conftest.py:_default_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/conftest.py:superuser_token_headers",
+      "target": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/conftest.py:superuser_token_headers",
+      "target": "function:backend/tests/conftest.py:_with_workspace_header",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/conftest.py:normal_user_token_headers",
+      "target": "function:backend/tests/conftest.py:_ensure_default_workspace_member",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/conftest.py:normal_user_token_headers",
+      "target": "function:backend/tests/conftest.py:_with_workspace_header",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_create_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_authenticate_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_not_authenticate_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active_inactive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser_normal_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_get_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_update_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_authenticate_user_with_bcrypt_upgrades_to_argon2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_create_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_authenticate_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_not_authenticate_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_active_inactive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_check_if_user_is_superuser_normal_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_get_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_update_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "function:backend/tests/crud/test_user.py:test_authenticate_user_with_bcrypt_upgrades_to_argon2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persisted_users",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_user_filters_normalize_query_and_validate_pagination",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_getters_and_add_use_the_callers_session",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_users_combines_filters_count_and_stable_pagination",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_active_agents_returns_only_active_agents_in_id_order",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_lock_queries_refresh_an_existing_identity_map_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persisted_users",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_user_filters_normalize_query_and_validate_pagination",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_getters_and_add_use_the_callers_session",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_users_combines_filters_count_and_stable_pagination",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_list_active_agents_returns_only_active_agents_in_id_order",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_lock_queries_refresh_an_existing_identity_map_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "function:backend/tests/repositories/test_user_repository.py:test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_getters_and_add_use_the_callers_session",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_users_combines_filters_count_and_stable_pagination",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_users_combines_filters_count_and_stable_pagination",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_users_matches_email_and_full_name_with_literal_like_characters",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_active_agents_returns_only_active_agents_in_id_order",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_list_active_agents_returns_only_active_agents_in_id_order",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_lock_active_admins_returns_only_active_admins_in_id_order",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_lock_queries_refresh_an_existing_identity_map_user",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_lock_queries_refresh_an_existing_identity_map_user",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "target": "function:backend/tests/repositories/test_user_repository.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/repositories/test_user_repository.py:test_active_admin_lock_blocks_an_independent_session_until_transaction_ends",
+      "target": "function:backend/tests/repositories/test_user_repository.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/scripts/test_backend_pre_start.py",
+      "target": "function:backend/tests/scripts/test_backend_pre_start.py:test_init_successful_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/scripts/test_backend_pre_start.py",
+      "target": "function:backend/tests/scripts/test_backend_pre_start.py:test_init_successful_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/scripts/test_test_pre_start.py",
+      "target": "function:backend/tests/scripts/test_test_pre_start.py:test_init_successful_connection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/scripts/test_test_pre_start.py",
+      "target": "function:backend/tests/scripts/test_test_pre_start.py:test_init_successful_connection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:tracked_user_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_accepts_real_png_header",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_rejects_unsafe_or_fake_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_register_customer_forces_active_customer_and_hashes_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_register_customer_rejects_existing_email_and_rolls_back",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_concurrent_registration_maps_unique_violation_to_email_conflict",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_can_create_all_roles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_non_admin_cannot_manage_users",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_list_users_maps_repository_results_with_roles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_update_me_changes_only_profile_fields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_updates_role_status_profile_and_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_update_rejects_missing_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:isolate_active_admins",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:restore_active_admins",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:tracked_user_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_accepts_real_png_header",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_validate_avatar_bytes_rejects_unsafe_or_fake_images",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_register_customer_forces_active_customer_and_hashes_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_register_customer_rejects_existing_email_and_rolls_back",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_concurrent_registration_maps_unique_violation_to_email_conflict",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_can_create_all_roles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_non_admin_cannot_manage_users",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_list_users_maps_repository_results_with_roles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_update_me_changes_only_profile_fields",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_updates_role_status_profile_and_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_admin_update_rejects_missing_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:isolate_active_admins",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:restore_active_admins",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_register_customer_rejects_existing_email_and_rolls_back",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_register_customer_rejects_existing_email_and_rolls_back",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_admin_can_create_all_roles",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_non_admin_cannot_manage_users",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_list_users_maps_repository_results_with_roles",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_list_users_maps_repository_results_with_roles",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_update_me_changes_only_profile_fields",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_update_me_changes_only_profile_fields",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_admin_updates_role_status_profile_and_password",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_admin_updates_role_status_profile_and_password",
+      "target": "function:backend/tests/services/test_user_service.py:persist",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_admin_update_rejects_missing_user",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "target": "function:backend/tests/services/test_user_service.py:isolate_active_admins",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_last_active_admin_cannot_be_deactivated_or_demoted",
+      "target": "function:backend/tests/services/test_user_service.py:restore_active_admins",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "target": "function:backend/tests/services/test_user_service.py:make_user",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "target": "function:backend/tests/services/test_user_service.py:isolate_active_admins",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/services/test_user_service.py:test_concurrent_admin_deactivation_preserves_one_active_admin",
+      "target": "function:backend/tests/services/test_user_service.py:restore_active_admins",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/test_openapi.py",
+      "target": "function:backend/tests/test_openapi.py:test_openapi_exposes_ticket_and_user_tags_without_items",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/test_openapi.py",
+      "target": "function:backend/tests/test_openapi.py:test_openapi_exposes_ticket_and_user_tags_without_items",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:user_authentication_headers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:create_random_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:authentication_token_from_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:user_authentication_headers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:create_random_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "function:backend/tests/utils/user.py:authentication_token_from_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/utils/user.py:authentication_token_from_email",
+      "target": "function:backend/tests/utils/user.py:user_authentication_headers",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:random_lower_string",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:random_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:get_superuser_token_headers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:random_lower_string",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:random_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "function:backend/tests/utils/utils.py:get_superuser_token_headers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/tests/utils/utils.py:random_email",
+      "target": "function:backend/tests/utils/utils.py:random_lower_string",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/schemas/user.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/repositories/user_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/services/user_service.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/tests_pre_start.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "file:backend/app/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/utils.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_items.py",
+      "target": "file:backend/app/main.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/app/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/tests/utils/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_login.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_tickets.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/tests/utils/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/api/routes/test_users.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/main.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/attachment.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/tests/utils/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/conftest.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/app/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/crud/test_user.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "file:backend/app/repositories/user_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/repositories/test_user_repository.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/scripts/test_backend_pre_start.py",
+      "target": "file:backend/app/backend_pre_start.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/scripts/test_test_pre_start.py",
+      "target": "file:backend/app/tests_pre_start.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/repositories/user_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/services/test_user_service.py",
+      "target": "file:backend/app/services/user_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/test_openapi.py",
+      "target": "file:backend/app/main.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/app/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/user.py",
+      "target": "file:backend/tests/utils/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/tests/utils/utils.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

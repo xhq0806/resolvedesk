@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "document:changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-conversation-404.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-customer-conversation-404.md",
+      "filePath": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-conversation-404.md",
+      "summary": "记录 Customer 在线咨询接口 404 的完整排查过程，确认前端请求路径和本地源码路由无误，最终定位为运行中的 backend Docker 容器仍使用旧镜像代码，重建并重启后路由恢复。",
+      "tags": [
+        "调试记录",
+        "Customer 在线咨询",
+        "FastAPI 路由",
+        "Docker 重建",
+        "404 排查"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该 Markdown 文档按排查步骤、假设验证、根因链路、修复方案和验证结果组织，结构提取识别到 6 个章节；它描述的是运行态部署问题，不包含函数或类定义。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "document:changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-widget-send.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-customer-widget-send.md",
+      "filePath": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-customer-widget-send.md",
+      "summary": "记录 CustomerSupportWidget 发送按钮和 Enter 发送交互的前端修复过程，定位到按钮使用 icon 尺寸且 Textarea 未监听键盘事件，并说明 Enter、Shift+Enter 与输入法组合态的处理方式。",
+      "tags": [
+        "调试记录",
+        "CustomerSupportWidget",
+        "前端交互",
+        "发送按钮",
+        "键盘事件"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该 Markdown 文档围绕 UI 输入控件行为展开，章节结构清晰，结构提取识别到 6 个章节；文中引用 React 组件和构建命令，但自身不包含可执行代码结构。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "document:changes/active/fix-customer-conversation-404/debug-log-2026-09-14-settings-admin-tabs.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-settings-admin-tabs.md",
+      "filePath": "changes/active/fix-customer-conversation-404/debug-log-2026-09-14-settings-admin-tabs.md",
+      "summary": "记录将 AI Settings 相关入口限制为 Workspace 管理员可见的修复背景、根因、实现范围和验证结果，覆盖设置页 tabs、Agent sidebar、/ai 路由和 AI tool permission 后端权限边界。",
+      "tags": [
+        "调试记录",
+        "权限控制",
+        "Workspace 角色",
+        "AI Settings",
+        "前后端边界"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该 Markdown 文档使用英文标题和章节名，但内容描述的是 ResolveDesk 的角色权限修复；结构提取识别到 5 个章节，重点是产品权限边界而非代码符号。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ],
+  "edges": []
+}

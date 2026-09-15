@@ -1,0 +1,1035 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/.generated-client/client/client.gen.ts",
+      "type": "file",
+      "name": "client.gen.ts",
+      "filePath": "frontend/.generated-client/client/client.gen.ts",
+      "summary": "生成 Axios 版 API client，集中封装请求配置合并、鉴权注入、普通 HTTP 方法和 SSE 方法，是前端调用后端接口的运行时入口。",
+      "tags": [
+        "generated-client",
+        "axios-client",
+        "api-runtime",
+        "sse-support"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用泛型 RequestOptions 和 AxiosInstance 组合出类型安全的 request/buildUrl/method 函数。"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "type": "function",
+      "name": "createClient",
+      "filePath": "frontend/.generated-client/client/client.gen.ts",
+      "lineRange": [
+        12,
+        161
+      ],
+      "summary": "创建 Axios API client，维护可更新配置，并暴露 HTTP method、SSE method、request 与 buildUrl 等统一调用接口。",
+      "tags": [
+        "factory",
+        "axios-client",
+        "api-runtime",
+        "sse-support"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/.generated-client/client/types.gen.ts",
+      "type": "file",
+      "name": "types.gen.ts",
+      "filePath": "frontend/.generated-client/client/types.gen.ts",
+      "summary": "定义 Axios client 层的配置、请求选项、返回结果和方法签名类型，把 core client 泛型映射到具体 Axios 实现。",
+      "tags": [
+        "type-definition",
+        "axios-types",
+        "api-client",
+        "generated-code"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "大量条件类型用于根据 throwOnError 推导响应或错误返回形态。"
+    },
+    {
+      "id": "file:frontend/.generated-client/client/utils.gen.ts",
+      "type": "file",
+      "name": "utils.gen.ts",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "summary": "提供 Axios client 的 URL 构造、query 序列化、鉴权参数注入、配置合并和 header 合并工具，支撑 client.gen.ts 的请求预处理流程。",
+      "tags": [
+        "utility",
+        "serialization",
+        "auth-flow",
+        "axios-client"
+      ],
+      "complexity": "complex",
+      "languageNotes": "同时处理 OpenAPI query/path 序列化规则与 Axios headers 的 method 分组语义。"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "type": "function",
+      "name": "createQuerySerializer",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        13,
+        62
+      ],
+      "summary": "根据 OpenAPI 参数配置生成 querySerializer，按数组、对象和 primitive 分派到对应序列化函数。",
+      "tags": [
+        "serialization",
+        "query-params",
+        "factory",
+        "openapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:checkForExistence",
+      "type": "function",
+      "name": "checkForExistence",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        64,
+        84
+      ],
+      "summary": "检查认证字段是否已存在于 headers、query 或 Cookie 中，避免重复写入同名安全参数。",
+      "tags": [
+        "auth-flow",
+        "validation",
+        "headers",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:setAuthParams",
+      "type": "function",
+      "name": "setAuthParams",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        86,
+        125
+      ],
+      "summary": "遍历 security 配置并解析 token，将认证值写入 query、Cookie 或 header。",
+      "tags": [
+        "auth-flow",
+        "request-prep",
+        "headers",
+        "async"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "type": "function",
+      "name": "buildUrl",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        127,
+        144
+      ],
+      "summary": "合并 Axios baseURL 与请求选项，并委托 core URL 工具生成最终请求地址。",
+      "tags": [
+        "url-builder",
+        "axios-client",
+        "query-params",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:mergeConfigs",
+      "type": "function",
+      "name": "mergeConfigs",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        146,
+        150
+      ],
+      "summary": "浅合并 client 配置，并用专用 header 合并逻辑保留 Axios headers 语义。",
+      "tags": [
+        "configuration",
+        "axios-client",
+        "headers",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:mergeHeaders",
+      "type": "function",
+      "name": "mergeHeaders",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        165,
+        200
+      ],
+      "summary": "合并多组 headers，支持 Axios method 关键字、数组追加、null 删除和对象 JSON 字符串化。",
+      "tags": [
+        "headers",
+        "axios-client",
+        "normalization",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/client/utils.gen.ts:createConfig",
+      "type": "function",
+      "name": "createConfig",
+      "filePath": "frontend/.generated-client/client/utils.gen.ts",
+      "lineRange": [
+        202,
+        206
+      ],
+      "summary": "基于 override 创建初始 client 配置对象，作为 generated client 配置工厂的轻量入口。",
+      "tags": [
+        "configuration",
+        "factory",
+        "generated-code",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/auth.gen.ts",
+      "type": "file",
+      "name": "auth.gen.ts",
+      "filePath": "frontend/.generated-client/core/auth.gen.ts",
+      "summary": "定义认证配置类型，并把静态 token 或回调返回值规范化为 bearer、basic 或原始 token 字符串。",
+      "tags": [
+        "auth",
+        "token-formatting",
+        "generated-code",
+        "api-runtime"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/auth.gen.ts:getAuthToken",
+      "type": "function",
+      "name": "getAuthToken",
+      "filePath": "frontend/.generated-client/core/auth.gen.ts",
+      "lineRange": [
+        22,
+        41
+      ],
+      "summary": "解析静态或回调式 token，并按 bearer/basic scheme 加上协议前缀。",
+      "tags": [
+        "auth",
+        "token-formatting",
+        "async",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/bodySerializer.gen.ts",
+      "type": "file",
+      "name": "bodySerializer.gen.ts",
+      "filePath": "frontend/.generated-client/core/bodySerializer.gen.ts",
+      "summary": "定义 query/body serializer 类型，并提供 FormData、JSON、URLSearchParams 三种请求体序列化器。",
+      "tags": [
+        "serialization",
+        "request-body",
+        "form-data",
+        "generated-code"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "对 Date、Blob、bigint、数组和对象分别做了适合请求体格式的转换。"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "type": "file",
+      "name": "pathSerializer.gen.ts",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "summary": "实现 OpenAPI path/query 参数序列化规则，覆盖 array、primitive、object 在 form、label、matrix、simple 等 style 下的编码。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "path-params",
+        "query-params"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "按 OpenAPI serialization style 分离 explode 与 non-explode 分支，保留 allowReserved 的编码差异。"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayExplode",
+      "type": "function",
+      "name": "separatorArrayExplode",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        28,
+        39
+      ],
+      "summary": "返回数组 explode 序列化在不同 style 下使用的分隔符。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "array-params",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayNoExplode",
+      "type": "function",
+      "name": "separatorArrayNoExplode",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        41,
+        52
+      ],
+      "summary": "返回数组 non-explode 序列化在 form、pipeDelimited、spaceDelimited 等 style 下的分隔符。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "array-params",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorObjectExplode",
+      "type": "function",
+      "name": "separatorObjectExplode",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        54,
+        65
+      ],
+      "summary": "返回对象 explode 序列化在 label、matrix、simple 和 form style 下使用的分隔符。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "object-params",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "type": "function",
+      "name": "serializeArrayParam",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        67,
+        107
+      ],
+      "summary": "按 OpenAPI style/explode 规则序列化数组参数，并处理 label、matrix、simple 与 form 输出差异。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "array-params",
+        "encoding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "function",
+      "name": "serializePrimitiveParam",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        109,
+        125
+      ],
+      "summary": "序列化 primitive 参数，负责空值处理、对象防御和 percent-encoding。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "primitive-params",
+        "encoding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "type": "function",
+      "name": "serializeObjectParam",
+      "filePath": "frontend/.generated-client/core/pathSerializer.gen.ts",
+      "lineRange": [
+        127,
+        171
+      ],
+      "summary": "按 OpenAPI 对象参数规则序列化 Date 或普通对象，支持 deepObject、form、label 和 matrix。",
+      "tags": [
+        "serialization",
+        "openapi",
+        "object-params",
+        "encoding"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "type": "file",
+      "name": "serverSentEvents.gen.ts",
+      "filePath": "frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "summary": "实现基于 Fetch API 的 SSE client，负责建立流式请求、解析事件块、回调事件、验证/转换 JSON 数据并按配置重试。",
+      "tags": [
+        "sse-client",
+        "streaming",
+        "retry-logic",
+        "api-runtime"
+      ],
+      "complexity": "complex",
+      "languageNotes": "AsyncGenerator 封装了 SSE 文本流读取、Last-Event-ID 维护和指数退避重试。"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/serverSentEvents.gen.ts:createSseClient",
+      "type": "function",
+      "name": "createSseClient",
+      "filePath": "frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "lineRange": [
+        82,
+        242
+      ],
+      "summary": "创建 SSE 流式 client，持续读取事件流、解析 data/event/id/retry 字段、调用回调并按失败策略重试。",
+      "tags": [
+        "sse-client",
+        "streaming",
+        "retry-logic",
+        "async-generator"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/types.gen.ts",
+      "type": "file",
+      "name": "types.gen.ts",
+      "filePath": "frontend/.generated-client/core/types.gen.ts",
+      "summary": "定义平台无关的 core client、HTTP method、通用配置和 OmitNever 辅助类型，供 Axios client 层进一步 specialize。",
+      "tags": [
+        "type-definition",
+        "core-client",
+        "request-config",
+        "generated-code"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过泛型插槽把 request、method、buildUrl 和 sse 函数形态留给具体 client 实现。"
+    },
+    {
+      "id": "file:frontend/.generated-client/core/utils.gen.ts",
+      "type": "file",
+      "name": "utils.gen.ts",
+      "filePath": "frontend/.generated-client/core/utils.gen.ts",
+      "summary": "提供默认 path 参数替换、完整 URL 拼接和有效请求体提取逻辑，是 generated client 发起请求前的核心工具层。",
+      "tags": [
+        "utility",
+        "url-builder",
+        "path-params",
+        "request-body"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "路径模板支持 label、matrix 和 explode 标记，并和 querySerializer 串联生成最终 URL。"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "type": "function",
+      "name": "defaultPathSerializer",
+      "filePath": "frontend/.generated-client/core/utils.gen.ts",
+      "lineRange": [
+        18,
+        83
+      ],
+      "summary": "替换 URL 模板中的 path 参数，根据标记选择 simple、label 或 matrix 序列化方式。",
+      "tags": [
+        "url-builder",
+        "path-params",
+        "serialization",
+        "openapi"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/utils.gen.ts:getUrl",
+      "type": "function",
+      "name": "getUrl",
+      "filePath": "frontend/.generated-client/core/utils.gen.ts",
+      "lineRange": [
+        85,
+        111
+      ],
+      "summary": "拼接 baseUrl、path 和 query，并调用 path/query serializer 生成最终请求 URL。",
+      "tags": [
+        "url-builder",
+        "query-params",
+        "path-params",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/.generated-client/core/utils.gen.ts:getValidRequestBody",
+      "type": "function",
+      "name": "getValidRequestBody",
+      "filePath": "frontend/.generated-client/core/utils.gen.ts",
+      "lineRange": [
+        113,
+        140
+      ],
+      "summary": "根据 bodySerializer 和 serializedBody 状态选择真正发送的请求体，处理空字符串和无 body 场景。",
+      "tags": [
+        "request-body",
+        "serialization",
+        "validation",
+        "utility"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:checkForExistence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:setAuthParams",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:setAuthParams",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeConfigs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeConfigs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeHeaders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeHeaders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/auth.gen.ts",
+      "target": "function:frontend/.generated-client/core/auth.gen.ts:getAuthToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/auth.gen.ts",
+      "target": "function:frontend/.generated-client/core/auth.gen.ts:getAuthToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayExplode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayExplode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayNoExplode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayNoExplode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorObjectExplode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorObjectExplode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "target": "function:frontend/.generated-client/core/serverSentEvents.gen.ts:createSseClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "target": "function:frontend/.generated-client/core/serverSentEvents.gen.ts:createSseClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getValidRequestBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getValidRequestBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "file:frontend/.generated-client/client/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "file:frontend/.generated-client/client/utils.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "file:frontend/.generated-client/core/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/client.gen.ts",
+      "target": "file:frontend/.generated-client/core/utils.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/types.gen.ts",
+      "target": "file:frontend/.generated-client/core/auth.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/types.gen.ts",
+      "target": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/types.gen.ts",
+      "target": "file:frontend/.generated-client/core/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "file:frontend/.generated-client/client/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/auth.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/bodySerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/utils.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/bodySerializer.gen.ts",
+      "target": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/serverSentEvents.gen.ts",
+      "target": "file:frontend/.generated-client/core/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/types.gen.ts",
+      "target": "file:frontend/.generated-client/core/auth.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/types.gen.ts",
+      "target": "file:frontend/.generated-client/core/bodySerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/bodySerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/core/utils.gen.ts",
+      "target": "file:frontend/.generated-client/core/pathSerializer.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeConfigs",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createConfig",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeHeaders",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:setAuthParams",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getValidRequestBody",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/client.gen.ts:createClient",
+      "target": "function:frontend/.generated-client/core/serverSentEvents.gen.ts:createSseClient",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:setAuthParams",
+      "target": "function:frontend/.generated-client/core/auth.gen.ts:getAuthToken",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:getUrl",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:buildUrl",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:createQuerySerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/client/utils.gen.ts:mergeConfigs",
+      "target": "function:frontend/.generated-client/client/utils.gen.ts:mergeHeaders",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/utils.gen.ts:getUrl",
+      "target": "function:frontend/.generated-client/core/utils.gen.ts:defaultPathSerializer",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayNoExplode",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorArrayExplode",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeArrayParam",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:separatorObjectExplode",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializeObjectParam",
+      "target": "function:frontend/.generated-client/core/pathSerializer.gen.ts:serializePrimitiveParam",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

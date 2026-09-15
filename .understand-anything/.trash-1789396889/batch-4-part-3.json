@@ -1,0 +1,513 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/services/statistics_service.py",
+      "type": "file",
+      "name": "statistics_service.py",
+      "filePath": "backend/app/services/statistics_service.py",
+      "summary": "按当前用户角色和工作区上下文聚合工单统计，并返回面向 API 的统计模型。",
+      "tags": [
+        "service",
+        "backend",
+        "business-logic",
+        "python"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/statistics_service.py:StatisticsService",
+      "type": "class",
+      "name": "StatisticsService",
+      "filePath": "backend/app/services/statistics_service.py",
+      "lineRange": [
+        15,
+        62
+      ],
+      "summary": "基于角色和工作区上下文聚合工单统计数据。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/services/ticket_permissions.py",
+      "type": "file",
+      "name": "ticket_permissions.py",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "summary": "集中表达工单可见性、回复、内部备注和管理权限规则，供服务层和测试复用。",
+      "tags": [
+        "service",
+        "ticket-domain",
+        "authorization",
+        "workflow"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "function:backend/app/services/ticket_permissions.py:can_view_ticket",
+      "type": "function",
+      "name": "can_view_ticket",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "lineRange": [
+        10,
+        22
+      ],
+      "summary": "判断当前用户是否可以执行 view ticket 相关动作。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/services/ticket_permissions.py:can_view_internal_notes",
+      "type": "function",
+      "name": "can_view_internal_notes",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "lineRange": [
+        25,
+        35
+      ],
+      "summary": "判断当前用户是否可以执行 view internal notes 相关动作。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/services/ticket_permissions.py:can_reply_publicly",
+      "type": "function",
+      "name": "can_reply_publicly",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "lineRange": [
+        38,
+        52
+      ],
+      "summary": "判断当前用户是否可以执行 reply publicly 相关动作。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/services/ticket_permissions.py:can_add_internal_note",
+      "type": "function",
+      "name": "can_add_internal_note",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "lineRange": [
+        55,
+        65
+      ],
+      "summary": "判断当前用户是否可以执行 add internal note 相关动作。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/services/ticket_permissions.py:can_manage_ticket",
+      "type": "function",
+      "name": "can_manage_ticket",
+      "filePath": "backend/app/services/ticket_permissions.py",
+      "lineRange": [
+        68,
+        78
+      ],
+      "summary": "判断当前用户是否可以执行 manage ticket 相关动作。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/services/ticket_service.py",
+      "type": "file",
+      "name": "ticket_service.py",
+      "filePath": "backend/app/services/ticket_service.py",
+      "summary": "实现工单创建、查询、认领、分配、回复、状态变更、属性更新和软删除等完整业务流程。",
+      "tags": [
+        "service",
+        "ticket-domain",
+        "authorization",
+        "workflow"
+      ],
+      "complexity": "complex",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "class:backend/app/services/ticket_service.py:TicketService",
+      "type": "class",
+      "name": "TicketService",
+      "filePath": "backend/app/services/ticket_service.py",
+      "lineRange": [
+        63,
+        755
+      ],
+      "summary": "承载工单领域的创建、分配、消息、状态、审计和删除业务规则。",
+      "tags": [
+        "service",
+        "business-logic",
+        "application-layer"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:backend/app/services/ticket_state_machine.py",
+      "type": "file",
+      "name": "ticket_state_machine.py",
+      "filePath": "backend/app/services/ticket_state_machine.py",
+      "summary": "定义工单状态机规则，计算不同角色和当前状态下允许到达的目标状态。",
+      "tags": [
+        "service",
+        "ticket-domain",
+        "authorization",
+        "workflow"
+      ],
+      "complexity": "simple",
+      "languageNotes": "服务层以 SQLModel Session、工作区上下文和领域错误组合业务事务边界。"
+    },
+    {
+      "id": "function:backend/app/services/ticket_state_machine.py:allowed_status_targets",
+      "type": "function",
+      "name": "allowed_status_targets",
+      "filePath": "backend/app/services/ticket_state_machine.py",
+      "lineRange": [
+        10,
+        35
+      ],
+      "summary": "根据工单状态、操作者角色和分配关系计算允许的下一状态集合。",
+      "tags": [
+        "state-machine",
+        "ticket-domain",
+        "workflow"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/services/ticket_state_machine.py:customer_reply_status_target",
+      "type": "function",
+      "name": "customer_reply_status_target",
+      "filePath": "backend/app/services/ticket_state_machine.py",
+      "lineRange": [
+        38,
+        48
+      ],
+      "summary": "计算客户回复后工单应自动迁移到的状态。",
+      "tags": [
+        "state-machine",
+        "ticket-domain",
+        "workflow"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/repositories/ticket_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "class:backend/app/services/statistics_service.py:StatisticsService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/statistics_service.py",
+      "target": "class:backend/app/services/statistics_service.py:StatisticsService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_view_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_view_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_view_internal_notes",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_view_internal_notes",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_reply_publicly",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_reply_publicly",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_add_internal_note",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_add_internal_note",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_manage_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_permissions.py",
+      "target": "function:backend/app/services/ticket_permissions.py:can_manage_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/repositories/ticket_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/repositories/user_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/repositories/workspace_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/services/ticket_permissions.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "file:backend/app/services/ticket_state_machine.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "class:backend/app/services/ticket_service.py:TicketService",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_service.py",
+      "target": "class:backend/app/services/ticket_service.py:TicketService",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "function:backend/app/services/ticket_state_machine.py:allowed_status_targets",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "function:backend/app/services/ticket_state_machine.py:allowed_status_targets",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "function:backend/app/services/ticket_state_machine.py:customer_reply_status_target",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/app/services/ticket_state_machine.py",
+      "target": "function:backend/app/services/ticket_state_machine.py:customer_reply_status_target",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

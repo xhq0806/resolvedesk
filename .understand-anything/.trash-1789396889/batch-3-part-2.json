@@ -1,0 +1,1345 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/components/ui/badge.tsx",
+      "type": "file",
+      "name": "badge.tsx",
+      "filePath": "frontend/src/components/ui/badge.tsx",
+      "summary": "定义 badge UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/badge.tsx:Badge",
+      "type": "function",
+      "name": "Badge",
+      "filePath": "frontend/src/components/ui/badge.tsx",
+      "lineRange": [
+        28,
+        44
+      ],
+      "summary": "实现 Badge React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/button-group.tsx",
+      "type": "file",
+      "name": "button-group.tsx",
+      "filePath": "frontend/src/components/ui/button-group.tsx",
+      "summary": "定义 button-group UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/button-group.tsx:ButtonGroup",
+      "type": "function",
+      "name": "ButtonGroup",
+      "filePath": "frontend/src/components/ui/button-group.tsx",
+      "lineRange": [
+        24,
+        38
+      ],
+      "summary": "渲染 ButtonGroup 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupText",
+      "type": "function",
+      "name": "ButtonGroupText",
+      "filePath": "frontend/src/components/ui/button-group.tsx",
+      "lineRange": [
+        40,
+        58
+      ],
+      "summary": "渲染 ButtonGroupText 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupSeparator",
+      "type": "function",
+      "name": "ButtonGroupSeparator",
+      "filePath": "frontend/src/components/ui/button-group.tsx",
+      "lineRange": [
+        60,
+        76
+      ],
+      "summary": "渲染 ButtonGroupSeparator 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/button.tsx",
+      "type": "file",
+      "name": "button.tsx",
+      "filePath": "frontend/src/components/ui/button.tsx",
+      "summary": "定义 button UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/button.tsx:Button",
+      "type": "function",
+      "name": "Button",
+      "filePath": "frontend/src/components/ui/button.tsx",
+      "lineRange": [
+        39,
+        58
+      ],
+      "summary": "渲染 Button 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/card.tsx",
+      "type": "file",
+      "name": "card.tsx",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "summary": "定义 card UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:Card",
+      "type": "function",
+      "name": "Card",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        5,
+        16
+      ],
+      "summary": "实现 Card React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardHeader",
+      "type": "function",
+      "name": "CardHeader",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        18,
+        29
+      ],
+      "summary": "实现 CardHeader React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardTitle",
+      "type": "function",
+      "name": "CardTitle",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        31,
+        39
+      ],
+      "summary": "实现 CardTitle React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardDescription",
+      "type": "function",
+      "name": "CardDescription",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        41,
+        49
+      ],
+      "summary": "实现 CardDescription React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardAction",
+      "type": "function",
+      "name": "CardAction",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        51,
+        62
+      ],
+      "summary": "实现 CardAction React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardContent",
+      "type": "function",
+      "name": "CardContent",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        64,
+        72
+      ],
+      "summary": "渲染 CardContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/card.tsx:CardFooter",
+      "type": "function",
+      "name": "CardFooter",
+      "filePath": "frontend/src/components/ui/card.tsx",
+      "lineRange": [
+        74,
+        82
+      ],
+      "summary": "实现 CardFooter React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/checkbox.tsx",
+      "type": "file",
+      "name": "checkbox.tsx",
+      "filePath": "frontend/src/components/ui/checkbox.tsx",
+      "summary": "定义 checkbox UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/checkbox.tsx:Checkbox",
+      "type": "function",
+      "name": "Checkbox",
+      "filePath": "frontend/src/components/ui/checkbox.tsx",
+      "lineRange": [
+        7,
+        28
+      ],
+      "summary": "实现 Checkbox React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "file",
+      "name": "dialog.tsx",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "summary": "定义 dialog UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:Dialog",
+      "type": "function",
+      "name": "Dialog",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        7,
+        11
+      ],
+      "summary": "封装 Dialog 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogTrigger",
+      "type": "function",
+      "name": "DialogTrigger",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        13,
+        17
+      ],
+      "summary": "封装 DialogTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogPortal",
+      "type": "function",
+      "name": "DialogPortal",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "封装 DialogPortal 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogClose",
+      "type": "function",
+      "name": "DialogClose",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        25,
+        29
+      ],
+      "summary": "封装 DialogClose 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogOverlay",
+      "type": "function",
+      "name": "DialogOverlay",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        31,
+        45
+      ],
+      "summary": "封装 DialogOverlay 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogContent",
+      "type": "function",
+      "name": "DialogContent",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        47,
+        79
+      ],
+      "summary": "渲染 DialogContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogHeader",
+      "type": "function",
+      "name": "DialogHeader",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        81,
+        89
+      ],
+      "summary": "封装 DialogHeader 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogFooter",
+      "type": "function",
+      "name": "DialogFooter",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        91,
+        102
+      ],
+      "summary": "封装 DialogFooter 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogTitle",
+      "type": "function",
+      "name": "DialogTitle",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        104,
+        115
+      ],
+      "summary": "封装 DialogTitle 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dialog.tsx:DialogDescription",
+      "type": "function",
+      "name": "DialogDescription",
+      "filePath": "frontend/src/components/ui/dialog.tsx",
+      "lineRange": [
+        117,
+        128
+      ],
+      "summary": "封装 DialogDescription 对话框 primitive，统一弹层结构、可访问性属性和样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "type": "file",
+      "name": "dropdown-menu.tsx",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "summary": "定义 dropdown-menu UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "complex",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenu",
+      "type": "function",
+      "name": "DropdownMenu",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        9,
+        13
+      ],
+      "summary": "封装 DropdownMenu 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuPortal",
+      "type": "function",
+      "name": "DropdownMenuPortal",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        15,
+        21
+      ],
+      "summary": "封装 DropdownMenuPortal 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuTrigger",
+      "type": "function",
+      "name": "DropdownMenuTrigger",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        23,
+        32
+      ],
+      "summary": "封装 DropdownMenuTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuContent",
+      "type": "function",
+      "name": "DropdownMenuContent",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        34,
+        52
+      ],
+      "summary": "渲染 DropdownMenuContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuGroup",
+      "type": "function",
+      "name": "DropdownMenuGroup",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        54,
+        60
+      ],
+      "summary": "封装 DropdownMenuGroup 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuItem",
+      "type": "function",
+      "name": "DropdownMenuItem",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        62,
+        83
+      ],
+      "summary": "封装 DropdownMenuItem 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuCheckboxItem",
+      "type": "function",
+      "name": "DropdownMenuCheckboxItem",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        85,
+        109
+      ],
+      "summary": "封装 DropdownMenuCheckboxItem 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioGroup",
+      "type": "function",
+      "name": "DropdownMenuRadioGroup",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        111,
+        120
+      ],
+      "summary": "封装 DropdownMenuRadioGroup 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioItem",
+      "type": "function",
+      "name": "DropdownMenuRadioItem",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        122,
+        144
+      ],
+      "summary": "封装 DropdownMenuRadioItem 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuLabel",
+      "type": "function",
+      "name": "DropdownMenuLabel",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        146,
+        164
+      ],
+      "summary": "封装 DropdownMenuLabel 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSeparator",
+      "type": "function",
+      "name": "DropdownMenuSeparator",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        166,
+        177
+      ],
+      "summary": "封装 DropdownMenuSeparator 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuShortcut",
+      "type": "function",
+      "name": "DropdownMenuShortcut",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        179,
+        193
+      ],
+      "summary": "封装 DropdownMenuShortcut 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSub",
+      "type": "function",
+      "name": "DropdownMenuSub",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        195,
+        199
+      ],
+      "summary": "封装 DropdownMenuSub 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubTrigger",
+      "type": "function",
+      "name": "DropdownMenuSubTrigger",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        201,
+        223
+      ],
+      "summary": "封装 DropdownMenuSubTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubContent",
+      "type": "function",
+      "name": "DropdownMenuSubContent",
+      "filePath": "frontend/src/components/ui/dropdown-menu.tsx",
+      "lineRange": [
+        225,
+        239
+      ],
+      "summary": "渲染 DropdownMenuSubContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/ui/badge.tsx",
+      "target": "function:frontend/src/components/ui/badge.tsx:Badge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/badge.tsx",
+      "target": "function:frontend/src/components/ui/badge.tsx:Badge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupText",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupText",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupSeparator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "function:frontend/src/components/ui/button-group.tsx:ButtonGroupSeparator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/button.tsx",
+      "target": "function:frontend/src/components/ui/button.tsx:Button",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/button.tsx",
+      "target": "function:frontend/src/components/ui/button.tsx:Button",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:Card",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:Card",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardTitle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "function:frontend/src/components/ui/card.tsx:CardFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/checkbox.tsx",
+      "target": "function:frontend/src/components/ui/checkbox.tsx:Checkbox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/checkbox.tsx",
+      "target": "function:frontend/src/components/ui/checkbox.tsx:Checkbox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:Dialog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:Dialog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogPortal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogPortal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogClose",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogClose",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogOverlay",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogTitle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "function:frontend/src/components/ui/dialog.tsx:DialogDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuPortal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuPortal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuCheckboxItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuCheckboxItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuRadioItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuLabel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSeparator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSeparator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuShortcut",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuShortcut",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSub",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "function:frontend/src/components/ui/dropdown-menu.tsx:DropdownMenuSubContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/badge.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "file:frontend/src/components/ui/separator.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/button-group.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/button.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/card.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/checkbox.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/dialog.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

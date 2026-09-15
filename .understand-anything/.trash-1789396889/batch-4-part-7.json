@@ -1,0 +1,1133 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/tests/services/test_knowledge_service.py",
+      "type": "file",
+      "name": "test_knowledge_service.py",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "summary": "覆盖知识上传校验、文档解析、文本分块、provider URL 安全和来源裁剪。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_chunk_text_keeps_overlap_and_discards_blank_input",
+      "type": "function",
+      "name": "test_chunk_text_keeps_overlap_and_discards_blank_input",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        20,
+        27
+      ],
+      "summary": "测试 chunk text keeps overlap and discards blank input 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_rejects_unsafe_or_mismatched_files",
+      "type": "function",
+      "name": "test_upload_validation_rejects_unsafe_or_mismatched_files",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        38,
+        44
+      ],
+      "summary": "测试 upload validation rejects unsafe or mismatched files 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_accepts_browser_mime_variants",
+      "type": "function",
+      "name": "test_upload_validation_accepts_browser_mime_variants",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        57,
+        63
+      ],
+      "summary": "测试 upload validation accepts browser mime variants 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_markdown_parser_preserves_document_source",
+      "type": "function",
+      "name": "test_markdown_parser_preserves_document_source",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        66,
+        72
+      ],
+      "summary": "测试 markdown parser preserves document source 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_provider_url_rejects_private_network_targets",
+      "type": "function",
+      "name": "test_provider_url_rejects_private_network_targets",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        75,
+        78
+      ],
+      "summary": "测试 provider url rejects private network targets 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_knowledge_service.py:test_trim_sources_deduplicates_documents_and_caps_results",
+      "type": "function",
+      "name": "test_trim_sources_deduplicates_documents_and_caps_results",
+      "filePath": "backend/tests/services/test_knowledge_service.py",
+      "lineRange": [
+        81,
+        113
+      ],
+      "summary": "测试 trim sources deduplicates documents and caps results 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/services/test_provider_service.py",
+      "type": "file",
+      "name": "test_provider_service.py",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "summary": "验证 provider 配置加密、默认配置、adapter 构建、URL 安全和失败信息脱敏。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:provider_session",
+      "type": "function",
+      "name": "provider_session",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        27,
+        44
+      ],
+      "summary": "构造测试所需的 provider session fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:owner_context",
+      "type": "function",
+      "name": "owner_context",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        48,
+        64
+      ],
+      "summary": "构造测试所需的 owner context fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_update_config_encrypts_and_hides_api_key",
+      "type": "function",
+      "name": "test_update_config_encrypts_and_hides_api_key",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        67,
+        91
+      ],
+      "summary": "测试 update config encrypts and hides api key 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_default_config_uses_volcengine_ark_template",
+      "type": "function",
+      "name": "test_default_config_uses_volcengine_ark_template",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        94,
+        110
+      ],
+      "summary": "测试 default config uses volcengine ark template 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_build_provider_uses_volcengine_ark_adapters",
+      "type": "function",
+      "name": "test_build_provider_uses_volcengine_ark_adapters",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        113,
+        125
+      ],
+      "summary": "测试 build provider uses volcengine ark adapters 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_enabling_incomplete_config_returns_provider_unavailable",
+      "type": "function",
+      "name": "test_enabling_incomplete_config_returns_provider_unavailable",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        128,
+        139
+      ],
+      "summary": "测试 enabling incomplete config returns provider unavailable 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_update_config_rejects_local_provider_url",
+      "type": "function",
+      "name": "test_update_config_rejects_local_provider_url",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        142,
+        153
+      ],
+      "summary": "测试 update config rejects local provider url 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_provider_service.py:test_chat_connection_failure_does_not_leak_api_key",
+      "type": "function",
+      "name": "test_chat_connection_failure_does_not_leak_api_key",
+      "filePath": "backend/tests/services/test_provider_service.py",
+      "lineRange": [
+        156,
+        194
+      ],
+      "summary": "测试 chat connection failure does not leak api key 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/services/test_statistics_service.py",
+      "type": "file",
+      "name": "test_statistics_service.py",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "summary": "验证统计服务按角色返回不同公开字段，并基于工单数据聚合计数。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "class:backend/tests/services/test_statistics_service.py:TrackedGraph",
+      "type": "class",
+      "name": "TrackedGraph",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        21,
+        26
+      ],
+      "summary": "测试 fixture 数据容器，保存一组相关用户、工单、消息或审计对象。",
+      "tags": [
+        "test-fixture",
+        "pytest",
+        "domain-helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_statistics_service.py:tracked_graph",
+      "type": "function",
+      "name": "tracked_graph",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        30,
+        39
+      ],
+      "summary": "构造测试所需的 tracked graph fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_statistics_service.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        42,
+        48
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_statistics_service.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        51,
+        69
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_statistics_service.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        72,
+        79
+      ],
+      "summary": "实现 persist 的业务逻辑，属于 test_statistics_service.py 的对外或测试支撑能力。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_statistics_service.py:test_statistics_service_returns_role_specific_public_fields",
+      "type": "function",
+      "name": "test_statistics_service_returns_role_specific_public_fields",
+      "filePath": "backend/tests/services/test_statistics_service.py",
+      "lineRange": [
+        82,
+        147
+      ],
+      "summary": "测试 statistics service returns role specific public fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/services/test_ticket_permissions.py",
+      "type": "file",
+      "name": "test_ticket_permissions.py",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "summary": "覆盖工单权限矩阵，验证不同角色、状态和删除标记下的可见性与写权限。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        22,
+        28
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        31,
+        47
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "authorization",
+        "policy",
+        "business-rule"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_ticket_visibility_follows_role_scope",
+      "type": "function",
+      "name": "test_ticket_visibility_follows_role_scope",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        50,
+        70
+      ],
+      "summary": "测试 ticket visibility follows role scope 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_soft_deleted_ticket_is_hidden_from_every_role",
+      "type": "function",
+      "name": "test_soft_deleted_ticket_is_hidden_from_every_role",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        74,
+        84
+      ],
+      "summary": "测试 soft deleted ticket is hidden from every role 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_closed_ticket_remains_visible_but_read_only",
+      "type": "function",
+      "name": "test_closed_ticket_remains_visible_but_read_only",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        88,
+        102
+      ],
+      "summary": "测试 closed ticket remains visible but read only 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_unassigned_agent_can_view_but_cannot_access_internal_or_write",
+      "type": "function",
+      "name": "test_unassigned_agent_can_view_but_cannot_access_internal_or_write",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        105,
+        115
+      ],
+      "summary": "测试 unassigned agent can view but cannot access internal or write 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_visibility_requires_staff_scope",
+      "type": "function",
+      "name": "test_internal_note_visibility_requires_staff_scope",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        118,
+        129
+      ],
+      "summary": "测试 internal note visibility requires staff scope 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_public_reply_permissions_cover_every_non_closed_status",
+      "type": "function",
+      "name": "test_public_reply_permissions_cover_every_non_closed_status",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        141,
+        156
+      ],
+      "summary": "测试 public reply permissions cover every non closed status 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_and_management_permissions",
+      "type": "function",
+      "name": "test_internal_note_and_management_permissions",
+      "filePath": "backend/tests/services/test_ticket_permissions.py",
+      "lineRange": [
+        169,
+        184
+      ],
+      "summary": "测试 internal note and management permissions 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "file:backend/app/core/provider_security.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "file:backend/app/models/knowledge.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "file:backend/app/services/knowledge_retrieval.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "file:backend/app/services/knowledge_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_chunk_text_keeps_overlap_and_discards_blank_input",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_chunk_text_keeps_overlap_and_discards_blank_input",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_rejects_unsafe_or_mismatched_files",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_rejects_unsafe_or_mismatched_files",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_accepts_browser_mime_variants",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_upload_validation_accepts_browser_mime_variants",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_markdown_parser_preserves_document_source",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_markdown_parser_preserves_document_source",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_provider_url_rejects_private_network_targets",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_provider_url_rejects_private_network_targets",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_trim_sources_deduplicates_documents_and_caps_results",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_knowledge_service.py",
+      "target": "function:backend/tests/services/test_knowledge_service.py:test_trim_sources_deduplicates_documents_and_caps_results",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/core/secret_crypto.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/providers/chat.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/providers/embedding.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "file:backend/app/services/provider_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:provider_session",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:provider_session",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:owner_context",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:owner_context",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_update_config_encrypts_and_hides_api_key",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_update_config_encrypts_and_hides_api_key",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_default_config_uses_volcengine_ark_template",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_default_config_uses_volcengine_ark_template",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_build_provider_uses_volcengine_ark_adapters",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_build_provider_uses_volcengine_ark_adapters",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_enabling_incomplete_config_returns_provider_unavailable",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_enabling_incomplete_config_returns_provider_unavailable",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_update_config_rejects_local_provider_url",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_update_config_rejects_local_provider_url",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_chat_connection_failure_does_not_leak_api_key",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_provider_service.py",
+      "target": "function:backend/tests/services/test_provider_service.py:test_chat_connection_failure_does_not_leak_api_key",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "file:backend/app/services/statistics_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "class:backend/tests/services/test_statistics_service.py:TrackedGraph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "class:backend/tests/services/test_statistics_service.py:TrackedGraph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:tracked_graph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:tracked_graph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:persist",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:persist",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:test_statistics_service_returns_role_specific_public_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_statistics_service.py",
+      "target": "function:backend/tests/services/test_statistics_service.py:test_statistics_service_returns_role_specific_public_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "file:backend/app/services/ticket_permissions.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_ticket_visibility_follows_role_scope",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_ticket_visibility_follows_role_scope",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_soft_deleted_ticket_is_hidden_from_every_role",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_soft_deleted_ticket_is_hidden_from_every_role",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_closed_ticket_remains_visible_but_read_only",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_closed_ticket_remains_visible_but_read_only",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_unassigned_agent_can_view_but_cannot_access_internal_or_write",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_unassigned_agent_can_view_but_cannot_access_internal_or_write",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_visibility_requires_staff_scope",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_visibility_requires_staff_scope",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_public_reply_permissions_cover_every_non_closed_status",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_public_reply_permissions_cover_every_non_closed_status",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_and_management_permissions",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_permissions.py",
+      "target": "function:backend/tests/services/test_ticket_permissions.py:test_internal_note_and_management_permissions",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

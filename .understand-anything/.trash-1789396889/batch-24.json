@@ -1,0 +1,120 @@
+{
+  "nodes": [
+    {
+      "id": "document:changes/archive/2026-09-14-conversation-avatars/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "changes/archive/2026-09-14-conversation-avatars/design.md",
+      "summary": "记录 Conversation Avatars 需求的技术设计，说明头像 URL 字段、用户摘要扩展、前端 UserAvatar 复用、在线咨询头像布局，以及选择 URL 而非上传链路的关键权衡。",
+      "tags": [
+        "设计文档",
+        "头像",
+        "用户资料",
+        "UserSummary",
+        "前端展示"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档以 proposal/spec 为基础，把后端模型、API schema、前端组件和风险权衡拆成可实施设计；标题层级清晰，适合作为实现阶段依据。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-conversation-avatars/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "changes/archive/2026-09-14-conversation-avatars/proposal.md",
+      "summary": "提出 Conversation Avatars 的轻量需求目标：为各类登录用户支持头像 URL，在侧边栏、工单视图和在线咨询中展示头像，并为 AI Agent 使用稳定系统头像。",
+      "tags": [
+        "提案",
+        "头像",
+        "在线咨询",
+        "工单体验",
+        "用户资料"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是需求起点文档，用背景、目标、非目标和验收四段限定范围，明确第一版不处理上传、裁剪、CDN 或 Workspace 独立头像。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-conversation-avatars/spec.md",
+      "type": "document",
+      "name": "spec.md",
+      "filePath": "changes/archive/2026-09-14-conversation-avatars/spec.md",
+      "summary": "定义 Conversation Avatars 的行为规格和验收场景，覆盖头像 URL 编辑与持久化、工单列表和时间线头像展示、在线咨询用户与 AI 头像，以及加载失败 fallback。",
+      "tags": [
+        "规格",
+        "功能需求",
+        "验收场景",
+        "avatar_url",
+        "fallback"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档用需求表、Given/When/Then 场景和边界约束描述产品行为，是实现、review 和 verify 的主要验收基线。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-conversation-avatars/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "changes/archive/2026-09-14-conversation-avatars/tasks.md",
+      "summary": "列出 Conversation Avatars 实施任务并标记已完成，包括后端模型/schema/迁移、前端类型同步、资料页编辑预览、各头像展示入口和最终验证归档。",
+      "tags": [
+        "任务清单",
+        "实施跟踪",
+        "归档",
+        "头像",
+        "完成状态"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是简短的完成清单，使用 Markdown checkbox 表达端到端实现状态，不包含额外技术细节。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-conversation-avatars/verification.md",
+      "type": "document",
+      "name": "verification.md",
+      "filePath": "changes/archive/2026-09-14-conversation-avatars/verification.md",
+      "summary": "归档 Conversation Avatars 的验证记录，包含前端构建、后端类型检查、diff 检查、Alembic 迁移、容器健康检查、API 持久化验证和独立复查结果。",
+      "tags": [
+        "验证记录",
+        "构建检查",
+        "迁移",
+        "健康检查",
+        "API 持久化"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档偏验收日志，保留关键命令结果和独立验证结论，说明 AI 头像 fallback 问题已修复且最终任务完成。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ],
+  "edges": []
+}

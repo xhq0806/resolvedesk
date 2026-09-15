@@ -1,0 +1,1407 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/tests/services/test_ticket_service.py",
+      "type": "file",
+      "name": "test_ticket_service.py",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "summary": "覆盖工单服务的主业务路径，包括创建、列表/详情、认领、分配、回复、状态流转、属性更新和删除回滚。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "complex",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "class:backend/tests/services/test_ticket_service.py:TrackedGraph",
+      "type": "class",
+      "name": "TrackedGraph",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        38,
+        45
+      ],
+      "summary": "测试 fixture 数据容器，保存一组相关用户、工单、消息或审计对象。",
+      "tags": [
+        "test-fixture",
+        "pytest",
+        "domain-helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:tracked_graph",
+      "type": "function",
+      "name": "tracked_graph",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        49,
+        70
+      ],
+      "summary": "构造测试所需的 tracked graph fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        73,
+        80
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        83,
+        97
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        100,
+        121
+      ],
+      "summary": "实现 persist 的业务逻辑，属于 test_ticket_service.py 的对外或测试支撑能力。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_ticket_create_schema_normalizes_and_rejects_service_fields",
+      "type": "function",
+      "name": "test_ticket_create_schema_normalizes_and_rejects_service_fields",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        124,
+        141
+      ],
+      "summary": "测试 ticket create schema normalizes and rejects service fields 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_customer_creates_default_ticket_and_non_customer_is_forbidden",
+      "type": "function",
+      "name": "test_customer_creates_default_ticket_and_non_customer_is_forbidden",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        144,
+        169
+      ],
+      "summary": "测试 customer creates default ticket and non customer is forbidden 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_list_and_detail_apply_role_scope_and_timeline_cropping",
+      "type": "function",
+      "name": "test_list_and_detail_apply_role_scope_and_timeline_cropping",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        172,
+        232
+      ],
+      "summary": "测试 list and detail apply role scope and timeline cropping 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_agent_claim_is_atomic_with_taken_audit",
+      "type": "function",
+      "name": "test_agent_claim_is_atomic_with_taken_audit",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        235,
+        281
+      ],
+      "summary": "测试 agent claim is atomic with taken audit 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_admin_assigns_reassigns_and_unassigns_with_audits",
+      "type": "function",
+      "name": "test_admin_assigns_reassigns_and_unassigns_with_audits",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        284,
+        334
+      ],
+      "summary": "测试 admin assigns reassigns and unassigns with audits 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_assignment_rejects_invalid_target_closed_ticket_and_non_admin",
+      "type": "function",
+      "name": "test_assignment_rejects_invalid_target_closed_ticket_and_non_admin",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        337,
+        380
+      ],
+      "summary": "测试 assignment rejects invalid target closed ticket and non admin 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_audit_failure_rolls_back_claim",
+      "type": "function",
+      "name": "test_audit_failure_rolls_back_claim",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        383,
+        414
+      ],
+      "summary": "测试 audit failure rolls back claim 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_customer_reply_reopens_waiting_ticket_and_records_status_change",
+      "type": "function",
+      "name": "test_customer_reply_reopens_waiting_ticket_and_records_status_change",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        417,
+        457
+      ],
+      "summary": "测试 customer reply reopens waiting ticket and records status change 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_staff_message_respects_internal_note_permissions_and_cropping",
+      "type": "function",
+      "name": "test_staff_message_respects_internal_note_permissions_and_cropping",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        460,
+        521
+      ],
+      "summary": "测试 staff message respects internal note permissions and cropping 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_staff_updates_status_with_state_machine_audit",
+      "type": "function",
+      "name": "test_staff_updates_status_with_state_machine_audit",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        524,
+        573
+      ],
+      "summary": "测试 staff updates status with state machine audit 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes",
+      "type": "function",
+      "name": "test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        576,
+        628
+      ],
+      "summary": "测试 admin closes resolved ticket and closed ticket rejects writes 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_update_attributes_records_each_actual_change",
+      "type": "function",
+      "name": "test_update_attributes_records_each_actual_change",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        631,
+        679
+      ],
+      "summary": "测试 update attributes records each actual change 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_requires_true_confirmation_and_admin_role",
+      "type": "function",
+      "name": "test_delete_ticket_requires_true_confirmation_and_admin_role",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        682,
+        713
+      ],
+      "summary": "测试 delete ticket requires true confirmation and admin role 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_admin_delete_soft_deletes_and_retains_ticket_graph",
+      "type": "function",
+      "name": "test_admin_delete_soft_deletes_and_retains_ticket_graph",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        716,
+        794
+      ],
+      "summary": "测试 admin delete soft deletes and retains ticket graph 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_rolls_back_when_deletion_audit_fails",
+      "type": "function",
+      "name": "test_delete_ticket_rolls_back_when_deletion_audit_fails",
+      "filePath": "backend/tests/services/test_ticket_service.py",
+      "lineRange": [
+        797,
+        834
+      ],
+      "summary": "测试 delete ticket rolls back when deletion audit fails 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/services/test_ticket_state_machine.py",
+      "type": "file",
+      "name": "test_ticket_state_machine.py",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "summary": "验证工单状态机对客服、管理员、客户和删除/关闭状态的允许流转规则。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        19,
+        25
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "state-machine",
+        "ticket-domain",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        28,
+        44
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "state-machine",
+        "ticket-domain",
+        "workflow"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_agent_allowed_targets_are_exact",
+      "type": "function",
+      "name": "test_agent_allowed_targets_are_exact",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        47,
+        68
+      ],
+      "summary": "测试 agent allowed targets are exact 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_admin_allowed_targets_are_exact",
+      "type": "function",
+      "name": "test_admin_allowed_targets_are_exact",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        71,
+        90
+      ],
+      "summary": "测试 admin allowed targets are exact 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_and_non_owner_agent_have_no_active_targets",
+      "type": "function",
+      "name": "test_customer_and_non_owner_agent_have_no_active_targets",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        93,
+        106
+      ],
+      "summary": "测试 customer and non owner agent have no active targets 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_open_to_in_progress_requires_claim_or_assignment_flow",
+      "type": "function",
+      "name": "test_open_to_in_progress_requires_claim_or_assignment_flow",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        109,
+        117
+      ],
+      "summary": "测试 open to in progress requires claim or assignment flow 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_and_closed_tickets_have_no_active_targets",
+      "type": "function",
+      "name": "test_deleted_and_closed_tickets_have_no_active_targets",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        120,
+        132
+      ],
+      "summary": "测试 deleted and closed tickets have no active targets 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_status_target_result_is_not_shared_between_calls",
+      "type": "function",
+      "name": "test_status_target_result_is_not_shared_between_calls",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        135,
+        147
+      ],
+      "summary": "测试 status target result is not shared between calls 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_reply_status_target",
+      "type": "function",
+      "name": "test_customer_reply_status_target",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        160,
+        170
+      ],
+      "summary": "测试 customer reply status target 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_customer_reply_has_no_status_target",
+      "type": "function",
+      "name": "test_deleted_customer_reply_has_no_status_target",
+      "filePath": "backend/tests/services/test_ticket_state_machine.py",
+      "lineRange": [
+        173,
+        178
+      ],
+      "summary": "测试 deleted customer reply has no status target 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "type": "file",
+      "name": "test_ticket_workspace_isolation.py",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "summary": "验证工单查询、统计和分配逻辑严格受工作区成员关系约束，防止跨工作区访问。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "class:backend/tests/services/test_ticket_workspace_isolation.py:WorkspaceGraph",
+      "type": "class",
+      "name": "WorkspaceGraph",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        24,
+        31
+      ],
+      "summary": "测试 fixture 数据容器，保存跨工作区隔离场景所需对象。",
+      "tags": [
+        "test-fixture",
+        "pytest",
+        "domain-helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:workspace_graph",
+      "type": "function",
+      "name": "workspace_graph",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        35,
+        63
+      ],
+      "summary": "构造测试所需的 workspace graph fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        66,
+        72
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_workspace",
+      "type": "function",
+      "name": "make_workspace",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        75,
+        81
+      ],
+      "summary": "构造测试所需的 make workspace fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_member",
+      "type": "function",
+      "name": "make_member",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        84,
+        92
+      ],
+      "summary": "构造测试所需的 make member fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        95,
+        109
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        112,
+        129
+      ],
+      "summary": "实现 persist 的业务逻辑，属于 test_ticket_workspace_isolation.py 的对外或测试支撑能力。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_ticket_queries_and_statistics_are_scoped_to_workspace",
+      "type": "function",
+      "name": "test_ticket_queries_and_statistics_are_scoped_to_workspace",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        132,
+        180
+      ],
+      "summary": "测试 ticket queries and statistics are scoped to workspace 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_assignment_uses_workspace_member_role_as_source_of_truth",
+      "type": "function",
+      "name": "test_assignment_uses_workspace_member_role_as_source_of_truth",
+      "filePath": "backend/tests/services/test_ticket_workspace_isolation.py",
+      "lineRange": [
+        183,
+        221
+      ],
+      "summary": "测试 assignment uses workspace member role as source of truth 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "class:backend/tests/services/test_ticket_service.py:TrackedGraph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "class:backend/tests/services/test_ticket_service.py:TrackedGraph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:tracked_graph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:tracked_graph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:persist",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:persist",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_ticket_create_schema_normalizes_and_rejects_service_fields",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_ticket_create_schema_normalizes_and_rejects_service_fields",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_customer_creates_default_ticket_and_non_customer_is_forbidden",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_customer_creates_default_ticket_and_non_customer_is_forbidden",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_list_and_detail_apply_role_scope_and_timeline_cropping",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_list_and_detail_apply_role_scope_and_timeline_cropping",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_agent_claim_is_atomic_with_taken_audit",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_agent_claim_is_atomic_with_taken_audit",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_assigns_reassigns_and_unassigns_with_audits",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_assigns_reassigns_and_unassigns_with_audits",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_assignment_rejects_invalid_target_closed_ticket_and_non_admin",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_assignment_rejects_invalid_target_closed_ticket_and_non_admin",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_audit_failure_rolls_back_claim",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_audit_failure_rolls_back_claim",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_customer_reply_reopens_waiting_ticket_and_records_status_change",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_customer_reply_reopens_waiting_ticket_and_records_status_change",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_staff_message_respects_internal_note_permissions_and_cropping",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_staff_message_respects_internal_note_permissions_and_cropping",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_staff_updates_status_with_state_machine_audit",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_staff_updates_status_with_state_machine_audit",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_closes_resolved_ticket_and_closed_ticket_rejects_writes",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_update_attributes_records_each_actual_change",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_update_attributes_records_each_actual_change",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_requires_true_confirmation_and_admin_role",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_requires_true_confirmation_and_admin_role",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_delete_soft_deletes_and_retains_ticket_graph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_admin_delete_soft_deletes_and_retains_ticket_graph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_rolls_back_when_deletion_audit_fails",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_service.py",
+      "target": "function:backend/tests/services/test_ticket_service.py:test_delete_ticket_rolls_back_when_deletion_audit_fails",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "file:backend/app/services/ticket_state_machine.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_agent_allowed_targets_are_exact",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_agent_allowed_targets_are_exact",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_admin_allowed_targets_are_exact",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_admin_allowed_targets_are_exact",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_and_non_owner_agent_have_no_active_targets",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_and_non_owner_agent_have_no_active_targets",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_open_to_in_progress_requires_claim_or_assignment_flow",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_open_to_in_progress_requires_claim_or_assignment_flow",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_and_closed_tickets_have_no_active_targets",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_and_closed_tickets_have_no_active_targets",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_status_target_result_is_not_shared_between_calls",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_status_target_result_is_not_shared_between_calls",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_reply_status_target",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_customer_reply_status_target",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_customer_reply_has_no_status_target",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_state_machine.py",
+      "target": "function:backend/tests/services/test_ticket_state_machine.py:test_deleted_customer_reply_has_no_status_target",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/services/statistics_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "class:backend/tests/services/test_ticket_workspace_isolation.py:WorkspaceGraph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "class:backend/tests/services/test_ticket_workspace_isolation.py:WorkspaceGraph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:workspace_graph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:workspace_graph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_workspace",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_workspace",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_member",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_member",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:persist",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:persist",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_ticket_queries_and_statistics_are_scoped_to_workspace",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_ticket_queries_and_statistics_are_scoped_to_workspace",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_assignment_uses_workspace_member_role_as_source_of_truth",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_ticket_workspace_isolation.py",
+      "target": "function:backend/tests/services/test_ticket_workspace_isolation.py:test_assignment_uses_workspace_member_role_as_source_of_truth",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

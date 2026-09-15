@@ -1,0 +1,201 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/.generated-client/client.gen.ts",
+      "type": "file",
+      "name": "client.gen.ts",
+      "filePath": "frontend/.generated-client/client.gen.ts",
+      "summary": "初始化由 @hey-api/openapi-ts 生成的前端 API client，并通过 createConfig 设置默认 throwOnError 行为。它是 SDK 调用共享的请求客户端实例来源。",
+      "tags": ["generated-code", "api-client", "配置", "typescript"],
+      "complexity": "simple",
+      "languageNotes": "使用泛型约束把本地 ClientOptions 与生成的 OpenAPI ClientOptions 合并，保证 createClientConfig 的覆盖配置仍保持类型安全。"
+    },
+    {
+      "id": "file:frontend/.generated-client/client/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "frontend/.generated-client/client/index.ts",
+      "summary": "作为生成客户端目录的 barrel 入口，集中 re-export 认证、序列化、client 创建和请求类型。它让业务代码可以从统一入口消费底层客户端能力。",
+      "tags": ["barrel", "entry-point", "导出", "api-client"],
+      "complexity": "simple",
+      "languageNotes": "典型 TypeScript barrel 文件，通过 type-only export 与运行时 export 混合暴露生成客户端 API。"
+    },
+    {
+      "id": "file:frontend/.generated-client/sdk.gen.ts",
+      "type": "file",
+      "name": "sdk.gen.ts",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "summary": "提供由 OpenAPI 生成的 ResolveDesk 前端 SDK，以 Login、Users、Tickets、Utils 和 Private 等 Service class 封装后端 REST API 调用。每个方法把 typed options、响应类型和错误类型传入共享 client。",
+      "tags": ["generated-code", "sdk", "api-client", "service"],
+      "complexity": "complex",
+      "languageNotes": "大量方法使用 ThrowOnError 泛型与响应/错误类型参数，把请求失败策略和 endpoint schema 绑定到调用点。"
+    },
+    {
+      "id": "class:frontend/.generated-client/sdk.gen.ts:LoginService",
+      "type": "class",
+      "name": "LoginService",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "lineRange": [21, 97],
+      "summary": "封装登录、token 测试、密码找回和密码重置相关 API。它把认证与密码恢复流程映射为静态 SDK 方法。",
+      "tags": ["service", "auth", "api-client", "generated-code"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:frontend/.generated-client/sdk.gen.ts:UsersService",
+      "type": "class",
+      "name": "UsersService",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "lineRange": [99, 230],
+      "summary": "封装用户管理和当前用户资料相关 API，包括分页查询、创建、注册、更新个人信息和管理员更新用户。它为前端用户管理界面提供 typed SDK 入口。",
+      "tags": ["service", "users", "api-client", "generated-code"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:frontend/.generated-client/sdk.gen.ts:TicketsService",
+      "type": "class",
+      "name": "TicketsService",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "lineRange": [232, 403],
+      "summary": "封装工单统计、列表、创建、删除、认领、分派、回复、内部消息和状态/属性更新 API。它是前端工单工作流访问后端 ticket endpoints 的主要 SDK 门面。",
+      "tags": ["service", "tickets", "api-client", "workflow"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:frontend/.generated-client/sdk.gen.ts:UtilsService",
+      "type": "class",
+      "name": "UtilsService",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "lineRange": [405, 430],
+      "summary": "封装测试邮件发送和健康检查 API。它为运维检查和邮件配置验证提供轻量 SDK 方法。",
+      "tags": ["service", "utils", "api-client", "health-check"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:frontend/.generated-client/sdk.gen.ts:PrivateService",
+      "type": "class",
+      "name": "PrivateService",
+      "filePath": "frontend/.generated-client/sdk.gen.ts",
+      "lineRange": [432, 449],
+      "summary": "封装私有用户创建 API。它暴露生成客户端中面向内部或受限场景的用户创建入口。",
+      "tags": ["service", "private-api", "api-client", "generated-code"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/.generated-client/types.gen.ts",
+      "type": "file",
+      "name": "types.gen.ts",
+      "filePath": "frontend/.generated-client/types.gen.ts",
+      "summary": "集中定义由 OpenAPI 生成的请求数据、响应、错误、枚举和业务 DTO 类型，覆盖用户、工单、认证和工具接口。它为 sdk.gen.ts 和前端调用方提供端到端类型约束。",
+      "tags": ["type-definition", "generated-code", "api-schema", "typescript"],
+      "complexity": "complex",
+      "languageNotes": "文件大量使用字符串字面量联合、索引访问类型和 endpoint 专属 Data/Errors/Responses 类型，将 REST API schema 投影为 TypeScript 类型系统。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/.generated-client/client.gen.ts",
+      "target": "file:frontend/.generated-client/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/client.gen.ts",
+      "target": "file:frontend/.generated-client/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "file:frontend/.generated-client/client.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "file:frontend/.generated-client/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "file:frontend/.generated-client/types.gen.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:LoginService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:UsersService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:TicketsService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:UtilsService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:PrivateService",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1.0
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:LoginService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:UsersService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:TicketsService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:UtilsService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/.generated-client/sdk.gen.ts",
+      "target": "class:frontend/.generated-client/sdk.gen.ts:PrivateService",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

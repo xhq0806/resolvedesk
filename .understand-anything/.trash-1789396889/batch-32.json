@@ -1,0 +1,903 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/.tanstack/tmp/15963765-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "15963765-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/15963765-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "TanStack Router 自动生成的临时路由树文件，装配登录、注册、设置、工单等基础页面路由并声明父子路由关系。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "route-tree",
+        "frontend-routing"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文件没有扩展名但内容是 TypeScript 风格的生成代码，使用 `Route.update` 和 route tree 类型声明把文件路由折叠成运行时配置。"
+    },
+    {
+      "id": "file:frontend/.tanstack/tmp/39389b45-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "39389b45-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/39389b45-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "TanStack Router 自动生成的临时路由树变体，包含 queue 路由在内的前端导航结构和模块化 route imports。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "queue-route",
+        "route-tree"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "生成代码通过静态 import 汇集各 route 模块，再用更新后的 route 对象构建可供 Router 消费的树结构。"
+    },
+    {
+      "id": "file:frontend/.tanstack/tmp/3b1da8a1-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "3b1da8a1-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/3b1da8a1-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "较完整的 TanStack Router 临时路由树，覆盖管理端、queue 详情、ticket 详情等嵌套路由与类型化路由注册。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "nested-routes",
+        "admin-routes",
+        "ticket-routes"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件集中体现 TanStack Router 的生成式类型扩展模式，路由节点先 update 父子关系，再汇总为 routeTree。"
+    },
+    {
+      "id": "file:frontend/.tanstack/tmp/c5ee514d-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "c5ee514d-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/c5ee514d-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "TanStack Router 生成的临时路由树快照，用于描述当前前端页面集合和布局路由层级。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "route-tree",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "内容是生成式 TypeScript，但因临时文件无扩展名，结构抽取器只能保留基础文件指标。"
+    },
+    {
+      "id": "file:frontend/.tanstack/tmp/cabe5a43-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "cabe5a43-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/cabe5a43-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "TanStack Router 生成的临时路由树缓存文件，记录布局、认证与工单相关页面的路由组合。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "routing-cache",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该类文件通常由 Vite 插件维护，不应手工编辑；业务意义主要来自它映射出的 route module 关系。"
+    },
+    {
+      "id": "file:frontend/.tanstack/tmp/dcd16d42-b01a9313463fa8e2f0a16949779a77d4",
+      "type": "file",
+      "name": "dcd16d42-b01a9313463fa8e2f0a16949779a77d4",
+      "filePath": "frontend/.tanstack/tmp/dcd16d42-b01a9313463fa8e2f0a16949779a77d4",
+      "summary": "TanStack Router 生成的临时路由树文件，作为开发期缓存参与路由类型生成和导航结构校验。",
+      "tags": [
+        "tanstack-router",
+        "generated",
+        "dev-cache",
+        "route-tree"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文件内容与其他临时路由树快照相近，核心模式是导入 route 模块并声明其 path、id 与 parent route。"
+    },
+    {
+      "id": "file:frontend/openapi-ts.config.ts",
+      "type": "file",
+      "name": "openapi-ts.config.ts",
+      "filePath": "frontend/openapi-ts.config.ts",
+      "summary": "配置 @hey-api/openapi-ts 从 `openapi.json` 生成前端 API client、TypeScript 类型和按 tag 分组的 SDK 服务。",
+      "tags": [
+        "openapi",
+        "codegen",
+        "api-client",
+        "hey-api",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "通过 `defineConfig` 声明 input/output 和插件链，并用 `methodName` 回调规范化 SDK 方法名。"
+    },
+    {
+      "id": "file:frontend/playwright-report/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "frontend/playwright-report/index.html",
+      "summary": "Playwright HTML 测试报告的静态入口，内嵌运行时代码、样式和压缩报告数据以供浏览器查看测试结果。",
+      "tags": [
+        "playwright",
+        "test-report",
+        "html",
+        "generated-artifact"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是构建产物式 HTML，源码可读性低，知识图谱中主要表达它作为测试报告 artifact 的角色。"
+    },
+    {
+      "id": "file:frontend/playwright.config.ts",
+      "type": "file",
+      "name": "playwright.config.ts",
+      "filePath": "frontend/playwright.config.ts",
+      "summary": "定义前端 Playwright 端到端测试配置，包括测试目录、CI 重试策略、HTML/blob reporter、Chromium 项目和本地 dev server。",
+      "tags": [
+        "playwright",
+        "e2e",
+        "test-config",
+        "chromium",
+        "ci"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "配置按环境变量切换 baseURL、worker、retry 和 webServer，适合本地与 CI 共用同一套测试入口。"
+    },
+    {
+      "id": "config:frontend/playwright/.auth/user.json",
+      "type": "config",
+      "name": "user.json",
+      "filePath": "frontend/playwright/.auth/user.json",
+      "summary": "Playwright 登录态存储文件，保存测试用户的 cookies 与 origins 状态，供浏览器项目复用认证会话。",
+      "tags": [
+        "playwright",
+        "auth-state",
+        "test-config",
+        "json"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON 顶层由 `cookies` 和 `origins` 组成，是 Playwright `storageState` 约定格式。"
+    },
+    {
+      "id": "file:frontend/src/client/core/params.gen.ts",
+      "type": "file",
+      "name": "params.gen.ts",
+      "filePath": "frontend/src/client/core/params.gen.ts",
+      "summary": "OpenAPI 生成 client 的参数分槽工具，把调用参数映射到 body、headers、path 和 query，并支持额外前缀参数。",
+      "tags": [
+        "openapi",
+        "generated",
+        "params",
+        "api-client",
+        "serialization"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用联合类型描述 Field 配置，再用 Map 与 slot 前缀把用户参数归并到传输层需要的结构。"
+    },
+    {
+      "id": "function:frontend/src/client/core/params.gen.ts:buildKeyMap",
+      "type": "function",
+      "name": "buildKeyMap",
+      "filePath": "frontend/src/client/core/params.gen.ts",
+      "lineRange": [
+        65,
+        88
+      ],
+      "summary": "递归读取字段配置并构建参数 key 到目标 slot 或映射名的查找表。",
+      "tags": [
+        "params",
+        "mapping",
+        "recursive",
+        "generated"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/params.gen.ts:stripEmptySlots",
+      "type": "function",
+      "name": "stripEmptySlots",
+      "filePath": "frontend/src/client/core/params.gen.ts",
+      "lineRange": [
+        97,
+        103
+      ],
+      "summary": "删除 body、headers、path、query 中仍为空对象的 slot，避免发送多余参数容器。",
+      "tags": [
+        "cleanup",
+        "params",
+        "utility",
+        "generated"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/params.gen.ts:buildClientParams",
+      "type": "function",
+      "name": "buildClientParams",
+      "filePath": "frontend/src/client/core/params.gen.ts",
+      "lineRange": [
+        105,
+        169
+      ],
+      "summary": "把 SDK 调用参数按字段配置分派到 body、headers、path 和 query，支持显式映射、slot alias 和额外前缀。",
+      "tags": [
+        "params",
+        "api-client",
+        "serialization",
+        "generated"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "type": "file",
+      "name": "queryKeySerializer.gen.ts",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "summary": "为 query key 提供稳定序列化工具，将 Date、bigint、URLSearchParams、数组和普通对象归一化为 JSON 友好值。",
+      "tags": [
+        "query-key",
+        "serialization",
+        "generated",
+        "cache",
+        "json"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "通过 JSON replacer、plain object 检测和 URLSearchParams 排序来保证缓存 key 可哈希且顺序稳定。"
+    },
+    {
+      "id": "function:frontend/src/client/core/queryKeySerializer.gen.ts:queryKeyJsonReplacer",
+      "type": "function",
+      "name": "queryKeyJsonReplacer",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        17,
+        28
+      ],
+      "summary": "作为 JSON.stringify replacer，将 undefined、函数、symbol 过滤掉，并把 bigint 与 Date 转成稳定字符串。",
+      "tags": [
+        "json",
+        "query-key",
+        "replacer",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "function",
+      "name": "stringifyToJsonValue",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        33,
+        43
+      ],
+      "summary": "安全地 stringify 再 parse 任意输入，失败或不可序列化时返回 undefined。",
+      "tags": [
+        "json",
+        "safe-serialization",
+        "query-key",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "function",
+      "name": "isPlainObject",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        48,
+        54
+      ],
+      "summary": "判断值是否为普通对象或 null prototype 对象，供 query key 序列化选择处理路径。",
+      "tags": [
+        "type-guard",
+        "plain-object",
+        "query-key",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "function",
+      "name": "serializeSearchParams",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        59,
+        78
+      ],
+      "summary": "把 URLSearchParams 按 key 排序并合并重复 key，生成确定性的 JSON 对象。",
+      "tags": [
+        "url-search-params",
+        "query-key",
+        "deterministic",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "type": "function",
+      "name": "serializeQueryKeyValue",
+      "filePath": "frontend/src/client/core/queryKeySerializer.gen.ts",
+      "lineRange": [
+        83,
+        117
+      ],
+      "summary": "将 query key 值归一化为 JSON 友好形状，覆盖 primitive、Date、bigint、数组、URLSearchParams 和 plain object。",
+      "tags": [
+        "query-key",
+        "normalization",
+        "cache",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/hooks/useCopyToClipboard.ts",
+      "type": "file",
+      "name": "useCopyToClipboard.ts",
+      "filePath": "frontend/src/hooks/useCopyToClipboard.ts",
+      "summary": "React hook，封装浏览器 Clipboard API，返回最近复制的文本和异步复制函数，并在短暂延迟后清空状态。",
+      "tags": [
+        "react-hook",
+        "clipboard",
+        "browser-api",
+        "ui-utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 `useState` 保存 copiedText，并用 `useCallback` 固定复制函数引用，失败时返回 false 并清理状态。"
+    },
+    {
+      "id": "function:frontend/src/hooks/useCopyToClipboard.ts:useCopyToClipboard",
+      "type": "function",
+      "name": "useCopyToClipboard",
+      "filePath": "frontend/src/hooks/useCopyToClipboard.ts",
+      "lineRange": [
+        8,
+        32
+      ],
+      "summary": "封装剪贴板复制状态与复制动作，成功后短暂记录文本，失败或不支持 Clipboard API 时返回 false。",
+      "tags": [
+        "react-hook",
+        "clipboard",
+        "state",
+        "browser-api"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/index.css",
+      "type": "file",
+      "name": "index.css",
+      "filePath": "frontend/src/index.css",
+      "summary": "前端全局样式入口，导入 Tailwind 和动画插件，定义主题 token、深色模式变量以及基础层样式。",
+      "tags": [
+        "tailwind",
+        "css",
+        "theme-tokens",
+        "dark-mode",
+        "global-styles"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "CSS 使用 Tailwind v4 风格的 `@theme inline`、`@custom-variant` 和 `@layer base` 管理设计系统变量。"
+    },
+    {
+      "id": "file:frontend/src/vite-env.d.ts",
+      "type": "file",
+      "name": "vite-env.d.ts",
+      "filePath": "frontend/src/vite-env.d.ts",
+      "summary": "Vite 环境类型声明文件，扩展 TypeScript 对 Vite client 类型和应用环境变量的识别。",
+      "tags": [
+        "vite",
+        "typescript",
+        "types",
+        "env"
+      ],
+      "complexity": "simple",
+      "languageNotes": "声明文件通常只提供编译期类型信息，不包含运行时逻辑。"
+    },
+    {
+      "id": "config:frontend/test-results/.last-run.json",
+      "type": "config",
+      "name": ".last-run.json",
+      "filePath": "frontend/test-results/.last-run.json",
+      "summary": "Playwright 最近一次测试运行状态文件，记录整体状态和失败测试列表，供测试报告与增量运行参考。",
+      "tags": [
+        "playwright",
+        "test-results",
+        "json",
+        "generated-artifact"
+      ],
+      "complexity": "simple",
+      "languageNotes": "JSON 字段很少，核心语义是 `status` 与 `failedTests`。"
+    },
+    {
+      "id": "file:frontend/tests/tickets-admin.spec.ts",
+      "type": "file",
+      "name": "tickets-admin.spec.ts",
+      "filePath": "frontend/tests/tickets-admin.spec.ts",
+      "summary": "管理端工单页面的 Playwright smoke test，验证管理员访问 `/admin/tickets` 后能看到标题、搜索框和负责人筛选。",
+      "tags": [
+        "playwright",
+        "e2e",
+        "admin",
+        "tickets",
+        "smoke-test"
+      ],
+      "complexity": "simple",
+      "languageNotes": "测试使用 role、placeholder 和 label locator 表达用户可见行为，避免依赖实现细节选择器。"
+    },
+    {
+      "id": "file:frontend/vite.config.ts",
+      "type": "file",
+      "name": "vite.config.ts",
+      "filePath": "frontend/vite.config.ts",
+      "summary": "前端 Vite 构建配置，设置输出目录、`@` alias，并启用 TanStack Router、React SWC 和 Tailwind 插件。",
+      "tags": [
+        "vite",
+        "react",
+        "tailwind",
+        "tanstack-router",
+        "build-config"
+      ],
+      "complexity": "simple",
+      "languageNotes": "配置把前端 build 输出到后端静态目录 `backend/app/frontend`，体现前后端部署产物的连接点。"
+    },
+    {
+      "id": "file:scripts/add_latest_release_date.py",
+      "type": "file",
+      "name": "add_latest_release_date.py",
+      "filePath": "scripts/add_latest_release_date.py",
+      "summary": "发布辅助脚本，扫描 `release-notes.md` 的最新版本标题，如缺少日期则追加今天日期并写回文件。",
+      "tags": [
+        "release",
+        "script",
+        "release-notes",
+        "automation",
+        "python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "脚本以正则匹配版本标题，使用早退出控制流处理已存在日期、成功写入和未找到标题三种结果。"
+    },
+    {
+      "id": "function:scripts/add_latest_release_date.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "scripts/add_latest_release_date.py",
+      "lineRange": [
+        11,
+        36
+      ],
+      "summary": "读取发布说明，找到最新版本标题并在缺少日期时追加当天日期，否则按结果退出。",
+      "tags": [
+        "release",
+        "script-entry",
+        "release-notes",
+        "date"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:scripts/prepare_release.py",
+      "type": "file",
+      "name": "prepare_release.py",
+      "filePath": "scripts/prepare_release.py",
+      "summary": "基于 Typer 的发布准备 CLI，负责解析当前版本、计算版本 bump、固化 Latest Changes 并输出当前版本或 release notes。",
+      "tags": [
+        "release",
+        "cli",
+        "typer",
+        "versioning",
+        "release-notes"
+      ],
+      "complexity": "complex",
+      "languageNotes": "脚本把纯函数版本处理和 Typer 命令层分开，既便于命令行调用，也便于单元测试发布规则。"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:parse_version",
+      "type": "function",
+      "name": "parse_version",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "校验语义化版本字符串并拆分为 major、minor、patch 三个整数。",
+      "tags": [
+        "semver",
+        "validation",
+        "release",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:get_current_version",
+      "type": "function",
+      "name": "get_current_version",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        26,
+        30
+      ],
+      "summary": "从 release notes 正文中提取当前最新版本号，找不到版本标题时抛出错误。",
+      "tags": [
+        "release-notes",
+        "versioning",
+        "parser",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:bump_version",
+      "type": "function",
+      "name": "bump_version",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        33,
+        39
+      ],
+      "summary": "根据 major、minor 或 patch 策略计算下一个语义化版本号。",
+      "tags": [
+        "semver",
+        "version-bump",
+        "release",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:update_release_notes",
+      "type": "function",
+      "name": "update_release_notes",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        42,
+        69
+      ],
+      "summary": "校验 Latest Changes 与版本顺序，并把最新变更移动到带日期的新版本标题下。",
+      "tags": [
+        "release-notes",
+        "versioning",
+        "validation",
+        "transform"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:get_release_notes_body",
+      "type": "function",
+      "name": "get_release_notes_body",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        72,
+        88
+      ],
+      "summary": "提取指定版本区块的发布说明正文，并保证该版本内容非空。",
+      "tags": [
+        "release-notes",
+        "extract",
+        "versioning",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:prepare_release",
+      "type": "function",
+      "name": "prepare_release",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        91,
+        100
+      ],
+      "summary": "执行发布准备的核心流程：读取文件、计算新版本、写回更新后的 release notes 并返回版本号。",
+      "tags": [
+        "release",
+        "orchestration",
+        "file-io",
+        "versioning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:prepare",
+      "type": "function",
+      "name": "prepare",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        104,
+        130
+      ],
+      "summary": "Typer 命令入口，解析 bump、文件路径和日期选项，调用发布准备流程并输出结果。",
+      "tags": [
+        "typer",
+        "cli-command",
+        "release",
+        "entrypoint"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:current_version",
+      "type": "function",
+      "name": "current_version",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        134,
+        150
+      ],
+      "summary": "Typer 命令入口，读取 release notes 并输出当前版本号。",
+      "tags": [
+        "typer",
+        "cli-command",
+        "versioning",
+        "release"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:scripts/prepare_release.py:release_notes",
+      "type": "function",
+      "name": "release_notes",
+      "filePath": "scripts/prepare_release.py",
+      "lineRange": [
+        154,
+        171
+      ],
+      "summary": "Typer 命令入口，输出当前版本对应的 release notes 正文。",
+      "tags": [
+        "typer",
+        "cli-command",
+        "release-notes",
+        "release"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/client/core/params.gen.ts",
+      "target": "function:frontend/src/client/core/params.gen.ts:buildKeyMap",
+      "type": "contains",
+      "weight": 1,
+      "description": "params.gen.ts 包含函数 buildKeyMap。"
+    },
+    {
+      "source": "file:frontend/src/client/core/params.gen.ts",
+      "target": "function:frontend/src/client/core/params.gen.ts:stripEmptySlots",
+      "type": "contains",
+      "weight": 1,
+      "description": "params.gen.ts 包含函数 stripEmptySlots。"
+    },
+    {
+      "source": "file:frontend/src/client/core/params.gen.ts",
+      "target": "function:frontend/src/client/core/params.gen.ts:buildClientParams",
+      "type": "contains",
+      "weight": 1,
+      "description": "params.gen.ts 包含函数 buildClientParams。"
+    },
+    {
+      "source": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:queryKeyJsonReplacer",
+      "type": "contains",
+      "weight": 1,
+      "description": "queryKeySerializer.gen.ts 包含函数 queryKeyJsonReplacer。"
+    },
+    {
+      "source": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "contains",
+      "weight": 1,
+      "description": "queryKeySerializer.gen.ts 包含函数 stringifyToJsonValue。"
+    },
+    {
+      "source": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "contains",
+      "weight": 1,
+      "description": "queryKeySerializer.gen.ts 包含函数 isPlainObject。"
+    },
+    {
+      "source": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "contains",
+      "weight": 1,
+      "description": "queryKeySerializer.gen.ts 包含函数 serializeSearchParams。"
+    },
+    {
+      "source": "file:frontend/src/client/core/queryKeySerializer.gen.ts",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "type": "contains",
+      "weight": 1,
+      "description": "queryKeySerializer.gen.ts 包含函数 serializeQueryKeyValue。"
+    },
+    {
+      "source": "file:frontend/src/hooks/useCopyToClipboard.ts",
+      "target": "function:frontend/src/hooks/useCopyToClipboard.ts:useCopyToClipboard",
+      "type": "contains",
+      "weight": 1,
+      "description": "useCopyToClipboard.ts 包含函数 useCopyToClipboard。"
+    },
+    {
+      "source": "file:scripts/add_latest_release_date.py",
+      "target": "function:scripts/add_latest_release_date.py:main",
+      "type": "contains",
+      "weight": 1,
+      "description": "add_latest_release_date.py 包含函数 main。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:parse_version",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 parse_version。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:get_current_version",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 get_current_version。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:bump_version",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 bump_version。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:update_release_notes",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 update_release_notes。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:get_release_notes_body",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 get_release_notes_body。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:prepare_release",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 prepare_release。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:prepare",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 prepare。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:current_version",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 current_version。"
+    },
+    {
+      "source": "file:scripts/prepare_release.py",
+      "target": "function:scripts/prepare_release.py:release_notes",
+      "type": "contains",
+      "weight": 1,
+      "description": "prepare_release.py 包含函数 release_notes。"
+    },
+    {
+      "source": "function:frontend/src/client/core/params.gen.ts:buildKeyMap",
+      "target": "function:frontend/src/client/core/params.gen.ts:buildKeyMap",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "buildKeyMap 调用 buildKeyMap。"
+    },
+    {
+      "source": "function:frontend/src/client/core/params.gen.ts:buildClientParams",
+      "target": "function:frontend/src/client/core/params.gen.ts:buildKeyMap",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "buildClientParams 调用 buildKeyMap。"
+    },
+    {
+      "source": "function:frontend/src/client/core/params.gen.ts:buildClientParams",
+      "target": "function:frontend/src/client/core/params.gen.ts:stripEmptySlots",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "buildClientParams 调用 stripEmptySlots。"
+    },
+    {
+      "source": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:stringifyToJsonValue",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "serializeQueryKeyValue 调用 stringifyToJsonValue。"
+    },
+    {
+      "source": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeSearchParams",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "serializeQueryKeyValue 调用 serializeSearchParams。"
+    },
+    {
+      "source": "function:frontend/src/client/core/queryKeySerializer.gen.ts:serializeQueryKeyValue",
+      "target": "function:frontend/src/client/core/queryKeySerializer.gen.ts:isPlainObject",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "serializeQueryKeyValue 调用 isPlainObject。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:bump_version",
+      "target": "function:scripts/prepare_release.py:parse_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "bump_version 调用 parse_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:update_release_notes",
+      "target": "function:scripts/prepare_release.py:get_current_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "update_release_notes 调用 get_current_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:update_release_notes",
+      "target": "function:scripts/prepare_release.py:parse_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "update_release_notes 调用 parse_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:prepare_release",
+      "target": "function:scripts/prepare_release.py:bump_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "prepare_release 调用 bump_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:prepare_release",
+      "target": "function:scripts/prepare_release.py:get_current_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "prepare_release 调用 get_current_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:prepare_release",
+      "target": "function:scripts/prepare_release.py:update_release_notes",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "prepare_release 调用 update_release_notes。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:prepare",
+      "target": "function:scripts/prepare_release.py:prepare_release",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "prepare 调用 prepare_release。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:current_version",
+      "target": "function:scripts/prepare_release.py:get_current_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "current_version 调用 get_current_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:release_notes",
+      "target": "function:scripts/prepare_release.py:get_current_version",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "release_notes 调用 get_current_version。"
+    },
+    {
+      "source": "function:scripts/prepare_release.py:release_notes",
+      "target": "function:scripts/prepare_release.py:get_release_notes_body",
+      "type": "calls",
+      "weight": 0.8,
+      "description": "release_notes 调用 get_release_notes_body。"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/.dockerignore",
+      "type": "file",
+      "name": ".dockerignore",
+      "filePath": "frontend/.dockerignore",
+      "summary": "定义前端 Docker/Playwright 镜像构建时的忽略规则，排除 node_modules 和 dist，避免本地依赖与构建产物进入容器上下文。",
+      "tags": [
+        "docker",
+        "构建上下文",
+        "frontend",
+        "ignore-rules"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是 Docker ignore 文件，语义来自每行 glob 规则；它主要影响 `Dockerfile.playwright` 的 COPY 输入范围。"
+    },
+    {
+      "id": "config:frontend/.env",
+      "type": "config",
+      "name": ".env",
+      "filePath": "frontend/.env",
+      "summary": "提供前端本地开发环境变量，包括 Vite API 地址和 Mailpit 主机名，让浏览器应用与本地后端、邮件测试服务对齐。",
+      "tags": [
+        "env",
+        "vite",
+        "api-url",
+        "mailpit"
+      ],
+      "complexity": "simple",
+      "languageNotes": "`.env` 以键值对配置运行时常量，其中 `VITE_` 前缀变量会暴露给 Vite 前端代码。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "definitionCount": 2
+      }
+    },
+    {
+      "id": "file:frontend/Dockerfile.playwright",
+      "type": "file",
+      "name": "Dockerfile.playwright",
+      "filePath": "frontend/Dockerfile.playwright",
+      "summary": "基于官方 Playwright 镜像构建前端测试运行环境，安装 unzip 与 Bun，复制根和前端 package 清单后执行依赖安装，并带入 frontend 源码。",
+      "tags": [
+        "docker",
+        "playwright",
+        "bun",
+        "e2e-test"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Dockerfile 使用顺序 RUN/COPY/WORKDIR 指令固定浏览器测试环境，重点是让 Bun 依赖安装发生在 `/app/frontend`。"
+    },
+    {
+      "id": "document:frontend/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "frontend/README.md",
+      "summary": "说明 ResolveDesk 前端的技术栈、本地开发、角色区域、FastAPI 托管构建、OpenAPI 客户端生成、目录结构以及 lint/build/e2e 测试流程。",
+      "tags": [
+        "frontend-docs",
+        "react",
+        "vite",
+        "playwright"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档以中文组织，围绕开发者工作流展开，并把前端路由、生成客户端和测试命令连接到项目整体运行方式。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "config:frontend/biome.json",
+      "type": "config",
+      "name": "biome.json",
+      "filePath": "frontend/biome.json",
+      "summary": "配置前端 Biome lint 与 formatter 策略，启用 recommended 规则、组织 imports、排除生成代码和测试产物，并为 SVG 放宽可访问性规则。",
+      "tags": [
+        "biome",
+        "lint",
+        "formatter",
+        "frontend-quality"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "配置覆盖 files、linter、formatter、javascript、css 和 overrides，体现前端代码风格与生成目录的边界。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "config:frontend/components.json",
+      "type": "config",
+      "name": "components.json",
+      "filePath": "frontend/components.json",
+      "summary": "配置 shadcn/ui 组件生成方式，指定 new-york 风格、TSX、Tailwind CSS 入口、neutral 基色、lucide 图标库和 `@/` 路径别名。",
+      "tags": [
+        "shadcn-ui",
+        "tailwind",
+        "lucide",
+        "aliases"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该 JSON 是 UI scaffold 配置，aliases 与 tsconfig 的 `@/*` 路径约定保持一致，便于生成组件引用共享模块。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "file:frontend/index.html",
+      "type": "file",
+      "name": "index.html",
+      "filePath": "frontend/index.html",
+      "summary": "定义 Vite 单页应用的 HTML 壳，设置基础 meta 与标题，并通过 module script 加载 `src/main.tsx` 挂载 React 应用。",
+      "tags": [
+        "html",
+        "vite",
+        "react-entry",
+        "spa-shell"
+      ],
+      "complexity": "simple",
+      "languageNotes": "页面主体只保留 `#root` 挂载点，真正的应用启动逻辑由 TypeScript 入口模块接管。"
+    },
+    {
+      "id": "schema:frontend/openapi.json",
+      "type": "schema",
+      "name": "openapi.json",
+      "filePath": "frontend/openapi.json",
+      "summary": "作为前端 OpenAPI 客户端生成的契约输入文件占位，通常由后端 `/api/v1/openapi.json` 下载后用于 `openapi-ts` 生成客户端。",
+      "tags": [
+        "openapi",
+        "schema",
+        "generated-client",
+        "api-contract"
+      ],
+      "complexity": "simple",
+      "languageNotes": "当前文件未能被 JSON parser 正常解析，分析中保留为 schema 节点以表达它在客户端生成流程中的职责。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "id": "config:frontend/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "frontend/package.json",
+      "summary": "声明前端包的 Vite/Bun 脚本、React 19 与 TanStack 依赖、shadcn/ui 相关组件依赖、OpenAPI 客户端生成工具以及 Playwright 测试工具链。",
+      "tags": [
+        "package-json",
+        "vite",
+        "react",
+        "dependencies"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "scripts 把 dev、build、lint、generate-client 和 Playwright 测试集中到 Bun 工作流，dependencies 体现前端应用的主要运行时能力。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "id": "config:frontend/tsconfig.build.json",
+      "type": "config",
+      "name": "tsconfig.build.json",
+      "filePath": "frontend/tsconfig.build.json",
+      "summary": "为前端生产构建提供 TypeScript 配置入口，继承主 tsconfig，并在构建类型检查时排除 Playwright 测试文件。",
+      "tags": [
+        "typescript",
+        "build",
+        "tsconfig",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "`extends` 复用主编译选项，`exclude` 把测试代码从生产构建的类型检查范围中剥离。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "id": "config:frontend/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "frontend/tsconfig.json",
+      "summary": "定义前端 TypeScript 主配置，使用 ES2020/DOM、bundler moduleResolution、React JSX、严格检查、`@/*` 路径别名，并引用 Node/Vite 配置。",
+      "tags": [
+        "typescript",
+        "react-jsx",
+        "path-alias",
+        "strict-mode"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "配置偏向 Vite bundler 模式：允许 TS 扩展名导入、解析 JSON module、启用 isolatedModules，并通过 references 连接 Node 侧配置。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "id": "config:frontend/tsconfig.node.json",
+      "type": "config",
+      "name": "tsconfig.node.json",
+      "filePath": "frontend/tsconfig.node.json",
+      "summary": "为 Vite 配置等 Node 侧 TypeScript 文件提供独立项目配置，启用 composite、bundler moduleResolution 和 synthetic default imports。",
+      "tags": [
+        "typescript",
+        "vite-config",
+        "node-tooling",
+        "tsconfig"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该配置只 include `vite.config.ts`，用于把构建工具配置与浏览器应用代码的类型边界分开。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/.dockerignore",
+      "target": "file:frontend/Dockerfile.playwright",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:frontend/package.json",
+      "target": "config:frontend/tsconfig.build.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:frontend/tsconfig.build.json",
+      "target": "config:frontend/tsconfig.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:frontend/tsconfig.json",
+      "target": "config:frontend/tsconfig.node.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:frontend/package.json",
+      "target": "schema:frontend/openapi.json",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:frontend/components.json",
+      "target": "config:frontend/tsconfig.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "document:frontend/README.md",
+      "target": "config:frontend/package.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

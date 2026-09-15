@@ -1,0 +1,89 @@
+{
+  "nodes": [
+    {
+      "id": "config:packages/react-email/biome.json",
+      "type": "config",
+      "name": "biome.json",
+      "filePath": "packages/react-email/biome.json",
+      "summary": "为 React Email 子包继承前端 Biome 配置，使邮件模板代码沿用项目统一的 lint 和格式化规则。",
+      "tags": [
+        "React Email",
+        "Biome",
+        "lint 配置",
+        "workspace 配置",
+        "代码风格"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是一个很小的 JSON 配置文件，核心字段是 extends；它把子包代码质量规则委托给 frontend 下的共享 Biome 配置。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "config:packages/react-email/package.json",
+      "type": "config",
+      "name": "package.json",
+      "filePath": "packages/react-email/package.json",
+      "summary": "定义 emails workspace 包的脚本、React Email 依赖和导出命令，用于本地开发、构建邮件模板并输出到后端 email-templates 目录。",
+      "tags": [
+        "React Email",
+        "package.json",
+        "workspace 包",
+        "邮件模板",
+        "构建脚本"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该 JSON 清晰分成 scripts、dependencies 和 devDependencies；它不包含业务代码，但决定邮件模板包如何运行、构建、lint 和导出。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "id": "config:packages/react-email/tsconfig.json",
+      "type": "config",
+      "name": "tsconfig.json",
+      "filePath": "packages/react-email/tsconfig.json",
+      "summary": "配置 React Email 子包的 TypeScript 编译选项，启用 bundler 模块解析、react-jsx、strict 类型检查，并限定 ts/tsx 源文件范围。",
+      "tags": [
+        "TypeScript",
+        "React Email",
+        "tsconfig",
+        "strict mode",
+        "JSX"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这是 TypeScript 项目配置，compilerOptions 约束邮件模板代码的类型检查方式，include/exclude 控制参与检查的文件边界。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:packages/react-email/biome.json",
+      "target": "config:packages/react-email/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:packages/react-email/tsconfig.json",
+      "target": "config:packages/react-email/package.json",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

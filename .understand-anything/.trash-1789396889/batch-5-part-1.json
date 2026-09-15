@@ -1,0 +1,1547 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/lib/aiApi.ts",
+      "type": "file",
+      "name": "aiApi.ts",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "summary": "封装 AI、知识库、工具权限和会话相关的前端 HTTP 调用，并统一处理鉴权 header、JSON 请求与流式响应。",
+      "tags": [
+        "api-client",
+        "ai",
+        "knowledge-base",
+        "streaming"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:requestJson",
+      "type": "function",
+      "name": "requestJson",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        57,
+        91
+      ],
+      "summary": "统一发送 JSON 请求并在非成功响应时解析错误消息，供 AI API 封装复用。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:getProviderConfig",
+      "type": "function",
+      "name": "getProviderConfig",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        93,
+        97
+      ],
+      "summary": "封装 getProviderConfig 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:updateProviderConfig",
+      "type": "function",
+      "name": "updateProviderConfig",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        99,
+        107
+      ],
+      "summary": "封装 updateProviderConfig 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:testProvider",
+      "type": "function",
+      "name": "testProvider",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        109,
+        120
+      ],
+      "summary": "封装 testProvider 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:listToolPermissions",
+      "type": "function",
+      "name": "listToolPermissions",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        127,
+        131
+      ],
+      "summary": "封装 listToolPermissions 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:updateToolPermissions",
+      "type": "function",
+      "name": "updateToolPermissions",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        133,
+        141
+      ],
+      "summary": "封装 updateToolPermissions 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:listKnowledgeDocuments",
+      "type": "function",
+      "name": "listKnowledgeDocuments",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        143,
+        147
+      ],
+      "summary": "封装 listKnowledgeDocuments 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:uploadKnowledgeDocument",
+      "type": "function",
+      "name": "uploadKnowledgeDocument",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        149,
+        178
+      ],
+      "summary": "构造知识库上传 FormData，提交文档文件和来源元数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:createConversation",
+      "type": "function",
+      "name": "createConversation",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        197,
+        205
+      ],
+      "summary": "创建 AI 会话并传递模式、标题和关联工单等上下文。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:conversationAction",
+      "type": "function",
+      "name": "conversationAction",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        207,
+        216
+      ],
+      "summary": "向指定会话发送恢复或取消等动作请求。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:getOrCreateCustomerConversation",
+      "type": "function",
+      "name": "getOrCreateCustomerConversation",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        218,
+        222
+      ],
+      "summary": "封装 getOrCreateCustomerConversation 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:handoffConversationToTicket",
+      "type": "function",
+      "name": "handoffConversationToTicket",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        224,
+        233
+      ],
+      "summary": "把 AI 会话交接为工单，并返回交接后的公开工单信息。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:retryKnowledgeDocument",
+      "type": "function",
+      "name": "retryKnowledgeDocument",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        235,
+        243
+      ],
+      "summary": "封装 retryKnowledgeDocument 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/aiApi.ts:deleteKnowledgeDocument",
+      "type": "function",
+      "name": "deleteKnowledgeDocument",
+      "filePath": "frontend/src/lib/aiApi.ts",
+      "lineRange": [
+        245,
+        254
+      ],
+      "summary": "封装 deleteKnowledgeDocument 相关的 AI 后端请求，返回前端组件可直接消费的数据。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/customerSupportEvents.ts",
+      "type": "file",
+      "name": "customerSupportEvents.ts",
+      "filePath": "frontend/src/lib/customerSupportEvents.ts",
+      "summary": "定义打开客户支持面板的浏览器自定义事件，作为侧边栏和客服组件之间的轻量通信桥。",
+      "tags": [
+        "event-handler",
+        "customer-support",
+        "browser-event"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/customerSupportEvents.ts:openCustomerSupportPanel",
+      "type": "function",
+      "name": "openCustomerSupportPanel",
+      "filePath": "frontend/src/lib/customerSupportEvents.ts",
+      "lineRange": [
+        6,
+        8
+      ],
+      "summary": "提供 openCustomerSupportPanel 工具逻辑，供前端其他模块复用。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/queryClient.ts",
+      "type": "file",
+      "name": "queryClient.ts",
+      "filePath": "frontend/src/lib/queryClient.ts",
+      "summary": "集中创建 TanStack Query 客户端，并在 API 错误中识别认证失败、清理会话和触发登录跳转。",
+      "tags": [
+        "query-client",
+        "authentication",
+        "error-handling",
+        "cache"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/queryClient.ts:clearAuthSession",
+      "type": "function",
+      "name": "clearAuthSession",
+      "filePath": "frontend/src/lib/queryClient.ts",
+      "lineRange": [
+        8,
+        11
+      ],
+      "summary": "提供 clearAuthSession 工具逻辑，供前端其他模块复用。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/queryClient.ts:isAuthenticationError",
+      "type": "function",
+      "name": "isAuthenticationError",
+      "filePath": "frontend/src/lib/queryClient.ts",
+      "lineRange": [
+        14,
+        23
+      ],
+      "summary": "提供 isAuthenticationError 工具逻辑，供前端其他模块复用。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/routeGuards.ts",
+      "type": "file",
+      "name": "routeGuards.ts",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "summary": "提供 TanStack Router 的访问守卫，处理游客页重定向、角色授权和当前工作区管理权限校验。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "workspace",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/routeGuards.ts:getUserRole",
+      "type": "function",
+      "name": "getUserRole",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "lineRange": [
+        22,
+        24
+      ],
+      "summary": "执行 getUserRole 路由守卫逻辑，保障认证、角色或工作区权限满足页面要求。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/routeGuards.ts:ensureGuest",
+      "type": "function",
+      "name": "ensureGuest",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "lineRange": [
+        27,
+        44
+      ],
+      "summary": "执行 ensureGuest 路由守卫逻辑，保障认证、角色或工作区权限满足页面要求。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/routeGuards.ts:redirectIfAuthenticated",
+      "type": "function",
+      "name": "redirectIfAuthenticated",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "lineRange": [
+        47,
+        49
+      ],
+      "summary": "执行 redirectIfAuthenticated 路由守卫逻辑，保障认证、角色或工作区权限满足页面要求。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "routing"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/routeGuards.ts:requireRoles",
+      "type": "function",
+      "name": "requireRoles",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "lineRange": [
+        52,
+        83
+      ],
+      "summary": "执行 requireRoles 路由守卫逻辑，保障认证、角色或工作区权限满足页面要求。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/routeGuards.ts:requireWorkspaceManager",
+      "type": "function",
+      "name": "requireWorkspaceManager",
+      "filePath": "frontend/src/lib/routeGuards.ts",
+      "lineRange": [
+        86,
+        113
+      ],
+      "summary": "执行 requireWorkspaceManager 路由守卫逻辑，保障认证、角色或工作区权限满足页面要求。",
+      "tags": [
+        "route-guard",
+        "authorization",
+        "routing"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "file",
+      "name": "ticketQueries.ts",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "summary": "封装工单列表、详情、统计和可用客服查询的 query options，同时提供筛选条件和缓存失效工具。",
+      "tags": [
+        "query-options",
+        "tickets",
+        "filtering",
+        "cache"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:normalizeTicketListFilters",
+      "type": "function",
+      "name": "normalizeTicketListFilters",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        83,
+        103
+      ],
+      "summary": "标准化工单列表筛选条件，补齐默认值并移除无效页码。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:ticketSearchToFilters",
+      "type": "function",
+      "name": "ticketSearchToFilters",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        105,
+        107
+      ],
+      "summary": "处理 ticketSearchToFilters 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:ticketFiltersToSearch",
+      "type": "function",
+      "name": "ticketFiltersToSearch",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        109,
+        123
+      ],
+      "summary": "将工单筛选状态转换为可写入路由 search 的参数对象。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:activeAgentsQueryOptions",
+      "type": "function",
+      "name": "activeAgentsQueryOptions",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        153,
+        168
+      ],
+      "summary": "处理 activeAgentsQueryOptions 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "query-options",
+        "api-client",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:ticketListQueryOptions",
+      "type": "function",
+      "name": "ticketListQueryOptions",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        170,
+        198
+      ],
+      "summary": "生成工单列表查询配置，把筛选条件映射为后端列表接口参数。",
+      "tags": [
+        "query-options",
+        "api-client",
+        "cache"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:ticketDetailQueryOptions",
+      "type": "function",
+      "name": "ticketDetailQueryOptions",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        201,
+        214
+      ],
+      "summary": "处理 ticketDetailQueryOptions 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "query-options",
+        "api-client",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:ticketStatisticsQueryOptions",
+      "type": "function",
+      "name": "ticketStatisticsQueryOptions",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        217,
+        228
+      ],
+      "summary": "处理 ticketStatisticsQueryOptions 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "query-options",
+        "api-client",
+        "cache"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketLists",
+      "type": "function",
+      "name": "invalidateTicketLists",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        230,
+        231
+      ],
+      "summary": "处理 invalidateTicketLists 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "cache",
+        "invalidation",
+        "query-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketStatistics",
+      "type": "function",
+      "name": "invalidateTicketStatistics",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        233,
+        234
+      ],
+      "summary": "处理 invalidateTicketStatistics 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "cache",
+        "invalidation",
+        "query-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketDetail",
+      "type": "function",
+      "name": "invalidateTicketDetail",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        236,
+        239
+      ],
+      "summary": "处理 invalidateTicketDetail 工单查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "cache",
+        "invalidation",
+        "query-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketQueries",
+      "type": "function",
+      "name": "invalidateTicketQueries",
+      "filePath": "frontend/src/lib/ticketQueries.ts",
+      "lineRange": [
+        242,
+        260
+      ],
+      "summary": "按详情、列表和统计维度批量失效工单相关查询缓存。",
+      "tags": [
+        "cache",
+        "invalidation",
+        "query-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/userAvatarApi.ts",
+      "type": "file",
+      "name": "userAvatarApi.ts",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "summary": "封装当前用户头像上传、删除和 URL 解析逻辑，直接调用后端头像端点并复用生成客户端配置。",
+      "tags": [
+        "api-client",
+        "avatar",
+        "user-profile",
+        "upload"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/userAvatarApi.ts:parseErrorMessage",
+      "type": "function",
+      "name": "parseErrorMessage",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "lineRange": [
+        11,
+        29
+      ],
+      "summary": "从头像 API 的失败响应中提取可展示的错误消息。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userAvatarApi.ts:requestUser",
+      "type": "function",
+      "name": "requestUser",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "lineRange": [
+        31,
+        47
+      ],
+      "summary": "发送头像相关请求并返回更新后的用户信息。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userAvatarApi.ts:uploadMyAvatar",
+      "type": "function",
+      "name": "uploadMyAvatar",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "lineRange": [
+        49,
+        57
+      ],
+      "summary": "处理 uploadMyAvatar 头像接口调用或 URL 转换逻辑。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userAvatarApi.ts:deleteMyAvatar",
+      "type": "function",
+      "name": "deleteMyAvatar",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "lineRange": [
+        59,
+        64
+      ],
+      "summary": "处理 deleteMyAvatar 头像接口调用或 URL 转换逻辑。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userAvatarApi.ts:resolveAvatarUrl",
+      "type": "function",
+      "name": "resolveAvatarUrl",
+      "filePath": "frontend/src/lib/userAvatarApi.ts",
+      "lineRange": [
+        66,
+        73
+      ],
+      "summary": "处理 resolveAvatarUrl 头像接口调用或 URL 转换逻辑。",
+      "tags": [
+        "api-client",
+        "request",
+        "service"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/userQueries.ts",
+      "type": "file",
+      "name": "userQueries.ts",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "summary": "管理用户列表筛选、搜索参数转换和用户查询缓存失效，支撑管理员用户页面的数据读取。",
+      "tags": [
+        "query-options",
+        "users",
+        "filtering",
+        "cache"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:parseSearchBoolean",
+      "type": "function",
+      "name": "parseSearchBoolean",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        30,
+        50
+      ],
+      "summary": "把路由 search 中的布尔形态字符串解析成明确的布尔筛选值。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:normalizeUserListFilters",
+      "type": "function",
+      "name": "normalizeUserListFilters",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        63,
+        77
+      ],
+      "summary": "标准化用户列表筛选条件，处理搜索词、角色、状态和页码默认值。",
+      "tags": [
+        "filtering",
+        "routing",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:userSearchToFilters",
+      "type": "function",
+      "name": "userSearchToFilters",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        80,
+        82
+      ],
+      "summary": "处理 userSearchToFilters 用户查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "hook",
+        "query",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:userFiltersToSearch",
+      "type": "function",
+      "name": "userFiltersToSearch",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        84,
+        94
+      ],
+      "summary": "处理 userFiltersToSearch 用户查询、筛选或缓存管理逻辑。",
+      "tags": [
+        "hook",
+        "query",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:userListQueryOptions",
+      "type": "function",
+      "name": "userListQueryOptions",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        114,
+        139
+      ],
+      "summary": "生成用户列表查询配置，把筛选条件映射为用户列表接口参数。",
+      "tags": [
+        "hook",
+        "query",
+        "workspace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/lib/userQueries.ts:invalidateUserQueries",
+      "type": "function",
+      "name": "invalidateUserQueries",
+      "filePath": "frontend/src/lib/userQueries.ts",
+      "lineRange": [
+        142,
+        158
+      ],
+      "summary": "在用户数据变化后失效用户列表、当前用户和相关工单缓存。",
+      "tags": [
+        "cache",
+        "invalidation",
+        "query-client"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/lib/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "frontend/src/lib/utils.ts",
+      "summary": "提供 className 合并助手，将 clsx 与 tailwind-merge 组合成 UI 组件通用的样式拼接函数。",
+      "tags": [
+        "utility",
+        "styling",
+        "tailwind",
+        "class-name"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/lib/utils.ts:cn",
+      "type": "function",
+      "name": "cn",
+      "filePath": "frontend/src/lib/utils.ts",
+      "lineRange": [
+        4,
+        6
+      ],
+      "summary": "提供 cn 工具逻辑，供前端其他模块复用。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:requestJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:getProviderConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:getProviderConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:updateProviderConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:updateProviderConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:testProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:testProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:listToolPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:listToolPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:updateToolPermissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:updateToolPermissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:listKnowledgeDocuments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:listKnowledgeDocuments",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:uploadKnowledgeDocument",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:uploadKnowledgeDocument",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:createConversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:createConversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:conversationAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:conversationAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:getOrCreateCustomerConversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:getOrCreateCustomerConversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:handoffConversationToTicket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:handoffConversationToTicket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:retryKnowledgeDocument",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:retryKnowledgeDocument",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:deleteKnowledgeDocument",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/aiApi.ts",
+      "target": "function:frontend/src/lib/aiApi.ts:deleteKnowledgeDocument",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/customerSupportEvents.ts",
+      "target": "function:frontend/src/lib/customerSupportEvents.ts:openCustomerSupportPanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/customerSupportEvents.ts",
+      "target": "function:frontend/src/lib/customerSupportEvents.ts:openCustomerSupportPanel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/queryClient.ts",
+      "target": "function:frontend/src/lib/queryClient.ts:clearAuthSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/queryClient.ts",
+      "target": "function:frontend/src/lib/queryClient.ts:clearAuthSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/queryClient.ts",
+      "target": "function:frontend/src/lib/queryClient.ts:isAuthenticationError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/queryClient.ts",
+      "target": "function:frontend/src/lib/queryClient.ts:isAuthenticationError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "file:frontend/src/lib/queryClient.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:getUserRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:getUserRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:ensureGuest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:ensureGuest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:redirectIfAuthenticated",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:redirectIfAuthenticated",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:requireRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:requireRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:requireWorkspaceManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/routeGuards.ts",
+      "target": "function:frontend/src/lib/routeGuards.ts:requireWorkspaceManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:normalizeTicketListFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:normalizeTicketListFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketSearchToFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketSearchToFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketFiltersToSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketFiltersToSearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:activeAgentsQueryOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:activeAgentsQueryOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketListQueryOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketListQueryOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketDetailQueryOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketDetailQueryOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketStatisticsQueryOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:ticketStatisticsQueryOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketLists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketLists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketStatistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketStatistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketDetail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketDetail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketQueries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/ticketQueries.ts",
+      "target": "function:frontend/src/lib/ticketQueries.ts:invalidateTicketQueries",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:parseErrorMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:requestUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:uploadMyAvatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:uploadMyAvatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:deleteMyAvatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:deleteMyAvatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:resolveAvatarUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userAvatarApi.ts",
+      "target": "function:frontend/src/lib/userAvatarApi.ts:resolveAvatarUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "file:frontend/src/lib/ticketQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:parseSearchBoolean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:normalizeUserListFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:normalizeUserListFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userSearchToFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userSearchToFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userFiltersToSearch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userFiltersToSearch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userListQueryOptions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:userListQueryOptions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:invalidateUserQueries",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/userQueries.ts",
+      "target": "function:frontend/src/lib/userQueries.ts:invalidateUserQueries",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/lib/utils.ts",
+      "target": "function:frontend/src/lib/utils.ts:cn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/lib/utils.ts",
+      "target": "function:frontend/src/lib/utils.ts:cn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

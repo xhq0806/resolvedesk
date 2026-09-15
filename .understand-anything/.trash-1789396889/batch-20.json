@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/scripts/format.sh",
+      "type": "file",
+      "name": "format.sh",
+      "filePath": "backend/scripts/format.sh",
+      "summary": "执行后端代码格式化流程，先用 ruff 自动修复 app 和 scripts 目录中的检查问题，再统一格式化这些 Python 相关代码。",
+      "tags": ["shell-script", "formatting", "ruff", "backend-tooling"],
+      "complexity": "simple",
+      "languageNotes": "脚本使用 `set -x` 暴露执行命令，便于在 CI 或本地开发时定位格式化步骤。"
+    },
+    {
+      "id": "file:backend/scripts/lint.sh",
+      "type": "file",
+      "name": "lint.sh",
+      "filePath": "backend/scripts/lint.sh",
+      "summary": "集中运行后端静态检查，包括 mypy、ty、ruff check 以及 ruff format 的只检查模式，用于验证 app 目录的类型和代码风格。",
+      "tags": ["shell-script", "linting", "type-checking", "backend-tooling"],
+      "complexity": "simple",
+      "languageNotes": "通过 `set -e` 让任一检查失败时立即终止，适合作为 CI lint 阶段的入口。"
+    },
+    {
+      "id": "file:backend/scripts/prestart.sh",
+      "type": "file",
+      "name": "prestart.sh",
+      "filePath": "backend/scripts/prestart.sh",
+      "summary": "定义后端服务启动前的准备流程：等待数据库可用、执行 Alembic 迁移，并写入初始数据，确保应用启动时依赖状态就绪。",
+      "tags": ["shell-script", "startup", "database", "migration"],
+      "complexity": "simple",
+      "languageNotes": "该脚本把数据库探活、schema 迁移和初始化数据串成顺序步骤，依赖 `set -e` 保证失败不会被吞掉。"
+    },
+    {
+      "id": "file:backend/scripts/test.sh",
+      "type": "file",
+      "name": "test.sh",
+      "filePath": "backend/scripts/test.sh",
+      "summary": "以 development 环境运行后端 pytest 测试套件，并生成 coverage 文本报告和 HTML 覆盖率报告。",
+      "tags": ["shell-script", "test", "coverage", "pytest"],
+      "complexity": "simple",
+      "languageNotes": "脚本在单条命令前设置 `FASTAPI_ENV=development`，将测试运行环境限定在当前 coverage 执行进程。"
+    },
+    {
+      "id": "file:backend/scripts/tests-start.sh",
+      "type": "file",
+      "name": "tests-start.sh",
+      "filePath": "backend/scripts/tests-start.sh",
+      "summary": "提供测试启动包装流程，先运行测试前置准备脚本，再转交给 backend/scripts/test.sh 执行完整测试与覆盖率生成。",
+      "tags": ["shell-script", "test-bootstrap", "pytest", "backend-tooling"],
+      "complexity": "simple",
+      "languageNotes": "通过 `bash scripts/test.sh \"$@\"` 透传参数，保留调用方自定义 coverage 标题等参数的能力。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/scripts/tests-start.sh",
+      "target": "file:backend/scripts/test.sh",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

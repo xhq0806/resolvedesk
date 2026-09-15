@@ -1,0 +1,1007 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/client/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "frontend/src/client/index.ts",
+      "summary": "聚合并重新导出生成客户端的服务、请求/响应类型与 OpenAPI 类型，是前端调用后端 API 的统一入口。",
+      "tags": [
+        "entry-point",
+        "barrel",
+        "api-client",
+        "type-definition"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "type": "file",
+      "name": "AiWorkbench.tsx",
+      "filePath": "frontend/src/components/AI/AiWorkbench.tsx",
+      "summary": "提供 AI 工作台的对话输入界面，允许坐席向后端创建会话并流式接收助手回复。",
+      "tags": [
+        "component",
+        "ai",
+        "service",
+        "event-handler"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/AI/AiWorkbench.tsx:AiWorkbench",
+      "type": "function",
+      "name": "AiWorkbench",
+      "filePath": "frontend/src/components/AI/AiWorkbench.tsx",
+      "lineRange": [
+        11,
+        105
+      ],
+      "summary": "管理 AI 工作台的输入、会话创建与流式回复状态，提供面向坐席的辅助对话体验。",
+      "tags": [
+        "component",
+        "ai",
+        "event-handler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "type": "file",
+      "name": "CustomerSupportWidget.tsx",
+      "filePath": "frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "summary": "实现面向客户的浮动 AI 支持面板，处理会话初始化、流式消息、快捷提示和转人工工单衔接。",
+      "tags": [
+        "component",
+        "ai",
+        "service",
+        "event-handler"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/AI/CustomerSupportWidget.tsx:CustomerSupportWidget",
+      "type": "function",
+      "name": "CustomerSupportWidget",
+      "filePath": "frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "lineRange": [
+        39,
+        293
+      ],
+      "summary": "驱动客户支持浮窗的打开状态、会话状态、消息发送和转人工流程。",
+      "tags": [
+        "component",
+        "ai",
+        "event-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:frontend/src/components/AI/CustomerSupportWidget.tsx:PromptButton",
+      "type": "function",
+      "name": "PromptButton",
+      "filePath": "frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "lineRange": [
+        295,
+        312
+      ],
+      "summary": "渲染客户支持浮窗中的快捷提示按钮，将预设文案回填为待发送消息。",
+      "tags": [
+        "component",
+        "ai",
+        "event-handler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "type": "file",
+      "name": "ProviderSettings.tsx",
+      "filePath": "frontend/src/components/AI/ProviderSettings.tsx",
+      "summary": "提供 AI provider 和工具权限配置表单，覆盖保存配置、连通性测试和权限开关管理。",
+      "tags": [
+        "component",
+        "ai",
+        "service",
+        "event-handler"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/AI/ProviderSettings.tsx:ProviderSettings",
+      "type": "function",
+      "name": "ProviderSettings",
+      "filePath": "frontend/src/components/AI/ProviderSettings.tsx",
+      "lineRange": [
+        31,
+        262
+      ],
+      "summary": "管理 AI provider 配置表单、连通性测试和工具权限列表的读取与保存。",
+      "tags": [
+        "component",
+        "ai",
+        "event-handler"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/components/Admin/AddUser.tsx",
+      "type": "file",
+      "name": "AddUser.tsx",
+      "filePath": "frontend/src/components/Admin/AddUser.tsx",
+      "summary": "实现管理员新增用户弹窗，使用表单校验和用户查询失效来完成账号创建流程。",
+      "tags": [
+        "component",
+        "admin",
+        "data-table",
+        "user-management"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Admin/AddUser.tsx:AddUser",
+      "type": "function",
+      "name": "AddUser",
+      "filePath": "frontend/src/components/Admin/AddUser.tsx",
+      "lineRange": [
+        65,
+        236
+      ],
+      "summary": "承载新增用户弹窗的表单校验、提交 mutation 和成功后的列表刷新逻辑。",
+      "tags": [
+        "component",
+        "admin",
+        "user-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Admin/EditUser.tsx",
+      "type": "file",
+      "name": "EditUser.tsx",
+      "filePath": "frontend/src/components/Admin/EditUser.tsx",
+      "summary": "实现管理员编辑用户弹窗，支持角色、状态、密码和基本资料更新，并处理当前登录用户上下文。",
+      "tags": [
+        "component",
+        "admin",
+        "data-table",
+        "user-management"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Admin/EditUser.tsx:EditUser",
+      "type": "function",
+      "name": "EditUser",
+      "filePath": "frontend/src/components/Admin/EditUser.tsx",
+      "lineRange": [
+        70,
+        267
+      ],
+      "summary": "承载编辑用户弹窗的表单初始化、资料更新和管理员权限相关字段处理。",
+      "tags": [
+        "component",
+        "admin",
+        "user-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "type": "file",
+      "name": "UserActionsMenu.tsx",
+      "filePath": "frontend/src/components/Admin/UserActionsMenu.tsx",
+      "summary": "为用户列表行提供操作菜单，主要把编辑动作封装为下拉菜单入口。",
+      "tags": [
+        "component",
+        "admin",
+        "data-table",
+        "user-management"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Admin/UserActionsMenu.tsx:UserActionsMenu",
+      "type": "function",
+      "name": "UserActionsMenu",
+      "filePath": "frontend/src/components/Admin/UserActionsMenu.tsx",
+      "lineRange": [
+        18,
+        38
+      ],
+      "summary": "为用户表格行渲染操作下拉菜单，并把编辑入口连接到 EditUser 弹窗。",
+      "tags": [
+        "component",
+        "admin",
+        "user-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "type": "file",
+      "name": "UserFilters.tsx",
+      "filePath": "frontend/src/components/Admin/UserFilters.tsx",
+      "summary": "提供用户管理列表的搜索、角色、状态和分页大小筛选控件，将 UI 输入转换为查询过滤条件。",
+      "tags": [
+        "component",
+        "admin",
+        "data-table",
+        "user-management"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Admin/UserFilters.tsx:UserFilters",
+      "type": "function",
+      "name": "UserFilters",
+      "filePath": "frontend/src/components/Admin/UserFilters.tsx",
+      "lineRange": [
+        32,
+        137
+      ],
+      "summary": "渲染用户列表筛选控件，并把筛选变更同步给外层查询状态。",
+      "tags": [
+        "component",
+        "filtering",
+        "query-state"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Admin/columns.tsx",
+      "type": "file",
+      "name": "columns.tsx",
+      "filePath": "frontend/src/components/Admin/columns.tsx",
+      "summary": "定义后台用户表格列，负责展示用户身份、角色、状态、最近活跃时间和行操作入口。",
+      "tags": [
+        "component",
+        "admin",
+        "data-table",
+        "user-management"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Common/Appearance.tsx",
+      "type": "file",
+      "name": "Appearance.tsx",
+      "filePath": "frontend/src/components/Common/Appearance.tsx",
+      "summary": "封装主题外观切换控件，分别适配侧边栏内的紧凑按钮和设置页中的完整选择界面。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/Appearance.tsx:SidebarAppearance",
+      "type": "function",
+      "name": "SidebarAppearance",
+      "filePath": "frontend/src/components/Common/Appearance.tsx",
+      "lineRange": [
+        25,
+        67
+      ],
+      "summary": "在侧边栏中渲染紧凑主题切换菜单，并调用主题 provider 更新外观。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Common/Appearance.tsx:Appearance",
+      "type": "function",
+      "name": "Appearance",
+      "filePath": "frontend/src/components/Common/Appearance.tsx",
+      "lineRange": [
+        69,
+        105
+      ],
+      "summary": "在完整设置界面中渲染主题选择按钮组，提供 light、dark 与 system 三种模式。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "type": "file",
+      "name": "AuthLayout.tsx",
+      "filePath": "frontend/src/components/Common/AuthLayout.tsx",
+      "summary": "定义认证页面布局，组合品牌标识、外观切换、内容区和页脚，统一登录/找回密码页面骨架。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/AuthLayout.tsx:AuthLayout",
+      "type": "function",
+      "name": "AuthLayout",
+      "filePath": "frontend/src/components/Common/AuthLayout.tsx",
+      "lineRange": [
+        9,
+        26
+      ],
+      "summary": "组合认证页的品牌、主题切换、主内容和页脚区域。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "function:frontend/src/components/AI/AiWorkbench.tsx:AiWorkbench",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "function:frontend/src/components/AI/AiWorkbench.tsx:AiWorkbench",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "function:frontend/src/components/AI/CustomerSupportWidget.tsx:CustomerSupportWidget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "function:frontend/src/components/AI/CustomerSupportWidget.tsx:CustomerSupportWidget",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "function:frontend/src/components/AI/CustomerSupportWidget.tsx:PromptButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "function:frontend/src/components/AI/ProviderSettings.tsx:ProviderSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "function:frontend/src/components/AI/ProviderSettings.tsx:ProviderSettings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "function:frontend/src/components/Admin/AddUser.tsx:AddUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "function:frontend/src/components/Admin/EditUser.tsx:EditUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "function:frontend/src/components/Admin/UserActionsMenu.tsx:UserActionsMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "function:frontend/src/components/Admin/UserActionsMenu.tsx:UserActionsMenu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "function:frontend/src/components/Admin/UserFilters.tsx:UserFilters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "function:frontend/src/components/Admin/UserFilters.tsx:UserFilters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "function:frontend/src/components/Common/Appearance.tsx:SidebarAppearance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "function:frontend/src/components/Common/Appearance.tsx:SidebarAppearance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "function:frontend/src/components/Common/Appearance.tsx:Appearance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "function:frontend/src/components/Common/Appearance.tsx:Appearance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "function:frontend/src/components/Common/AuthLayout.tsx:AuthLayout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "function:frontend/src/components/Common/AuthLayout.tsx:AuthLayout",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "file:frontend/src/components/ui/textarea.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/AiWorkbench.tsx",
+      "target": "file:frontend/src/lib/aiApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/ui/textarea.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/ui/tooltip.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/lib/aiApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/lib/customerSupportEvents.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/checkbox.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/label.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/ProviderSettings.tsx",
+      "target": "file:frontend/src/lib/aiApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/checkbox.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/lib/userQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/AddUser.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/checkbox.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/dialog.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/lib/userQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/EditUser.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/components/Admin/EditUser.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserFilters.tsx",
+      "target": "file:frontend/src/lib/userQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/columns.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/columns.tsx",
+      "target": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/columns.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Admin/columns.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "file:frontend/src/components/theme-provider.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "file:frontend/src/components/ui/dropdown-menu.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/Appearance.tsx",
+      "target": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Appearance.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Footer.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Logo.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/AI/CustomerSupportWidget.tsx",
+      "target": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "target": "file:frontend/src/components/Admin/EditUser.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Admin/columns.tsx",
+      "target": "file:frontend/src/components/Admin/UserActionsMenu.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Appearance.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Footer.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "target": "file:frontend/src/components/Common/Logo.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "nodes": [
+    {
+      "id": "document:docs/specs/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "docs/specs/README.md",
+      "summary": "维护 ResolveDesk 功能规格索引，集中列出 AI Agent 支持型客服协同系统、会话与工单头像、本地头像上传三份沉淀规格及其涉及模块。",
+      "tags": [
+        "规格索引",
+        "功能文档",
+        "AI Agent",
+        "头像",
+        "知识沉淀"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Markdown 以短说明和表格组织，是面向开发前查阅的功能 spec 入口，帮助避免重复探索已有需求。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "id": "document:docs/specs/ai-agent-support-copilot.md",
+      "type": "document",
+      "name": "ai-agent-support-copilot.md",
+      "filePath": "docs/specs/ai-agent-support-copilot.md",
+      "summary": "归档 ResolveDesk Workspace 级客服工单与 AI Agent 协同能力，说明知识库管理、Customer 在线咨询、RAG 回答、转人工生成工单和自动分派流程。",
+      "tags": [
+        "功能规格",
+        "AI Agent",
+        "RAG",
+        "转人工",
+        "Workspace"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档按功能描述、核心流程、边界约束和代码索引展开，既保留产品行为，也把后端服务、前端组件和 API 入口映射到实现位置。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "document:docs/specs/conversation-avatars.md",
+      "type": "document",
+      "name": "conversation-avatars.md",
+      "filePath": "docs/specs/conversation-avatars.md",
+      "summary": "归档会话与工单头像展示规格，说明用户头像在个人资料、侧边栏、工单列表、工单时间线和在线咨询中的展示契约，以及 AI 头像兜底策略。",
+      "tags": [
+        "功能规格",
+        "头像展示",
+        "UserAvatar",
+        "工单体验",
+        "在线咨询"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档明确 avatar_url 已由本地上传规格接管，并以流程、边界和代码索引说明头像展示不改变权限与工单可见范围。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "id": "document:docs/specs/local-avatar-upload.md",
+      "type": "document",
+      "name": "local-avatar-upload.md",
+      "filePath": "docs/specs/local-avatar-upload.md",
+      "summary": "归档本地头像上传规格，描述登录用户上传、清除和公开读取头像的流程，覆盖后端文件校验、本地存储、avatar_url 生成和前端预览展示。",
+      "tags": [
+        "功能规格",
+        "本地头像上传",
+        "文件校验",
+        "UserService",
+        "用户资料"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档用核心流程、边界约束、关键文件和接口定义说明头像上传能力，强调上传清除需登录、读取地址公开、第一版不做裁剪或对象存储。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:docs/specs/README.md",
+      "target": "document:docs/specs/ai-agent-support-copilot.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/specs/README.md",
+      "target": "document:docs/specs/conversation-avatars.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/specs/README.md",
+      "target": "document:docs/specs/local-avatar-upload.md",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/specs/conversation-avatars.md",
+      "target": "document:docs/specs/local-avatar-upload.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/specs/ai-agent-support-copilot.md",
+      "target": "document:docs/specs/conversation-avatars.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

@@ -1,0 +1,933 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "type": "file",
+      "name": "test_ticket_concurrency.py",
+      "filePath": "backend/tests/repositories/test_ticket_concurrency.py",
+      "summary": "验证 TicketRepository 的原子认领逻辑，确保两个客服不能同时认领同一个工单。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_concurrency.py:test_two_agents_cannot_claim_the_same_ticket",
+      "type": "function",
+      "name": "test_two_agents_cannot_claim_the_same_ticket",
+      "filePath": "backend/tests/repositories/test_ticket_concurrency.py",
+      "lineRange": [
+        20,
+        96
+      ],
+      "summary": "测试 two agents cannot claim the same ticket 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/repositories/test_ticket_repository.py",
+      "type": "file",
+      "name": "test_ticket_repository.py",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "summary": "覆盖工单仓库的查询过滤、软删除、消息/审计可见性、原子认领和统计聚合。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "complex",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "class:backend/tests/repositories/test_ticket_repository.py:TrackedGraph",
+      "type": "class",
+      "name": "TrackedGraph",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        30,
+        37
+      ],
+      "summary": "测试 fixture 数据容器，保存一组相关用户、工单、消息或审计对象。",
+      "tags": [
+        "test-fixture",
+        "pytest",
+        "domain-helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:tracked_graph",
+      "type": "function",
+      "name": "tracked_graph",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        41,
+        57
+      ],
+      "summary": "构造测试所需的 tracked graph fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:make_user",
+      "type": "function",
+      "name": "make_user",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        60,
+        65
+      ],
+      "summary": "构造测试所需的 make user fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:make_ticket",
+      "type": "function",
+      "name": "make_ticket",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        68,
+        92
+      ],
+      "summary": "构造测试所需的 make ticket fixture 或领域对象。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:persist",
+      "type": "function",
+      "name": "persist",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        95,
+        114
+      ],
+      "summary": "实现 persist 的业务逻辑，属于 test_ticket_repository.py 的对外或测试支撑能力。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_ticket_filters_normalize_query_and_validate_pagination",
+      "type": "function",
+      "name": "test_ticket_filters_normalize_query_and_validate_pagination",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        117,
+        122
+      ],
+      "summary": "测试 ticket filters normalize query and validate pagination 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_add_methods_use_callers_session",
+      "type": "function",
+      "name": "test_add_methods_use_callers_session",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        125,
+        147
+      ],
+      "summary": "测试 add methods use callers session 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_active_getters_hide_soft_deleted_and_lock_refreshes_identity_map",
+      "type": "function",
+      "name": "test_active_getters_hide_soft_deleted_and_lock_refreshes_identity_map",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        150,
+        177
+      ],
+      "summary": "测试 active getters hide soft deleted and lock refreshes identity map 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_enforces_role_scope_and_soft_delete",
+      "type": "function",
+      "name": "test_list_for_actor_enforces_role_scope_and_soft_delete",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        180,
+        208
+      ],
+      "summary": "测试 list for actor enforces role scope and soft delete 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_combines_filters_search_count_and_stable_pagination",
+      "type": "function",
+      "name": "test_list_for_actor_combines_filters_search_count_and_stable_pagination",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        211,
+        270
+      ],
+      "summary": "测试 list for actor combines filters search count and stable pagination 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_message_and_audit_queries_apply_database_side_visibility",
+      "type": "function",
+      "name": "test_message_and_audit_queries_apply_database_side_visibility",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        273,
+        324
+      ],
+      "summary": "测试 message and audit queries apply database side visibility 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_claim_if_available_updates_only_matching_ticket",
+      "type": "function",
+      "name": "test_claim_if_available_updates_only_matching_ticket",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        327,
+        354
+      ],
+      "summary": "测试 claim if available updates only matching ticket 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/repositories/test_ticket_repository.py:test_get_statistics_aggregates_only_the_actor_scope_and_active_tickets",
+      "type": "function",
+      "name": "test_get_statistics_aggregates_only_the_actor_scope_and_active_tickets",
+      "filePath": "backend/tests/repositories/test_ticket_repository.py",
+      "lineRange": [
+        357,
+        484
+      ],
+      "summary": "测试 get statistics aggregates only the actor scope and active tickets 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:backend/tests/services/test_agent_and_tooling.py",
+      "type": "file",
+      "name": "test_agent_and_tooling.py",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "summary": "覆盖 AI 会话增量解析、消息校验、工具白名单以及 AI 转人工工单的创建和幂等性。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:_make_user",
+      "type": "function",
+      "name": "_make_user",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        22,
+        32
+      ],
+      "summary": "实现 make user 的内部辅助逻辑，支撑同文件中的核心服务流程。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:_add_member",
+      "type": "function",
+      "name": "_add_member",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        35,
+        50
+      ],
+      "summary": "实现 add member 的内部辅助逻辑，支撑同文件中的核心服务流程。",
+      "tags": [
+        "utility",
+        "service-helper",
+        "business-logic"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:test_extract_delta_reads_openai_compatible_chunk",
+      "type": "function",
+      "name": "test_extract_delta_reads_openai_compatible_chunk",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        53,
+        59
+      ],
+      "summary": "测试 extract delta reads openai compatible chunk 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:test_message_create_rejects_blank_or_oversized_content",
+      "type": "function",
+      "name": "test_message_create_rejects_blank_or_oversized_content",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        62,
+        67
+      ],
+      "summary": "测试 message create rejects blank or oversized content 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:test_tool_whitelist_excludes_destructive_and_admin_tools",
+      "type": "function",
+      "name": "test_tool_whitelist_excludes_destructive_and_admin_tools",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        70,
+        80
+      ],
+      "summary": "测试 tool whitelist excludes destructive and admin tools 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_creates_ticket_and_assigns_idle_agent",
+      "type": "function",
+      "name": "test_customer_handoff_creates_ticket_and_assigns_idle_agent",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        83,
+        134
+      ],
+      "summary": "测试 customer handoff creates ticket and assigns idle agent 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_is_idempotent",
+      "type": "function",
+      "name": "test_customer_handoff_is_idempotent",
+      "filePath": "backend/tests/services/test_agent_and_tooling.py",
+      "lineRange": [
+        137,
+        162
+      ],
+      "summary": "测试 customer handoff is idempotent 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/tests/services/test_attachment_service.py",
+      "type": "file",
+      "name": "test_attachment_service.py",
+      "filePath": "backend/tests/services/test_attachment_service.py",
+      "summary": "验证附件字节校验逻辑，覆盖 PDF 签名匹配与不安全输入拒绝。",
+      "tags": [
+        "test",
+        "pytest",
+        "业务规则",
+        "回归保障"
+      ],
+      "complexity": "simple",
+      "languageNotes": "pytest 测试以 fixture 和领域对象构造函数组合业务场景，强调服务层契约稳定性。"
+    },
+    {
+      "id": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_accepts_matching_pdf_signature",
+      "type": "function",
+      "name": "test_attachment_validation_accepts_matching_pdf_signature",
+      "filePath": "backend/tests/services/test_attachment_service.py",
+      "lineRange": [
+        11,
+        20
+      ],
+      "summary": "测试 attachment validation accepts matching pdf signature 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_rejects_unsafe_inputs",
+      "type": "function",
+      "name": "test_attachment_validation_rejects_unsafe_inputs",
+      "filePath": "backend/tests/services/test_attachment_service.py",
+      "lineRange": [
+        32,
+        39
+      ],
+      "summary": "测试 attachment validation rejects unsafe inputs 这一行为契约，防止相关业务规则回退。",
+      "tags": [
+        "test",
+        "pytest",
+        "behavior-contract"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "file:backend/app/repositories/ticket_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "function:backend/tests/repositories/test_ticket_concurrency.py:test_two_agents_cannot_claim_the_same_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_concurrency.py",
+      "target": "function:backend/tests/repositories/test_ticket_concurrency.py:test_two_agents_cannot_claim_the_same_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/repositories/ticket_repository.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "class:backend/tests/repositories/test_ticket_repository.py:TrackedGraph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "class:backend/tests/repositories/test_ticket_repository.py:TrackedGraph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:tracked_graph",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:tracked_graph",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:make_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:make_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:persist",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:persist",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_ticket_filters_normalize_query_and_validate_pagination",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_ticket_filters_normalize_query_and_validate_pagination",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_add_methods_use_callers_session",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_add_methods_use_callers_session",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_active_getters_hide_soft_deleted_and_lock_refreshes_identity_map",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_active_getters_hide_soft_deleted_and_lock_refreshes_identity_map",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_enforces_role_scope_and_soft_delete",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_enforces_role_scope_and_soft_delete",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_combines_filters_search_count_and_stable_pagination",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_list_for_actor_combines_filters_search_count_and_stable_pagination",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_message_and_audit_queries_apply_database_side_visibility",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_message_and_audit_queries_apply_database_side_visibility",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_claim_if_available_updates_only_matching_ticket",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_claim_if_available_updates_only_matching_ticket",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_get_statistics_aggregates_only_the_actor_scope_and_active_tickets",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/repositories/test_ticket_repository.py",
+      "target": "function:backend/tests/repositories/test_ticket_repository.py:test_get_statistics_aggregates_only_the_actor_scope_and_active_tickets",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/models/enums.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/models/ticket.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/services/agent_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "file:backend/app/services/tool_executor.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:_make_user",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:_make_user",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:_add_member",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:_add_member",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_extract_delta_reads_openai_compatible_chunk",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_extract_delta_reads_openai_compatible_chunk",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_message_create_rejects_blank_or_oversized_content",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_message_create_rejects_blank_or_oversized_content",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_tool_whitelist_excludes_destructive_and_admin_tools",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_tool_whitelist_excludes_destructive_and_admin_tools",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_creates_ticket_and_assigns_idle_agent",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_creates_ticket_and_assigns_idle_agent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_is_idempotent",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_agent_and_tooling.py",
+      "target": "function:backend/tests/services/test_agent_and_tooling.py:test_customer_handoff_is_idempotent",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "file:backend/app/services/attachment_service.py",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_accepts_matching_pdf_signature",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_accepts_matching_pdf_signature",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_rejects_unsafe_inputs",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:backend/tests/services/test_attachment_service.py",
+      "target": "function:backend/tests/services/test_attachment_service.py:test_attachment_validation_rejects_unsafe_inputs",
+      "type": "exports",
+      "weight": 0.8,
+      "direction": "forward"
+    }
+  ]
+}

@@ -1,0 +1,753 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/components/Common/DataTable.tsx",
+      "type": "file",
+      "name": "DataTable.tsx",
+      "filePath": "frontend/src/components/Common/DataTable.tsx",
+      "summary": "封装通用数据表格组件，整合 TanStack Table 的渲染、加载态、空态、分页和工具栏插槽。",
+      "tags": [
+        "component",
+        "data-table",
+        "pagination",
+        "utility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/DataTable.tsx:DataTable",
+      "type": "function",
+      "name": "DataTable",
+      "filePath": "frontend/src/components/Common/DataTable.tsx",
+      "lineRange": [
+        49,
+        267
+      ],
+      "summary": "封装表格 header/body/分页渲染，并统一处理 loading、empty 和 toolbar 状态。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/components/Common/ErrorComponent.tsx",
+      "type": "file",
+      "name": "ErrorComponent.tsx",
+      "filePath": "frontend/src/components/Common/ErrorComponent.tsx",
+      "summary": "提供路由错误展示组件，将未知错误转换为可读消息并提供返回首页动作。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/ErrorComponent.tsx:ErrorComponent",
+      "type": "function",
+      "name": "ErrorComponent",
+      "filePath": "frontend/src/components/Common/ErrorComponent.tsx",
+      "lineRange": [
+        10,
+        37
+      ],
+      "summary": "把路由错误对象转换成可读页面，并提供回到首页的恢复动作。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Common/Footer.tsx",
+      "type": "file",
+      "name": "Footer.tsx",
+      "filePath": "frontend/src/components/Common/Footer.tsx",
+      "summary": "提供简洁页脚组件，展示 ResolveDesk 产品归属信息。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/Footer.tsx:Footer",
+      "type": "function",
+      "name": "Footer",
+      "filePath": "frontend/src/components/Common/Footer.tsx",
+      "lineRange": [
+        2,
+        12
+      ],
+      "summary": "渲染 ResolveDesk 的页脚版权信息。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Common/Logo.tsx",
+      "type": "file",
+      "name": "Logo.tsx",
+      "filePath": "frontend/src/components/Common/Logo.tsx",
+      "summary": "渲染 ResolveDesk 品牌标识，支持仅图标、完整品牌和是否作为链接三种使用形态。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/Logo.tsx:Logo",
+      "type": "function",
+      "name": "Logo",
+      "filePath": "frontend/src/components/Common/Logo.tsx",
+      "lineRange": [
+        13,
+        58
+      ],
+      "summary": "根据 variant 和链接选项渲染品牌图标或完整品牌标识。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Common/NotFound.tsx",
+      "type": "file",
+      "name": "NotFound.tsx",
+      "filePath": "frontend/src/components/Common/NotFound.tsx",
+      "summary": "提供 404 页面内容，提示页面不存在并引导用户返回首页。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "simple",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/NotFound.tsx:NotFound",
+      "type": "function",
+      "name": "NotFound",
+      "filePath": "frontend/src/components/Common/NotFound.tsx",
+      "lineRange": [
+        4,
+        29
+      ],
+      "summary": "渲染未找到页面并提供返回首页按钮。",
+      "tags": [
+        "component",
+        "shared-ui",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "type": "file",
+      "name": "UserAvatar.tsx",
+      "filePath": "frontend/src/components/Common/UserAvatar.tsx",
+      "summary": "封装用户头像与 AI 头像展示，统一远程头像 URL 解析、姓名缩写和回退样式。",
+      "tags": [
+        "component",
+        "layout",
+        "branding",
+        "utility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Common/UserAvatar.tsx:UserAvatar",
+      "type": "function",
+      "name": "UserAvatar",
+      "filePath": "frontend/src/components/Common/UserAvatar.tsx",
+      "lineRange": [
+        16,
+        37
+      ],
+      "summary": "根据用户姓名、邮箱和头像 URL 渲染头像，失败时回退为首字母缩写。",
+      "tags": [
+        "component",
+        "avatar",
+        "identity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/Common/UserAvatar.tsx:AiAvatar",
+      "type": "function",
+      "name": "AiAvatar",
+      "filePath": "frontend/src/components/Common/UserAvatar.tsx",
+      "lineRange": [
+        39,
+        48
+      ],
+      "summary": "渲染 AI 助手的固定头像样式，用于对话消息中区分助手身份。",
+      "tags": [
+        "component",
+        "avatar",
+        "identity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "type": "file",
+      "name": "KnowledgePanel.tsx",
+      "filePath": "frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "summary": "提供知识库文档上传与状态列表面板，支持上传、重试失败文档和删除文档。",
+      "tags": [
+        "component",
+        "knowledge-base",
+        "upload",
+        "service"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Knowledge/KnowledgePanel.tsx:KnowledgePanel",
+      "type": "function",
+      "name": "KnowledgePanel",
+      "filePath": "frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "lineRange": [
+        18,
+        99
+      ],
+      "summary": "管理知识文档列表、上传、失败重试和删除动作。",
+      "tags": [
+        "component",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "type": "file",
+      "name": "PendingTickets.tsx",
+      "filePath": "frontend/src/components/Pending/PendingTickets.tsx",
+      "summary": "提供工单详情加载时的骨架屏，与工单详情布局保持相近的视觉占位。",
+      "tags": [
+        "component",
+        "loading-state",
+        "skeleton",
+        "ui-state"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Pending/PendingTickets.tsx:PendingTickets",
+      "type": "function",
+      "name": "PendingTickets",
+      "filePath": "frontend/src/components/Pending/PendingTickets.tsx",
+      "lineRange": [
+        11,
+        52
+      ],
+      "summary": "渲染工单详情加载期间的骨架占位。",
+      "tags": [
+        "component",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Pending/PendingUsers.tsx",
+      "type": "file",
+      "name": "PendingUsers.tsx",
+      "filePath": "frontend/src/components/Pending/PendingUsers.tsx",
+      "summary": "提供用户列表加载时的表格骨架屏，用于保持后台页面的加载结构稳定。",
+      "tags": [
+        "component",
+        "loading-state",
+        "skeleton",
+        "ui-state"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Pending/PendingUsers.tsx:PendingUsers",
+      "type": "function",
+      "name": "PendingUsers",
+      "filePath": "frontend/src/components/Pending/PendingUsers.tsx",
+      "lineRange": [
+        11,
+        51
+      ],
+      "summary": "渲染用户表格加载期间的骨架占位。",
+      "tags": [
+        "component",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "type": "file",
+      "name": "AppSidebar.tsx",
+      "filePath": "frontend/src/components/Sidebar/AppSidebar.tsx",
+      "summary": "组装应用主侧边栏，按用户角色和工作区上下文生成导航项，并挂载支持入口与用户菜单。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar",
+        "role-based-ui"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Sidebar/AppSidebar.tsx:AppSidebar",
+      "type": "function",
+      "name": "AppSidebar",
+      "filePath": "frontend/src/components/Sidebar/AppSidebar.tsx",
+      "lineRange": [
+        120,
+        143
+      ],
+      "summary": "根据当前用户、工作区和角色生成侧边栏导航并组合主导航、工作区切换和用户菜单。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/Sidebar/Main.tsx",
+      "type": "file",
+      "name": "Main.tsx",
+      "filePath": "frontend/src/components/Sidebar/Main.tsx",
+      "summary": "渲染侧边栏主导航，支持多级菜单、活跃状态和折叠提示。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar",
+        "role-based-ui"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件使用 React function component 与 hooks 组织状态、请求和 UI 组合。"
+    },
+    {
+      "id": "function:frontend/src/components/Sidebar/Main.tsx:Main",
+      "type": "function",
+      "name": "Main",
+      "filePath": "frontend/src/components/Sidebar/Main.tsx",
+      "lineRange": [
+        27,
+        107
+      ],
+      "summary": "把导航项渲染为侧边栏菜单，处理子菜单、折叠 tooltip 和当前路由高亮。",
+      "tags": [
+        "component",
+        "navigation",
+        "sidebar"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/Common/DataTable.tsx",
+      "target": "function:frontend/src/components/Common/DataTable.tsx:DataTable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/DataTable.tsx",
+      "target": "function:frontend/src/components/Common/DataTable.tsx:DataTable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/ErrorComponent.tsx",
+      "target": "function:frontend/src/components/Common/ErrorComponent.tsx:ErrorComponent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/Footer.tsx",
+      "target": "function:frontend/src/components/Common/Footer.tsx:Footer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/Footer.tsx",
+      "target": "function:frontend/src/components/Common/Footer.tsx:Footer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/Logo.tsx",
+      "target": "function:frontend/src/components/Common/Logo.tsx:Logo",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/Logo.tsx",
+      "target": "function:frontend/src/components/Common/Logo.tsx:Logo",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/NotFound.tsx",
+      "target": "function:frontend/src/components/Common/NotFound.tsx:NotFound",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "function:frontend/src/components/Common/UserAvatar.tsx:UserAvatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "function:frontend/src/components/Common/UserAvatar.tsx:UserAvatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "function:frontend/src/components/Common/UserAvatar.tsx:AiAvatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "function:frontend/src/components/Common/UserAvatar.tsx:AiAvatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "function:frontend/src/components/Knowledge/KnowledgePanel.tsx:KnowledgePanel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "function:frontend/src/components/Knowledge/KnowledgePanel.tsx:KnowledgePanel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "target": "function:frontend/src/components/Pending/PendingTickets.tsx:PendingTickets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingUsers.tsx",
+      "target": "function:frontend/src/components/Pending/PendingUsers.tsx:PendingUsers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "function:frontend/src/components/Sidebar/AppSidebar.tsx:AppSidebar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "function:frontend/src/components/Sidebar/AppSidebar.tsx:AppSidebar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/Main.tsx",
+      "target": "function:frontend/src/components/Sidebar/Main.tsx:Main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/Main.tsx",
+      "target": "function:frontend/src/components/Sidebar/Main.tsx:Main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/Common/DataTable.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/DataTable.tsx",
+      "target": "file:frontend/src/components/ui/select.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/DataTable.tsx",
+      "target": "file:frontend/src/components/ui/table.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/ErrorComponent.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/Logo.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/NotFound.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "file:frontend/src/components/ui/avatar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "file:frontend/src/lib/userAvatarApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Common/UserAvatar.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/components/ui/badge.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/components/ui/card.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/lib/aiApi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Knowledge/KnowledgePanel.tsx",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "target": "file:frontend/src/components/ui/skeleton.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingTickets.tsx",
+      "target": "file:frontend/src/components/ui/table.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingUsers.tsx",
+      "target": "file:frontend/src/components/ui/skeleton.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Pending/PendingUsers.tsx",
+      "target": "file:frontend/src/components/ui/table.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Common/Appearance.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Common/Logo.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Sidebar/Main.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Sidebar/User.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Workspace/WorkspaceSwitcher.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/lib/customerSupportEvents.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/lib/workspaceQueries.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/Main.tsx",
+      "target": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Common/Appearance.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Common/Logo.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Sidebar/Main.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:frontend/src/components/Sidebar/AppSidebar.tsx",
+      "target": "file:frontend/src/components/Sidebar/User.tsx",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    }
+  ]
+}

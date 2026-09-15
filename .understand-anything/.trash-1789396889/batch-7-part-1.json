@@ -1,0 +1,1395 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/__init__.py",
+      "summary": "后端 app 包标记文件，保持包根可被 Python 导入。文件当前不承载运行时代码。",
+      "tags": [
+        "包入口",
+        "python-package",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空的 __init__.py 用于声明 Python 包边界。"
+    },
+    {
+      "id": "file:backend/app/alembic/env.py",
+      "type": "file",
+      "name": "env.py",
+      "filePath": "backend/app/alembic/env.py",
+      "summary": "Alembic 迁移运行环境，绑定 SQLModel metadata 并从应用 settings 注入数据库 URL。它支持 offline/online 两种迁移模式并启用字段类型比较。",
+      "tags": [
+        "数据库迁移",
+        "alembic",
+        "配置",
+        "metadata"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/api/deps.py",
+      "type": "file",
+      "name": "deps.py",
+      "filePath": "backend/app/api/deps.py",
+      "summary": "FastAPI 依赖注入集中定义，提供数据库 Session、JWT 当前用户解析和 Workspace 上下文校验。它把认证、租户成员关系和旧 superuser 依赖统一成路由可复用的 Depends。",
+      "tags": [
+        "依赖注入",
+        "认证",
+        "workspace",
+        "api"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/api/main.py",
+      "type": "file",
+      "name": "main.py",
+      "filePath": "backend/app/api/main.py",
+      "summary": "API v1 路由聚合器，将登录、用户、工单、AI、知识库、附件和 workspace 路由挂到统一 APIRouter。开发环境下额外挂载 private 测试路由。",
+      "tags": [
+        "api-router",
+        "路由聚合",
+        "entry-point",
+        "fastapi"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/routes/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "backend/app/api/routes/__init__.py",
+      "summary": "API routes 包标记文件，用于组织各业务路由模块。文件本身不导出逻辑。",
+      "tags": [
+        "包入口",
+        "api-router",
+        "backend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "空的 __init__.py 用于声明 Python 包边界。"
+    },
+    {
+      "id": "file:backend/app/api/routes/login.py",
+      "type": "file",
+      "name": "login.py",
+      "filePath": "backend/app/api/routes/login.py",
+      "summary": "登录与密码恢复路由，处理 OAuth2 token 发放、token 测试、找回密码邮件和密码重置。实现中注意避免邮箱枚举，并复用安全与邮件工具。",
+      "tags": [
+        "api-handler",
+        "认证",
+        "密码重置",
+        "security"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/api/routes/private.py",
+      "type": "file",
+      "name": "private.py",
+      "filePath": "backend/app/api/routes/private.py",
+      "summary": "仅开发环境使用的私有用户创建路由，用于快速创建已验证用户。它直接写入 User 并哈希密码，不属于正式公开用户管理流程。",
+      "tags": [
+        "api-handler",
+        "开发工具",
+        "用户",
+        "security"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/routes/users.py",
+      "type": "file",
+      "name": "users.py",
+      "filePath": "backend/app/api/routes/users.py",
+      "summary": "用户管理 API 路由，覆盖列表、Admin 创建/更新、当前用户资料与密码、头像上传读取以及公开注册。多数业务规则委托给 UserService，路由层负责 FastAPI 契约和响应模型。",
+      "tags": [
+        "api-handler",
+        "用户管理",
+        "头像",
+        "认证"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/api/routes/utils.py",
+      "type": "file",
+      "name": "utils.py",
+      "filePath": "backend/app/api/routes/utils.py",
+      "summary": "工具类 API 路由，提供测试邮件发送和健康检查端点。它用于运维探活以及验证邮件配置是否可用。",
+      "tags": [
+        "api-handler",
+        "health-check",
+        "邮件",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/backend_pre_start.py",
+      "type": "file",
+      "name": "backend_pre_start.py",
+      "filePath": "backend/app/backend_pre_start.py",
+      "summary": "后端启动前检查脚本，循环探测数据库连接是否可用并记录启动状态。它在容器或部署流程中用于阻塞应用直到数据库就绪。",
+      "tags": [
+        "启动检查",
+        "数据库",
+        "部署",
+        "script"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/env.py:get_url",
+      "type": "function",
+      "name": "get_url",
+      "filePath": "backend/app/alembic/env.py",
+      "lineRange": [
+        35,
+        36
+      ],
+      "summary": "从应用 settings 读取数据库 URL，供 Alembic 运行时写入迁移配置。",
+      "tags": [
+        "数据库迁移",
+        "alembic",
+        "配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/env.py:run_migrations_offline",
+      "type": "function",
+      "name": "run_migrations_offline",
+      "filePath": "backend/app/alembic/env.py",
+      "lineRange": [
+        39,
+        57
+      ],
+      "summary": "在无数据库连接的 offline 模式下配置 Alembic context，并基于 URL 生成迁移 SQL。",
+      "tags": [
+        "数据库迁移",
+        "alembic",
+        "配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/alembic/env.py:run_migrations_online",
+      "type": "function",
+      "name": "run_migrations_online",
+      "filePath": "backend/app/alembic/env.py",
+      "lineRange": [
+        60,
+        82
+      ],
+      "summary": "创建 SQLAlchemy engine 连接数据库，并在事务中执行 Alembic online migration。",
+      "tags": [
+        "数据库迁移",
+        "alembic",
+        "配置"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/deps.py:get_db",
+      "type": "function",
+      "name": "get_db",
+      "filePath": "backend/app/api/deps.py",
+      "lineRange": [
+        26,
+        28
+      ],
+      "summary": "为 FastAPI 请求提供 SQLModel Session，并在依赖生命周期结束后关闭连接。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/deps.py:get_current_user",
+      "type": "function",
+      "name": "get_current_user",
+      "filePath": "backend/app/api/deps.py",
+      "lineRange": [
+        35,
+        51
+      ],
+      "summary": "解析 JWT token，校验 payload 与用户状态，并返回当前活跃用户。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/deps.py:get_workspace_context",
+      "type": "function",
+      "name": "get_workspace_context",
+      "filePath": "backend/app/api/deps.py",
+      "lineRange": [
+        57,
+        74
+      ],
+      "summary": "从 X-Workspace-ID 请求头加载 Workspace 与成员关系，生成当前租户上下文。",
+      "tags": [
+        "workspace",
+        "依赖注入",
+        "授权"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/deps.py:get_current_active_superuser",
+      "type": "function",
+      "name": "get_current_active_superuser",
+      "filePath": "backend/app/api/deps.py",
+      "lineRange": [
+        80,
+        84
+      ],
+      "summary": "兼容旧 superuser 依赖名，并基于用户角色检查 Admin 权限。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/login.py:login_access_token",
+      "type": "function",
+      "name": "login_access_token",
+      "filePath": "backend/app/api/routes/login.py",
+      "lineRange": [
+        26,
+        44
+      ],
+      "summary": "校验 OAuth2 表单账号密码，为活跃用户签发访问 token。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/login.py:test_token",
+      "type": "function",
+      "name": "test_token",
+      "filePath": "backend/app/api/routes/login.py",
+      "lineRange": [
+        48,
+        52
+      ],
+      "summary": "返回当前用户信息，用于验证 access token 是否有效。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/login.py:recover_password",
+      "type": "function",
+      "name": "recover_password",
+      "filePath": "backend/app/api/routes/login.py",
+      "lineRange": [
+        56,
+        76
+      ],
+      "summary": "按邮箱触发密码找回邮件，并用统一响应避免泄露邮箱是否注册。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/login.py:reset_password",
+      "type": "function",
+      "name": "reset_password",
+      "filePath": "backend/app/api/routes/login.py",
+      "lineRange": [
+        80,
+        99
+      ],
+      "summary": "验证密码重置 token，检查用户状态并写入新密码。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/login.py:recover_password_html_content",
+      "type": "function",
+      "name": "recover_password_html_content",
+      "filePath": "backend/app/api/routes/login.py",
+      "lineRange": [
+        107,
+        125
+      ],
+      "summary": "供管理员预览密码找回邮件 HTML 内容。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/private.py:create_user",
+      "type": "function",
+      "name": "create_user",
+      "filePath": "backend/app/api/routes/private.py",
+      "lineRange": [
+        22,
+        36
+      ],
+      "summary": "创建用户并处理密码哈希、角色或通知流程，具体语义随所在模块区分。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/api/routes/private.py:PrivateUserCreate",
+      "type": "class",
+      "name": "PrivateUserCreate",
+      "filePath": "backend/app/api/routes/private.py",
+      "lineRange": [
+        14,
+        18
+      ],
+      "summary": "开发私有路由的用户创建输入 schema，包含邮箱、密码、姓名和验证状态。",
+      "tags": [
+        "schema",
+        "validation",
+        "type-definition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:read_users",
+      "type": "function",
+      "name": "read_users",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        32,
+        38
+      ],
+      "summary": "按筛选条件返回当前用户权限范围内的分页用户列表。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:create_user",
+      "type": "function",
+      "name": "create_user",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        42,
+        62
+      ],
+      "summary": "创建用户并处理密码哈希、角色或通知流程，具体语义随所在模块区分。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:update_user_me",
+      "type": "function",
+      "name": "update_user_me",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        66,
+        70
+      ],
+      "summary": "更新当前用户的基础资料，头像变更由专用接口处理。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:upload_user_avatar_me",
+      "type": "function",
+      "name": "upload_user_avatar_me",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        74,
+        81
+      ],
+      "summary": "接收当前用户头像文件并交给 UserService 验证与存储。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:delete_user_avatar_me",
+      "type": "function",
+      "name": "delete_user_avatar_me",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        85,
+        89
+      ],
+      "summary": "删除当前用户头像并恢复默认展示。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:update_password_me",
+      "type": "function",
+      "name": "update_password_me",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        93,
+        110
+      ],
+      "summary": "校验当前密码和新旧差异后更新当前用户密码哈希。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:read_user_me",
+      "type": "function",
+      "name": "read_user_me",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        114,
+        118
+      ],
+      "summary": "返回当前登录用户的公开资料。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:register_user",
+      "type": "function",
+      "name": "register_user",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        122,
+        126
+      ],
+      "summary": "无需登录创建客户账号，并强制走公开注册规则。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:read_user_avatar",
+      "type": "function",
+      "name": "read_user_avatar",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        130,
+        133
+      ],
+      "summary": "读取用户头像文件路径和媒体类型，并返回可由浏览器加载的文件响应。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:read_user_by_id",
+      "type": "function",
+      "name": "read_user_by_id",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        137,
+        153
+      ],
+      "summary": "按 ID 查询用户，允许本人读取自己，其他读取需 Admin 权限。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/users.py:update_user",
+      "type": "function",
+      "name": "update_user",
+      "filePath": "backend/app/api/routes/users.py",
+      "lineRange": [
+        160,
+        171
+      ],
+      "summary": "由 Admin 更新其他用户角色、启停状态和资料字段。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/utils.py:test_email",
+      "type": "function",
+      "name": "test_email",
+      "filePath": "backend/app/api/routes/utils.py",
+      "lineRange": [
+        16,
+        26
+      ],
+      "summary": "发送测试邮件以验证邮件服务配置。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/utils.py:health_check",
+      "type": "function",
+      "name": "health_check",
+      "filePath": "backend/app/api/routes/utils.py",
+      "lineRange": [
+        30,
+        31
+      ],
+      "summary": "返回简单健康状态，用于 API 探活。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "业务流程"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/backend_pre_start.py:init",
+      "type": "function",
+      "name": "init",
+      "filePath": "backend/app/backend_pre_start.py",
+      "lineRange": [
+        22,
+        29
+      ],
+      "summary": "执行初始化或连接检查逻辑，具体动作由所在启动脚本决定。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/backend_pre_start.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "backend/app/backend_pre_start.py",
+      "lineRange": [
+        32,
+        35
+      ],
+      "summary": "脚本入口函数，记录执行阶段并调用初始化流程。",
+      "tags": [
+        "utility",
+        "backend",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:get_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:get_url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:run_migrations_offline",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:run_migrations_offline",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:run_migrations_online",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "function:backend/app/alembic/env.py:run_migrations_online",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_db",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_db",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_current_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_current_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_workspace_context",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_workspace_context",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_current_active_superuser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "function:backend/app/api/deps.py:get_current_active_superuser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:login_access_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:login_access_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:test_token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:test_token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:recover_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:recover_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:reset_password",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:reset_password",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:recover_password_html_content",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "function:backend/app/api/routes/login.py:recover_password_html_content",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "function:backend/app/api/routes/private.py:create_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "function:backend/app/api/routes/private.py:create_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "class:backend/app/api/routes/private.py:PrivateUserCreate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "class:backend/app/api/routes/private.py:PrivateUserCreate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_users",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_users",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:create_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:create_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_user_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_user_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:upload_user_avatar_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:upload_user_avatar_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:delete_user_avatar_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:delete_user_avatar_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_password_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_password_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_me",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_me",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:register_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:register_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_avatar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_avatar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_by_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:read_user_by_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_user",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "function:backend/app/api/routes/users.py:update_user",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "function:backend/app/api/routes/utils.py:test_email",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "function:backend/app/api/routes/utils.py:test_email",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "function:backend/app/api/routes/utils.py:health_check",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "function:backend/app/api/routes/utils.py:health_check",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/backend_pre_start.py",
+      "target": "function:backend/app/backend_pre_start.py:init",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/backend_pre_start.py",
+      "target": "function:backend/app/backend_pre_start.py:init",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/backend_pre_start.py",
+      "target": "function:backend/app/backend_pre_start.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/backend_pre_start.py",
+      "target": "function:backend/app/backend_pre_start.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/alembic/env.py",
+      "target": "file:backend/app/models/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/deps.py",
+      "target": "file:backend/app/schemas/auth.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/attachments.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/login.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/private.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/tickets.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/users.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/api/routes/workspaces.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/main.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/core/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/core/config.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/crud.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/schemas/auth.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/login.py",
+      "target": "file:backend/app/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/private.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/core/security.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/models/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/schemas/auth.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/schemas/user.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/services/user_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/users.py",
+      "target": "file:backend/app/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/utils.py",
+      "target": "file:backend/app/utils.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/backend_pre_start.py",
+      "target": "file:backend/app/core/db.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "function:backend/app/alembic/env.py:run_migrations_offline",
+      "target": "function:backend/app/alembic/env.py:get_url",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/alembic/env.py:run_migrations_online",
+      "target": "function:backend/app/alembic/env.py:get_url",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

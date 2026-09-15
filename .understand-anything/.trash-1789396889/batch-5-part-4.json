@@ -1,0 +1,507 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "type": "file",
+      "name": "$ticketId.tsx",
+      "filePath": "frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "summary": "定义客户工单详情路由，读取动态工单 ID 并以客户视角展示详情页。",
+      "tags": [
+        "route",
+        "dashboard",
+        "tickets",
+        "tanstack-router"
+      ],
+      "complexity": "simple",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "file:frontend/src/routes/login.tsx",
+      "type": "file",
+      "name": "login.tsx",
+      "filePath": "frontend/src/routes/login.tsx",
+      "summary": "实现登录页，完成表单校验、令牌请求、认证状态刷新和登录后的目标跳转。",
+      "tags": [
+        "route",
+        "authentication",
+        "form",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/login.tsx:Login",
+      "type": "function",
+      "name": "Login",
+      "filePath": "frontend/src/routes/login.tsx",
+      "lineRange": [
+        47,
+        136
+      ],
+      "summary": "处理登录表单校验、访问令牌请求、认证状态刷新和登录后跳转。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/routes/recover-password.tsx",
+      "type": "file",
+      "name": "recover-password.tsx",
+      "filePath": "frontend/src/routes/recover-password.tsx",
+      "summary": "实现找回密码页，提交邮箱后调用恢复密码接口并展示 toast 反馈。",
+      "tags": [
+        "route",
+        "authentication",
+        "form",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/recover-password.tsx:RecoverPassword",
+      "type": "function",
+      "name": "RecoverPassword",
+      "filePath": "frontend/src/routes/recover-password.tsx",
+      "lineRange": [
+        44,
+        123
+      ],
+      "summary": "处理找回密码表单提交，并在接口返回后展示成功或失败反馈。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:frontend/src/routes/reset-password.tsx",
+      "type": "file",
+      "name": "reset-password.tsx",
+      "filePath": "frontend/src/routes/reset-password.tsx",
+      "summary": "实现重置密码页，校验 token 与新密码表单后调用后端重置接口。",
+      "tags": [
+        "route",
+        "authentication",
+        "form",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/reset-password.tsx:ResetPassword",
+      "type": "function",
+      "name": "ResetPassword",
+      "filePath": "frontend/src/routes/reset-password.tsx",
+      "lineRange": [
+        67,
+        164
+      ],
+      "summary": "处理重置密码 token 和新密码校验，提交后跳回登录页。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/routes/signup.tsx",
+      "type": "file",
+      "name": "signup.tsx",
+      "filePath": "frontend/src/routes/signup.tsx",
+      "summary": "实现注册页，校验账号资料并通过认证 hook 创建新用户后进入应用。",
+      "tags": [
+        "route",
+        "authentication",
+        "form",
+        "tanstack-router"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "使用 TanStack Router 的文件路由模式，通过 createFileRoute 或 createRootRoute 定义 Route。"
+    },
+    {
+      "id": "function:frontend/src/routes/signup.tsx:SignUp",
+      "type": "function",
+      "name": "SignUp",
+      "filePath": "frontend/src/routes/signup.tsx",
+      "lineRange": [
+        54,
+        181
+      ],
+      "summary": "处理注册表单校验和账号创建流程，并在成功后进入应用。",
+      "tags": [
+        "component",
+        "route",
+        "tanstack-router"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:frontend/src/utils.ts",
+      "type": "file",
+      "name": "utils.ts",
+      "filePath": "frontend/src/utils.ts",
+      "summary": "提供错误消息提取、toast 错误处理和头像 initials 生成等跨组件 UI 工具函数。",
+      "tags": [
+        "frontend",
+        "typescript",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/utils.ts:extractErrorMessage",
+      "type": "function",
+      "name": "extractErrorMessage",
+      "filePath": "frontend/src/utils.ts",
+      "lineRange": [
+        3,
+        23
+      ],
+      "summary": "从未知错误对象中提取稳定、可展示的错误文案。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/utils.ts:handleError",
+      "type": "function",
+      "name": "handleError",
+      "filePath": "frontend/src/utils.ts",
+      "lineRange": [
+        25,
+        28
+      ],
+      "summary": "将错误对象转为 toast 消息，统一前端失败反馈。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/utils.ts:getInitials",
+      "type": "function",
+      "name": "getInitials",
+      "filePath": "frontend/src/utils.ts",
+      "lineRange": [
+        30,
+        37
+      ],
+      "summary": "从用户姓名或邮箱中生成头像 initials。",
+      "tags": [
+        "utility",
+        "frontend",
+        "typescript"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "target": "file:frontend/src/components/Tickets/TicketDetailPage.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/_layout/tickets/$ticketId.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/components/ui/password-input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/login.tsx",
+      "target": "function:frontend/src/routes/login.tsx:Login",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/recover-password.tsx",
+      "target": "function:frontend/src/routes/recover-password.tsx:RecoverPassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/client/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/components/ui/password-input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/hooks/useCustomToast.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "file:frontend/src/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/reset-password.tsx",
+      "target": "function:frontend/src/routes/reset-password.tsx:ResetPassword",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/components/Common/AuthLayout.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/components/ui/form.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/components/ui/loading-button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/components/ui/password-input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/hooks/useAuth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "file:frontend/src/lib/routeGuards.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/routes/signup.tsx",
+      "target": "function:frontend/src/routes/signup.tsx:SignUp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/utils.ts",
+      "target": "function:frontend/src/utils.ts:extractErrorMessage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/utils.ts",
+      "target": "function:frontend/src/utils.ts:handleError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/utils.ts",
+      "target": "function:frontend/src/utils.ts:handleError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/utils.ts",
+      "target": "function:frontend/src/utils.ts:getInitials",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/utils.ts",
+      "target": "function:frontend/src/utils.ts:getInitials",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

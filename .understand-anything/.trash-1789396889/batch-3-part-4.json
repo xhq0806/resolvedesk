@@ -1,0 +1,1690 @@
+{
+  "nodes": [
+    {
+      "id": "file:frontend/src/components/ui/separator.tsx",
+      "type": "file",
+      "name": "separator.tsx",
+      "filePath": "frontend/src/components/ui/separator.tsx",
+      "summary": "定义 separator UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/separator.tsx:Separator",
+      "type": "function",
+      "name": "Separator",
+      "filePath": "frontend/src/components/ui/separator.tsx",
+      "lineRange": [
+        6,
+        24
+      ],
+      "summary": "实现 Separator React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/sheet.tsx",
+      "type": "file",
+      "name": "sheet.tsx",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "summary": "定义 sheet UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:Sheet",
+      "type": "function",
+      "name": "Sheet",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        9,
+        11
+      ],
+      "summary": "封装 Sheet 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetTrigger",
+      "type": "function",
+      "name": "SheetTrigger",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        13,
+        17
+      ],
+      "summary": "封装 SheetTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetClose",
+      "type": "function",
+      "name": "SheetClose",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "封装 SheetClose 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetOverlay",
+      "type": "function",
+      "name": "SheetOverlay",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        31,
+        45
+      ],
+      "summary": "封装 SheetOverlay 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetContent",
+      "type": "function",
+      "name": "SheetContent",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        47,
+        82
+      ],
+      "summary": "渲染 SheetContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetHeader",
+      "type": "function",
+      "name": "SheetHeader",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        84,
+        92
+      ],
+      "summary": "封装 SheetHeader 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetFooter",
+      "type": "function",
+      "name": "SheetFooter",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        94,
+        102
+      ],
+      "summary": "封装 SheetFooter 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetTitle",
+      "type": "function",
+      "name": "SheetTitle",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        104,
+        115
+      ],
+      "summary": "封装 SheetTitle 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sheet.tsx:SheetDescription",
+      "type": "function",
+      "name": "SheetDescription",
+      "filePath": "frontend/src/components/ui/sheet.tsx",
+      "lineRange": [
+        117,
+        128
+      ],
+      "summary": "封装 SheetDescription 抽屉面板 primitive，统一侧边弹层的结构和动效样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/sidebar.tsx",
+      "type": "file",
+      "name": "sidebar.tsx",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "summary": "定义 sidebar UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "complex",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:useSidebar",
+      "type": "function",
+      "name": "useSidebar",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        45,
+        52
+      ],
+      "summary": "实现 useSidebar 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarProvider",
+      "type": "function",
+      "name": "SidebarProvider",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        54,
+        162
+      ],
+      "summary": "封装 SidebarProvider 上下文或 provider 组件，为相关 UI primitive 提供共享配置。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:Sidebar",
+      "type": "function",
+      "name": "Sidebar",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        164,
+        264
+      ],
+      "summary": "实现 Sidebar 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarTrigger",
+      "type": "function",
+      "name": "SidebarTrigger",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        266,
+        291
+      ],
+      "summary": "封装 SidebarTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarRail",
+      "type": "function",
+      "name": "SidebarRail",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        293,
+        316
+      ],
+      "summary": "实现 SidebarRail 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarInset",
+      "type": "function",
+      "name": "SidebarInset",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        318,
+        330
+      ],
+      "summary": "实现 SidebarInset 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarInput",
+      "type": "function",
+      "name": "SidebarInput",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        332,
+        344
+      ],
+      "summary": "实现 SidebarInput 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarHeader",
+      "type": "function",
+      "name": "SidebarHeader",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        346,
+        355
+      ],
+      "summary": "实现 SidebarHeader 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarFooter",
+      "type": "function",
+      "name": "SidebarFooter",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        357,
+        366
+      ],
+      "summary": "实现 SidebarFooter 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarSeparator",
+      "type": "function",
+      "name": "SidebarSeparator",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        368,
+        380
+      ],
+      "summary": "实现 SidebarSeparator 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarContent",
+      "type": "function",
+      "name": "SidebarContent",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        382,
+        394
+      ],
+      "summary": "渲染 SidebarContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroup",
+      "type": "function",
+      "name": "SidebarGroup",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        396,
+        405
+      ],
+      "summary": "实现 SidebarGroup 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupLabel",
+      "type": "function",
+      "name": "SidebarGroupLabel",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        407,
+        426
+      ],
+      "summary": "实现 SidebarGroupLabel 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupAction",
+      "type": "function",
+      "name": "SidebarGroupAction",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        428,
+        449
+      ],
+      "summary": "实现 SidebarGroupAction 侧边栏子组件，支撑可折叠导航布局的组合式 API。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupContent",
+      "type": "function",
+      "name": "SidebarGroupContent",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        451,
+        463
+      ],
+      "summary": "渲染 SidebarGroupContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenu",
+      "type": "function",
+      "name": "SidebarMenu",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        465,
+        474
+      ],
+      "summary": "封装 SidebarMenu 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuItem",
+      "type": "function",
+      "name": "SidebarMenuItem",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        476,
+        485
+      ],
+      "summary": "封装 SidebarMenuItem 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuButton",
+      "type": "function",
+      "name": "SidebarMenuButton",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        509,
+        557
+      ],
+      "summary": "渲染 SidebarMenuButton 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuAction",
+      "type": "function",
+      "name": "SidebarMenuAction",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        559,
+        589
+      ],
+      "summary": "封装 SidebarMenuAction 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuBadge",
+      "type": "function",
+      "name": "SidebarMenuBadge",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        591,
+        611
+      ],
+      "summary": "封装 SidebarMenuBadge 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSkeleton",
+      "type": "function",
+      "name": "SidebarMenuSkeleton",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        613,
+        649
+      ],
+      "summary": "封装 SidebarMenuSkeleton 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSub",
+      "type": "function",
+      "name": "SidebarMenuSub",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        651,
+        664
+      ],
+      "summary": "封装 SidebarMenuSub 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubItem",
+      "type": "function",
+      "name": "SidebarMenuSubItem",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        666,
+        678
+      ],
+      "summary": "封装 SidebarMenuSubItem 菜单相关 primitive，提供一致的交互结构和样式入口。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubButton",
+      "type": "function",
+      "name": "SidebarMenuSubButton",
+      "filePath": "frontend/src/components/ui/sidebar.tsx",
+      "lineRange": [
+        680,
+        710
+      ],
+      "summary": "渲染 SidebarMenuSubButton 按钮式控件，支持变体、尺寸和组合式子组件。",
+      "tags": [
+        "component",
+        "sidebar",
+        "ui-primitive"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/skeleton.tsx",
+      "type": "file",
+      "name": "skeleton.tsx",
+      "filePath": "frontend/src/components/ui/skeleton.tsx",
+      "summary": "定义 skeleton UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/skeleton.tsx:Skeleton",
+      "type": "function",
+      "name": "Skeleton",
+      "filePath": "frontend/src/components/ui/skeleton.tsx",
+      "lineRange": [
+        3,
+        11
+      ],
+      "summary": "实现 Skeleton React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/table.tsx",
+      "type": "file",
+      "name": "table.tsx",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "summary": "定义 table UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:Table",
+      "type": "function",
+      "name": "Table",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        5,
+        18
+      ],
+      "summary": "渲染 Table 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableHeader",
+      "type": "function",
+      "name": "TableHeader",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        20,
+        28
+      ],
+      "summary": "渲染 TableHeader 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableBody",
+      "type": "function",
+      "name": "TableBody",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        30,
+        38
+      ],
+      "summary": "渲染 TableBody 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableFooter",
+      "type": "function",
+      "name": "TableFooter",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        40,
+        51
+      ],
+      "summary": "渲染 TableFooter 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableRow",
+      "type": "function",
+      "name": "TableRow",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        53,
+        64
+      ],
+      "summary": "渲染 TableRow 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableHead",
+      "type": "function",
+      "name": "TableHead",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        66,
+        77
+      ],
+      "summary": "渲染 TableHead 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableCell",
+      "type": "function",
+      "name": "TableCell",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        79,
+        90
+      ],
+      "summary": "渲染 TableCell 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/table.tsx:TableCaption",
+      "type": "function",
+      "name": "TableCaption",
+      "filePath": "frontend/src/components/ui/table.tsx",
+      "lineRange": [
+        92,
+        103
+      ],
+      "summary": "渲染 TableCaption 表格子元素，统一表格结构和 Tailwind 样式。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/tabs.tsx",
+      "type": "file",
+      "name": "tabs.tsx",
+      "filePath": "frontend/src/components/ui/tabs.tsx",
+      "summary": "定义 tabs UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/tabs.tsx:Tabs",
+      "type": "function",
+      "name": "Tabs",
+      "filePath": "frontend/src/components/ui/tabs.tsx",
+      "lineRange": [
+        6,
+        17
+      ],
+      "summary": "封装 Tabs 标签页 primitive，统一标签切换控件的样式和属性透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/tabs.tsx:TabsList",
+      "type": "function",
+      "name": "TabsList",
+      "filePath": "frontend/src/components/ui/tabs.tsx",
+      "lineRange": [
+        19,
+        33
+      ],
+      "summary": "封装 TabsList 标签页 primitive，统一标签切换控件的样式和属性透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/tabs.tsx:TabsTrigger",
+      "type": "function",
+      "name": "TabsTrigger",
+      "filePath": "frontend/src/components/ui/tabs.tsx",
+      "lineRange": [
+        35,
+        49
+      ],
+      "summary": "封装 TabsTrigger 触发器，用统一样式和属性透传启动对应交互。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:frontend/src/components/ui/tabs.tsx:TabsContent",
+      "type": "function",
+      "name": "TabsContent",
+      "filePath": "frontend/src/components/ui/tabs.tsx",
+      "lineRange": [
+        51,
+        62
+      ],
+      "summary": "渲染 TabsContent 内容区域，处理布局、样式合并和子元素透传。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:frontend/src/components/ui/textarea.tsx",
+      "type": "file",
+      "name": "textarea.tsx",
+      "filePath": "frontend/src/components/ui/textarea.tsx",
+      "summary": "定义 textarea UI primitive 的 React 封装，统一 Radix 或原生元素的样式、变体和组合式导出。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "design-system",
+        "frontend"
+      ],
+      "complexity": "simple",
+      "languageNotes": "这些 UI primitive 采用 Radix Slot/Primitive 与 Tailwind class 合并模式，便于保持可访问性和设计系统一致性。"
+    },
+    {
+      "id": "function:frontend/src/components/ui/textarea.tsx:Textarea",
+      "type": "function",
+      "name": "Textarea",
+      "filePath": "frontend/src/components/ui/textarea.tsx",
+      "lineRange": [
+        5,
+        16
+      ],
+      "summary": "实现 Textarea React 函数组件或工具函数，封装该文件中的一块可复用前端行为。",
+      "tags": [
+        "component",
+        "ui-primitive",
+        "composition"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:frontend/src/components/ui/separator.tsx",
+      "target": "function:frontend/src/components/ui/separator.tsx:Separator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/separator.tsx",
+      "target": "function:frontend/src/components/ui/separator.tsx:Separator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:Sheet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:Sheet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetClose",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetClose",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetOverlay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetTitle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetTitle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "function:frontend/src/components/ui/sheet.tsx:SheetDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:useSidebar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:useSidebar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:Sidebar",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:Sidebar",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarRail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarRail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarInset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarInset",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarSeparator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarSeparator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupLabel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupLabel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarGroupContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuAction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuAction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuBadge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuBadge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSkeleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSkeleton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSub",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubButton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "function:frontend/src/components/ui/sidebar.tsx:SidebarMenuSubButton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/skeleton.tsx",
+      "target": "function:frontend/src/components/ui/skeleton.tsx:Skeleton",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/skeleton.tsx",
+      "target": "function:frontend/src/components/ui/skeleton.tsx:Skeleton",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:Table",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:Table",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableFooter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableFooter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableRow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableRow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableHead",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableHead",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableCell",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableCell",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableCaption",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "function:frontend/src/components/ui/table.tsx:TableCaption",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:Tabs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:Tabs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsTrigger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsTrigger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsContent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "function:frontend/src/components/ui/tabs.tsx:TabsContent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/textarea.tsx",
+      "target": "function:frontend/src/components/ui/textarea.tsx:Textarea",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:frontend/src/components/ui/textarea.tsx",
+      "target": "function:frontend/src/components/ui/textarea.tsx:Textarea",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:frontend/src/components/ui/separator.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sheet.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/button.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/input.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/separator.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/sheet.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/skeleton.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/components/ui/tooltip.tsx",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/hooks/useMobile.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/sidebar.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/skeleton.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/table.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/tabs.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:frontend/src/components/ui/textarea.tsx",
+      "target": "file:frontend/src/lib/utils.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

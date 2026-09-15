@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/email-templates/new_account.html",
+      "type": "file",
+      "name": "new_account.html",
+      "filePath": "backend/app/email-templates/new_account.html",
+      "summary": "新账号通知邮件模板，用于告知用户账号已创建并展示登录用户名、初始密码和工作台入口链接。",
+      "tags": ["email-template", "html", "账号创建", "用户通知", "jinja-template"],
+      "complexity": "simple",
+      "languageNotes": "这是单行压缩的 XHTML 邮件模板，使用内联 CSS 和 {{ project_name }}、{{ username }}、{{ password }}、{{ link }} 等模板变量适配邮件客户端。"
+    },
+    {
+      "id": "file:backend/app/email-templates/reset_password.html",
+      "type": "file",
+      "name": "reset_password.html",
+      "filePath": "backend/app/email-templates/reset_password.html",
+      "summary": "找回密码邮件模板，用于向用户发送重置密码按钮、备用链接和链接有效期说明。",
+      "tags": ["email-template", "html", "密码重置", "用户通知", "jinja-template"],
+      "complexity": "simple",
+      "languageNotes": "模板采用内联样式和表格布局保证邮件兼容性，通过 {{ username }}、{{ project_name }}、{{ link }}、{{ valid_hours }} 渲染个性化重置内容。"
+    },
+    {
+      "id": "file:backend/app/email-templates/test_email.html",
+      "type": "file",
+      "name": "test_email.html",
+      "filePath": "backend/app/email-templates/test_email.html",
+      "summary": "测试邮件模板，用于验证邮件投递配置是否正常，并在正文中显示测试收件地址。",
+      "tags": ["email-template", "html", "邮件测试", "配置验证", "jinja-template"],
+      "complexity": "simple",
+      "languageNotes": "这是面向邮件投递诊断的单行 HTML 模板，使用 {{ project_name }} 和 {{ email }} 变量生成测试邮件内容。"
+    }
+  ],
+  "edges": []
+}

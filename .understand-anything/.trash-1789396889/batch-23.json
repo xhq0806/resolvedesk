@@ -1,0 +1,740 @@
+{
+  "nodes": [
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-provider-no-feedback.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-provider-no-feedback.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-provider-no-feedback.md",
+      "summary": "记录 AI Provider 配置页面按钮无反馈的排查过程，定位为旧 backend 镜像缺少二期 AI 路由、前端请求封装未展示错误反馈，并说明 Toast、错误解析和容器重建的修复验证。",
+      "tags": [
+        "debug-log",
+        "provider",
+        "前端反馈",
+        "docker",
+        "ai-config"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档按现象、排查步骤、根因链、修复方案和验证结果组织，重点串起前后端与部署镜像版本不一致的问题。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      },
+      "sections": [
+        {
+          "heading": "Provider 配置按钮无反馈排查记录",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "现象",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "排查步骤",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "根因链",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "修复方案",
+          "level": 2,
+          "line": 21
+        },
+        {
+          "heading": "验证结果",
+          "level": 2,
+          "line": 32
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-rag-upload-422.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-rag-upload-422.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-rag-upload-422.md",
+      "summary": "记录 RAG 文档上传返回 422 的排查，覆盖 multipart 参数、后端 MIME 校验、浏览器 MIME 变体、摄取任务外键顺序问题，以及 MIME 放宽和显式 flush 的修复。",
+      "tags": [
+        "debug-log",
+        "rag",
+        "document-upload",
+        "mime",
+        "sqlalchemy"
+      ],
+      "complexity": "simple",
+      "languageNotes": "用假设验证表和根因定位链描述上传校验与数据库插入顺序两个连续问题，便于复盘真实请求路径。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      },
+      "sections": [
+        {
+          "heading": "RAG 文档上传 422 排查记录",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "排查步骤",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "假设与验证",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "根因定位链",
+          "level": 2,
+          "line": 24
+        },
+        {
+          "heading": "修复方案",
+          "level": 2,
+          "line": 28
+        },
+        {
+          "heading": "验证状态",
+          "level": 2,
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-workspace-routing-error.md",
+      "type": "document",
+      "name": "debug-log-2026-09-14-workspace-routing-error.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/debug-log-2026-09-14-workspace-routing-error.md",
+      "summary": "记录工作台和全部工单进入错误页的排查，定位生成客户端缺少或携带失效的 X-Workspace-ID，说明请求拦截器补充租户头和路由守卫校正 localStorage 的方案。",
+      "tags": [
+        "debug-log",
+        "workspace",
+        "routing",
+        "axios",
+        "playwright"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档把前端 ErrorComponent、生成客户端请求头、真实后端 API 验证和数据库恢复后的成员修复串成一条问题链。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      },
+      "sections": [
+        {
+          "heading": "工作台与全部工单错误页排查记录",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "排查步骤",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "根因定位链",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "修复方案",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "验证",
+          "level": 2,
+          "line": 25
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/design.md",
+      "type": "document",
+      "name": "design.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/design.md",
+      "summary": "归档 ResolveDesk 二期技术设计，描述 Workspace 隔离、Provider 配置、知识库 RAG、SSE Agent 编排、Tool Calling、附件、安全审计和 Customer 在线咨询 Delta 的架构方案。",
+      "tags": [
+        "technical-design",
+        "workspace",
+        "rag",
+        "agent-orchestration",
+        "customer-support"
+      ],
+      "complexity": "complex",
+      "languageNotes": "文档包含原始二期设计与 2026-09-14 Delta Design，使用模块职责、数据模型、API 契约、错误策略、任务拆分和发布策略来表达全栈变更。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 46
+      },
+      "sections": [
+        {
+          "heading": "ResolveDesk 二期技术设计",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "Why",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "设计目标 / 非目标",
+          "level": 3,
+          "line": 13
+        },
+        {
+          "heading": "What",
+          "level": 2,
+          "line": 24
+        },
+        {
+          "heading": "技术方案",
+          "level": 3,
+          "line": 26
+        },
+        {
+          "heading": "架构决策",
+          "level": 4,
+          "line": 28
+        },
+        {
+          "heading": "RAG 流程",
+          "level": 4,
+          "line": 57
+        },
+        {
+          "heading": "Agent 与 Tool Calling 流程",
+          "level": 4,
+          "line": 69
+        },
+        {
+          "heading": "流式与任务边界",
+          "level": 4,
+          "line": 78
+        },
+        {
+          "heading": "数据模型变更",
+          "level": 3,
+          "line": 86
+        },
+        {
+          "heading": "接口定义",
+          "level": 3,
+          "line": 111
+        },
+        {
+          "heading": "HTTP API",
+          "level": 4,
+          "line": 113
+        },
+        {
+          "heading": "关键内部签名",
+          "level": 4,
+          "line": 133
+        },
+        {
+          "heading": "OpenAPI/SSE 事件契约",
+          "level": 4,
+          "line": 163
+        },
+        {
+          "heading": "错误处理策略",
+          "level": 3,
+          "line": 178
+        },
+        {
+          "heading": "关键决策与理由",
+          "level": 3,
+          "line": 193
+        },
+        {
+          "heading": "风险与权衡",
+          "level": 3,
+          "line": 207
+        },
+        {
+          "heading": "发布策略",
+          "level": 3,
+          "line": 219
+        },
+        {
+          "heading": "变更文件清单",
+          "level": 3,
+          "line": 226
+        },
+        {
+          "heading": "How",
+          "level": 2,
+          "line": 263
+        },
+        {
+          "heading": "任务拆分",
+          "level": 3,
+          "line": 265
+        },
+        {
+          "heading": "任务依赖",
+          "level": 3,
+          "line": 285
+        },
+        {
+          "heading": "Verify",
+          "level": 2,
+          "line": 297
+        },
+        {
+          "heading": "Impact",
+          "level": 2,
+          "line": 310
+        },
+        {
+          "heading": "Delta Design",
+          "level": 1,
+          "line": 320
+        },
+        {
+          "heading": "Why",
+          "level": 2,
+          "line": 326
+        },
+        {
+          "heading": "设计目标 / 非目标",
+          "level": 3,
+          "line": 330
+        },
+        {
+          "heading": "What",
+          "level": 2,
+          "line": 341
+        },
+        {
+          "heading": "技术方案",
+          "level": 3,
+          "line": 343
+        },
+        {
+          "heading": "架构决策",
+          "level": 4,
+          "line": 345
+        },
+        {
+          "heading": "权限与导航设计",
+          "level": 4,
+          "line": 373
+        },
+        {
+          "heading": "Customer 在线咨询流程",
+          "level": 4,
+          "line": 381
+        },
+        {
+          "heading": "转人工与自动分派流程",
+          "level": 4,
+          "line": 391
+        },
+        {
+          "heading": "数据模型变更",
+          "level": 3,
+          "line": 402
+        },
+        {
+          "heading": "接口定义",
+          "level": 3,
+          "line": 413
+        },
+        {
+          "heading": "HTTP API",
+          "level": 4,
+          "line": 415
+        },
+        {
+          "heading": "关键内部签名",
+          "level": 4,
+          "line": 424
+        },
+        {
+          "heading": "错误处理策略",
+          "level": 3,
+          "line": 438
+        },
+        {
+          "heading": "关键决策与理由",
+          "level": 3,
+          "line": 449
+        },
+        {
+          "heading": "风险与权衡",
+          "level": 3,
+          "line": 460
+        },
+        {
+          "heading": "变更文件清单",
+          "level": 3,
+          "line": 470
+        },
+        {
+          "heading": "How",
+          "level": 2,
+          "line": 490
+        },
+        {
+          "heading": "任务拆分",
+          "level": 3,
+          "line": 492
+        },
+        {
+          "heading": "任务依赖",
+          "level": 3,
+          "line": 504
+        },
+        {
+          "heading": "Verify",
+          "level": 2,
+          "line": 512
+        },
+        {
+          "heading": "Impact",
+          "level": 2,
+          "line": 522
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/proposal.md",
+      "type": "document",
+      "name": "proposal.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/proposal.md",
+      "summary": "提出将知识库收敛为 Admin 管理能力，并为 Customer 提供右下角在线咨询入口、AI Agent 基于当前 Workspace 知识库回答及转人工生成工单的需求范围。",
+      "tags": [
+        "proposal",
+        "customer-chat",
+        "admin-only",
+        "handoff",
+        "workspace"
+      ],
+      "complexity": "simple",
+      "languageNotes": "文档以 Why、What、初步技术方向和成功标准表达需求边界，明确不做复杂排班、SLA、计费和跨 Workspace 知识共享。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      },
+      "sections": [
+        {
+          "heading": "Why（意图）",
+          "level": 3,
+          "line": 5
+        },
+        {
+          "heading": "What（范围）",
+          "level": 3,
+          "line": 9
+        },
+        {
+          "heading": "做什么",
+          "level": 4,
+          "line": 11
+        },
+        {
+          "heading": "不做什么",
+          "level": 4,
+          "line": 18
+        },
+        {
+          "heading": "初步技术方向",
+          "level": 3,
+          "line": 23
+        },
+        {
+          "heading": "成功标准",
+          "level": 3,
+          "line": 27
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/spec.md",
+      "type": "document",
+      "name": "spec.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/spec.md",
+      "summary": "归档 ResolveDesk 二期规格，定义多租户客服工作台、RAG、实时 AI 对话、工具调用、审计、附件和 Delta Customer 在线咨询/转人工链路的需求、场景和验收标准。",
+      "tags": [
+        "specification",
+        "multi-tenant",
+        "ai-agent",
+        "rag",
+        "handoff"
+      ],
+      "complexity": "complex",
+      "languageNotes": "文档结合需求表、Given/When/Then 场景、失败处理、约束、任务拆分、风险和发布策略，形成可验收的产品规格。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 38
+      },
+      "sections": [
+        {
+          "heading": "ResolveDesk 二期：AI Agent 与多租户客服工作台",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "Why",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "What",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "How",
+          "level": 2,
+          "line": 32
+        },
+        {
+          "heading": "1. 正常流程",
+          "level": 3,
+          "line": 34
+        },
+        {
+          "heading": "场景：跨 Workspace 访问被拒绝",
+          "level": 4,
+          "line": 47
+        },
+        {
+          "heading": "场景：RAG 回答带来源",
+          "level": 4,
+          "line": 53
+        },
+        {
+          "heading": "场景：知识不足时拒答",
+          "level": 4,
+          "line": 59
+        },
+        {
+          "heading": "场景：独立 AI Agent 执行授权工具",
+          "level": 4,
+          "line": 65
+        },
+        {
+          "heading": "场景：AI 不得跳出绑定工单",
+          "level": 4,
+          "line": 71
+        },
+        {
+          "heading": "场景：人工接管中断自主回复",
+          "level": 4,
+          "line": 77
+        },
+        {
+          "heading": "场景：流式连接中断",
+          "level": 4,
+          "line": 83
+        },
+        {
+          "heading": "2. 失败处理",
+          "level": 3,
+          "line": 89
+        },
+        {
+          "heading": "3. 边界与约束",
+          "level": 3,
+          "line": 104
+        },
+        {
+          "heading": "4. 任务拆分",
+          "level": 3,
+          "line": 120
+        },
+        {
+          "heading": "Verify",
+          "level": 2,
+          "line": 139
+        },
+        {
+          "heading": "Impact",
+          "level": 2,
+          "line": 151
+        },
+        {
+          "heading": "风险评估",
+          "level": 2,
+          "line": 160
+        },
+        {
+          "heading": "发布策略",
+          "level": 2,
+          "line": 170
+        },
+        {
+          "heading": "Delta Spec",
+          "level": 1,
+          "line": 179
+        },
+        {
+          "heading": "ADDED Requirements",
+          "level": 2,
+          "line": 185
+        },
+        {
+          "heading": "Customer 在线咨询入口",
+          "level": 3,
+          "line": 187
+        },
+        {
+          "heading": "场景：Customer 打开在线咨询",
+          "level": 4,
+          "line": 195
+        },
+        {
+          "heading": "场景：非 Customer 不显示在线咨询",
+          "level": 4,
+          "line": 201
+        },
+        {
+          "heading": "AI Agent 基于知识库回答 Customer",
+          "level": 3,
+          "line": 207
+        },
+        {
+          "heading": "场景：AI 使用当前 Workspace 知识库回答",
+          "level": 4,
+          "line": 215
+        },
+        {
+          "heading": "转人工与工单创建",
+          "level": 3,
+          "line": 221
+        },
+        {
+          "heading": "场景：有空闲客服时转人工",
+          "level": 4,
+          "line": 230
+        },
+        {
+          "heading": "场景：无空闲客服时进入公共队列",
+          "level": 4,
+          "line": 236
+        },
+        {
+          "heading": "MODIFIED Requirements",
+          "level": 2,
+          "line": 242
+        },
+        {
+          "heading": "知识库 RAG",
+          "level": 3,
+          "line": 244
+        },
+        {
+          "heading": "场景：Agent 和 Customer 不能进入知识库",
+          "level": 4,
+          "line": 256
+        },
+        {
+          "heading": "实时 AI 对话",
+          "level": 3,
+          "line": 262
+        },
+        {
+          "heading": "调用审计与人工接管",
+          "level": 3,
+          "line": 273
+        },
+        {
+          "heading": "REMOVED Requirements",
+          "level": 2,
+          "line": 284
+        },
+        {
+          "heading": "Agent 直接浏览知识库",
+          "level": 3,
+          "line": 286
+        },
+        {
+          "heading": "Tasks 同步",
+          "level": 2,
+          "line": 290
+        },
+        {
+          "heading": "Impact",
+          "level": 2,
+          "line": 303
+        }
+      ]
+    },
+    {
+      "id": "document:changes/archive/2026-09-14-ai-agent-support-copilot/tasks.md",
+      "type": "document",
+      "name": "tasks.md",
+      "filePath": "changes/archive/2026-09-14-ai-agent-support-copilot/tasks.md",
+      "summary": "归档二期任务清单与 Delta 任务清单，标记 Workspace、Provider、知识库、Agent 编排、工具执行、附件、Customer 在线咨询、转人工和回归验收均已完成。",
+      "tags": [
+        "task-list",
+        "archive",
+        "implementation-status",
+        "delta",
+        "verification"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "文档用勾选任务、依赖关系、涉及文件和完成状态展示实施进展，适合作为归档后的交付索引。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      },
+      "sections": [
+        {
+          "heading": "任务清单",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "实施任务",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "完成状态",
+          "level": 2,
+          "line": 66
+        },
+        {
+          "heading": "Delta 任务清单（2026-09-14）",
+          "level": 2,
+          "line": 71
+        },
+        {
+          "heading": "Delta 完成状态",
+          "level": 2,
+          "line": 101
+        }
+      ]
+    }
+  ],
+  "edges": []
+}

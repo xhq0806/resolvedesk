@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "config:.understand-anything/tmp/ua-import-map-input.json",
+      "type": "config",
+      "name": "ua-import-map-input.json",
+      "filePath": ".understand-anything/tmp/ua-import-map-input.json",
+      "summary": "保存 import map 抽取脚本的输入清单，包含 ResolveDesk 项目根目录和待扫描文件的路径、语言、文件类别信息。",
+      "tags": [
+        "understand",
+        "import map",
+        "输入清单",
+        "项目扫描",
+        "中间配置"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这是 understand 分析流水线的临时 JSON 输入文件，结构以 projectRoot 和 files 数组为主，用于驱动后续内部依赖解析。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "id": "config:.understand-anything/tmp/ua-import-map-output.json",
+      "type": "config",
+      "name": "ua-import-map-output.json",
+      "filePath": ".understand-anything/tmp/ua-import-map-output.json",
+      "summary": "保存 import map 抽取结果，记录扫描文件数、有内部 imports 的文件数、总依赖边数，以及每个项目文件解析出的内部 import 目标。",
+      "tags": [
+        "understand",
+        "import map",
+        "依赖解析",
+        "中间结果",
+        "JSON"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "该文件是 deterministic import 分析的输出快照，importMap 字段会被后续 batch 构造和 imports 边生成逻辑复用。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "id": "config:.understand-anything/tmp/ua-scan-files.json",
+      "type": "config",
+      "name": "ua-scan-files.json",
+      "filePath": ".understand-anything/tmp/ua-scan-files.json",
+      "summary": "保存项目文件扫描结果，列出 ResolveDesk 各文件的路径、语言、行数和类别，并汇总总文件数、忽略数量、复杂度估计和分类统计。",
+      "tags": [
+        "understand",
+        "文件扫描",
+        "项目清单",
+        "复杂度估计",
+        "中间结果"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "这是 understand 扫描阶段的临时 JSON 输出，既是后续批处理输入来源，也帮助保持文件级节点覆盖完整。",
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    }
+  ],
+  "edges": []
+}

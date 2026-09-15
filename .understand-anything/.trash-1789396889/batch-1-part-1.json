@@ -1,0 +1,2750 @@
+{
+  "nodes": [
+    {
+      "id": "file:backend/app/api/routes/ai.py",
+      "type": "file",
+      "name": "ai.py",
+      "filePath": "backend/app/api/routes/ai.py",
+      "summary": "定义 AI 提供商配置、工具权限、会话流式响应与客服会话交接相关的 FastAPI 路由，是 AI 能力对外暴露的主要接口层。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "route",
+        "backend"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "function",
+      "name": "_ensure_same_workspace",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        39,
+        45
+      ],
+      "summary": "处理 _ensure_same_workspace 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "internal"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:get_provider_config",
+      "type": "function",
+      "name": "get_provider_config",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        49,
+        59
+      ],
+      "summary": "处理 get_provider_config 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:update_provider_config",
+      "type": "function",
+      "name": "update_provider_config",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        63,
+        74
+      ],
+      "summary": "处理 update_provider_config 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:test_provider_config",
+      "type": "function",
+      "name": "test_provider_config",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        78,
+        89
+      ],
+      "summary": "处理 test_provider_config 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:list_tool_permissions",
+      "type": "function",
+      "name": "list_tool_permissions",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        93,
+        122
+      ],
+      "summary": "处理 list_tool_permissions 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:update_tool_permissions",
+      "type": "function",
+      "name": "update_tool_permissions",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        126,
+        163
+      ],
+      "summary": "处理 update_tool_permissions 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:create_conversation",
+      "type": "function",
+      "name": "create_conversation",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        167,
+        177
+      ],
+      "summary": "处理 create_conversation 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:handoff_conversation",
+      "type": "function",
+      "name": "handoff_conversation",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        181,
+        193
+      ],
+      "summary": "处理 handoff_conversation 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:handoff_conversation_to_ticket",
+      "type": "function",
+      "name": "handoff_conversation_to_ticket",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        200,
+        222
+      ],
+      "summary": "处理 handoff_conversation_to_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:resume_conversation",
+      "type": "function",
+      "name": "resume_conversation",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        226,
+        238
+      ],
+      "summary": "处理 resume_conversation 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:cancel_conversation_run",
+      "type": "function",
+      "name": "cancel_conversation_run",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        242,
+        254
+      ],
+      "summary": "处理 cancel_conversation_run 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:stream_conversation_message",
+      "type": "function",
+      "name": "stream_conversation_message",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        258,
+        296
+      ],
+      "summary": "处理 stream_conversation_message 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:get_customer_conversation",
+      "type": "function",
+      "name": "get_customer_conversation",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        300,
+        311
+      ],
+      "summary": "处理 get_customer_conversation 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:create_customer_conversation",
+      "type": "function",
+      "name": "create_customer_conversation",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        315,
+        326
+      ],
+      "summary": "处理 create_customer_conversation 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/ai.py:stream_customer_conversation_message",
+      "type": "function",
+      "name": "stream_customer_conversation_message",
+      "filePath": "backend/app/api/routes/ai.py",
+      "lineRange": [
+        330,
+        373
+      ],
+      "summary": "处理 stream_customer_conversation_message 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/api/routes/attachments.py",
+      "type": "file",
+      "name": "attachments.py",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "summary": "提供工单附件上传、列表、下载和删除的 FastAPI 路由，并在每个操作中校验 workspace 归属。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "route",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "function",
+      "name": "_ensure_same_workspace",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "lineRange": [
+        18,
+        24
+      ],
+      "summary": "处理 _ensure_same_workspace 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "internal",
+        "attachment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/attachments.py:upload_attachment",
+      "type": "function",
+      "name": "upload_attachment",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "lineRange": [
+        32,
+        45
+      ],
+      "summary": "处理 upload_attachment 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "attachment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/attachments.py:list_attachments",
+      "type": "function",
+      "name": "list_attachments",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "lineRange": [
+        49,
+        63
+      ],
+      "summary": "处理 list_attachments 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "attachment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/attachments.py:download_attachment",
+      "type": "function",
+      "name": "download_attachment",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "lineRange": [
+        67,
+        83
+      ],
+      "summary": "处理 download_attachment 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "attachment"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/attachments.py:delete_attachment",
+      "type": "function",
+      "name": "delete_attachment",
+      "filePath": "backend/app/api/routes/attachments.py",
+      "lineRange": [
+        90,
+        99
+      ],
+      "summary": "处理 delete_attachment 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "attachment"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/routes/knowledge.py",
+      "type": "file",
+      "name": "knowledge.py",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "summary": "提供知识库文档上传、查询、重试和删除接口，并把检索请求连接到知识服务与 provider 配置。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "route",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "function",
+      "name": "_ensure_same_workspace",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        29,
+        35
+      ],
+      "summary": "处理 _ensure_same_workspace 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "internal",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:list_documents",
+      "type": "function",
+      "name": "list_documents",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        39,
+        51
+      ],
+      "summary": "处理 list_documents 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:upload_document",
+      "type": "function",
+      "name": "upload_document",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        59,
+        69
+      ],
+      "summary": "处理 upload_document 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:search_knowledge",
+      "type": "function",
+      "name": "search_knowledge",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        73,
+        99
+      ],
+      "summary": "处理 search_knowledge 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:get_document",
+      "type": "function",
+      "name": "get_document",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        103,
+        114
+      ],
+      "summary": "处理 get_document 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:retry_document",
+      "type": "function",
+      "name": "retry_document",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        121,
+        132
+      ],
+      "summary": "处理 retry_document 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/knowledge.py:delete_document",
+      "type": "function",
+      "name": "delete_document",
+      "filePath": "backend/app/api/routes/knowledge.py",
+      "lineRange": [
+        139,
+        149
+      ],
+      "summary": "处理 delete_document 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "knowledge"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/routes/tickets.py",
+      "type": "file",
+      "name": "tickets.py",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "summary": "定义工单统计、创建、查询、领取、分派、回复、状态更新和删除等核心工单 API 路由。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "route",
+        "backend"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:read_ticket_statistics",
+      "type": "function",
+      "name": "read_ticket_statistics",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        30,
+        35
+      ],
+      "summary": "处理 read_ticket_statistics 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:create_ticket",
+      "type": "function",
+      "name": "create_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        39,
+        45
+      ],
+      "summary": "处理 create_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:list_tickets",
+      "type": "function",
+      "name": "list_tickets",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        49,
+        55
+      ],
+      "summary": "处理 list_tickets 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:read_ticket",
+      "type": "function",
+      "name": "read_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        59,
+        65
+      ],
+      "summary": "处理 read_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:claim_ticket",
+      "type": "function",
+      "name": "claim_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        69,
+        75
+      ],
+      "summary": "处理 claim_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:assign_ticket",
+      "type": "function",
+      "name": "assign_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        79,
+        88
+      ],
+      "summary": "处理 assign_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:unassign_ticket",
+      "type": "function",
+      "name": "unassign_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        92,
+        100
+      ],
+      "summary": "处理 unassign_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:add_customer_reply",
+      "type": "function",
+      "name": "add_customer_reply",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        108,
+        117
+      ],
+      "summary": "处理 add_customer_reply 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:add_staff_message",
+      "type": "function",
+      "name": "add_staff_message",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        125,
+        134
+      ],
+      "summary": "处理 add_staff_message 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:update_status",
+      "type": "function",
+      "name": "update_status",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        138,
+        147
+      ],
+      "summary": "处理 update_status 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:update_attributes",
+      "type": "function",
+      "name": "update_attributes",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        151,
+        160
+      ],
+      "summary": "处理 update_attributes 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/tickets.py:delete_ticket",
+      "type": "function",
+      "name": "delete_ticket",
+      "filePath": "backend/app/api/routes/tickets.py",
+      "lineRange": [
+        164,
+        174
+      ],
+      "summary": "处理 delete_ticket 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "ticket"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/api/routes/workspaces.py",
+      "type": "file",
+      "name": "workspaces.py",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "summary": "提供 workspace 创建、成员列表、邀请、角色更新与移除成员的管理路由。",
+      "tags": [
+        "api-handler",
+        "fastapi",
+        "route",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:list_workspaces",
+      "type": "function",
+      "name": "list_workspaces",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        28,
+        42
+      ],
+      "summary": "处理 list_workspaces 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:create_workspace",
+      "type": "function",
+      "name": "create_workspace",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        46,
+        59
+      ],
+      "summary": "处理 create_workspace 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:list_members",
+      "type": "function",
+      "name": "list_members",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        63,
+        74
+      ],
+      "summary": "处理 list_members 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:invite_member",
+      "type": "function",
+      "name": "invite_member",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        82,
+        94
+      ],
+      "summary": "处理 invite_member 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:update_member_role",
+      "type": "function",
+      "name": "update_member_role",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        98,
+        111
+      ],
+      "summary": "处理 update_member_role 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/api/routes/workspaces.py:remove_member",
+      "type": "function",
+      "name": "remove_member",
+      "filePath": "backend/app/api/routes/workspaces.py",
+      "lineRange": [
+        117,
+        129
+      ],
+      "summary": "处理 remove_member 路由请求，协调依赖注入、权限校验和对应服务调用来完成 API 行为。",
+      "tags": [
+        "function",
+        "api-handler",
+        "workspace"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/core/errors.py",
+      "type": "file",
+      "name": "errors.py",
+      "filePath": "backend/app/core/errors.py",
+      "summary": "集中定义应用错误码、领域异常、FastAPI 异常处理器和 Sentry 脱敏逻辑，稳定后端错误响应契约。",
+      "tags": [
+        "core",
+        "error-handling",
+        "middleware",
+        "backend"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "function",
+      "name": "get_error_definition",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        103,
+        105
+      ],
+      "summary": "实现 get_error_definition 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:log_application_error",
+      "type": "function",
+      "name": "log_application_error",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        153,
+        170
+      ],
+      "summary": "实现 log_application_error 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:_request_id",
+      "type": "function",
+      "name": "_request_id",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        173,
+        176
+      ],
+      "summary": "实现 _request_id 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "internal",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:_error_response",
+      "type": "function",
+      "name": "_error_response",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        179,
+        193
+      ],
+      "summary": "实现 _error_response 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "internal",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:app_error_handler",
+      "type": "function",
+      "name": "app_error_handler",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        196,
+        206
+      ],
+      "summary": "实现 app_error_handler 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "type": "function",
+      "name": "request_validation_error_handler",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        209,
+        225
+      ],
+      "summary": "实现 request_validation_error_handler 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:internal_error_handler",
+      "type": "function",
+      "name": "internal_error_handler",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        228,
+        238
+      ],
+      "summary": "实现 internal_error_handler 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:register_exception_handlers",
+      "type": "function",
+      "name": "register_exception_handlers",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        241,
+        251
+      ],
+      "summary": "实现 register_exception_handlers 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/errors.py:sanitize_sentry_event",
+      "type": "function",
+      "name": "sanitize_sentry_event",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        254,
+        285
+      ],
+      "summary": "实现 sanitize_sentry_event 错误处理辅助逻辑，用于生成稳定错误响应、记录上下文或注册异常处理器。",
+      "tags": [
+        "function",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:ErrorCode",
+      "type": "class",
+      "name": "ErrorCode",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        22,
+        46
+      ],
+      "summary": "ErrorCode 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:ErrorDefinition",
+      "type": "class",
+      "name": "ErrorDefinition",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        50,
+        54
+      ],
+      "summary": "ErrorDefinition 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:AppError",
+      "type": "class",
+      "name": "AppError",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        108,
+        126
+      ],
+      "summary": "AppError 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple",
+      "languageNotes": "包含方法：__init__。"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:NotFoundError",
+      "type": "class",
+      "name": "NotFoundError",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        129,
+        132
+      ],
+      "summary": "NotFoundError 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:ForbiddenError",
+      "type": "class",
+      "name": "ForbiddenError",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        135,
+        138
+      ],
+      "summary": "ForbiddenError 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:ConflictError",
+      "type": "class",
+      "name": "ConflictError",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        141,
+        144
+      ],
+      "summary": "ConflictError 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/errors.py:ValidationError",
+      "type": "class",
+      "name": "ValidationError",
+      "filePath": "backend/app/core/errors.py",
+      "lineRange": [
+        147,
+        150
+      ],
+      "summary": "ValidationError 表达应用错误码、错误定义或领域异常类型，用于统一错误响应和日志语义。",
+      "tags": [
+        "class",
+        "core",
+        "error-handling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:backend/app/core/provider_security.py",
+      "type": "file",
+      "name": "provider_security.py",
+      "filePath": "backend/app/core/provider_security.py",
+      "summary": "校验 AI provider base URL，阻止本地、内网和无效地址被配置为外部模型服务。",
+      "tags": [
+        "core",
+        "error-handling",
+        "middleware",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/provider_security.py:validate_provider_base_url",
+      "type": "function",
+      "name": "validate_provider_base_url",
+      "filePath": "backend/app/core/provider_security.py",
+      "lineRange": [
+        11,
+        31
+      ],
+      "summary": "校验 provider base URL 的协议、主机和解析地址，防止把模型服务配置到本机或内网地址。",
+      "tags": [
+        "function",
+        "core",
+        "provider"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:backend/app/core/request_context.py",
+      "type": "file",
+      "name": "request_context.py",
+      "filePath": "backend/app/core/request_context.py",
+      "summary": "管理请求 ID 的生成、规范化和 ASGI middleware 注入，用于日志追踪和错误响应关联。",
+      "tags": [
+        "core",
+        "error-handling",
+        "middleware",
+        "backend"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:backend/app/core/request_context.py:is_valid_request_id",
+      "type": "function",
+      "name": "is_valid_request_id",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        16,
+        18
+      ],
+      "summary": "提供 is_valid_request_id 请求 ID 辅助逻辑，用于生成、读取或规范化跨请求追踪标识。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/request_context.py:generate_request_id",
+      "type": "function",
+      "name": "generate_request_id",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        21,
+        23
+      ],
+      "summary": "提供 generate_request_id 请求 ID 辅助逻辑，用于生成、读取或规范化跨请求追踪标识。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/request_context.py:normalize_request_id",
+      "type": "function",
+      "name": "normalize_request_id",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        26,
+        30
+      ],
+      "summary": "提供 normalize_request_id 请求 ID 辅助逻辑，用于生成、读取或规范化跨请求追踪标识。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/request_context.py:get_request_id",
+      "type": "function",
+      "name": "get_request_id",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        33,
+        35
+      ],
+      "summary": "提供 get_request_id 请求 ID 辅助逻辑，用于生成、读取或规范化跨请求追踪标识。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:backend/app/core/request_context.py:get_request_id_from_scope",
+      "type": "function",
+      "name": "get_request_id_from_scope",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        38,
+        42
+      ],
+      "summary": "提供 get_request_id_from_scope 请求 ID 辅助逻辑，用于生成、读取或规范化跨请求追踪标识。",
+      "tags": [
+        "function",
+        "core",
+        "backend"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:backend/app/core/request_context.py:RequestContextMiddleware",
+      "type": "class",
+      "name": "RequestContextMiddleware",
+      "filePath": "backend/app/core/request_context.py",
+      "lineRange": [
+        45,
+        84
+      ],
+      "summary": "RequestContextMiddleware 在 ASGI 请求生命周期中注入和传播 request id。",
+      "tags": [
+        "class",
+        "core",
+        "backend"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "包含方法：__init__、__call__。"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/core/request_context.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/models/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/schemas/ai.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/schemas/tools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/services/agent_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/services/provider_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "file:backend/app/services/tool_executor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:get_provider_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:get_provider_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:update_provider_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:update_provider_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:test_provider_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:test_provider_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:list_tool_permissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:list_tool_permissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:update_tool_permissions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:update_tool_permissions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:create_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:create_conversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:handoff_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:handoff_conversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:handoff_conversation_to_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:handoff_conversation_to_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:resume_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:resume_conversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:cancel_conversation_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:cancel_conversation_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:stream_conversation_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:stream_conversation_message",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:get_customer_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:get_customer_conversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:create_customer_conversation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:create_customer_conversation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:stream_customer_conversation_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/ai.py",
+      "target": "function:backend/app/api/routes/ai.py:stream_customer_conversation_message",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:get_provider_config",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:update_provider_config",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:test_provider_config",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:list_tool_permissions",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:update_tool_permissions",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:update_tool_permissions",
+      "target": "function:backend/app/api/routes/ai.py:list_tool_permissions",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:create_conversation",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:handoff_conversation",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:handoff_conversation_to_ticket",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:resume_conversation",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:cancel_conversation_run",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:stream_conversation_message",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:get_customer_conversation",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:create_customer_conversation",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/ai.py:stream_customer_conversation_message",
+      "target": "function:backend/app/api/routes/ai.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "file:backend/app/schemas/attachment.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "file:backend/app/services/attachment_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:upload_attachment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:upload_attachment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:list_attachments",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:list_attachments",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:download_attachment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:download_attachment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:delete_attachment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/attachments.py",
+      "target": "function:backend/app/api/routes/attachments.py:delete_attachment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/attachments.py:upload_attachment",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/attachments.py:list_attachments",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/attachments.py:download_attachment",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/attachments.py:delete_attachment",
+      "target": "function:backend/app/api/routes/attachments.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/core/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/repositories/knowledge_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/schemas/knowledge.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/services/knowledge_retrieval.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/services/knowledge_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "file:backend/app/services/provider_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:list_documents",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:list_documents",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:upload_document",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:upload_document",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:search_knowledge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:search_knowledge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:get_document",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:get_document",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:retry_document",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:retry_document",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:delete_document",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/knowledge.py",
+      "target": "function:backend/app/api/routes/knowledge.py:delete_document",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:list_documents",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:upload_document",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:search_knowledge",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:get_document",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:retry_document",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/api/routes/knowledge.py:delete_document",
+      "target": "function:backend/app/api/routes/knowledge.py:_ensure_same_workspace",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "file:backend/app/schemas/ticket.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "file:backend/app/services/statistics_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "file:backend/app/services/ticket_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:read_ticket_statistics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:read_ticket_statistics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:create_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:create_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:list_tickets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:list_tickets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:read_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:read_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:claim_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:claim_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:assign_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:assign_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:unassign_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:unassign_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:add_customer_reply",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:add_customer_reply",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:add_staff_message",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:add_staff_message",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:update_status",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:update_status",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:update_attributes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:update_attributes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:delete_ticket",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/tickets.py",
+      "target": "function:backend/app/api/routes/tickets.py:delete_ticket",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/api/deps.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/core/errors.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/models/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/repositories/workspace_repository.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/schemas/workspace.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "file:backend/app/services/workspace_service.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:list_workspaces",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:list_workspaces",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:create_workspace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:create_workspace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:list_members",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:list_members",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:invite_member",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:invite_member",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:update_member_role",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:update_member_role",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:remove_member",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/api/routes/workspaces.py",
+      "target": "function:backend/app/api/routes/workspaces.py:remove_member",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "file:backend/app/core/request_context.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "file:backend/app/schemas/common.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:log_application_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:log_application_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:_request_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:_request_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:_error_response",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:_error_response",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:app_error_handler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:app_error_handler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:internal_error_handler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:internal_error_handler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:register_exception_handlers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:register_exception_handlers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:sanitize_sentry_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "function:backend/app/core/errors.py:sanitize_sentry_event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ErrorCode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ErrorCode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ErrorDefinition",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ErrorDefinition",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:AppError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:AppError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:NotFoundError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:NotFoundError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ForbiddenError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ForbiddenError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ConflictError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ConflictError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ValidationError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/errors.py",
+      "target": "class:backend/app/core/errors.py:ValidationError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:_error_response",
+      "target": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:app_error_handler",
+      "target": "function:backend/app/core/errors.py:_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:app_error_handler",
+      "target": "function:backend/app/core/errors.py:log_application_error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:app_error_handler",
+      "target": "function:backend/app/core/errors.py:_error_response",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "target": "function:backend/app/core/errors.py:_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "target": "function:backend/app/core/errors.py:log_application_error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "target": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:request_validation_error_handler",
+      "target": "function:backend/app/core/errors.py:_error_response",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:internal_error_handler",
+      "target": "function:backend/app/core/errors.py:_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:internal_error_handler",
+      "target": "function:backend/app/core/errors.py:log_application_error",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:internal_error_handler",
+      "target": "function:backend/app/core/errors.py:get_error_definition",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/errors.py:internal_error_handler",
+      "target": "function:backend/app/core/errors.py:_error_response",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/provider_security.py",
+      "target": "function:backend/app/core/provider_security.py:validate_provider_base_url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/provider_security.py",
+      "target": "function:backend/app/core/provider_security.py:validate_provider_base_url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:is_valid_request_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:is_valid_request_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:generate_request_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:generate_request_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:normalize_request_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:normalize_request_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:get_request_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:get_request_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:get_request_id_from_scope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "function:backend/app/core/request_context.py:get_request_id_from_scope",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "class:backend/app/core/request_context.py:RequestContextMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:backend/app/core/request_context.py",
+      "target": "class:backend/app/core/request_context.py:RequestContextMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/request_context.py:normalize_request_id",
+      "target": "function:backend/app/core/request_context.py:is_valid_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/request_context.py:normalize_request_id",
+      "target": "function:backend/app/core/request_context.py:generate_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/request_context.py:get_request_id_from_scope",
+      "target": "function:backend/app/core/request_context.py:get_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:backend/app/core/request_context.py:get_request_id_from_scope",
+      "target": "function:backend/app/core/request_context.py:generate_request_id",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Verified 864 importMap file-level import pairs; all corresponding imports edges already exist.",
+    "No dangling edges, duplicate nodes, missing required node fields, invalid node types, or invalid complexity values found in assembled graph.",
+    "Raw batch files contain no nodes without id, no unknown node types, and no unusual complexity values.",
+    "The single dropped tested_by edge was document:changes/archive/2026-09-14-local-avatar-upload/spec.md -> document:changes/archive/2026-09-14-local-avatar-upload/verification.md; left dropped because it is document-to-document, not a production-to-test edge."
+  ]
+}
