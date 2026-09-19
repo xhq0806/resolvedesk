@@ -4,15 +4,18 @@ from __future__ import annotations
 
 import uuid
 from collections.abc import Sequence
+from datetime import datetime
 from typing import Any, cast
 
-from sqlmodel import Session, select
+from sqlmodel import Session, col, select
 
 from app.core.workspace import WorkspaceContext
 from app.models.knowledge import (
     KnowledgeChunk,
     KnowledgeDocument,
     KnowledgeDocumentStatus,
+    RagRetrievalPolicy,
+    RagRetrievalTrace,
 )
 
 
@@ -68,3 +71,49 @@ class KnowledgeRepository:
                 KnowledgeDocument.status == KnowledgeDocumentStatus.READY,
             )
         ).first()
+
+    def get_retrieval_policy(
+        self,
+        context: WorkspaceContext,
+    ) -> RagRetrievalPolicy | None:
+        """读取当前 Workspace 的检索观测策略。by AI.Coding"""
+        return self.session.exec(
+            select(RagRetrievalPolicy).where(
+                RagRetrievalPolicy.workspace_id == context.workspace_id
+            )
+        ).first()
+
+    def add_retrieval_policy(self, policy: RagRetrievalPolicy) -> None:
+        """将待保存策略加入当前请求事务。by AI.Coding"""
+        self.session.add(policy)
+
+    def create_retrieval_trace(self, trace: RagRetrievalTrace) -> None:
+        """将无正文检索 trace 加入当前请求事务。by AI.Coding"""
+        self.session.add(trace)
+
+    def list_retrieval_traces(
+        self,
+        context: WorkspaceContext,
+        *,
+        limit: int,
+        before: datetime | None,
+    ) -> list[RagRetrievalTrace]:
+        """按时间倒序读取当前 Workspace 的检索追踪。by AI.Coding"""
+        statement = select(RagRetrievalTrace).where(
+            RagRetrievalTrace.workspace_id == context.workspace_id
+        )
+        if before is not None:
+            statement = statement.where(RagRetrievalTrace.created_at < before)
+        return list(
+            self.session.exec(
+                statement.order_by(col(RagRetrievalTrace.created_at).desc()).limit(limit)
+            ).all()
+        )
+
+    def commit(self) -> None:
+        """提交策略或追踪写入，供服务层明确控制事务边界。by AI.Coding"""
+        self.session.commit()
+
+    def rollback(self) -> None:
+        """回滚失败的 best-effort trace 写入。by AI.Coding"""
+        self.session.rollback()

@@ -3,20 +3,29 @@
 from __future__ import annotations
 
 import uuid
+from datetime import datetime
 
-from fastapi import APIRouter, File, UploadFile, status
+from fastapi import APIRouter, File, Query, UploadFile, status
 
 from app.api.deps import CurrentUser, SessionDep, WorkspaceContextDep
 from app.core.errors import ErrorCode, NotFoundError
+from app.core.request_context import get_request_id
 from app.core.workspace import WorkspacePolicy
 from app.repositories.knowledge_repository import KnowledgeRepository
 from app.schemas.knowledge import (
     DocumentIngestionJobPublic,
     KnowledgeDocumentPublic,
     KnowledgeSearchRequest,
+    RagRetrievalPolicyPatch,
+    RagRetrievalPolicyPublic,
+    RagRetrievalTracePublic,
     RetrievedChunkPublic,
 )
-from app.services.knowledge_retrieval import KnowledgeRetrievalService
+from app.services.knowledge_retrieval import (
+    KnowledgeRetrievalService,
+    RagRetrievalPolicyService,
+    RetrievalTraceContext,
+)
 from app.services.knowledge_service import KnowledgeService
 from app.services.provider_service import ProviderService
 
@@ -85,7 +94,14 @@ async def search_knowledge(
     rows = await KnowledgeRetrievalService(
         KnowledgeRepository(session),
         provider,
-    ).search(context, payload.query, limit=payload.limit)
+    ).search(
+        context,
+        payload.query,
+        limit=payload.limit,
+        trace_context=RetrievalTraceContext(
+            request_id=get_request_id() or str(uuid.uuid4())
+        ),
+    )
     return [
         RetrievedChunkPublic(
             chunk_id=uuid.UUID(row.chunk_id),
@@ -96,6 +112,65 @@ async def search_knowledge(
             distance=row.distance,
         )
         for row in rows
+    ]
+
+
+@router.get("/retrieval-policy", response_model=RagRetrievalPolicyPublic)
+def get_retrieval_policy(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+) -> RagRetrievalPolicyPublic:
+    """返回当前 Workspace 的 RAG 观测策略。by AI.Coding"""
+    del current_user
+    _ensure_same_workspace(workspace_id, context)
+    WorkspacePolicy.require_manager(context)
+    return RagRetrievalPolicyPublic.model_validate(
+        RagRetrievalPolicyService(session).get_policy(context)
+    )
+
+
+@router.patch("/retrieval-policy", response_model=RagRetrievalPolicyPublic)
+def update_retrieval_policy(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+    payload: RagRetrievalPolicyPatch,
+) -> RagRetrievalPolicyPublic:
+    """更新当前 Workspace 的 RAG 观测策略。by AI.Coding"""
+    del current_user
+    _ensure_same_workspace(workspace_id, context)
+    WorkspacePolicy.require_manager(context)
+    policy = RagRetrievalPolicyService(session).update_policy(
+        context,
+        trace_enabled=payload.trace_enabled,
+        strategy_version=payload.strategy_version,
+    )
+    return RagRetrievalPolicyPublic.model_validate(policy)
+
+
+@router.get("/retrieval-traces", response_model=list[RagRetrievalTracePublic])
+def list_retrieval_traces(
+    session: SessionDep,
+    current_user: CurrentUser,
+    context: WorkspaceContextDep,
+    workspace_id: uuid.UUID,
+    limit: int = Query(default=20, ge=1, le=100),
+    before: datetime | None = None,
+) -> list[RagRetrievalTracePublic]:
+    """按时间倒序返回当前 Workspace 的无正文检索追踪。by AI.Coding"""
+    del current_user
+    _ensure_same_workspace(workspace_id, context)
+    WorkspacePolicy.require_manager(context)
+    return [
+        RagRetrievalTracePublic.model_validate(trace)
+        for trace in RagRetrievalPolicyService(session).list_traces(
+            context,
+            limit=limit,
+            before=before,
+        )
     ]
 
 

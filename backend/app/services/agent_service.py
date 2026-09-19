@@ -38,6 +38,7 @@ from app.schemas.ticket import TicketDetailPublic
 from app.services.assignment_service import AgentAssignmentPolicy
 from app.services.knowledge_retrieval import (
     KnowledgeRetrievalService,
+    RetrievalTraceContext,
     RetrievedChunk,
 )
 from app.services.ticket_service import TicketService
@@ -325,7 +326,14 @@ class AgentService:
         sources = await KnowledgeRetrievalService(
             KnowledgeRepository(self.session),
             embedding_provider,
-        ).search(context, payload.content)
+        ).search(
+            context,
+            payload.content,
+            trace_context=RetrievalTraceContext(
+                request_id=request_id,
+                conversation_id=conversation.id,
+            ),
+        )
         system_context = self._customer_system_context(sources)
         async for event in self.stream_message(
             context,

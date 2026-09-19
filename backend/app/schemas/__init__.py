@@ -18,6 +18,9 @@ from app.schemas.knowledge import (
     DocumentIngestionJobPublic,
     KnowledgeDocumentPublic,
     KnowledgeSearchRequest,
+    RagRetrievalPolicyPatch,
+    RagRetrievalPolicyPublic,
+    RagRetrievalTracePublic,
     RetrievedChunkPublic,
 )
 from app.schemas.ticket import (
@@ -63,6 +66,9 @@ __all__ = [
     "DocumentIngestionJobPublic",
     "KnowledgeDocumentPublic",
     "KnowledgeSearchRequest",
+    "RagRetrievalPolicyPatch",
+    "RagRetrievalPolicyPublic",
+    "RagRetrievalTracePublic",
     "RetrievedChunkPublic",
     "DeleteTicketRequest",
     "TicketAssign",

@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from app.models.knowledge import IngestionJobStatus, KnowledgeDocumentStatus
 
@@ -69,3 +69,42 @@ class RetrievedChunkPublic(BaseModel):
     locator: dict[str, object]
     preview: str
     distance: float
+
+
+class RagRetrievalPolicyPublic(BaseModel):
+    """Workspace RAG 观测策略的公开响应。by AI.Coding"""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    workspace_id: uuid.UUID
+    trace_enabled: bool
+    strategy_version: str
+    created_at: datetime
+    updated_at: datetime
+
+
+class RagRetrievalPolicyPatch(BaseModel):
+    """管理者可修改的 Workspace RAG 观测策略字段。by AI.Coding"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    trace_enabled: bool | None = None
+    strategy_version: str | None = Field(default=None, min_length=1, max_length=80)
+
+
+class RagRetrievalTracePublic(BaseModel):
+    """不包含问题和知识正文的检索追踪公开响应。by AI.Coding"""
+
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    workspace_id: uuid.UUID
+    conversation_id: uuid.UUID | None
+    request_id: str
+    query_fingerprint: str
+    query_length: int
+    strategy_version: str
+    result_count: int
+    elapsed_ms: int
+    candidates: list[dict[str, object]]
+    created_at: datetime

@@ -2,7 +2,10 @@
 
 from app.services.agent_service import AgentService
 from app.services.attachment_service import AttachmentService
-from app.services.knowledge_retrieval import KnowledgeRetrievalService
+from app.services.knowledge_retrieval import (
+    KnowledgeRetrievalService,
+    RagRetrievalPolicyService,
+)
 from app.services.knowledge_service import KnowledgeService
 from app.services.provider_service import ProviderService
 from app.services.statistics_service import StatisticsService
@@ -11,6 +14,7 @@ from app.services.user_service import UserService
 
 __all__ = [
     "KnowledgeRetrievalService",
+    "RagRetrievalPolicyService",
     "KnowledgeService",
     "AgentService",
     "AttachmentService",

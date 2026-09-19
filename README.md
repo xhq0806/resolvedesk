@@ -192,12 +192,13 @@ packages/react-email/     邮件源组件和导出工具
 - [Docker Compose 部署](./deployment-docker-compose.md)
 - [系统行为规格](./SYSTEM-SPEC.md)
 - [AI Agent 支持型客服协同系统规格](./docs/specs/ai-agent-support-copilot.md)
+- [RAG 与 Agent 演进方案](./docs/specs/rag-agent-evolution.md)
 - [最终验收报告](./changes/active/ai-customer-support-platform/acceptance.md)
 - [贡献指南](./CONTRIBUTING.md)
 
 ## 当前未覆盖范围
 
-复杂客服组/技能组路由、Agent 排班与在线心跳、SLA 自动升级、满意度评价、邮件收件转工单、计费、生产级合规认证、跨 Workspace 知识共享，以及 AI 删除工单、管理成员或修改 Provider 配置，均不属于当前版本。
+复杂客服组/技能组路由、Agent 排班与在线心跳、SLA 自动升级、满意度评价、邮件收件转工单、计费、生产级合规认证、跨 Workspace 知识共享，以及混合检索、Cross-Encoder 重排、条件式 Query Rewrite、受控 Agent 工具循环和 AI 删除工单、管理成员或修改 Provider 配置，均不属于当前版本。RAG/Agent 优化的后续实施顺序见 [演进方案](./docs/specs/rag-agent-evolution.md)。
 
 ## 许可证
 

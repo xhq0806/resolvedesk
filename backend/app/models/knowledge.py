@@ -7,7 +7,7 @@ from datetime import datetime
 from enum import StrEnum
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import JSON, Column, DateTime, Enum, Index, Integer, Text, text
+from sqlalchemy import JSON, Boolean, Column, DateTime, Enum, Index, Integer, Text, text
 from sqlmodel import Field, SQLModel
 
 from app.models.user import get_datetime_utc
@@ -94,6 +94,61 @@ class KnowledgeChunk(SQLModel, table=True):
     embedding: list[float] | None = Field(
         default=None,
         sa_column=Column(Vector(1024), nullable=True),
+    )
+    created_at: datetime = Field(
+        default_factory=get_datetime_utc,
+        sa_type=DateTime(timezone=True),  # type: ignore
+    )
+
+
+class RagRetrievalPolicy(SQLModel, table=True):
+    """Workspace 级 RAG 检索观测策略。by AI.Coding"""
+
+    __tablename__ = "rag_retrieval_policy"
+    __table_args__ = (
+        Index("ux_rag_retrieval_policy_workspace", "workspace_id", unique=True),
+    )
+
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    workspace_id: uuid.UUID = Field(foreign_key="workspace.id", nullable=False)
+    trace_enabled: bool = Field(
+        default=False,
+        sa_column=Column(Boolean, nullable=False, server_default=text("false")),
+    )
+    strategy_version: str = Field(default="dense-v1", max_length=80)
+    created_at: datetime = Field(
+        default_factory=get_datetime_utc,
+        sa_type=DateTime(timezone=True),  # type: ignore
+    )
+    updated_at: datetime = Field(
+        default_factory=get_datetime_utc,
+        sa_type=DateTime(timezone=True),  # type: ignore
+    )
+
+
+class RagRetrievalTrace(SQLModel, table=True):
+    """不保存问题正文的 Workspace 检索审计记录。by AI.Coding"""
+
+    __tablename__ = "rag_retrieval_trace"
+    __table_args__ = (
+        Index("ix_rag_retrieval_trace_workspace_created", "workspace_id", "created_at"),
+        Index("ix_rag_retrieval_trace_conversation", "conversation_id", "created_at"),
+    )
+
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
+    workspace_id: uuid.UUID = Field(foreign_key="workspace.id", nullable=False)
+    conversation_id: uuid.UUID | None = Field(
+        default=None, foreign_key="ai_conversation.id", nullable=True
+    )
+    request_id: str = Field(max_length=120, index=True)
+    query_fingerprint: str = Field(max_length=64)
+    query_length: int = Field(sa_column=Column(Integer, nullable=False))
+    strategy_version: str = Field(max_length=80)
+    result_count: int = Field(sa_column=Column(Integer, nullable=False))
+    elapsed_ms: int = Field(sa_column=Column(Integer, nullable=False))
+    candidates: list[dict[str, object]] = Field(
+        default_factory=list,
+        sa_column=Column(JSON, nullable=False),
     )
     created_at: datetime = Field(
         default_factory=get_datetime_utc,

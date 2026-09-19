@@ -31,6 +31,8 @@ from app.models.knowledge import (
     KnowledgeChunk,
     KnowledgeDocument,
     KnowledgeDocumentStatus,
+    RagRetrievalPolicy,
+    RagRetrievalTrace,
 )
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
@@ -75,6 +77,8 @@ __all__ = [
     "KnowledgeChunk",
     "KnowledgeDocument",
     "KnowledgeDocumentStatus",
+    "RagRetrievalPolicy",
+    "RagRetrievalTrace",
     "MembershipStatus",
     "Workspace",
     "WorkspaceInvitation",

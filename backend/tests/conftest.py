@@ -17,7 +17,13 @@ from app.models.ai import (
     AiToolPermission,
 )
 from app.models.attachment import Attachment
-from app.models.knowledge import DocumentIngestionJob, KnowledgeChunk, KnowledgeDocument
+from app.models.knowledge import (
+    DocumentIngestionJob,
+    KnowledgeChunk,
+    KnowledgeDocument,
+    RagRetrievalPolicy,
+    RagRetrievalTrace,
+)
 from app.models.ticket import Ticket, TicketAuditLog, TicketMessage
 from app.models.user import User
 from app.models.workspace import (
@@ -77,6 +83,7 @@ def db() -> Generator[Session]:
             AiRunEvent,
             AiRun,
             AiMessage,
+            RagRetrievalTrace,
             Attachment,
             AiConversation,
             KnowledgeChunk,
@@ -88,6 +95,7 @@ def db() -> Generator[Session]:
             AiToolPermission,
             AiProviderConfig,
             AiAgent,
+            RagRetrievalPolicy,
             WorkspaceInvitation,
             WorkspaceMember,
             Workspace,
